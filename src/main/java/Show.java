@@ -16,15 +16,15 @@ public class Show extends HttpServlet {
         String password = req.getParameter("password");
         PrintWriter printWriter = resp.getWriter();
         printWriter.println(
-                "<html> \n" +
-                    "<head> \n" +
+                        "<html> \n" +
+                        "<head> \n" +
                         "<meta charset=\"utf-8\"> \n" +
                         "<title>Progwards пример текста</title> \n" +
-                    "</head> \n" +
-                    "<body> <div align='center' style=\"font-size:25px; color:green\"> \n" +
+                        "</head> \n" +
+                        "<body> <div align='center' style=\"font-size:25px; color:green\"> \n" +
                         "Имя пользователя: " + username + " <br> " +
                         "Пароль: " + password +
-                    "</body> \n" +
-                "</html>");
+                        "</body> \n" +
+                        "</html>");
     }
 }
