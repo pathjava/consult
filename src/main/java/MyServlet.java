@@ -1,4 +1,3 @@
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
@@ -18,7 +17,6 @@ public class MyServlet implements Servlet {
     @Override
     public void service(ServletRequest req, ServletResponse resp) throws IOException {
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.println("<html><head></head><body>Hello Servlet</body></html>");
     }

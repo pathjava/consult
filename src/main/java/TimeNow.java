@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-@WebServlet("/timenow")
+
 public class TimeNow extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -21,7 +21,7 @@ public class TimeNow extends HttpServlet {
                         "   </head> \n" +
                         "   <body>" +
                         "       <div align='center' style=\"font-size:25px; color:green\"> \n" +
-                        "           Привет от Progwards! <br /> " +
+                        "           Привет от Progwards! <br> " +
                         "           Сейчас: " + new Date() +
                         "       </div> \n" +
                         "   </body> \n" +
