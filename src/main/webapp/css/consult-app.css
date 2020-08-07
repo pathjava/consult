@@ -1,0 +1,69 @@
+
+/* BASIC */
+
+
+input.btn-edit {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        content: "увше";
+}
+.edit:before {
+    font-family: 'Font Awesome 5 Pro';
+        position: relative;
+        left: 20px;
+        content: "\f044";
+        font-size: 20px;
+        transition: color 0.35s ease;
+}
+.edit:hover:before {
+        font-weight: 700;
+        color: #FF5823;
+}
+span.edit-text{
+    margin-left: 30px;
+}
+input.btn-del {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+}
+.trash:before {
+    font-family: 'Font Awesome 5 Pro';
+        position: relative;
+        left: 20px;
+        content: "\f2ed";
+        font-size: 20px;
+        transition: color 0.35s ease;
+}
+.trash:hover:before {
+        font-weight: 700;
+        color: #FF5823;
+}
+.add-user:before{
+    font-family: 'Font Awesome 5 Pro';
+        position: relative;
+        left: 20px;
+        content: "\f234";
+        font-size: 35px;
+        transition: color 0.35s ease;
+        color: #198632;
+}
+.add-user:hover:before{
+    font-weight: 700;
+            color: #FF5823;
+}
+.text-center a {
+text-decoration: none;
+}
+.text-center{
+    margin: 0 35 0 0;
+    }

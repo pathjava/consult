@@ -1,4 +1,4 @@
-<%@ page import="ru.progwards.java2.lib.DataBase" %>
+<%@ page import="ru.progwards.java2.db.DataBase" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Comparator" %>
@@ -9,20 +9,22 @@
 
     <%@include file="common-head.jsp"%>
 
-    <link href="css/consult-app.css" rel="stylesheet" id="consult-app-css">
+    <link rel="stylesheet" type="text/css" href="css/consult-app.css" id="consult-app-css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
 </head>
 <body>
 <p class="h5">
     Настройки
 </p>
 <div class="float-right text-center">
-    <a href="settings-add.jsp"><img class="w-50" src="images/add-settings.png" alt="Добавить"></a>
+    <a href="settings-add.jsp"><span class="add-user"></span></a>
 </div>
 <table class="table table-striped">
     <thead>
     <tr>
         <th scope="col">Название</th>
         <th scope="col">Значение</th>
+        <th scope="col"></th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -39,21 +41,23 @@
         for (DataBase.Settings.Record elem : settings) {
             out.write("<tr>");
 
-            out.write("<td>" + elem.name + "</td><td>" + elem.value + "</td>");
+            out.write("<td width='35%'>" + elem.name + "</td><td width='35%'>" + elem.value + "</td>");
             // действия
-            out.write("<td>");
+            out.write("<td width='15%'>");
+            // кнопка удалить
+            out.write("<form action='settings-delete' method='post'>");
+            out.write("    <span class='trash'><input class='btn-del' type='submit' name='" + elem.name + "' value=''/></span>");
+            out.write("</form>");
+            out.write("</td>");
             // кнопка редактировать
+            out.write("<td width='15%'>");
             out.write("<form action='settings-edit.jsp' method='post'>");
             out.write("    <input class='btn-edit' type='text' name='name' value='" + elem.name + "' hidden />");
             out.write("    <input class='btn-edit' type='text' name='value' value='" + elem.value + "' hidden />");
-            out.write("    <input class='btn-edit' type='submit' value=''/>");
+            out.write("    <span class='edit'><input class='btn-edit' type='submit' value=''/></span><span class='edit-text'>Редактировать</span>");
             out.write("</form>");
-            // кнопка удалить
-            out.write("<form action='settings-delete' method='post'>");
-            out.write("    <input class='btn-del' type='submit' name='" + elem.name + "' value=''/>");
-            out.write("</form>");
-
             out.write("</td>");
+
             out.write("</tr>");
         }
     %>
