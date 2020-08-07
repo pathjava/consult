@@ -1,0 +1,23 @@
+[
+  {
+    "login": "mazneff",
+    "password": "hash3",
+    "name": "Мазнев Валерий",
+    "is_mentor": true,
+    "image": "c:/!/m!.png"
+  },
+  {
+    "login": "login",
+    "password": "hash",
+    "name": "name",
+    "is_mentor": false,
+    "image": "c:/!/!.jpg"
+  },
+  {
+    "login": "login2",
+    "password": "hash2",
+    "name": "name2",
+    "is_mentor": false,
+    "image": "c:/!/2!.jpg"
+  }
+]
