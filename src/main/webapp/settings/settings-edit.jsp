@@ -3,8 +3,8 @@
 <head>
     <title>Настройки</title>
 
-    <%@include file="common-head.jsp"%>
-    <link href="css/login.css" rel="stylesheet" id="login-css">
+    <%@include file="/common-head.jsp"%>
+    <link href="/css/login.css" rel="stylesheet" id="login-css">
 </head>
 <body>
 <p class="h5">

@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
-@WebServlet("/settings-delete")
+@WebServlet("/settings/settings-delete")
 public class SettingsDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,6 +29,6 @@ public class SettingsDelete extends HttpServlet {
             DataBase.INSTANCE.settings.readAll();
             return;
         }
-        resp.sendRedirect("/settings-view.jsp");
+        resp.sendRedirect("/settings/settings-view.jsp");
     }
 }

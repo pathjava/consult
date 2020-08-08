@@ -7,10 +7,10 @@
 <head>
     <title>Настройки</title>
 
-    <%@include file="common-head.jsp"%>
+    <%@include file="/common-head.jsp"%>
 
-    <link rel="stylesheet" type="text/css" href="css/consult-app.css" id="consult-app-css">
-    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/consult-app.css" id="consult-app-css">
+    <link rel="stylesheet" type="text/css" href="/css/all.min.css">
 </head>
 <body>
 <p class="h5">

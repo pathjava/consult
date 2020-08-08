@@ -1,4 +1,4 @@
-package settings;
+package user;
 
 import ru.progwards.java2.db.DataBase;
 
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/settings/settings-save")
-public class SettingsSave extends HttpServlet {
-    @Override
+@WebServlet("/users/user-info")
+public class UserInfo extends HttpServlet {
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String value = req.getParameter("value");
@@ -35,6 +35,6 @@ public class SettingsSave extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        resp.sendRedirect("/settings/settings-view.jsp");
+        resp.sendRedirect("/users/user-info.jsp");
     }
 }

@@ -1,4 +1,4 @@
-<%@tag description="Template tag for consultapp" pageEncoding="UTF-8"%>
+<%@tag description="Template tag for consult" pageEncoding="UTF-8"%>
 <%@attribute name="title" fragment="true" %>
 <html>
 <head>
