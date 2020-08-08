@@ -63,6 +63,13 @@ input.btn-del {
 .text-center a {
     text-decoration: none;
 }
-.text-center {
+.add-edit-user {
+    float: right;
     margin: 0 35 0 0;
+}
+.table-wrapper{
+    margin:0 10;
+}
+.table th, .table td {
+    vertical-align: middle;
 }
