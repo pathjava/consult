@@ -176,9 +176,9 @@ public enum DataBase {
         INSTANCE.users.readAll();
         System.out.println(INSTANCE.users.getAll());
 
-        if (!DataBase.INSTANCE.users.put(new Users.User("login", "hash", "name", false, "c:/!/!.jpg")))
+        if (!DataBase.INSTANCE.users.put(new Users.User("ivannn", "hash", "Ivan", false, "c:/!/!.jpg")))
             System.out.println("Пользователь уже существует...");
-        DataBase.INSTANCE.users.put(new Users.User("login2", "hash2", "name2", false, "c:/!/2!.jpg"));
+        DataBase.INSTANCE.users.put(new Users.User("alexxx", "hash2", "Alex", false, "c:/!/2!.jpg"));
         DataBase.INSTANCE.users.put(new Users.User("mazneff", "hash3", "Мазнев Валерий", true, "c:/!/m!.png"));
 
         List<Users.User> list2 = INSTANCE.users.select(e -> e.is_mentor);

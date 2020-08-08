@@ -1,5 +1,12 @@
 [
   {
+    "login": "ivannn",
+    "password": "hash",
+    "name": "Ivan",
+    "is_mentor": false,
+    "image": "c:/!/!.jpg"
+  },
+  {
     "login": "mazneff",
     "password": "hash3",
     "name": "Мазнев Валерий",
@@ -7,16 +14,23 @@
     "image": "c:/!/m!.png"
   },
   {
-    "login": "login",
+    "login": "alexxx",
+    "password": "hash2",
+    "name": "Alex",
+    "is_mentor": false,
+    "image": "c:/!/2!.jpg"
+  },
+  {
+    "login": "loginnn",
     "password": "hash",
-    "name": "name",
+    "name": "Login",
     "is_mentor": false,
     "image": "c:/!/!.jpg"
   },
   {
-    "login": "login2",
+    "login": "testtt",
     "password": "hash2",
-    "name": "name2",
+    "name": "Tester",
     "is_mentor": false,
     "image": "c:/!/2!.jpg"
   }

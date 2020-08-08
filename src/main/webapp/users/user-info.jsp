@@ -22,10 +22,12 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">Название</th>
-        <th scope="col">Значение</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Логин</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Аватарка</th>
+        <th scope="col">Удалить</th>
+        <th scope="col">Редактировать</th>
     </tr>
     </thead>
     <tbody>
@@ -41,19 +43,22 @@
         for (DataBase.Users.User elem : users) {
             out.write("<tr>");
 
-            out.write("<td width='35%'>" + elem.name + "</td><td width='35%'></td>");
+            out.write("<td width='17%'>" + elem.name + "</td>");
+            out.write("<td width='17%'>" + elem.login + "</td>");
+            out.write("<td width='17%'>" + elem.is_mentor + "</td>");
+            out.write("<td width='17%'>" + elem.image + "</td>");
             // действия
-            out.write("<td width='15%'>");
+            out.write("<td width='16%'>");
             // кнопка удалить
             out.write("<form action='settings-delete' method='post'>");
             out.write("    <span class='trash'><input class='btn-del' type='submit' name='" + elem.name + "' value=''/></span>");
             out.write("</form>");
             out.write("</td>");
             // кнопка редактировать
-            out.write("<td width='15%'>");
+            out.write("<td width='16%'>");
             out.write("<form action='settings-edit.jsp' method='post'>");
             out.write("    <input class='btn-edit' type='text' name='name' value='" + elem.name + "' hidden />");
-            out.write("    <span class='edit'><input class='btn-edit' type='submit' value=''/></span><span class='edit-text'>Редактировать</span>");
+            out.write("    <span class='edit'><input class='btn-edit' type='submit' value=''/></span>");
             out.write("</form>");
             out.write("</td>");
 
