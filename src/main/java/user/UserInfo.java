@@ -15,11 +15,11 @@ public class UserInfo extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String value = req.getParameter("value");
-        if (name == null || value == null) {
-            req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры.");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+//        if (name == null || value == null) {
+//            req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры.");
+//            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+//            return;
+//        }
         if (name.isEmpty()) {
             req.setAttribute("error-description", "Название параметра должно быть установлено.");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);

@@ -17,7 +17,7 @@
     Настройки
 </p>
 <div class="float-right text-center">
-    <a href="settings-add.jsp"><span class="add-user"></span></a>
+    <a href="/settings/settings-add.jsp"><span class="add-user"></span></a>
 </div>
 <table class="table table-striped">
     <thead>

@@ -17,7 +17,7 @@
     Настройки
 </p>
 <div class="float-right text-center">
-    <a href="settings-add.jsp"><span class="add-user"></span></a>
+    <a href="/settings/settings-add.jsp"><span class="add-user"></span></a>
 </div>
 <table class="table table-striped">
     <thead>
@@ -30,18 +30,18 @@
     </thead>
     <tbody>
     <%
-        List<DataBase.Settings.Record> settings =
-                new ArrayList<DataBase.Settings.Record>(DataBase.INSTANCE.settings.getAll());
-        settings.sort(new Comparator<DataBase.Settings.Record>() {
+        List<DataBase.Users.User> users =
+                new ArrayList<DataBase.Users.User>(DataBase.INSTANCE.users.getAll());
+        users.sort(new Comparator<DataBase.Users.User>() {
             @Override
-            public int compare(DataBase.Settings.Record o1, DataBase.Settings.Record o2) {
+            public int compare(DataBase.Users.User o1, DataBase.Users.User o2) {
                 return o1.name.compareTo(o2.name);
             }
         });
-        for (DataBase.Settings.Record elem : settings) {
+        for (DataBase.Users.User elem : users) {
             out.write("<tr>");
 
-            out.write("<td width='35%'>" + elem.name + "</td><td width='35%'>" + elem.value + "</td>");
+            out.write("<td width='35%'>" + elem.name + "</td><td width='35%'></td>");
             // действия
             out.write("<td width='15%'>");
             // кнопка удалить
@@ -53,7 +53,6 @@
             out.write("<td width='15%'>");
             out.write("<form action='settings-edit.jsp' method='post'>");
             out.write("    <input class='btn-edit' type='text' name='name' value='" + elem.name + "' hidden />");
-            out.write("    <input class='btn-edit' type='text' name='value' value='" + elem.value + "' hidden />");
             out.write("    <span class='edit'><input class='btn-edit' type='submit' value=''/></span><span class='edit-text'>Редактировать</span>");
             out.write("</form>");
             out.write("</td>");
