@@ -25,7 +25,7 @@
                   <input type="text" class="input-text" name="name" placeholder="Имя">
                </div>
                <div class="form-group">
-                  <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor" value="yes">
+                  <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor" value="true">
                   <label for="is_mentor">Наставник</label>
                </div>
                <div class="form-group">

@@ -16,7 +16,7 @@ public class UserInfo extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
-        boolean is_mentor = (Boolean.TRUE == req.getAttribute("value"));
+        boolean is_mentor = (Boolean.TRUE == req.getAttribute("is_mentor"));
         String image = req.getParameter("image");
 
         if (name == null || login == null) {
