@@ -16,19 +16,19 @@ public class UserDelete extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<String> logins = Collections.list(req.getParameterNames());
+        List<String> users = Collections.list(req.getParameterNames());
 
-        if (logins.size() != 1) {
+        if (users.size() != 1) {
             req.setAttribute("error-description", "Хакер? Неправильное число параметров.");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        if (DataBase.INSTANCE.users.remove(logins.get(0)) == null) {
+        if (DataBase.INSTANCE.users.remove(users.get(0)) == null) { //TODO - remove avatar with user
             req.setAttribute("error-description", "Не удалось удалить элемент. Вероятно, он уже не существует.");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             DataBase.INSTANCE.users.readAll();
             return;
         }
-        resp.sendRedirect("/users/user-info.jsp");
+        resp.sendRedirect("/users/users-info.jsp");
     }
 }

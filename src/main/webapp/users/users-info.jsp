@@ -16,12 +16,11 @@
             <p class="h5">Список пользователей</p>
          </div>
       </header>
-      //////////////////////////////////////////////////////////////////////////////////////////////////
       <main>
          <div class="table-wrapper">
             <div class="text-center">
                <div class="add-edit-user">
-                  <a href="/settings/settings-add.jsp"><span class="add-user"></span></a>
+                  <a href="/users/user-add.jsp"><span class="add-user"></span></a>
                </div>
             </div>
             <div>
