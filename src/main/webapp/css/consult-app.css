@@ -80,7 +80,6 @@ input.btn-del {
 }
 input[type="text"] {
     display: inline-block;
-    width: 100%;
     min-width: 320px;
     height: 46px;
     line-height: 22px;
@@ -152,7 +151,6 @@ input:focus: -ms-input-placeholder {
     z-index: -1;
     opacity: 0;
 }
-
 .input-checkbox+label {
     display: inline-flex;
     align-items: center;
@@ -172,7 +170,6 @@ input:focus: -ms-input-placeholder {
     background-position: center center;
     background-size: 50% 50%;
 }
-
 .input-checkbox:checked+label::before {
     border-color: #0b76ef;
     background-color: #0b76ef;
@@ -194,3 +191,32 @@ input:focus: -ms-input-placeholder {
 .input-checkbox: disabled+label::before {
     background-color: #e9ecef;
 }
+.btn-file {
+    color: #555;
+    padding: 0;
+    line-height: 40px;
+    width: 320px;
+    margin: auto;
+    display: block;
+    border: 2px solid #e8e8e8}
+.btn-file:hover,.btn-file:focus {
+    color: #888;
+    border-color: #FF5823}
+.input-file {
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1}
+.input-file + .js-labelFile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+    cursor: pointer}
+.input-file + .js-labelFile .icon:before {
+    content: "\f093"}
+.input-file + .js-labelFile.has-file .icon:before {
+    content: "\f00c";
+    color: #5AAC7B}

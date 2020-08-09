@@ -2,3 +2,4 @@
 <link href="/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
 <script src="/js/bootstrap.js"></script>
 <script src="/js/jquery.js"></script>
+<script src="/js/customize.js"></script>
