@@ -4,34 +4,34 @@
     "password": "hash",
     "name": "Ivan",
     "is_mentor": false,
-    "image": "c:/!/!.jpg"
+    "image": "/avatars/01.gif"
   },
   {
     "login": "mazneff",
     "password": "hash3",
     "name": "Мазнев Валерий",
     "is_mentor": true,
-    "image": "c:/!/m!.png"
+    "image": "/avatars/02.jpg"
   },
   {
     "login": "alexxx",
     "password": "hash2",
     "name": "Alex",
     "is_mentor": false,
-    "image": "c:/!/2!.jpg"
+    "image": "/avatars/03.jpg"
   },
   {
     "login": "loginnn",
     "password": "hash",
     "name": "Login",
     "is_mentor": false,
-    "image": "c:/!/!.jpg"
+    "image": "/avatars/04.gif"
   },
   {
     "login": "testtt",
     "password": "hash2",
     "name": "Tester",
     "is_mentor": false,
-    "image": "c:/!/2!.jpg"
+    "image": "/avatars/05.gif"
   }
 ]
