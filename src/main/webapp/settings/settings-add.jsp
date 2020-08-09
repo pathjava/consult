@@ -7,9 +7,9 @@
    </head>
    <body>
       <header>
-         <p class="h5">
-            Настройки: добавление
-         </p>
+         <div class="page-header">
+            <p class="h5">Настройки: добавление</p>
+         </div>
       </header>
       <main>
          <div class="text-center">

@@ -12,9 +12,9 @@
    </head>
    <body>
       <header>
-         <p class="h5">
-            Настройки
-         </p>
+         <div class="page-header">
+            <p class="h5">Список пользователей</p>
+         </div>
       </header>
       <main>
          <div class="table-wrapper">
@@ -47,11 +47,12 @@
                         });
                         for (DataBase.Users.User elem : users) {
                             String str = elem.is_mentor ? "Наставник" : "Студент";
+                            String img = !elem.image.isEmpty() ? elem.image : "/avatars/no-avatar.png";
                             out.write("<tr>");
                             out.write("<td width='17%'>" + elem.name + "</td>");
                             out.write("<td width='17%'>" + elem.login + "</td>");
                             out.write("<td width='17%'>" + str + "</td>");
-                            out.write("<td width='17%'><img class='user-avatar' src=" + elem.image + " alt=" + elem.name + "></td>");
+                            out.write("<td width='17%'><img class='user-avatar' src=" + img + " alt=" + elem.name + "></td>");
                             // действия
                             out.write("<td width='16%'>");
                             // кнопка удалить

@@ -12,9 +12,9 @@
    </head>
    <body>
       <header>
-         <p class="h5">
-            Настройки
-         </p>
+         <div class="page-header">
+            <p class="h5">Настройки</p>
+         </div>
       </header>
       <main>
          <div class="table-wrapper">
