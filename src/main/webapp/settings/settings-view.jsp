@@ -49,13 +49,13 @@
                          // действия
                          out.write("<td width='15%'>");
                          // кнопка удалить
-                         out.write("<form action='settings-delete' method='post'>");
+                         out.write("<form action='/settings/settings-delete' method='post'>");
                          out.write("<span class='trash'><input class='btn-del' type='submit' name='" + elem.name + "' value=''/></span>");
                          out.write("</form>");
                          out.write("</td>");
                          // кнопка редактировать
                          out.write("<td width='15%'>");
-                         out.write("<form action='settings-edit.jsp' method='post'>");
+                         out.write("<form action='/settings/settings-edit.jsp' method='post'>");
                          out.write("<input class='btn-edit' type='text' name='name' value='" + elem.name + "' hidden />");
                          out.write("<input class='btn-edit' type='text' name='value' value='" + elem.value + "' hidden />");
                          out.write("<span class='edit'><input class='btn-edit' type='submit' value=''/></span>");

@@ -1,12 +1,5 @@
 [
   {
-    "login": "ivannn",
-    "password": "hash",
-    "name": "Ivan",
-    "is_mentor": false,
-    "image": "/avatars/01.gif"
-  },
-  {
     "login": "mazneff",
     "password": "hash3",
     "name": "Мазнев Валерий",
@@ -14,11 +7,11 @@
     "image": "/avatars/02.jpg"
   },
   {
-    "login": "alexxx",
+    "login": "testtt",
     "password": "hash2",
-    "name": "Alex",
+    "name": "Tester",
     "is_mentor": false,
-    "image": ""
+    "image": "/avatars/05.gif"
   },
   {
     "login": "loginnn",
@@ -26,12 +19,5 @@
     "name": "Login",
     "is_mentor": false,
     "image": "/avatars/04.gif"
-  },
-  {
-    "login": "testtt",
-    "password": "hash2",
-    "name": "Tester",
-    "is_mentor": false,
-    "image": "/avatars/05.gif"
   }
 ]
