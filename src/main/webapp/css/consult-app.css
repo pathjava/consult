@@ -105,7 +105,7 @@ input[type="text"]:focus {
 input:focus {
     outline: none;
 }
-input[type="submit"].submit-text {
+input[type="submit"].input-submit {
     border: 0 none;
     height: 46px;
     padding: 8px 27px 12px;
@@ -127,24 +127,9 @@ input[type="submit"].submit-text {
     -o-transition: all ease .1s;
     transition: all ease .1s;
 }
-input[type="submit"].submit-text:hover {
+input[type="submit"].input-submit:hover {
     background-color: #FF5823;
     color: #fff;
-}
-input:focus:: placeholder {
-    color: transparent;
-}
-input:focus:: -webkit-input-placeholder {
-    color: transparent;
-}
-input:focus: -moz-placeholder {
-    color: transparent;
-}
-input:focus:: -moz-placeholder {
-    color: transparent;
-}
-input:focus: -ms-input-placeholder {
-    color: transparent;
 }
 .input-checkbox {
     position: absolute;

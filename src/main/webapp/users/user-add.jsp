@@ -35,7 +35,7 @@
                   <span class="js-fileName">Загрузить аватарку</span>
                   </label>
                </div>
-               <input type="submit" class="submit-text" value="Добавить">
+               <input type="submit" class="input-submit" value="Добавить">
             </form>
          </div>
       </main>

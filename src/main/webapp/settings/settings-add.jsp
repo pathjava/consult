@@ -2,8 +2,9 @@
 <html>
    <head>
       <title>Настройки</title>
-      <%@include file="/common-head.jsp"%>
-      <link href="/css/login.css" rel="stylesheet" id="login-css">
+            <%@include file="/common-head.jsp"%>
+            <link rel="stylesheet" type="text/css" href="/css/consult-app.css" id="consult-app-css">
+            <link rel="stylesheet" type="text/css" href="/css/all.min.css">
    </head>
    <body>
       <header>
@@ -15,18 +16,12 @@
          <div class="text-center">
             <form method="post" action="settings-save">
                <div class="form-group">
-                  <label>
-                  Название параметра
-                  <input type="text" class="fadeIn second" name="name">
-                  </label>
+                  <input type="text" class="input-text" name="name" placeholder="Название параметра">
                </div>
                <div class="form-group">
-                  <label>
-                  Значение параметра
-                  <input type="text" class="fadeIn third" name="value">
-                  </label>
+                  <input type="text" class="input-text" name="value" placeholder="Значение параметра">
                </div>
-               <input type="submit" class="btn btn-primary" value="Добавить">
+               <input type="submit" class="input-submit" value="Добавить">
             </form>
          </div>
       </main>
