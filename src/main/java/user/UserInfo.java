@@ -19,16 +19,16 @@ public class UserInfo extends HttpServlet {
         boolean is_mentor = "on".equals(req.getParameter("is_mentor"));
         String image = req.getParameter("image"); //TODO - указать путь для загрузки изображений и проверку расширения файла
 
-        if (name == null || login == null) {
-            req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры.");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
-        if (name.isEmpty()) {
-            req.setAttribute("error-description", "Название параметра должно быть установлено.");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+//        if (name == null || login == null) {
+//            req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры.");
+//            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+//            return;
+//        }
+//        if (name.isEmpty()) {
+//            req.setAttribute("error-description", "Название параметра должно быть установлено.");
+//            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+//            return;
+//        }
 
         // при редактировании сперва удаляем и потом добавляем
         if ("true".equals(req.getParameter("edit")))

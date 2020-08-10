@@ -66,8 +66,10 @@
                             out.write("<input class='btn-edit' type='text' name='name' value='" + user.name + "' hidden />");
                             out.write("<input class='btn-edit' type='text' name='login' value='" + user.login + "' hidden />");
                             out.write("<input class='btn-edit' type='password' name='password' value='" + user.password + "' hidden />");
-                            out.write("<input class='btn-edit' type='text' name='is_mentor' value='" + status + "' hidden />");
-                            out.write("<input class='btn-edit' type='file' name='image' value='" + img + "' hidden />");
+
+                            out.write("<input class='btn-edit' type='text' name='is_mentor' value='" + user.is_mentor + "' hidden />");
+                            out.write("<img class='user-avatar' name='image' src='" + user.image + "' hidden>");
+
                             out.write("<span class='edit'><input class='btn-edit' type='submit' value=''/></span>");
                             out.write("</form>");
                             out.write("</td>");

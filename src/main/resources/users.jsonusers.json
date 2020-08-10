@@ -21,13 +21,6 @@
     "image": ""
   },
   {
-    "login": "billy",
-    "password": "546123",
-    "name": "Billy",
-    "is_mentor": false,
-    "image": ""
-  },
-  {
     "login": "sveta",
     "password": "34512642",
     "name": "Svetlana",
@@ -35,11 +28,11 @@
     "image": ""
   },
   {
-    "login": "testtt",
-    "password": "hash2",
-    "name": "Tester",
+    "login": "billy",
+    "password": "546123",
+    "name": "Billy1",
     "is_mentor": false,
-    "image": "/avatars/05.gif"
+    "image": ""
   },
   {
     "login": "mazneff",
@@ -47,6 +40,13 @@
     "name": "Мазнев Валерий",
     "is_mentor": true,
     "image": "/avatars/02.jpg"
+  },
+  {
+    "login": "testtt",
+    "password": "hash2",
+    "name": "Tester",
+    "is_mentor": false,
+    "image": "/avatars/05.gif"
   },
   {
     "login": "irina ",

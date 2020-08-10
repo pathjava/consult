@@ -15,7 +15,6 @@
       <main>
          <div class="text-center">
             <form method="post" action="users-info">
-
                <div class="form-group">
                   <input type="text" class="input-text" name="login" value="${param.login}" placeholder="Логин" readonly>
                </div>
@@ -26,19 +25,14 @@
                   <input type="password" class="input-text" name="password" value="${param.password}" placeholder="Пароль" required>
                </div>
                <div class="form-group">
-                  <input type="checkbox" class="input-checkbox" id="is_mentor" value="${is_mentor}" name="is_mentor">
+                  <input type="checkbox" class="input-checkbox" id="is_mentor" value="${param.is_mentor}" name="is_mentor">
                   <label for="is_mentor">Наставник</label>
                </div>
+
                <div class="form-group">
-                  <img class='user-avatar' src="${param.image}" alt="${param.name}">
+                  <img class="user-avatar" name="image" src="${param.image}" alt="${param.name}">
                </div>
-               <div class="form-group">
-                  <input type="file" name="image" id="file" class="input-file">
-                  <label for="file" class="btn btn-file js-labelFile">
-                  <i class="icon fa fa-check"></i>
-                  <span class="js-fileName">Загрузить аватарку</span>
-                  </label>
-               </div>
+
 
                <%-- Элемент для определения редактирования из SettingsSave --%>
                <input type="text" name="edit" value="true" hidden>
