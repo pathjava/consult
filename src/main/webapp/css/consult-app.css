@@ -186,25 +186,31 @@ input[type="submit"].input-submit:hover {
     width: 320px;
     margin: auto;
     display: block;
-    border: 2px solid #e8e8e8}
+    border: 2px solid #e8e8e8;
+}
 .btn-file:hover,.btn-file:focus {
     color: #888;
-    border-color: #FF5823}
+    border-color: #FF5823;
+}
 .input-file {
     width: .1px;
     height: .1px;
     opacity: 0;
     overflow: hidden;
     position: absolute;
-    z-index: -1}
+    z-index: -1;
+}
 .input-file + .js-labelFile {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 0 10px;
-    cursor: pointer}
+    cursor: pointer;
+}
 .input-file + .js-labelFile .icon:before {
-    content: "\f093"}
+    content: "\f093";
+}
 .input-file + .js-labelFile.has-file .icon:before {
     content: "\f00c";
-    color: #5AAC7B}
+    color: #5AAC7B;
+}
