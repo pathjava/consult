@@ -1,10 +1,31 @@
 [
   {
+    "login": "donald",
+    "password": "546123",
+    "name": "Дональд",
+    "is_mentor": true,
+    "image": ""
+  },
+  {
     "login": "ivannn",
     "password": "hash",
     "name": "Ivan",
     "is_mentor": false,
     "image": "/avatars/01.gif"
+  },
+  {
+    "login": "billy",
+    "password": "546123",
+    "name": "Billy",
+    "is_mentor": false,
+    "image": ""
+  },
+  {
+    "login": "testtt",
+    "password": "hash2",
+    "name": "Tester",
+    "is_mentor": false,
+    "image": "/avatars/05.gif"
   },
   {
     "login": "mazneff",
@@ -14,9 +35,9 @@
     "image": "/avatars/02.jpg"
   },
   {
-    "login": "alexxx",
-    "password": "hash2",
-    "name": "Alex",
+    "login": "mike",
+    "password": "546123",
+    "name": "Михаил",
     "is_mentor": false,
     "image": ""
   },
@@ -28,10 +49,45 @@
     "image": "/avatars/04.gif"
   },
   {
-    "login": "testtt",
+    "login": "9116594076",
+    "password": "546123",
+    "name": "Никита",
+    "is_mentor": true,
+    "image": ""
+  },
+  {
+    "login": "dimon",
+    "password": "546123",
+    "name": "Дмитрий",
+    "is_mentor": true,
+    "image": ""
+  },
+  {
+    "login": "Petr",
+    "password": "546123",
+    "name": "Пётр",
+    "is_mentor": true,
+    "image": ""
+  },
+  {
+    "login": "alexxx",
     "password": "hash2",
-    "name": "Tester",
+    "name": "Alex",
     "is_mentor": false,
-    "image": "/avatars/05.gif"
+    "image": ""
+  },
+  {
+    "login": "Jonh",
+    "password": "12345",
+    "name": "Джон",
+    "is_mentor": false,
+    "image": ""
+  },
+  {
+    "login": "iiivan",
+    "password": "12345",
+    "name": "Иван",
+    "is_mentor": true,
+    "image": ""
   }
 ]

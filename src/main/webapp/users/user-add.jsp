@@ -14,7 +14,7 @@
       </header>
       <main>
          <div class="text-center">
-            <form method="post" action="settings-save">
+            <form method="post" action="users-info">
                <div class="form-group">
                   <input type="text" class="input-text" name="login" placeholder="Логин">
                </div>
@@ -25,7 +25,7 @@
                   <input type="text" class="input-text" name="name" placeholder="Имя">
                </div>
                <div class="form-group">
-                  <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor" value="true">
+                  <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor">
                   <label for="is_mentor">Наставник</label>
                </div>
                <div class="form-group">

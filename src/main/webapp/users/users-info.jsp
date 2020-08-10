@@ -27,8 +27,8 @@
                <table class="table table-striped">
                   <thead>
                      <tr>
-                        <th scope="col">Логин</th>
                         <th scope="col">Имя</th>
+                        <th scope="col">Логин</th>
                         <th scope="col">Статус</th>
                         <th scope="col">Аватарка</th>
                         <th scope="col">Удалить</th>
