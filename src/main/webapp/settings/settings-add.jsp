@@ -16,10 +16,10 @@
          <div class="text-center">
             <form method="post" action="settings-save">
                <div class="form-group">
-                  <input type="text" class="input-text" name="name" placeholder="Название параметра">
+                  <input type="text" class="input-text" name="name" placeholder="Название параметра" required>
                </div>
                <div class="form-group">
-                  <input type="text" class="input-text" name="value" placeholder="Значение параметра">
+                  <input type="text" class="input-text" name="value" placeholder="Значение параметра" required>
                </div>
                <input type="submit" class="input-submit" value="Добавить">
             </form>
