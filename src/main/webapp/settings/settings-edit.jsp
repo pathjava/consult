@@ -19,7 +19,7 @@
                   <input type="text" class="input-text" name="name" value="${param.name}" placeholder="Название параметра" readonly>
                </div>
                <div class="form-group">
-                  <input type="text" class="input-text" name="value" placeholder="Значение параметра" value="${param.value}">
+                  <input type="text" class="input-text" name="value" value="${param.value}" placeholder="Значение параметра">
                </div>
                <%-- Элемент для определения редактирования из SettingsSave --%>
                <input type="text" name="edit" value="true" hidden>
