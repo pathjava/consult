@@ -13,11 +13,11 @@ import java.io.IOException;
 public class UserInfo extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
+        String login = req.getParameter("login"); //TODO - сделать проверку, что логин состоит только из латинских букв
         String password = req.getParameter("password");
         String name = req.getParameter("name");
         boolean is_mentor = "on".equals(req.getParameter("is_mentor"));
-        String image = req.getParameter("image");
+        String image = req.getParameter("image"); //TODO - указать путь для загрузки изображений и проверку расширения файла
 
         if (name == null || login == null) {
             req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры.");
