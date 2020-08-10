@@ -19,10 +19,10 @@
                   <input type="text" class="input-text" name="login" placeholder="Логин" required>
                </div>
                <div class="form-group">
-                  <input type="password" class="input-text" name="password" placeholder="Пароль" required>
+                  <input type="text" class="input-text" name="name" placeholder="Имя" required>
                </div>
                <div class="form-group">
-                  <input type="text" class="input-text" name="name" placeholder="Имя" required>
+                   <input type="password" class="input-text" name="password" placeholder="Пароль" required>
                </div>
                <div class="form-group">
                   <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor">

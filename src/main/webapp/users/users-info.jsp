@@ -45,25 +45,29 @@
                                 return o1.name.compareTo(o2.name);
                             }
                         });
-                        for (DataBase.Users.User elem : users) {
-                            String str = elem.is_mentor ? "Наставник" : "Студент";
-                            String img = !elem.image.isEmpty() ? elem.image : "/avatars/no-avatar.png";
+                        for (DataBase.Users.User user : users) {
+                            String status = user.is_mentor ? "Наставник" : "Студент";
+                            String img = !user.image.isEmpty() ? user.image : "/avatars/no-avatar.png";
                             out.write("<tr>");
-                            out.write("<td width='17%'>" + elem.name + "</td>");
-                            out.write("<td width='17%'>" + elem.login + "</td>");
-                            out.write("<td width='17%'>" + str + "</td>");
-                            out.write("<td width='17%'><img class='user-avatar' src=" + img + " alt=" + elem.name + "></td>");
+                            out.write("<td width='17%'>" + user.name + "</td>");
+                            out.write("<td width='17%'>" + user.login + "</td>");
+                            out.write("<td width='17%'>" + status + "</td>");
+                            out.write("<td width='17%'><img class='user-avatar' src=" + img + " alt=" + user.name + "></td>");
                             // действия
                             out.write("<td width='16%'>");
                             // кнопка удалить
                             out.write("<form action='/user/user-delete' method='post'>");
-                            out.write("<span class='trash'><input class='btn-del' type='submit' name='" + elem.login + "' value=''/></span>");
+                            out.write("<span class='trash'><input class='btn-del' type='submit' name='" + user.login + "' value=''/></span>");
                             out.write("</form>");
                             out.write("</td>");
                             // кнопка редактировать
                             out.write("<td width='16%'>");
-                            out.write("<form action='/user/settings-edit.jsp' method='post'>");
-                            out.write("<input class='btn-edit' type='text' name='name' value='" + elem.name + "' hidden />");
+                            out.write("<form action='/users/user-edit.jsp' method='post'>");
+                            out.write("<input class='btn-edit' type='text' name='name' value='" + user.name + "' hidden />");
+                            out.write("<input class='btn-edit' type='text' name='login' value='" + user.login + "' hidden />");
+                            out.write("<input class='btn-edit' type='password' name='password' value='" + user.password + "' hidden />");
+                            out.write("<input class='btn-edit' type='text' name='is_mentor' value='" + status + "' hidden />");
+                            out.write("<input class='btn-edit' type='file' name='image' value='" + img + "' hidden />");
                             out.write("<span class='edit'><input class='btn-edit' type='submit' value=''/></span>");
                             out.write("</form>");
                             out.write("</td>");

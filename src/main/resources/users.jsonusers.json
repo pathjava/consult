@@ -28,11 +28,11 @@
     "image": ""
   },
   {
-    "login": "mazneff",
-    "password": "hash3",
-    "name": "Мазнев Валерий",
-    "is_mentor": true,
-    "image": "/avatars/02.jpg"
+    "login": "sveta",
+    "password": "34512642",
+    "name": "Svetlana",
+    "is_mentor": false,
+    "image": ""
   },
   {
     "login": "testtt",
@@ -40,6 +40,13 @@
     "name": "Tester",
     "is_mentor": false,
     "image": "/avatars/05.gif"
+  },
+  {
+    "login": "mazneff",
+    "password": "hash3",
+    "name": "Мазнев Валерий",
+    "is_mentor": true,
+    "image": "/avatars/02.jpg"
   },
   {
     "login": "irina ",
