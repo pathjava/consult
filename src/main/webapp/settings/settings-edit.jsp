@@ -3,7 +3,8 @@
    <head>
       <title>Настройки</title>
       <%@include file="/common-head.jsp"%>
-      <link href="/css/login.css" rel="stylesheet" id="login-css">
+      <link rel="stylesheet" type="text/css" href="/css/consult-app.css" id="consult-app-css">
+      <link rel="stylesheet" type="text/css" href="/css/all.min.css">
    </head>
    <body>
       <header>
@@ -15,20 +16,14 @@
          <div class="text-center">
             <form method="post" action="settings-save">
                <div class="form-group">
-                  <label>
-                  Название параметра
-                  <input type="text" class="fadeIn second" name="name" value="${param.name}" readonly>
-                  </label>
+                  <input type="text" class="input-text" name="name" value="${param.name}" placeholder="Название параметра" readonly>
                </div>
                <div class="form-group">
-                  <label>
-                  Значение параметра
-                  <input type="text" class="fadeIn third" name="value" value="${param.value}">
-                  </label>
+                  <input type="text" class="input-text" name="value" placeholder="Значение параметра" value="${param.value}">
                </div>
                <%-- Элемент для определения редактирования из SettingsSave --%>
                <input type="text" name="edit" value="true" hidden>
-               <input type="submit" class="btn btn-primary" value="Сохранить">
+               <input type="submit" class="input-submit" value="Сохранить">
             </form>
          </div>
       </main>
