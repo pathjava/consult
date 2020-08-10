@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet("/user/settings-delete")
+@WebServlet("/user/user-delete")
 public class UserDelete extends HttpServlet {
 
     @Override

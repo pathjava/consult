@@ -56,7 +56,7 @@
                             // действия
                             out.write("<td width='16%'>");
                             // кнопка удалить
-                            out.write("<form action='/user/settings-delete' method='post'>");
+                            out.write("<form action='/user/user-delete' method='post'>");
                             out.write("<span class='trash'><input class='btn-del' type='submit' name='" + elem.login + "' value=''/></span>");
                             out.write("</form>");
                             out.write("</td>");
