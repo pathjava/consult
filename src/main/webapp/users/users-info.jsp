@@ -51,10 +51,7 @@
                             out.write("<tr>");
                             out.write("<td width='17%'>" + user.name + "</td>");
                             out.write("<td width='17%'>");
-                            //out.write("<form id='log' action='user-info.jsp' method='post'>");
-                            out.write("<a href='user-info.jsp?login="+user.login+"'>" + user.login + "</a>");
-                            //out.write("<input type='text' name='login' value='" + user.login + "' hidden />");
-                            //out.write("</form>");
+                            out.write("<a href='user-info.jsp?login=" + user.login + "'>" + user.login + "</a>");
                             out.write("</td>");
                             out.write("<td width='17%'>" + status + "</td>");
                             out.write("<td width='17%'><img class='user-avatar' src=" + img + " alt=" + user.name + "></td>");
