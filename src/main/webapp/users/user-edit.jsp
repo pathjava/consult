@@ -24,8 +24,10 @@
                <div class="form-group">
                   <input type="password" class="input-text" name="password" value="${param.password}" placeholder="Пароль" required>
                </div>
+
                <div class="form-group">
-                  <input type="checkbox" class="input-checkbox" id="is_mentor" value="${param.is_mentor}" name="is_mentor">
+                  <% boolean x = param.is_mentor; %>
+                  <input type="checkbox" name="is_mentor" <% if (x) { %> checked <% } %> />
                   <label for="is_mentor">Наставник</label>
                </div>
 
