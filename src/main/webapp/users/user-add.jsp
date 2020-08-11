@@ -16,13 +16,13 @@
          <div class="text-center">
             <form method="post" action="users-info">
                <div class="form-group">
-                  <input type="text" class="input-text" name="login" placeholder="Логин" required>
+                  <input type="text" class="input-text" name="login" placeholder="Логин" minlength="3" maxlength="20" required>
                </div>
                <div class="form-group">
-                  <input type="text" class="input-text" name="name" placeholder="Имя" required>
+                  <input type="text" class="input-text" name="name" placeholder="Имя" minlength="2" maxlength="20" required>
                </div>
                <div class="form-group">
-                   <input type="password" class="input-text" name="password" placeholder="Пароль" required>
+                   <input type="password" class="input-text" name="password" placeholder="Пароль" minlength="8" maxlength="20" required>
                </div>
                <div class="form-group">
                   <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor">
