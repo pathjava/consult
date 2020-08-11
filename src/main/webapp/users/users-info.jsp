@@ -51,10 +51,10 @@
                             out.write("<tr>");
                             out.write("<td width='17%'>" + user.name + "</td>");
                             out.write("<td width='17%'>");
-                            out.write("<form id='log' action='user-info.jsp' method='post'>");
-                            out.write("<a href='javascript:;' onclick=\"document.getElementById('log').submit();\">" + user.login + "</a>");
-                            out.write("<input type='text' name='login' value='" + user.login + "' hidden />");
-                            out.write("</form>");
+                            //out.write("<form id='log' action='user-info.jsp' method='post'>");
+                            out.write("<a href='user-info.jsp?login="+user.login+"'>" + user.login + "</a>");
+                            //out.write("<input type='text' name='login' value='" + user.login + "' hidden />");
+                            //out.write("</form>");
                             out.write("</td>");
                             out.write("<td width='17%'>" + status + "</td>");
                             out.write("<td width='17%'><img class='user-avatar' src=" + img + " alt=" + user.name + "></td>");
@@ -62,18 +62,18 @@
                             out.write("<td width='16%'>");
                             // кнопка удалить
                             out.write("<form action='/user/user-delete' method='post'>");
-                            out.write("<span class='trash'><input class='btn-del' type='submit' name='" + user.login + "' value=''/></span>");
+                            out.write("<span class='trash'><input class='btn-del' type='submit' name='" + user.login + "' value='' onclick=\"return confirm('Вы подтверждаете удаление?')\"/></span>");
                             out.write("</form>");
                             out.write("</td>");
                             // кнопка редактировать
                             out.write("<td width='16%'>");
                             out.write("<form action='/users/user-edit.jsp' method='post'>");
-                            out.write("<input class='btn-edit' type='text' name='name' value='" + user.name + "' hidden />");
-                            out.write("<input class='btn-edit' type='text' name='login' value='" + user.login + "' hidden />");
-                            out.write("<input class='btn-edit' type='password' name='password' value='" + user.password + "' hidden />");
+                            out.write("<input type='text' name='name' value='" + user.name + "' hidden />");
+                            out.write("<input type='text' name='login' value='" + user.login + "' hidden />");
+                            out.write("<input type='password' name='password' value='" + user.password + "' hidden />");
 
-                            out.write("<input class='btn-edit' type='text' name='is_mentor' value='" + user.is_mentor + "' hidden />");
-                            out.write("<img class='user-avatar' name='image' src='" + user.image + "' hidden>");
+                            out.write("<input type='text' name='is_mentor' value='" + user.is_mentor + "' hidden />");
+                            out.write("<input type='text' name='image' value='" + img + "' hidden />");
 
                             out.write("<span class='edit'><input class='btn-edit' type='submit' value=''/></span>");
                             out.write("</form>");

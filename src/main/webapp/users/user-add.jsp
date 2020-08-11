@@ -29,7 +29,7 @@
                   <label for="is_mentor">Наставник</label>
                </div>
                <div class="form-group">
-                  <input type="file" name="image" id="file" class="input-file">
+                  <input type="file" name="image" id="file" class="input-file" accept="image/jpeg,image/jpg,image/png,image/gif">
                   <label for="file" class="btn btn-file js-labelFile">
                   <i class="icon fa fa-check"></i>
                   <span class="js-fileName">Загрузить аватарку</span>
