@@ -71,10 +71,8 @@
                             out.write("<input type='text' name='name' value='" + user.name + "' hidden />");
                             out.write("<input type='text' name='login' value='" + user.login + "' hidden />");
                             out.write("<input type='password' name='password' value='" + user.password + "' hidden />");
-
                             out.write("<input type='text' name='is_mentor' value='" + user.is_mentor + "' hidden />");
                             out.write("<input type='text' name='image' value='" + img + "' hidden />");
-
                             out.write("<span class='edit'><input class='btn-edit' type='submit' value=''/></span>");
                             out.write("</form>");
                             out.write("</td>");
