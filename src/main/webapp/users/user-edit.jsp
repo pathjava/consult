@@ -26,8 +26,14 @@
                </div>
 
                <div class="form-group">
-                  <% boolean x = param.is_mentor; %>
-                  <input type="checkbox" name="is_mentor" <% if (x) { %> checked <% } %> />
+                  <%
+                  String str = request.getParameter("is_mentor");
+                  if("true".equals(str)){
+                    <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor" checked>
+                  } else{
+                    <input type="checkbox" class="input-checkbox" id="is_mentor" name="is_mentor" checked>
+                  }
+                  %>
                   <label for="is_mentor">Наставник</label>
                </div>
 
