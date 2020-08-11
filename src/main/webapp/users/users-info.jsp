@@ -50,7 +50,15 @@
                             String img = !user.image.isEmpty() ? user.image : "/avatars/no-avatar.png";
                             out.write("<tr>");
                             out.write("<td width='17%'>" + user.name + "</td>");
-                            out.write("<td width='17%'>" + user.login + "</td>");
+                            out.write("<td width='17%'>");
+                            out.write("<form id='form1' action='user-info.jsp' method='post'>");
+                            out.write("<a href='javascript:;' onclick=\"document.getElementById('form1').submit();\">" + user.login + "</a>");
+                            out.write("<input type='hidden' name='name' value='" + user.name + "'/>");
+                            out.write("<input type='hidden' name='login' value='" + user.login + "'/>");
+                            out.write("<input type='hidden' name='is_mentor' value='" + status + "'/>");
+                            out.write("<input type='hidden' name='image' value='" + img + "'/>");
+                            out.write("</form>");
+                            out.write("</td>");
                             out.write("<td width='17%'>" + status + "</td>");
                             out.write("<td width='17%'><img class='user-avatar' src=" + img + " alt=" + user.name + "></td>");
                             // действия

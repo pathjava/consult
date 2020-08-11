@@ -214,3 +214,6 @@ input[type="submit"].input-submit:hover {
     content: "\f00c";
     color: #5AAC7B;
 }
+.table form{
+    margin: 0;
+}
