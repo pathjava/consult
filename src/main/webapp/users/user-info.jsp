@@ -36,11 +36,10 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <tr><td>${param.name}</td>
-                         <td>${param.login}</td>
-                         <td>${status}</td>
-                         <td>${image}</td>
-                     </tr>
+                    <tr>
+                       <td>${param.login}</td>
+                    </tr>
+
                   </tbody>
                </table>
             </div>

@@ -51,12 +51,9 @@
                             out.write("<tr>");
                             out.write("<td width='17%'>" + user.name + "</td>");
                             out.write("<td width='17%'>");
-                            out.write("<form id='form1' action='user-info.jsp' method='post'>");
-                            out.write("<a href='javascript:;' onclick=\"document.getElementById('form1').submit();\">" + user.login + "</a>");
-                            out.write("<input type='hidden' name='name' value='" + user.name + "'/>");
-                            out.write("<input type='hidden' name='login' value='" + user.login + "'/>");
-                            out.write("<input type='hidden' name='is_mentor' value='" + status + "'/>");
-                            out.write("<input type='hidden' name='image' value='" + img + "'/>");
+                            out.write("<form id='log' action='user-info.jsp' method='post'>");
+                            out.write("<a href='javascript:;' onclick=\"document.getElementById('log').submit();\">" + user.login + "</a>");
+                            out.write("<input type='text' name='login' value='" + user.login + "' hidden />");
                             out.write("</form>");
                             out.write("</td>");
                             out.write("<td width='17%'>" + status + "</td>");
