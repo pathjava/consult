@@ -14,7 +14,7 @@
       </header>
       <main>
          <div class="text-center">
-            <form method="post" action="users-info">
+            <form method="post" action="user-save">
                <div class="form-group">
                   <input type="text" class="input-text" name="login" value="${param.login}" placeholder="Логин" readonly>
                </div>

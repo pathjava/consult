@@ -9,7 +9,7 @@ import java.util.List;
 public enum DataBase {
     INSTANCE;
 
-    public final static String DB_PATH = "C:\\Intellij Idea\\programming\\consult\\src\\main\\resources\\users.json";
+    public final static String DB_PATH = "C:\\Intellij Idea\\programming\\consult\\src\\main\\resources\\";
 
     public Users users = new Users();
     public Consultations consultations = new Consultations();

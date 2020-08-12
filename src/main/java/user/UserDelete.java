@@ -29,6 +29,6 @@ public class UserDelete extends HttpServlet {
             DataBase.INSTANCE.users.readAll();
             return;
         }
-        resp.sendRedirect("/users/users-info.jsp");
+        resp.sendRedirect("/user/users-info");
     }
 }
