@@ -6,7 +6,7 @@
     <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>timeNow</servlet-name>
-        <servlet-class>TimeNow</servlet-class>
+        <servlet-class>trial.TimeNow</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>timeNow</servlet-name>

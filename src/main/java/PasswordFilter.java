@@ -2,7 +2,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-//@WebFilter(servletNames = "Show", urlPatterns = "/show1")
+//@WebFilter(servletNames = "trial.Show", urlPatterns = "/show1")
 @WebFilter("/show")
 public class PasswordFilter implements Filter {
     @Override

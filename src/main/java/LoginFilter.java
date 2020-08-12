@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.stream.Stream;
 
-//@WebFilter(servletNames = "Show", urlPatterns = "/show1", initParams = {@WebInitParam(name = "", value = "")})
+//@WebFilter(servletNames = "trial.Show", urlPatterns = "/show1", initParams = {@WebInitParam(name = "", value = "")})
 //@WebFilter("/show")
 public class LoginFilter implements Filter {
     boolean isActive = false;
