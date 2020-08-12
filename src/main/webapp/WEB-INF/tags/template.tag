@@ -21,7 +21,6 @@
    </head>
    <body>
       <jsp:doBody/>
-      <jsp:doFooter/>
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>

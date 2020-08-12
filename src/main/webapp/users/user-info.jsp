@@ -2,15 +2,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Comparator" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-   <head>
+
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<t:template>
+    <jsp:attribute name="title">
       <title>Настройки</title>
-      <%@include file="/common-head.jsp"%>
-      <link rel="stylesheet" type="text/css" href="/css/consult-app.css" id="consult-app-css">
-      <link rel="stylesheet" type="text/css" href="/css/all.min.css">
-   </head>
-   <body>
+    </jsp:attribute>
+    <jsp:body>
       <header>
          <div class="page-header">
             <p class="h5">Данные пользователя</p>
@@ -77,7 +78,7 @@
          </div>
       </main>
       <footer>
-         <div></div>
+        <div></div>
       </footer>
-   </body>
-</html>
+    </jsp:body>
+</t:template>
