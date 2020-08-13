@@ -13,19 +13,26 @@ import java.util.Comparator;
 import java.util.List;
 
 @WebServlet("/user/users-info")
-public class UserInfo extends HttpServlet {
+public class UsersInfo extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
         users.sort(Comparator.comparing(o -> o.name));
 
-        for (DataBase.Users.User user : users) {
-            System.out.println(user);
-        }
+        String param = req.getParameter("login");
 
-        req.setAttribute("users", users);
-        req.getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
+        if (param != null) {
+            for (DataBase.Users.User user : users) {
+                if (param.equals(user.login)) {
+                    req.setAttribute("users", user);
+                    req.getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
+                }
+            }
+        } else {
+            req.setAttribute("users", users);
+            req.getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
+        }
     }
 
 }

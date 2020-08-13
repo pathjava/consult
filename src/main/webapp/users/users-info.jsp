@@ -1,4 +1,4 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -9,7 +9,7 @@
     <jsp:body>
         <header>
             <div class="page-header">
-                <p class="h5">Список пользователей</p>
+                <h1>Список пользователей</h1>
             </div>
         </header>
         <main>
@@ -37,14 +37,17 @@
                             <tr>
                                 <td>${user.name}</td>
                                 <td>
-                                    <a href='user-info.jsp?login=${user.login}'>${user.login}</a>
+                                    <a href='${pageContext.request.contextPath}/user/users-info?login=${user.login}'>${user.login}</a>
                                 </td>
                                 <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
-                                <td><img class='user-avatar' src=${!user.image.isEmpty() ? user.image : '/avatars/no-avatar.png'} alt='${user.name}'></td>
+                                <td><img class='user-avatar'
+                                         src=${!user.image.isEmpty() ? user.image : '/avatars/no-avatar.png'} alt='${user.name}'>
+                                </td>
                                 <td>
                                     <form action='${pageContext.request.contextPath}/user/user-delete' method='post'>
                                         <span class='trash'><input class='btn-del' type='submit' name='${user.login}'
-                                                                   value='' onclick="return confirm('Вы подтверждаете удаление?')"/></span>
+                                                                   value=''
+                                                                   onclick="return confirm('Вы подтверждаете удаление?')"/></span>
                                     </form>
                                 </td>
                                 <td>
