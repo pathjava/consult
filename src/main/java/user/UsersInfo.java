@@ -17,18 +17,18 @@ public class UsersInfo extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<DataBase.Users.User> users;
-
         String param = req.getParameter("login");
 
         if (param != null) {
-            users = new ArrayList<>(DataBase.INSTANCE.users.getOne(param));
+            DataBase.Users.User user = DataBase.INSTANCE.users.findKey(param);
+            req.setAttribute("user", user);
+            req.getRequestDispatcher("/users/user-info.jsp").forward(req, resp);
         } else {
-            users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
+            List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
             users.sort(Comparator.comparing(o -> o.name));
+            req.setAttribute("users", users);
+            req.getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
         }
-        req.setAttribute("users", users);
-        req.getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
     }
 
 }

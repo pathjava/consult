@@ -237,7 +237,5 @@ public enum DataBase {
         System.out.println(INSTANCE.users.exists("mazneff"));
 
         System.out.println(INSTANCE.users.getAll());
-
-        System.out.println(INSTANCE.users.getOne("ivannn"));
     }
 }

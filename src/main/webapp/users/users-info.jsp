@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <t:template>
    <jsp:attribute name="title">
@@ -38,14 +37,7 @@
                             <tr>
                                 <td>${user.name}</td>
                                 <td>
-                                    <c:choose>
-                                        <c:when test="${fn:length(users) gt 1}">
-                                            <a href="${pageContext.request.contextPath}/user/users-info?login=${user.login}">${user.login}</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            ${user.login}
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <a href="${pageContext.request.contextPath}/user/users-info?login=${user.login}">${user.login}</a>
                                 </td>
                                 <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
                                 <td><img class="user-avatar"

@@ -1,24 +1,25 @@
-<%@ page import="ru.progwards.java2.db.DataBase" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Comparator" %>
-
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:template>
-    <jsp:attribute name="title">
+   <jsp:attribute name="title">
       <title>Настройки</title>
-    </jsp:attribute>
+   </jsp:attribute>
     <jsp:body>
         <header>
             <div class="page-header">
-                <h1>Данные пользователя</h1>
+                <h1>Список пользователей</h1>
             </div>
         </header>
         <main>
             <div class="table-wrapper">
+                <div class="text-center">
+                    <div class="add-edit-user">
+                        <a href="${pageContext.request.contextPath}/users/user-add.jsp"><span
+                                class="add-user"></span></a>
+                    </div>
+                </div>
                 <div>
                     <table class="table table-striped">
                         <thead>
@@ -32,46 +33,41 @@
                         </tr>
                         </thead>
                         <tbody>
-<%--                        <%--%>
-<%--                            List<DataBase.Users.User> users =--%>
-<%--                                    new ArrayList<DataBase.Users.User>(DataBase.INSTANCE.users.getAll());--%>
-<%--                            users.sort(new Comparator<DataBase.Users.User>() {--%>
-<%--                                @Override--%>
-<%--                                public int compare(DataBase.Users.User o1, DataBase.Users.User o2) {--%>
-<%--                                    return o1.name.compareTo(o2.name);--%>
-<%--                                }--%>
-<%--                            });--%>
-<%--                            for (DataBase.Users.User user : users) {--%>
-<%--                                if (user.login.equals(request.getParameter("login"))) {--%>
-<%--                                    String status = user.is_mentor ? "Наставник" : "Студент";--%>
-<%--                                    String img = !user.image.isEmpty() ? user.image : "/avatars/no-avatar.png";--%>
-<%--                                    out.write("<tr>");--%>
-<%--                                    out.write("<td width='17%'>" + user.name + "</td>");--%>
-<%--                                    out.write("<td width='17%'>" + user.login + "</td>");--%>
-<%--                                    out.write("<td width='17%'>" + status + "</td>");--%>
-<%--                                    out.write("<td width='17%'><img class='user-avatar' src=" + img + " alt=" + user.name + "></td>");--%>
-<%--                                    // действия--%>
-<%--                                    out.write("<td width='16%'>");--%>
-<%--                                    // кнопка удалить--%>
-<%--                                    out.write("<form action='/user/user-delete' method='post'>");--%>
-<%--                                    out.write("<span class='trash'><input class='btn-del' type='submit' name='" + user.login + "' value='' onclick=\"return confirm('Вы подтверждаете удаление?')\"/></span>");--%>
-<%--                                    out.write("</form>");--%>
-<%--                                    out.write("</td>");--%>
-<%--                                    // кнопка редактировать--%>
-<%--                                    out.write("<td width='16%'>");--%>
-<%--                                    out.write("<form action='/users/user-edit.jsp' method='post'>");--%>
-<%--                                    out.write("<input type='text' name='name' value='" + user.name + "' hidden />");--%>
-<%--                                    out.write("<input type='text' name='login' value='" + user.login + "' hidden />");--%>
-<%--                                    out.write("<input type='password' name='password' value='" + user.password + "' hidden />");--%>
-<%--                                    out.write("<input type='text' name='is_mentor' value='" + user.is_mentor + "' hidden />");--%>
-<%--                                    out.write("<input type='text' name='image' value='" + img + "' hidden />");--%>
-<%--                                    out.write("<span class='edit'><input class='btn-edit' type='submit' value=''/></span>");--%>
-<%--                                    out.write("</form>");--%>
-<%--                                    out.write("</td>");--%>
-<%--                                    out.write("</tr>");--%>
-<%--                                }--%>
-<%--                            }--%>
-<%--                        %>--%>
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.login}</td>
+                            <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
+                            <td><img class="user-avatar"
+                                     src=${!user.image.isEmpty() ? user.image : '/avatars/no-avatar.png'} alt="${user.name}">
+                            </td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/user/user-delete" method="post">
+                                        <span class="trash"><input class='btn-del' type='submit' name='${user.login}'
+                                                                   value=""
+                                                                   onclick="return confirm('Вы подтверждаете удаление?')"/></span>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/users/user-edit.jsp" method="post">
+                                    <label>
+                                        <input type="text" name="name" value="${user.name}" hidden/>
+                                    </label>
+                                    <label>
+                                        <input type="text" name="login" value="${user.login}" hidden/>
+                                    </label>
+                                    <label>
+                                        <input type="password" name="password" value="${user.password}" hidden/>
+                                    </label>
+                                    <label>
+                                        <input type="text" name="is_mentor" value="${user.is_mentor}" hidden/>
+                                    </label>
+                                    <label>
+                                        <input type="text" name="image" value="${user.image}" hidden/>
+                                    </label>
+                                    <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
+                                </form>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
