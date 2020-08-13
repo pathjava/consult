@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <t:template>
    <jsp:attribute name="title">
@@ -37,37 +38,44 @@
                             <tr>
                                 <td>${user.name}</td>
                                 <td>
-                                    <a href='${pageContext.request.contextPath}/user/users-info?login=${user.login}'>${user.login}</a>
+                                    <c:choose>
+                                        <c:when test="${fn:length(users) gt 1}">
+                                            <a href="${pageContext.request.contextPath}/user/users-info?login=${user.login}">${user.login}</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${user.login}
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
                                 <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
-                                <td><img class='user-avatar'
-                                         src=${!user.image.isEmpty() ? user.image : '/avatars/no-avatar.png'} alt='${user.name}'>
+                                <td><img class="user-avatar"
+                                         src=${!user.image.isEmpty() ? user.image : '/avatars/no-avatar.png'} alt="${user.name}">
                                 </td>
                                 <td>
-                                    <form action='${pageContext.request.contextPath}/user/user-delete' method='post'>
-                                        <span class='trash'><input class='btn-del' type='submit' name='${user.login}'
-                                                                   value=''
+                                    <form action="${pageContext.request.contextPath}/user/user-delete" method="post">
+                                        <span class="trash"><input class='btn-del' type='submit' name='${user.login}'
+                                                                   value=""
                                                                    onclick="return confirm('Вы подтверждаете удаление?')"/></span>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action='${pageContext.request.contextPath}/users/user-edit.jsp' method='post'>
+                                    <form action="${pageContext.request.contextPath}/users/user-edit.jsp" method="post">
                                         <label>
-                                            <input type='text' name='name' value='${user.name}' hidden/>
+                                            <input type="text" name="name" value="${user.name}" hidden/>
                                         </label>
                                         <label>
-                                            <input type='text' name='login' value='${user.login}' hidden/>
+                                            <input type="text" name="login" value="${user.login}" hidden/>
                                         </label>
                                         <label>
-                                            <input type='password' name='password' value='${user.password}' hidden/>
+                                            <input type="password" name="password" value="${user.password}" hidden/>
                                         </label>
                                         <label>
-                                            <input type='text' name='is_mentor' value='${user.is_mentor}' hidden/>
+                                            <input type="text" name="is_mentor" value="${user.is_mentor}" hidden/>
                                         </label>
                                         <label>
-                                            <input type='text' name='image' value='${user.image}' hidden/>
+                                            <input type="text" name="image" value="${user.image}" hidden/>
                                         </label>
-                                        <span class='edit'><input class='btn-edit' type='submit' value=''/></span>
+                                        <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
                                     </form>
                                 </td>
                             </tr>

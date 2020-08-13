@@ -34,6 +34,12 @@ public abstract class AbstractDbTable<K, V> implements IDbTable<K, V> {
         return valueMap.values().stream().collect(Collectors.toUnmodifiableList());
     }
 
+    public List<V> getOne(K key) {
+        List<V> value = new ArrayList<>();
+        valueMap.entrySet().stream().filter(entry -> entry.getKey().equals(key)).findFirst().ifPresent(entry -> value.add(entry.getValue()));
+        return value;
+    }
+
     @Override
     public List<V> select(Predicate<V> check) {
         return valueMap.values().stream().filter(check).collect(Collectors.toUnmodifiableList());
