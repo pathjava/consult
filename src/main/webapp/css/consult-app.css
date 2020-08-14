@@ -15,6 +15,10 @@ a:hover {
     box-sizing: border-box;
 }
 
+.mainContent{
+    margin: auto;
+}
+
 input.btn-edit {
     background: none;
     border: none;

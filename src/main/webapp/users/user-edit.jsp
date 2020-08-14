@@ -12,7 +12,7 @@
                 <p class="h5">User: редактирование</p>
             </div>
         </header>
-        <main class="col-md-9 col-xl-8 py-md-3 pl-md-5">
+        <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
             <div class="content-text-center">
                 <form method="post" action="user-save">
                     <div class="form-group row">
@@ -57,14 +57,15 @@
                 </form>
 
                 <div class="form-group row">
-                    <img class="user-avatar" name="image"
-                         src=${!param.image.isEmpty() ? param.image : '/avatars/no-avatar.png'} alt="${param.name}"
-                         alt="${param.name}">
+                    <div class="col-sm-2">
+                        <img class="user-avatar"
+                             src=${!param.image.isEmpty() ? param.image : '/avatars/no-avatar.png'} alt="${param.name}">
+                    </div>
                 </div>
-
 
                     <%-- Элемент для определения редактирования из SettingsSave --%>
                 <div class="form-group row">
+                    <div class="col-sm-2"></div>
                     <div class="col-sm-10">
                         <label>
                             <input type="text" name="edit" value="true" hidden>
