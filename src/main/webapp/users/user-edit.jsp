@@ -9,7 +9,7 @@
     <jsp:body>
         <header>
             <div class="page-header">
-                <p class="h5">User: редактирование</p>
+                <h1>User: редактирование</h1>
             </div>
         </header>
         <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
@@ -54,7 +54,6 @@
                             </div>
                         </div>
                     </div>
-                </form>
 
                 <div class="form-group row">
                     <div class="col-sm-2">

@@ -42,6 +42,13 @@
     "image": "/avatars/02.jpg"
   },
   {
+    "login": "9115520485",
+    "password": "2547888554",
+    "name": "Иван",
+    "is_mentor": true,
+    "image": ""
+  },
+  {
     "login": "9116594076",
     "password": "546123",
     "name": "Никита",

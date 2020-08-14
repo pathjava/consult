@@ -12,7 +12,7 @@
                 <h1>Список пользователей</h1>
             </div>
         </header>
-        <main>
+        <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
             <div class="table-wrapper">
                 <div class="text-center">
                     <div class="add-edit-user">
