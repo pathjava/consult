@@ -4,12 +4,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -21,10 +21,12 @@ public class UserFileUpload extends HttpServlet {
     private static final int MAX_REQUEST_SIZE = 1024 * 1024;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         boolean isMultipart = ServletFileUpload.isMultipartContent(req);
-        if (!isMultipart)
+        if (!isMultipart) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
+        }
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(MAX_MEMORY_SIZE);
@@ -52,8 +54,9 @@ public class UserFileUpload extends HttpServlet {
             }
 //            getServletContext().getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
 
-        } catch (Exception ex) {
-            throw new ServletException(ex);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
