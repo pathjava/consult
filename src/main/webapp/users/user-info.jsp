@@ -13,7 +13,7 @@
             </div>
         </header>
         <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
-            <div class="table-wrapper">
+            <div class="content-text-center">
                 <div class="text-center">
                     <div class="add-edit-user">
                         <a href="${pageContext.request.contextPath}/users/user-add.jsp"><span
