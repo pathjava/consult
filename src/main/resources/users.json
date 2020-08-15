@@ -11,7 +11,7 @@
     "password": "hash",
     "name": "Ivan",
     "is_mentor": false,
-    "image": "/avatars/01.gif"
+    "image": "01.gif"
   },
   {
     "login": "olga",
@@ -35,11 +35,11 @@
     "image": ""
   },
   {
-    "login": "mazneff",
-    "password": "hash3",
-    "name": "Мазнев Валерий",
-    "is_mentor": true,
-    "image": "/avatars/02.jpg"
+    "login": "fedor",
+    "password": "245789547",
+    "name": "Федор",
+    "is_mentor": false,
+    "image": ""
   },
   {
     "login": "9115520485",
@@ -47,6 +47,27 @@
     "name": "Иван",
     "is_mentor": true,
     "image": ""
+  },
+  {
+    "login": "mazneff",
+    "password": "hash3",
+    "name": "Мазнев Валерий",
+    "is_mentor": true,
+    "image": "02.jpg"
+  },
+  {
+    "login": "testImageUser",
+    "password": "245578457",
+    "name": "Oleg",
+    "is_mentor": true,
+    "image": "20200815152512_smoking.jpg"
+  },
+  {
+    "login": "testingTwo",
+    "password": "777777777777",
+    "name": "Иван",
+    "is_mentor": false,
+    "image": "20200815125455_smoking.jpg"
   },
   {
     "login": "9116594076",
@@ -59,6 +80,27 @@
     "login": "Petr",
     "password": "546123",
     "name": "Пётр",
+    "is_mentor": true,
+    "image": ""
+  },
+  {
+    "login": "testingImage",
+    "password": "5555555555555",
+    "name": "картинка",
+    "is_mentor": false,
+    "image": "20200815125222_smoking.jpg"
+  },
+  {
+    "login": "boris",
+    "password": "154783657",
+    "name": "Борис",
+    "is_mentor": false,
+    "image": ""
+  },
+  {
+    "login": "stepan",
+    "password": "78457945",
+    "name": "Степан",
     "is_mentor": true,
     "image": ""
   },

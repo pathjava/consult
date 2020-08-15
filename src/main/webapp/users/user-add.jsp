@@ -14,12 +14,12 @@
         </header>
         <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
             <div class="content-text-center">
-                <form method="post" action="${pageContext.request.contextPath}/user/user-save">
+                <form method="post" action="${pageContext.request.contextPath}/user/user-save" enctype="multipart/form-data">
                     <div class="form-group row">
-                        <label for="controlLogin" class="col-sm-2 col-form-label">Логин</label>
+                        <label for="controlLogin" class="col-sm-2 col-form-label">Логин (латиница)</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="controlLogin" name="login" minlength="3"
-                                   maxlength="20" required>
+                                   maxlength="20" pattern="[a-zA-Z\s\.\-_]+" required>
                         </div>
                     </div>
                     <div class="form-group row">
