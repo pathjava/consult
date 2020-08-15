@@ -7,13 +7,6 @@
     "image": ""
   },
   {
-    "login": "ivannn",
-    "password": "hash",
-    "name": "Ivan",
-    "is_mentor": false,
-    "image": "01.gif"
-  },
-  {
     "login": "olga",
     "password": "1124564",
     "name": "Ольга",
@@ -21,16 +14,23 @@
     "image": ""
   },
   {
-    "login": "billy",
-    "password": "546123",
-    "name": "Billy1",
+    "login": "ivannn",
+    "password": "hash",
+    "name": "Ivan",
     "is_mentor": false,
-    "image": ""
+    "image": "01.gif"
   },
   {
     "login": "sveta",
     "password": "34512642",
     "name": "Svetlana",
+    "is_mentor": false,
+    "image": ""
+  },
+  {
+    "login": "billy",
+    "password": "546123",
+    "name": "Billy1",
     "is_mentor": false,
     "image": ""
   },
@@ -110,6 +110,13 @@
     "name": "Мазнев Валерий",
     "is_mentor": true,
     "image": "02.jpg"
+  },
+  {
+    "login": "1alexx",
+    "password": "157845725",
+    "name": "1Alexx",
+    "is_mentor": true,
+    "image": ""
   },
   {
     "login": "testingTwo",
