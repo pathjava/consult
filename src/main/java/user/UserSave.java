@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 public class UserSave extends HttpServlet {
 
     private static final String FILE_DIRECTORY = "avatars";
-    private String imageName;
+    private static String imageName = "";
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
@@ -52,11 +52,9 @@ public class UserSave extends HttpServlet {
             return; //TODO - сообщение об отсутствии директории
 
         for (Part part : req.getParts()) {
-            if (part.getName().equals("image")) {
-                imageName = getFileName(part);
-                if (!imageName.isEmpty())
+            if (part.getName().equals("image"))
+                if (getFileName(part))
                     part.write(uploadPath + File.separator + imageName);
-            }
         }
 
         // при редактировании сперва удаляем и потом добавляем
@@ -68,18 +66,21 @@ public class UserSave extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
+        imageName = null;
         resp.sendRedirect("/user/users-info");
     }
 
-    private static String getFileName(Part part) {
+    private static boolean getFileName(Part part) {
         for (String content : part.getHeader("content-disposition").split(";")) {
             if (content.trim().startsWith("filename")) {
-                String name = content.substring(content.indexOf("=") + 2, content.length() - 1);
-                if (!name.isEmpty())
-                    return getDateTime() + name;
+                String image = content.substring(content.indexOf("=") + 2, content.length() - 1);
+                if (!image.isEmpty()) {
+                    imageName = getDateTime() + image;
+                    return true;
+                }
             }
         }
-        return "";
+        return false;
     }
 
     private static String getDateTime() {
