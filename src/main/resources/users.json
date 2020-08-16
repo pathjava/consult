@@ -7,13 +7,6 @@
     "image": ""
   },
   {
-    "login": "olga",
-    "password": "1124564",
-    "name": "Ольга",
-    "is_mentor": false,
-    "image": ""
-  },
-  {
     "login": "ivannn",
     "password": "hash",
     "name": "Ivan",
@@ -21,16 +14,16 @@
     "image": "01.gif"
   },
   {
-    "login": "sveta",
-    "password": "34512642",
-    "name": "Svetlana",
+    "login": "olga",
+    "password": "1124564",
+    "name": "Ольга",
     "is_mentor": false,
     "image": ""
   },
   {
-    "login": "billy",
-    "password": "546123",
-    "name": "Billy1",
+    "login": "sveta",
+    "password": "34512642",
+    "name": "Svetlana",
     "is_mentor": false,
     "image": ""
   },
@@ -68,13 +61,6 @@
     "name": "Igorrr",
     "is_mentor": true,
     "image": "20200815205458_smoking.jpg"
-  },
-  {
-    "login": "alexxone",
-    "password": "124678524",
-    "name": "OneAlexOne",
-    "is_mentor": false,
-    "image": "20200816150252_favicon.jpg"
   },
   {
     "login": "testingImage",
@@ -201,13 +187,6 @@
     "name": "Sergey111",
     "is_mentor": true,
     "image": ""
-  },
-  {
-    "login": "11billy",
-    "password": "2f4e1c550129a1c9f02c4f84968a5f95c4ec20d3c14616be65fa6ecfc5d771b8",
-    "name": "BillyThree",
-    "is_mentor": false,
-    "image": "20200816190021_favicon.jpg"
   },
   {
     "login": "alexxx",
