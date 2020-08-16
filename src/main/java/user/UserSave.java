@@ -77,7 +77,7 @@ public class UserSave extends HttpServlet {
 
         /* при редактировании сперва удаляем и потом добавляем */
         if ("true".equals(req.getParameter("edit")))
-            DataBase.INSTANCE.users.remove(name);
+            DataBase.INSTANCE.users.remove(login);
 
         if (!DataBase.INSTANCE.users.put(new DataBase.Users.User(login, password, name, is_mentor, imageName))) {
             req.setAttribute("error-description", "Не удалось добавить пользователя. Вероятно, он уже существует!");
@@ -111,7 +111,7 @@ public class UserSave extends HttpServlet {
     }
 
     private static boolean checkExtensionImage() {
-        HashSet<String> extensions = new HashSet<>(Set.of("jpeg", "png", "gif"));
+        HashSet<String> extensions = new HashSet<>(Set.of("jpeg", "jpg", "png", "gif"));
         return extensions.contains(imageName.substring(imageName.lastIndexOf(".") + 1));
     }
 }
