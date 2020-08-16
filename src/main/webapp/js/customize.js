@@ -15,3 +15,5 @@
     });
 
 })();
+
+$('.is_mentor').prop('indeterminate', true)

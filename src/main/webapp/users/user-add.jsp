@@ -40,9 +40,13 @@
                     <div class="form-group row">
                         <div class="col-sm-2">Наставник</div>
                         <div class="col-sm-10">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="is_mentor" name="is_mentor">
-                                <label class="form-check-label" for="is_mentor"></label>
+<%--                            <div class="custom-control custom-checkbox">--%>
+<%--                                <input type="checkbox" class="custom-control-input" id="is_mentor" name="is_mentor">--%>
+<%--                                <label class="form-check-label" for="is_mentor"></label>--%>
+<%--                            </div>--%>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="is_mentor" name="is_mentor">
+                                <label class="custom-control-label" for="is_mentor"></label>
                             </div>
                         </div>
                     </div>

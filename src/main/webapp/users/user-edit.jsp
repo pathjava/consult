@@ -40,17 +40,17 @@
                     <div class="form-group row">
                         <div class="col-sm-2">Наставник</div>
                         <div class="col-sm-10">
-                            <div class="form-check">
+                            <div class="custom-control custom-checkbox">
                                 <c:choose>
                                     <c:when test="${!param.is_mentor}">
-                                        <input type="checkbox" class="form-check-input" id="is_mentor" name="is_mentor">
+                                        <input type="checkbox" class="custom-control-input" id="is_mentor" name="is_mentor">
                                     </c:when>
                                     <c:otherwise>
-                                        <input type="checkbox" class="form-check-input" id="is_mentor" name="is_mentor"
+                                        <input type="checkbox" class="custom-control-input" id="is_mentor" name="is_mentor"
                                                checked>
                                     </c:otherwise>
                                 </c:choose>
-                                <label class="form-check-label" for="is_mentor"></label>
+                                <label class="custom-control-label" for="is_mentor"></label>
                             </div>
                         </div>
                     </div>
