@@ -7,12 +7,16 @@
     </jsp:attribute>
     <jsp:body>
         <header>
-            <div class="page-header">
-                <h1>Ошибка!</h1>
+            <div>
+                <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards.ru.png"
+                     alt="progwards.ru">
             </div>
         </header>
         <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
             <div class="content-text-center">
+                <div class="page-header">
+                    <h1>Ошибка!</h1>
+                </div>
                 <div class="alert alert-danger" role="alert">
                     <p>Что-то пошло не так...</p>
                     <p>${pageContext.request.getAttribute("error-description")}</p>

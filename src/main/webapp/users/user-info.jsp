@@ -8,12 +8,16 @@
    </jsp:attribute>
     <jsp:body>
         <header>
-            <div class="page-header">
-                <h1>Список пользователей</h1>
+            <div>
+                <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards.ru.png"
+                     alt="progwards.ru">
             </div>
         </header>
         <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
             <div class="content-text-center">
+                <div class="page-header">
+                    <h1>Список пользователей</h1>
+                </div>
                 <div class="text-center">
                     <div class="add-edit-user">
                         <a href="${pageContext.request.contextPath}/users/user-add.jsp"><span

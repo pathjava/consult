@@ -8,12 +8,16 @@
    </jsp:attribute>
     <jsp:body>
         <header>
-            <div class="page-header">
-                <h1>User: редактирование</h1>
+            <div>
+                <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards.ru.png"
+                     alt="progwards.ru">
             </div>
         </header>
         <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
             <div class="content-text-center">
+                <div class="page-header">
+                    <h1>User: редактирование</h1>
+                </div>
                 <form method="post" action="${pageContext.request.contextPath}/user/user-save"
                       enctype="multipart/form-data">
                     <div class="form-group row">
