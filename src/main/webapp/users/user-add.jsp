@@ -4,7 +4,7 @@
 
 <t:template>
    <jsp:attribute name="title">
-    <title>Настройки</title>
+    <title>Добавление пользователя в базу данных</title>
     </jsp:attribute>
     <jsp:body>
         <header>
@@ -14,7 +14,8 @@
         </header>
         <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
             <div class="content-text-center">
-                <form method="post" action="${pageContext.request.contextPath}/user/user-save" enctype="multipart/form-data">
+                <form method="post" action="${pageContext.request.contextPath}/user/user-save"
+                      enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="controlLogin" class="col-sm-2 col-form-label">Логин (латиница)</label>
                         <div class="col-sm-10">

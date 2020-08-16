@@ -140,6 +140,13 @@
     "image": "20200815125455_smoking.jpg"
   },
   {
+    "login": "fin79dream",
+    "password": "11111111111111111111",
+    "name": "Иван",
+    "is_mentor": false,
+    "image": "20200816120459_smoking.jpg"
+  },
+  {
     "login": "9116594076",
     "password": "546123",
     "name": "Никита",
@@ -180,6 +187,13 @@
     "name": "Sergey111",
     "is_mentor": true,
     "image": ""
+  },
+  {
+    "login": "11billy",
+    "password": "555555555555555555",
+    "name": "BillyThree",
+    "is_mentor": false,
+    "image": "20200816100144_smoking.jpg"
   },
   {
     "login": "alexxx",

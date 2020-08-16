@@ -4,7 +4,7 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Настройки</title>
+      <title>Все пользователи</title>
    </jsp:attribute>
     <jsp:body>
         <header>
