@@ -7,6 +7,13 @@
     "image": ""
   },
   {
+    "login": "olga",
+    "password": "1124564",
+    "name": "Ольга",
+    "is_mentor": false,
+    "image": ""
+  },
+  {
     "login": "ivannn",
     "password": "hash",
     "name": "Ivan",
@@ -14,9 +21,9 @@
     "image": "01.gif"
   },
   {
-    "login": "olga",
-    "password": "1124564",
-    "name": "Ольга",
+    "login": "sveta",
+    "password": "34512642",
+    "name": "Svetlana",
     "is_mentor": false,
     "image": ""
   },
@@ -28,18 +35,18 @@
     "image": ""
   },
   {
-    "login": "sveta",
-    "password": "34512642",
-    "name": "Svetlana",
-    "is_mentor": false,
-    "image": ""
-  },
-  {
     "login": "testImageUser",
     "password": "245578457",
     "name": "Oleg",
     "is_mentor": true,
     "image": "20200815152512_smoking.jpg"
+  },
+  {
+    "login": "roman",
+    "password": "435ca836020d9138be5fd06668d707619a862229f152557a90e2275dde2451da",
+    "name": "Romannn",
+    "is_mentor": true,
+    "image": ""
   },
   {
     "login": "gggggggggg",
@@ -78,10 +85,10 @@
   },
   {
     "login": "andrei",
-    "password": "45785425478",
+    "password": "2d728227c67e3893928b8b06022c07ce22bdf86703295ca3e0f06ecf066c8915",
     "name": "Andrea",
     "is_mentor": false,
-    "image": "20200815205458_smoking.jpg"
+    "image": ""
   },
   {
     "login": "iiivan",
@@ -120,17 +127,17 @@
   },
   {
     "login": "billy1",
-    "password": "1546782145",
+    "password": "ba2e571203f7c0764e0cef027a72a5635153115573bfcb5f01504efcd0a625af",
     "name": "BillyOne",
     "is_mentor": false,
-    "image": "20200816094935_smoking.jpg"
+    "image": ""
   },
   {
     "login": "1alexx",
-    "password": "157845725",
+    "password": "7e4d55145e2c4bafb6b2ee89a7963fbbeb6d90a8e6e5b11e7785181dde71daff",
     "name": "NewwwwwAlexx",
     "is_mentor": true,
-    "image": "20200816150056_favicon.jpg"
+    "image": ""
   },
   {
     "login": "testingTwo",
@@ -197,10 +204,10 @@
   },
   {
     "login": "11billy",
-    "password": "555555555555555555",
+    "password": "2f4e1c550129a1c9f02c4f84968a5f95c4ec20d3c14616be65fa6ecfc5d771b8",
     "name": "BillyThree",
     "is_mentor": false,
-    "image": "20200816100144_smoking.jpg"
+    "image": "20200816190021_favicon.jpg"
   },
   {
     "login": "alexxx",

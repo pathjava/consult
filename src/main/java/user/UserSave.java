@@ -1,6 +1,7 @@
 package user;
 
 import ru.progwards.java2.db.DataBase;
+import ru.progwards.java2.db.IDbTable;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -53,6 +54,8 @@ public class UserSave extends HttpServlet {
             return;
         }
 
+        password = IDbTable.hashSha256(password);
+
         /* загрузка аватара на сервер */
         String uploadPath = getServletContext().getRealPath("") + File.separator + FILE_DIRECTORY;
         File uploadDir = new File(uploadPath);
@@ -76,8 +79,10 @@ public class UserSave extends HttpServlet {
         }
 
         /* при редактировании сперва удаляем и потом добавляем */
-        if ("true".equals(req.getParameter("edit")))
+        if ("true".equals(req.getParameter("edit"))) {
+            checkUpdateImage(login);
             DataBase.INSTANCE.users.remove(login);
+        }
 
         if (!DataBase.INSTANCE.users.put(new DataBase.Users.User(login, password, name, is_mentor, imageName))) {
             req.setAttribute("error-description", "Не удалось добавить пользователя. Вероятно, он уже существует!");
@@ -101,6 +106,7 @@ public class UserSave extends HttpServlet {
         return false;
     }
 
+    /* текущая дата и время для добавления префиксом к имени аватарки */
     private static String getDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         return dtf.format(java.time.LocalDateTime.now()) + "_";
@@ -113,5 +119,14 @@ public class UserSave extends HttpServlet {
     private static boolean checkExtensionImage() {
         HashSet<String> extensions = new HashSet<>(Set.of("jpeg", "jpg", "png", "gif"));
         return extensions.contains(imageName.substring(imageName.lastIndexOf(".") + 1));
+    }
+
+    /* проверка существования уже ранее загруженного аватара при редактировании профиля */
+    private static void checkUpdateImage(String login) {
+        if (imageName.isEmpty()) {
+            String image = DataBase.INSTANCE.users.findKey(login).image;
+            if (image != null)
+                imageName = image;
+        }
     }
 }
