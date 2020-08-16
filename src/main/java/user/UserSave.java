@@ -17,7 +17,7 @@ import java.util.Set;
 
 @WebServlet("/user/user-save")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
-        maxFileSize = 1024 * 1024 * 2, maxRequestSize = 1024 * 1024 * 5 * 5)
+        maxFileSize = 1024 * 1024, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UserSave extends HttpServlet {
 
     private static final String FILE_DIRECTORY = "avatars";

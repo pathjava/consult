@@ -71,7 +71,7 @@
                         <div class="col-sm-2">Обновить аватар</div>
                         <div class="col-sm-10">
                             <div class="form-group">
-                                <input type="file" name="image" class="form-control-file"
+                                <input type="file" name="image" class="form-control-file" onchange="ValidateSize(this)"
                                        accept="image/jpeg,image/jpg,image/png,image/gif">
                             </div>
                         </div>
