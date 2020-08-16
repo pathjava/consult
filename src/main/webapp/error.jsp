@@ -15,7 +15,7 @@
             <div class="content-text-center">
                 <div class="alert alert-danger" role="alert">
                     <p>Что-то пошло не так...</p>
-                        ${pageContext.request.getAttribute("error-description")}
+                    <p>${pageContext.request.getAttribute("error-description")}</p>
                 </div>
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span
