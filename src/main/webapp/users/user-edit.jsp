@@ -60,7 +60,7 @@
                         <div class="col-sm-2">Текущий аватар</div>
                         <div class="col-sm-10">
                             <img class="user-avatar"
-                                 src=/avatars/${!param.image.isEmpty() ? param.image : '/avatars/no-avatar.png'} alt="${param.name}">
+                                 src=/avatars/${!param.image.isEmpty() ? param.image : 'no-avatar.png'} alt="${param.name}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -82,6 +82,10 @@
                         </div>
                     </div>
                 </form>
+                <div class="error-actions">
+                    <a href="javascript:history.back()" class="btn btn-primary"><span
+                            class="glyphicon glyphicon-home"></span>Вернуться</a>
+                </div>
             </div>
         </main>
         <footer>

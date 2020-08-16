@@ -71,6 +71,10 @@
                         </div>
                     </div>
                 </form>
+                <div class="error-actions">
+                    <a href="javascript:history.back()" class="btn btn-primary"><span
+                            class="glyphicon glyphicon-home"></span>Вернуться</a>
+                </div>
             </div>
         </main>
         <footer>
