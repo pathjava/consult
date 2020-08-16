@@ -111,7 +111,7 @@ public class UserSave extends HttpServlet {
     }
 
     private static boolean checkExtensionImage() {
-        HashSet<String> extensions = new HashSet<>(Set.of("jpeg", "jpg", "png", "gif"));
+        HashSet<String> extensions = new HashSet<>(Set.of("jpeg", "png", "gif"));
         return extensions.contains(imageName.substring(imageName.lastIndexOf(".") + 1));
     }
 }

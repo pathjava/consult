@@ -69,7 +69,7 @@
                         <label>
                             <input type="text" name="edit" value="true" hidden>
                         </label>
-                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Сохранить">
+                        <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
                     </div>
                 </div>
                 </form>

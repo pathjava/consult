@@ -53,17 +53,21 @@
                     <div class="form-group row">
                         <div class="col-sm-2">Аватарка</div>
                         <div class="col-sm-10">
-                            <div class="custom-file">
-                                <input type="file" name="image" class="custom-file-input" id="customFile"
+<%--                            <div class="custom-file">--%>
+                                <%--                                <input type="file" name="image" class="custom-file-input" id="customFile"--%>
+                                <%--                                       accept="image/jpeg,image/jpg,image/png,image/gif">--%>
+                                <%--                                <label class="custom-file-label" for="customFile">Выберите изображение</label>--%>
+                                <%--                            </div>--%>
+                            <div class="form-group">
+                                <input type="file" name="image" class="form-control-file"
                                        accept="image/jpeg,image/jpg,image/png,image/gif">
-                                <label class="custom-file-label" for="customFile">Выберите изображение</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
-                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Добавить">
+                            <input type="submit" class="btn btn-primary btn-block" value="Добавить">
                         </div>
                     </div>
                 </form>

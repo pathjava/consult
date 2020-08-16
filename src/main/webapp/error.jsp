@@ -6,23 +6,25 @@
         <title>Ошибка</title>
     </jsp:attribute>
     <jsp:body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="error-template">
-                        <h1>Что-то пошло не так...</h1>
-                        <h2>Ошибка</h2>
-                        <div class="error-details">
-                            ${pageContext.request.getAttribute("error-description")}
-                        </div>
-                        <div class="error-actions">
-                            <a href="javascript:history.back()" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                                Вернуться
-                            </a>
-                        </div>
-                    </div>
+        <header>
+            <div class="page-header">
+                <h1>Ошибка!</h1>
+            </div>
+        </header>
+        <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
+            <div class="content-text-center">
+                <div class="alert alert-danger" role="alert">
+                    <p>Что-то пошло не так...</p>
+                        ${pageContext.request.getAttribute("error-description")}
+                </div>
+                <div class="error-actions">
+                    <a href="javascript:history.back()" class="btn btn-primary"><span
+                            class="glyphicon glyphicon-home"></span>Вернуться</a>
                 </div>
             </div>
-        </div>
+        </main>
+        <footer>
+            <div></div>
+        </footer>
     </jsp:body>
 </t:template>
