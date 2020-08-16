@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 public class UserSave extends HttpServlet {
 
     private static final String FILE_DIRECTORY = "avatars";
-    private static String imageName = "";
+    private static String imageName;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
@@ -66,7 +66,6 @@ public class UserSave extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        imageName = null;
         resp.sendRedirect("/user/users-info");
     }
 
@@ -80,6 +79,7 @@ public class UserSave extends HttpServlet {
                 }
             }
         }
+        imageName = "";
         return false;
     }
 
