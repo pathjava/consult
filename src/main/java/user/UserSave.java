@@ -56,7 +56,6 @@ public class UserSave extends HttpServlet {
 
         password = IDbTable.hashSha256(password);
 
-        /* загрузка аватара на сервер */
         String uploadPath = getServletContext().getRealPath("") + File.separator + FILE_DIRECTORY;
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
@@ -65,17 +64,11 @@ public class UserSave extends HttpServlet {
             return;
         }
 
-        for (Part part : req.getParts()) {
-            if (part.getName().equals("image"))
-                if (getFileName(part))
-                    if (checkExtensionImage())
-                        part.write(uploadPath + File.separator + imageName);
-                    else {
-                        req.setAttribute("error-description",
-                                "Разрешены только изображения с расширениями: jpeg, jpg, png, gif!");
-                        req.getRequestDispatcher("/error.jsp").forward(req, resp);
-                        return;
-                    }
+        /* загрузка аватара на сервер */
+        if (!uploadImageToServer(req, resp, uploadPath)) {
+            req.setAttribute("error-description", "Ошибка загрузки изображения!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
         }
 
         /* при редактировании сперва удаляем и потом добавляем */
@@ -90,6 +83,23 @@ public class UserSave extends HttpServlet {
             return;
         }
         resp.sendRedirect("/user/users-info");
+    }
+
+    private boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
+            throws IOException, ServletException {
+        for (Part part : req.getParts()) {
+            if (part.getName().equals("image"))
+                if (getFileName(part))
+                    if (checkExtensionImage())
+                        part.write(uploadPath + File.separator + imageName);
+                    else {
+                        req.setAttribute("error-description",
+                                "Разрешены только изображения с расширениями: jpeg, jpg, png, gif!");
+                        req.getRequestDispatcher("/error.jsp").forward(req, resp);
+                        return false;
+                    }
+        }
+        return true;
     }
 
     private static boolean getFileName(Part part) {

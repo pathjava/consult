@@ -7,6 +7,13 @@
     "image": ""
   },
   {
+    "login": "vladimir",
+    "password": "e318833c2f6c4a44d018c3fa662289015247027e0661aa987b54bbff0169b086",
+    "name": "Vladimir",
+    "is_mentor": false,
+    "image": "20200816205308_smoking.jpg"
+  },
+  {
     "login": "ivannn",
     "password": "hash",
     "name": "Ivan",
@@ -145,6 +152,13 @@
     "name": "Treeeeeeee",
     "is_mentor": false,
     "image": "20200816123241_favicon.jpg"
+  },
+  {
+    "login": "vitaly",
+    "password": "3183ab4de48195ee12b7026bfaa6ebb111ec3b9878c5f07d5e17527860f58533",
+    "name": "Vitaly",
+    "is_mentor": true,
+    "image": "20200816205034_favicon.jpg"
   },
   {
     "login": "9116594076",
