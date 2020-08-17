@@ -37,8 +37,7 @@
                     <div class="form-group row">
                         <label for="controlPassword" class="col-sm-2 col-form-label">Пароль</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="controlPassword" name="password"
-                                   value="${param.password}" required>
+                            <input type="password" class="form-control" id="controlPassword" name="password" value="">
                         </div>
                     </div>
                     <div class="form-group row">

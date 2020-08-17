@@ -23,12 +23,14 @@ public class UserSave extends HttpServlet {
 
     private static final String FILE_DIRECTORY = "avatars";
     private static String imageName;
+    private static String userPassword;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
-        String password = req.getParameter("password");
+        userPassword = req.getParameter("password");
         String name = req.getParameter("name").trim();
         boolean is_mentor = "on".equals(req.getParameter("is_mentor"));
+        boolean isEdit = "true".equals(req.getParameter("edit"));
 
         if (login.isEmpty()) {
             req.setAttribute("error-description", "Логин должен быть заполнен!");
@@ -48,13 +50,22 @@ public class UserSave extends HttpServlet {
             return;
         }
 
-        if (password.length() < 8 || password.length() > 20) {
-            req.setAttribute("error-description", "Длина пароля должна быть от 8 до 20 символов!");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
+        if (!isEdit) {
+            if (userPassword.length() < 8 || userPassword.length() > 20) {
+                req.setAttribute("error-description", "Длина пароля должна быть от 8 до 20 символов!");
+                req.getRequestDispatcher("/error.jsp").forward(req, resp);
+                return;
+            }
+        } else {
+            if (!userPassword.isEmpty() && userPassword.length() < 8 || userPassword.length() > 20) {
+                req.setAttribute("error-description", "Длина пароля должна быть от 8 до 20 символов!");
+                req.getRequestDispatcher("/error.jsp").forward(req, resp);
+                return;
+            }
         }
 
-        password = IDbTable.hashSha256(password);
+        if (!userPassword.isEmpty())
+            userPassword = IDbTable.hashSha256(userPassword);
 
         String uploadPath = getServletContext().getRealPath("") + File.separator + FILE_DIRECTORY;
         File uploadDir = new File(uploadPath);
@@ -72,12 +83,13 @@ public class UserSave extends HttpServlet {
         }
 
         /* при редактировании сперва удаляем и потом добавляем */
-        if ("true".equals(req.getParameter("edit"))) {
+        if (isEdit) {
+            checkUpdatePassword(login);
             checkUpdateImage(login);
             DataBase.INSTANCE.users.remove(login);
         }
 
-        if (!DataBase.INSTANCE.users.put(new DataBase.Users.User(login, password, name, is_mentor, imageName))) {
+        if (!DataBase.INSTANCE.users.put(new DataBase.Users.User(login, userPassword, name, is_mentor, imageName))) {
             req.setAttribute("error-description", "Не удалось добавить пользователя. Вероятно, он уже существует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -85,7 +97,7 @@ public class UserSave extends HttpServlet {
         resp.sendRedirect("/user/users-info");
     }
 
-    private boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
+    private static boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
             throws IOException, ServletException {
         for (Part part : req.getParts()) {
             if (part.getName().equals("image"))
@@ -137,6 +149,14 @@ public class UserSave extends HttpServlet {
             String image = DataBase.INSTANCE.users.findKey(login).image;
             if (image != null)
                 imageName = image;
+        }
+    }
+
+    private static void checkUpdatePassword(String login) {
+        if (userPassword.isEmpty()) {
+            String pass = DataBase.INSTANCE.users.findKey(login).password;
+            if (!pass.isEmpty() || !pass.equals(""))
+                userPassword = pass;
         }
     }
 }

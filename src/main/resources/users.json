@@ -8,7 +8,7 @@
   },
   {
     "login": "vladimir",
-    "password": "e318833c2f6c4a44d018c3fa662289015247027e0661aa987b54bbff0169b086",
+    "password": "2e25ff214ceeb0d6125c271b180f5059f0fe382904b7f3eb45212fabc0b77d6d",
     "name": "Vladimir",
     "is_mentor": false,
     "image": "20200816205308_smoking.jpg"
@@ -117,6 +117,13 @@
     "name": "Мазнев Валерий",
     "is_mentor": true,
     "image": "02.jpg"
+  },
+  {
+    "login": "stas",
+    "password": "5c2748ca2034defb8e139f965a6a8f14f6c8bbc8a5bc18e7a729e861f9a9d91f",
+    "name": "StasOne",
+    "is_mentor": true,
+    "image": ""
   },
   {
     "login": "billy1",
