@@ -51,8 +51,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <input type="checkbox" class="custom-control-input" id="is_mentor"
-                                               name="is_mentor"
-                                               checked>
+                                               name="is_mentor" checked>
                                     </c:otherwise>
                                 </c:choose>
                                 <label class="custom-control-label" for="is_mentor"></label>
