@@ -37,6 +37,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <jsp:useBean id="user" scope="request" type="ru.progwards.java2.db.DataBase.Users.User"/>
                         <tr>
                             <td>${user.name}</td>
                             <td>${user.login}</td>

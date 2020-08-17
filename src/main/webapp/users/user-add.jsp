@@ -44,10 +44,6 @@
                     <div class="form-group row">
                         <div class="col-sm-2">Наставник</div>
                         <div class="col-sm-10">
-<%--                            <div class="custom-control custom-checkbox">--%>
-<%--                                <input type="checkbox" class="custom-control-input" id="is_mentor" name="is_mentor">--%>
-<%--                                <label class="form-check-label" for="is_mentor"></label>--%>
-<%--                            </div>--%>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="is_mentor" name="is_mentor">
                                 <label class="custom-control-label" for="is_mentor"></label>
@@ -57,11 +53,6 @@
                     <div class="form-group row">
                         <div class="col-sm-2">Аватарка</div>
                         <div class="col-sm-10">
-<%--                            <div class="custom-file">--%>
-                                <%--                                <input type="file" name="image" class="custom-file-input" id="customFile"--%>
-                                <%--                                       accept="image/jpeg,image/jpg,image/png,image/gif">--%>
-                                <%--                                <label class="custom-file-label" for="customFile">Выберите изображение</label>--%>
-                                <%--                            </div>--%>
                             <div class="form-group">
                                 <input type="file" name="image" class="form-control-file" onchange="ValidateSize(this)"
                                        accept="image/jpeg,image/jpg,image/png,image/gif">
