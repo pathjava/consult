@@ -43,7 +43,8 @@
                             <td>${user.login}</td>
                             <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
                             <td><img class="user-avatar"
-                                     src=/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'} alt="${user.name}">
+                                     src="${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'}"
+                                     alt="${user.name}">
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/user/user-delete" method="post">
