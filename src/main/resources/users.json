@@ -7,6 +7,13 @@
     "image": ""
   },
   {
+    "login": "semen",
+    "password": "a281ef1e50ec68b89b38fd6aaad92f65749aa561bad943fd2b81b7ee839551d2",
+    "name": "SemenOne",
+    "is_mentor": false,
+    "image": ""
+  },
+  {
     "login": "vladimir",
     "password": "2e25ff214ceeb0d6125c271b180f5059f0fe382904b7f3eb45212fabc0b77d6d",
     "name": "Vladimir",
@@ -50,16 +57,9 @@
   },
   {
     "login": "elena",
-    "password": "58kshg875",
+    "password": "1c3f65d8cf123a89fe208807311829d23d65abe05cd7e30eeced012441422017",
     "name": "Elenaaa",
     "is_mentor": false,
-    "image": "20200815205458_smoking.jpg"
-  },
-  {
-    "login": "igorrrr",
-    "password": "gh457jjdaa",
-    "name": "Igorrr",
-    "is_mentor": true,
     "image": "20200815205458_smoking.jpg"
   },
   {
@@ -70,13 +70,6 @@
     "image": "20200815125222_smoking.jpg"
   },
   {
-    "login": "andrei",
-    "password": "2d728227c67e3893928b8b06022c07ce22bdf86703295ca3e0f06ecf066c8915",
-    "name": "Andrea",
-    "is_mentor": false,
-    "image": ""
-  },
-  {
     "login": "iiivan",
     "password": "12345",
     "name": "Иван",
@@ -85,7 +78,7 @@
   },
   {
     "login": "alextwo",
-    "password": "37192846527",
+    "password": "afec063e55e82b1d6021be107131c4795ac103dbeb734c0deabb158b06fbd6b5",
     "name": "AlexTwo",
     "is_mentor": false,
     "image": ""
@@ -148,7 +141,7 @@
   },
   {
     "login": "treeeeeee",
-    "password": "55555555555555",
+    "password": "888ca0335568f2dc22b2086e1261a72914cb8f792f17f6c2cd8fbb6c886ebbf9",
     "name": "Treeeeeeee",
     "is_mentor": false,
     "image": "20200816123241_favicon.jpg"

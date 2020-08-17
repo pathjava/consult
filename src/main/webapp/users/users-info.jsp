@@ -20,7 +20,7 @@
                 </div>
                 <div class="text-center">
                     <div class="add-edit-user">
-                        <a href="${pageContext.request.contextPath}/users/user-add.jsp"><span
+                        <a href="${pageContext.request.contextPath}/user/users-info?add=true"><span
                                 class="add-user"></span></a>
                     </div>
                 </div>
@@ -57,7 +57,8 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/users/user-edit.jsp" method="post">
+                                    <form action="${pageContext.request.contextPath}/user/users-info?edit=true&el=${user.login}"
+                                          method="post">
                                         <label>
                                             <input type="text" name="name" value="${user.name}" hidden/>
                                         </label>

@@ -54,7 +54,8 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/users/user-edit.jsp" method="post">
+                                <form action="${pageContext.request.contextPath}/user/users-info?edit=true&el=${user.login}"
+                                      method="post">
                                     <label>
                                         <input type="text" name="name" value="${user.name}" hidden/>
                                     </label>

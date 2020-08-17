@@ -2,6 +2,8 @@ package user;
 
 import ru.progwards.java2.db.DataBase;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +18,28 @@ import java.util.List;
 public class UsersInfo extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String param = req.getParameter("login");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean edit = "true".equals(req.getParameter("edit"));
+        String editLogin = req.getParameter("el");
 
-        if (param != null) {
-            DataBase.Users.User user = DataBase.INSTANCE.users.findKey(param);
+        if (edit) {
+            DataBase.Users.User user = DataBase.INSTANCE.users.findKey(editLogin);
+            req.setAttribute("user", user);
+            req.getRequestDispatcher("/users/user-edit.jsp").forward(req, resp);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String login = req.getParameter("login");
+        boolean add = "true".equals(req.getParameter("add"));
+
+        if (login != null) {
+            DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
             req.setAttribute("user", user);
             req.getRequestDispatcher("/users/user-info.jsp").forward(req, resp);
+        } else if (add) {
+            req.getRequestDispatcher("/users/user-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
             users.sort(Comparator.comparing(o -> o.name));
