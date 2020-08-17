@@ -1,77 +1,74 @@
-<%@ page import="ru.progwards.java2.db.DataBase" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Comparator" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-   <head>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<t:template>
+   <jsp:attribute name="title">
       <title>Настройки</title>
-      <%@include file="/common-head.jsp"%>
-      <link rel="stylesheet" type="text/css" href="/css/consult-app.css" id="consult-app-css">
-      <link rel="stylesheet" type="text/css" href="/css/all.min.css">
-   </head>
-   <body>
-      <header>
-         <div class="page-header">
-            <p class="h5">Настройки</p>
-         </div>
-      </header>
-      <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
-         <div class="table-wrapper">
-            <div class="text-center">
-               <div class="add-edit-user">
-                  <a href="/settings/settings-add.jsp"><span class="add-user"></span></a>
-               </div>
+   </jsp:attribute>
+    <jsp:body>
+        <header>
+            <div>
+                <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards.ru.png"
+                     alt="progwards.ru">
             </div>
-            <table class="table table-striped">
-               <thead>
-                  <tr>
-                     <th scope="col">Название</th>
-                     <th scope="col">Значение</th>
-                     <th scope="col">Удалить</th>
-                     <th scope="col">Редактировать</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <%
-                     List<DataBase.Settings.Record> settings =
-                             new ArrayList<DataBase.Settings.Record>(DataBase.INSTANCE.settings.getAll());
-                     settings.sort(new Comparator<DataBase.Settings.Record>() {
-                         @Override
-                         public int compare(DataBase.Settings.Record o1, DataBase.Settings.Record o2) {
-                             return o1.name.compareTo(o2.name);
-                         }
-                     });
-                     for (DataBase.Settings.Record elem : settings) {
-                         out.write("<tr>");
-
-                         out.write("<td width='35%'>" + elem.name + "</td><td width='35%'>" + elem.value + "</td>");
-                         // действия
-                         out.write("<td width='15%'>");
-                         // кнопка удалить
-                         out.write("<form action='/settings/settings-delete' method='post'>");
-                         out.write("<span class='trash'><input class='btn-del' type='submit' name='" + elem.name + "' value=''/></span>");
-                         out.write("</form>");
-                         out.write("</td>");
-                         // кнопка редактировать
-                         out.write("<td width='15%'>");
-                         out.write("<form action='/settings/settings-edit.jsp' method='post'>");
-                         out.write("<input type='text' name='name' value='" + elem.name + "' hidden />");
-                         out.write("<input type='text' name='value' value='" + elem.value + "' hidden />");
-                         out.write("<span class='edit'><input class='btn-edit' type='submit' value=''/></span>");
-                         out.write("</form>");
-                         out.write("</td>");
-
-                         out.write("</tr>");
-                     }
-                     %>
-               </tbody>
-            </table>
-         </div>
-         </div>
-      </main>
-      <footer>
-         <div></div>
-      </footer>
-   </body>
-</html>
+        </header>
+        <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
+            <div class="content-text-center">
+                <div class="page-header">
+                    <h1>Настройки</h1>
+                </div>
+                <div class="text-center">
+                    <div class="add-edit-user">
+                        <a href="${pageContext.request.contextPath}/settings/settings-add.jsp"><span
+                                class="add-user"></span></a>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Название</th>
+                            <th scope="col">Значение</th>
+                            <th scope="col">Удалить</th>
+                            <th scope="col">Редактировать</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <jsp:useBean id="settings" scope="request" type="java.util.List"/>
+                        <c:forEach var="setting" items="${settings}">
+                            <tr>
+                                <td>${setting.name}</td>
+                                <td>${setting.value}</td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/settings/settings-delete"
+                                          method="post">
+                                        <span class="trash"><input class='btn-del' type='submit' name='${setting.name}'
+                                                                   value=""
+                                                                   onclick="return confirm('Вы подтверждаете удаление?')"/></span>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/settings/settings-edit.jsp"
+                                          method="post">
+                                        <label>
+                                            <input type="text" name="name" value="${setting.name}" hidden/>
+                                        </label>
+                                        <label>
+                                            <input type="text" name="value" value="${setting.value}" hidden/>
+                                        </label>
+                                        <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div></div>
+        </footer>
+    </jsp:body>
+</t:template>

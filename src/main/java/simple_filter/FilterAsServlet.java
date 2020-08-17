@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 @WebFilter("/filter-as-servlet")
 public class FilterAsServlet implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
