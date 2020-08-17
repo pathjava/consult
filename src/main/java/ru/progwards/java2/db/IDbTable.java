@@ -51,7 +51,7 @@ public interface IDbTable<K, V> {
         return null;
     }
 
-    static String bytesToHex(byte[] hash) {
+    private static String bytesToHex(byte[] hash) {
         if (hash == null)
             return null;
         StringBuilder hexString = new StringBuilder();
