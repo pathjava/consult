@@ -11,6 +11,10 @@ h1 {
     font-size: 1.8rem;
 }
 
+input::placeholder {
+    font-size: 0.8em;
+}
+
 .logo-img {
     display: block;
     margin-left: auto;

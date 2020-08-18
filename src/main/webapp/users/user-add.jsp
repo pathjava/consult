@@ -21,10 +21,10 @@
                 <form method="post" action="${pageContext.request.contextPath}/user/user-save"
                       enctype="multipart/form-data">
                     <div class="form-group row">
-                        <label for="controlLogin" class="col-sm-2 col-form-label">Логин (латиница)</label>
+                        <label for="controlLogin" class="col-sm-2 col-form-label">Логин</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="controlLogin" name="login" minlength="3"
-                                   maxlength="20" pattern="[a-zA-Z0-9\s\.\-_]+" required>
+                                   maxlength="20" pattern="[a-zA-Z0-9.]+" placeholder="латинские буквы и цифры" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -38,7 +38,7 @@
                         <label for="controlPassword" class="col-sm-2 col-form-label">Пароль</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="controlPassword" name="password"
-                                   minlength="8" maxlength="20" required>
+                                   minlength="8" maxlength="20" placeholder="от 8 до 20 символов" required>
                         </div>
                     </div>
                     <div class="form-group row">
