@@ -20,7 +20,7 @@
                 </div>
                 <div class="text-center">
                     <div class="add-edit-user">
-                        <a href="${pageContext.request.contextPath}/settings/settings-add.jsp"><span
+                        <a href="${pageContext.request.contextPath}/settings/settings-view?add=true"><span
                                 class="add-user"></span></a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/settings/settings-edit.jsp"
+                                    <form action="${pageContext.request.contextPath}/settings/settings-view?edit=true"
                                           method="post">
                                         <label>
                                             <input type="text" name="name" value="${setting.name}" hidden/>

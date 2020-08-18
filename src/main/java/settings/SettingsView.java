@@ -16,12 +16,27 @@ import java.util.List;
 public class SettingsView extends HttpServlet {
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean edit = "true".equals(req.getParameter("edit"));
+
+        if (edit) {
+            req.getRequestDispatcher("/settings/settings-edit.jsp").forward(req, resp);
+        }
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean add = "true".equals(req.getParameter("add"));
+
         List<DataBase.Settings.Record> settings = new ArrayList<>(DataBase.INSTANCE.settings.getAll());
         settings.sort(Comparator.comparing(o -> o.name));
 
-        req.setAttribute("settings", settings);
-        req.getRequestDispatcher("/settings/settings-view.jsp").forward(req, resp);
+        if (add) {
+            req.getRequestDispatcher("/settings/settings-add.jsp").forward(req, resp);
+        } else {
+            req.setAttribute("settings", settings);
+            req.getRequestDispatcher("/settings/settings-view.jsp").forward(req, resp);
+        }
     }
 
 }
