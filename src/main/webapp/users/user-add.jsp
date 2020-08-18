@@ -42,7 +42,7 @@
                                    minlength="8" maxlength="20" placeholder="от 8 до 20 символов" required>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="showPassword"
-                                       onclick="myFunction()">
+                                       onclick="showFunction()">
                                 <label class="custom-control-label" for="showPassword"></label>
                                 <span class="showPassword">Показать пароль</span>
                             </div>

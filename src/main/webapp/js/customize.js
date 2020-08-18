@@ -10,7 +10,7 @@ function ValidateSize(file) {
     }
 }
 
-function myFunction() {
+function showFunction() {
     const x = document.getElementById("controlPassword");
     if (x.type === "password") {
         x.type = "text";
