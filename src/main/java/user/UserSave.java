@@ -38,8 +38,20 @@ public class UserSave extends HttpServlet {
             return;
         }
 
+        if (login.length() > 30 || login.length() < 2) {
+            req.setAttribute("error-description", "Логин должен быть больше от 2 до 20 символов!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+
         if (name.isEmpty()) {
             req.setAttribute("error-description", "Имя должно быть заполнено!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+
+        if (name.length() > 30 || name.length() < 2) {
+            req.setAttribute("error-description", "Имя должно быть от 2 до 20 символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }

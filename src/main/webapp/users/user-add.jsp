@@ -23,8 +23,9 @@
                     <div class="form-group row">
                         <label for="controlLogin" class="col-sm-2 col-form-label">Логин</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="controlLogin" name="login" minlength="3"
-                                   maxlength="20" pattern="[a-zA-Z0-9.]+" placeholder="латинские буквы и цифры" required>
+                            <input type="text" class="form-control" id="controlLogin" name="login" minlength="2"
+                                   maxlength="20" pattern="[a-zA-Z0-9.]+" placeholder="латинские буквы и цифры"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group row">
