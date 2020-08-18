@@ -39,6 +39,12 @@
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="controlPassword" name="password" value=""
                                    placeholder="от 8 до 20 символов">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="showPassword"
+                                       onclick="myFunction()">
+                                <label class="custom-control-label" for="showPassword"></label>
+                                <span class="showPassword">Показать пароль</span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">

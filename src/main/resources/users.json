@@ -1,15 +1,15 @@
 [
   {
-    "login": "",
-    "password": "1111111",
-    "name": "Анна",
+    "login": "semen",
+    "password": "a281ef1e50ec68b89b38fd6aaad92f65749aa561bad943fd2b81b7ee839551d2",
+    "name": "SemenOne",
     "is_mentor": false,
     "image": ""
   },
   {
-    "login": "semen",
-    "password": "a281ef1e50ec68b89b38fd6aaad92f65749aa561bad943fd2b81b7ee839551d2",
-    "name": "SemenOne",
+    "login": "",
+    "password": "1111111",
+    "name": "Анна",
     "is_mentor": false,
     "image": ""
   },
@@ -60,7 +60,7 @@
     "password": "1c3f65d8cf123a89fe208807311829d23d65abe05cd7e30eeced012441422017",
     "name": "Elenaaa",
     "is_mentor": false,
-    "image": "20200815205458_smoking.jpg"
+    "image": "20200818122222_favicon.jpg"
   },
   {
     "login": "testingImage",
@@ -109,6 +109,13 @@
     "password": "5c2748ca2034defb8e139f965a6a8f14f6c8bbc8a5bc18e7a729e861f9a9d91f",
     "name": "StasOne",
     "is_mentor": true,
+    "image": ""
+  },
+  {
+    "login": "testing",
+    "password": "15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225",
+    "name": "картинка",
+    "is_mentor": false,
     "image": ""
   },
   {
@@ -198,7 +205,7 @@
   {
     "login": "alexxx",
     "password": "hash2",
-    "name": "Alex",
+    "name": "Alex1",
     "is_mentor": false,
     "image": ""
   },

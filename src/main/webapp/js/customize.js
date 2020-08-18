@@ -9,3 +9,12 @@ function ValidateSize(file) {
 
     }
 }
+
+function myFunction() {
+    const x = document.getElementById("controlPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
