@@ -8,7 +8,7 @@
     <jsp:body>
         <header>
             <div>
-                <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards.ru.png"
+                <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards_ru.jpg"
                      alt="progwards.ru">
             </div>
         </header>

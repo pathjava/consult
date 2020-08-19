@@ -1,4 +1,4 @@
-package trial;
+package examples;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;

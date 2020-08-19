@@ -1,4 +1,4 @@
-package redirect;
+package examples.redirect;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

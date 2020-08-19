@@ -1,4 +1,4 @@
-package simple_filter;
+package examples.simple_filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -17,9 +17,9 @@ public class FilterAsServlet implements Filter {
         resp.setCharacterEncoding("UTF-8");
 
         PrintWriter out = resp.getWriter();
-        out.write("Это simple_filter.FilterAsServlet.<br>");
+        out.write("Это examples.simple_filter.FilterAsServlet.<br>");
         filterChain.doFilter(req, resp);
-        out.write("Выход simple_filter.FilterAsServlet.<br>");
+        out.write("Выход examples.simple_filter.FilterAsServlet.<br>");
     }
 
     @Override

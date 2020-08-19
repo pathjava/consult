@@ -1,4 +1,4 @@
-package multi_filters;
+package examples.multi_filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

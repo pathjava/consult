@@ -1,4 +1,4 @@
-package multi_filters;
+package examples.multi_filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -15,9 +15,9 @@ public class Filter2 implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
         PrintWriter out = resp.getWriter();
-        out.write("Привет от multi_filters.Filter2!<br>");
+        out.write("Привет от examples.multi_filters.Filter2!<br>");
         filterChain.doFilter(req, resp);
-        out.write("Пока multi_filters.Filter2.<br>");
+        out.write("Пока examples.multi_filters.Filter2.<br>");
     }
 
     @Override

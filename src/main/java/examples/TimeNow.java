@@ -1,21 +1,18 @@
-package trial;
+package examples;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
-@WebServlet("/show")
-public class Show extends HttpServlet {
+
+public class TimeNow extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
-        String username = req.getParameter("login");
-        String password = req.getParameter("password");
         PrintWriter printWriter = resp.getWriter();
         printWriter.println(
                         "<html> \n" +
@@ -23,9 +20,11 @@ public class Show extends HttpServlet {
                         "       <meta charset=\"utf-8\"> \n" +
                         "       <title>Progwards пример текста</title> \n" +
                         "   </head> \n" +
-                        "   <body> <div align='center' style=\"font-size:25px; color:green\"> \n" +
-                        "   Имя пользователя: " + username + " <br> " +
-                        "   Пароль: " + password +
+                        "   <body>" +
+                        "       <div align='center' style=\"font-size:25px; color:green\"> \n" +
+                        "           Привет от Progwards! <br> " +
+                        "           Сейчас: " + new Date() +
+                        "       </div> \n" +
                         "   </body> \n" +
                         "</html>");
     }

@@ -1,3 +1,5 @@
+package examples;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
@@ -10,7 +12,7 @@ public class PasswordFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("PasswordFilter.doFilter");
+        System.out.println("examples.PasswordFilter.doFilter");
         String password = req.getParameter("password");
         if (password == null || password.length() < 5) {
             req.setAttribute("error-description", "Пароль отсутствует или слишком короткий. Длина пароля должна быть не менее 5 символов.");
