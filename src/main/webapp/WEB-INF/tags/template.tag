@@ -20,10 +20,12 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/all.min.css">
    </head>
    <body>
-      <jsp:doBody/>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/customize.js"></script>
+      <div class="container">
+         <jsp:doBody/>
+         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
+         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+         <script type="text/javascript" src="${pageContext.request.contextPath}/js/customize.js"></script>
+      </div>
    </body>
 </html>

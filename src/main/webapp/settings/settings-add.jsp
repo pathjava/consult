@@ -18,7 +18,7 @@
                 <div class="page-header">
                     <h1>Настройки: добавление</h1>
                 </div>
-                <form method="post" action="${pageContext.request.contextPath}/settings/settings-save">
+                <form method="post" action="${pageContext.request.contextPath}/settings-save">
                     <div class="form-group row">
                         <label for="controlName" class="col-sm-2 col-form-label">Название параметра</label>
                         <div class="col-sm-10">

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet("/settings/settings-delete")
+@WebServlet("/settings-delete")
 public class SettingsDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +28,6 @@ public class SettingsDelete extends HttpServlet {
             DataBase.INSTANCE.settings.readAll();
             return;
         }
-        resp.sendRedirect("/settings/settings-view");
+        resp.sendRedirect("/settings-view");
     }
 }

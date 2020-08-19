@@ -17,7 +17,7 @@
                 <div class="page-header">
                     <h1>Какой-то заголовок</h1>
                 </div>
-                <a href="${pageContext.request.contextPath}/settings/settings-view" class="h1">Настройки</a>
+                <a href="${pageContext.request.contextPath}/settings-view">Настройки</a>
             </div>
         </main>
     </jsp:body>

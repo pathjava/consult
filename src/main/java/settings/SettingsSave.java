@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/settings/settings-save")
+@WebServlet("/settings-save")
 public class SettingsSave extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +35,6 @@ public class SettingsSave extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        resp.sendRedirect("/settings/settings-view");
+        resp.sendRedirect("/settings-view");
     }
 }

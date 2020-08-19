@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-@WebServlet("/settings/settings-view")
+@WebServlet("/settings-view")
 public class SettingsView extends HttpServlet {
 
     @Override

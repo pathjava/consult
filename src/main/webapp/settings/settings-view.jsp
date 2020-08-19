@@ -20,7 +20,7 @@
                 </div>
                 <div class="text-center">
                     <div class="add-edit-user">
-                        <a href="${pageContext.request.contextPath}/settings/settings-view?add=true"><span
+                        <a href="${pageContext.request.contextPath}/settings-view?add=true"><span
                                 class="add-user"></span></a>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                                 <td>${setting.name}</td>
                                 <td>${setting.value}</td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/settings/settings-delete"
+                                    <form action="${pageContext.request.contextPath}/settings-delete"
                                           method="post">
                                         <span class="trash"><input class='btn-del' type='submit' name='${setting.name}'
                                                                    value=""
@@ -49,7 +49,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/settings/settings-view?edit=true"
+                                    <form action="${pageContext.request.contextPath}/settings-view?edit=true"
                                           method="post">
                                         <label>
                                             <input type="text" name="name" value="${setting.name}" hidden/>

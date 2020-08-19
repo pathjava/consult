@@ -1,22 +1,6 @@
 [
   {
-    "name": "Alexxx",
-    "value": "xx123xx"
-  },
-  {
-    "name": "serg",
-    "value": "Sergey1"
-  },
-  {
-    "name": "1111111",
-    "value": "222222222222"
-  },
-  {
-    "name": "Oleg",
-    "value": "12345"
-  },
-  {
-    "name": "Иван",
-    "value": "321"
+    "name": "MAX_INACTIVE_INTERVAL",
+    "value": "60000"
   }
 ]

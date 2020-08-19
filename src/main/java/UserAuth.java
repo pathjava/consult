@@ -1,4 +1,5 @@
 import ru.progwards.java2.db.DataBase;
+import ru.progwards.java2.db.IDbTable;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,9 @@ public class UserAuth extends HttpServlet {
         HttpSession session = req.getSession();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+
+        if (!password.isEmpty())
+            password = IDbTable.hashSha256(password);
 
         DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
         if (user == null || !user.password.equals(password)) {
