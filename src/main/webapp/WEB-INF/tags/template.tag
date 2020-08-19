@@ -1,5 +1,6 @@
 <%@tag description="Template tag for consult" pageEncoding="UTF-8"%>
 <%@attribute name="title" fragment="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
    <head>
@@ -20,12 +21,34 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/all.min.css">
    </head>
    <body>
-      <div class="container">
-         <jsp:doBody/>
-         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
-         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
-         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-         <script type="text/javascript" src="${pageContext.request.contextPath}/js/customize.js"></script>
-      </div>
+       <header>
+           <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards_ru.jpg"
+                alt="progwards.ru">
+           <nav class="mainContent col-md-9 col-xl-8 py-md-3">
+               <ul class="nav justify-content-center">
+                   <li class="nav-item">
+                       <a class="nav-link active" href="${pageContext.request.contextPath}/settings-view">Настройки</a>
+                   </li>
+                   <li class="nav-item">
+                       <a class="nav-link" href="#">Link</a>
+                   </li>
+                   <li class="nav-item">
+                       <a class="nav-link" href="#">Link</a>
+                   </li>
+                   <li class="nav-item">
+                       <c:if test="${login == null}">
+                           <a class="nav-link" href="${pageContext.request.contextPath}/login">Войти</a>
+                       </c:if>
+                   </li>
+               </ul>
+           </nav>
+       </header>
+       <div>
+            <jsp:doBody/>
+       </div>
+       <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
+       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+       <script type="text/javascript" src="${pageContext.request.contextPath}/js/customize.js"></script>
+       <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
    </body>
 </html>

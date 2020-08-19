@@ -7,13 +7,7 @@
       <title>Настройки</title>
    </jsp:attribute>
     <jsp:body>
-        <header>
-            <div>
-                <img class="logo-img" src="${pageContext.request.contextPath}/images/progwards_ru.jpg"
-                     alt="progwards.ru">
-            </div>
-        </header>
-        <main class="mainContent col-md-9 col-xl-8 py-md-3 pl-md-5">
+        <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
                     <h1>Список пользователей</h1>
