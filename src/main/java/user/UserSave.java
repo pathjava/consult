@@ -24,6 +24,14 @@ public class UserSave extends HttpServlet {
     private static final String FILE_DIRECTORY = "avatars";
     private static String imageName;
     private static String userPassword;
+    private static final int minPass =
+            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MIN_LENGTH_PASS").value);
+    private static final int maxPass =
+            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_PASS").value);
+    private static final int minLoginName =
+            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MIN_LENGTH_LOGIN_NAME").value);
+    private static final int maxLoginName =
+            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_LOGIN_NAME").value);
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
@@ -38,7 +46,7 @@ public class UserSave extends HttpServlet {
             return;
         }
 
-        if (login.length() > 30 || login.length() < 2) {
+        if (login.length() > maxLoginName || login.length() < minLoginName) {
             req.setAttribute("error-description", "Логин должен быть больше от 2 до 20 символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -50,7 +58,7 @@ public class UserSave extends HttpServlet {
             return;
         }
 
-        if (name.length() > 30 || name.length() < 2) {
+        if (name.length() > maxLoginName || name.length() < minLoginName) {
             req.setAttribute("error-description", "Имя должно быть от 2 до 20 символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -63,13 +71,13 @@ public class UserSave extends HttpServlet {
         }
 
         if (!isEdit) {
-            if (userPassword.length() < 8 || userPassword.length() > 20) {
+            if (userPassword.length() < minPass || userPassword.length() > maxPass) {
                 req.setAttribute("error-description", "Длина пароля должна быть от 8 до 20 символов!");
                 req.getRequestDispatcher("/error.jsp").forward(req, resp);
                 return;
             }
         } else {
-            if (!userPassword.isEmpty() && userPassword.length() < 8 || userPassword.length() > 20) {
+            if (!userPassword.isEmpty() && userPassword.length() < minPass || userPassword.length() > maxPass) {
                 req.setAttribute("error-description", "Длина пароля должна быть от 8 до 20 символов!");
                 req.getRequestDispatcher("/error.jsp").forward(req, resp);
                 return;

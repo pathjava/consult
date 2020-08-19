@@ -9,6 +9,10 @@ import java.io.IOException;
 public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        if ("true".equals(req.getParameter("logout"))) {
+            req.getSession().invalidate();
+            resp.sendRedirect("/login");
+        }else
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 }

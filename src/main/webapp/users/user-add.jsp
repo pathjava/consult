@@ -1,3 +1,4 @@
+<%@ page import="ru.progwards.java2.db.DataBase" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,23 +18,29 @@
                     <div class="form-group row">
                         <label for="controlLogin" class="col-sm-2 col-form-label">Логин</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="controlLogin" name="login" minlength="2"
-                                   maxlength="20" pattern="[a-zA-Z0-9.]+" placeholder="латинские буквы и цифры"
+                            <input type="text" class="form-control" id="controlLogin" name="login"
+                                   minlength="${pageContext.request.getAttribute("minLoginName")}"
+                                   maxlength="${pageContext.request.getAttribute("maxLoginName")}"
+                                   pattern="[a-zA-Z0-9.]+" placeholder="латинские буквы и цифры"
                                    required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="controlName" class="col-sm-2 col-form-label">Имя</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="controlName" name="name" minlength="2"
-                                   maxlength="20" required>
+                            <input type="text" class="form-control" id="controlName" name="name"
+                                   minlength="${pageContext.request.getAttribute("minLoginName")}"
+                                   maxlength="${pageContext.request.getAttribute("maxLoginName")}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="controlPassword" class="col-sm-2 col-form-label">Пароль</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="controlPassword" name="password"
-                                   minlength="8" maxlength="20" placeholder="от 8 до 20 символов" required>
+                                   minlength="${pageContext.request.getAttribute("minPass")}"
+                                   maxlength="${pageContext.request.getAttribute("maxPass")}"
+                                   placeholder="от ${pageContext.request.getAttribute("minPass")} до ${pageContext.request.getAttribute("maxPass")} символов"
+                                   required>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="showPassword"
                                        onclick="showFunction()">

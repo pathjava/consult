@@ -40,6 +40,11 @@
                            <a class="nav-link" href="${pageContext.request.contextPath}/login">Войти</a>
                        </c:if>
                    </li>
+                   <li class="nav-item">
+                       <c:if test="${login != null}">
+                           <a class="nav-link" href="${pageContext.request.contextPath}/login?logout=true">Выйти</a>
+                       </c:if>
+                   </li>
                </ul>
            </nav>
        </header>

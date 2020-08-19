@@ -1,6 +1,22 @@
 [
   {
+    "name": "MIN_LENGTH_PASS",
+    "value": "8"
+  },
+  {
+    "name": "MAX_LENGTH_PASS",
+    "value": "20"
+  },
+  {
+    "name": "MAX_LENGTH_LOGIN_NAME",
+    "value": "20"
+  },
+  {
     "name": "MAX_INACTIVE_INTERVAL",
-    "value": "60000"
+    "value": "600000"
+  },
+  {
+    "name": "MIN_LENGTH_LOGIN_NAME",
+    "value": "2"
   }
 ]
