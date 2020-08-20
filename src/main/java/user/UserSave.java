@@ -47,7 +47,8 @@ public class UserSave extends HttpServlet {
         }
 
         if (login.length() > maxLoginName || login.length() < minLoginName) {
-            req.setAttribute("error-description", "Логин должен быть больше от 2 до 20 символов!");
+            req.setAttribute("error-description", "Логин должен быть больше от "
+                    + minLoginName + " до " + maxLoginName + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
@@ -59,7 +60,8 @@ public class UserSave extends HttpServlet {
         }
 
         if (name.length() > maxLoginName || name.length() < minLoginName) {
-            req.setAttribute("error-description", "Имя должно быть от 2 до 20 символов!");
+            req.setAttribute("error-description", "Имя должно быть от "
+                    + minLoginName + " до " + maxLoginName + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
@@ -72,13 +74,15 @@ public class UserSave extends HttpServlet {
 
         if (!isEdit) {
             if (userPassword.length() < minPass || userPassword.length() > maxPass) {
-                req.setAttribute("error-description", "Длина пароля должна быть от 8 до 20 символов!");
+                req.setAttribute("error-description", "Длина пароля должна быть от "
+                        + minPass + " до " + maxPass + " символов!");
                 req.getRequestDispatcher("/error.jsp").forward(req, resp);
                 return;
             }
         } else {
             if (!userPassword.isEmpty() && userPassword.length() < minPass || userPassword.length() > maxPass) {
-                req.setAttribute("error-description", "Длина пароля должна быть от 8 до 20 символов!");
+                req.setAttribute("error-description", "Длина пароля должна быть от "
+                        + minPass + " до " + maxPass + " символов!");
                 req.getRequestDispatcher("/error.jsp").forward(req, resp);
                 return;
             }
