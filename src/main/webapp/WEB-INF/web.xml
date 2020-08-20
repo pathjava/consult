@@ -23,5 +23,6 @@
     <filter-mapping>
         <filter-name>MentorFilter</filter-name>
         <url-pattern>/settings-view</url-pattern>
+        <url-pattern>/users-info</url-pattern>
     </filter-mapping>
 </web-app>
