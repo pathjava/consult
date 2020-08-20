@@ -13,7 +13,7 @@
   },
   {
     "name": "MAX_INACTIVE_INTERVAL",
-    "value": "600000"
+    "value": "3600"
   },
   {
     "name": "MIN_LENGTH_LOGIN_NAME",

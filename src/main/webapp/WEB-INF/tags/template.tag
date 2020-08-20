@@ -27,13 +27,19 @@
            <nav class="mainContent col-md-9 col-xl-8 py-md-3">
                <ul class="nav justify-content-center">
                    <li class="nav-item">
+                       <a class="nav-link" href="${pageContext.request.contextPath}/">Главная</a>
+                   </li>
+                   <%--admin-start--%>
+                   <li class="nav-item">
                        <a class="nav-link active" href="${pageContext.request.contextPath}/settings-view">Настройки</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="${pageContext.request.contextPath}/">Главная</a>
-                   </li>
-                   <li class="nav-item">
                        <a class="nav-link" href="${pageContext.request.contextPath}/users-info">Пользователи</a>
+                   </li>
+                   <%--admin-stop--%>
+<%--                   <jsp:useBean id="user" scope="request" type="ru.progwards.java2.db.DataBase.Users.User"/>--%>
+                   <li class="nav-item">
+                       <a class="nav-link" href="${pageContext.request.contextPath}/users-info?login=${login}">Личный кабинет</a>
                    </li>
                    <li class="nav-item">
                        <c:if test="${login == null}">

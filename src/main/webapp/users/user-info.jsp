@@ -10,13 +10,7 @@
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Список пользователей</h1>
-                </div>
-                <div class="text-center">
-                    <div class="add-edit-user">
-                        <a href="${pageContext.request.contextPath}/users/user-add.jsp"><span
-                                class="add-user"></span></a>
-                    </div>
+                    <h1>Информация пользователя</h1>
                 </div>
                 <div>
                     <table class="table table-striped">
