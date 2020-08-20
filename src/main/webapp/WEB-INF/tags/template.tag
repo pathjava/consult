@@ -30,10 +30,10 @@
                        <a class="nav-link active" href="${pageContext.request.contextPath}/settings-view">Настройки</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="/">Главная</a>
+                       <a class="nav-link" href="${pageContext.request.contextPath}/">Главная</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="#">Link</a>
+                       <a class="nav-link" href="${pageContext.request.contextPath}/users-info">Пользователи</a>
                    </li>
                    <li class="nav-item">
                        <c:if test="${login == null}">
@@ -51,6 +51,9 @@
        <div>
             <jsp:doBody/>
        </div>
+       <footer>
+           <div></div>
+       </footer>
        <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
        <script type="text/javascript" src="${pageContext.request.contextPath}/js/customize.js"></script>

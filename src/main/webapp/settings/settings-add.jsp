@@ -38,8 +38,5 @@
                 </div>
             </div>
         </main>
-        <footer>
-            <div></div>
-        </footer>
     </jsp:body>
 </t:template>
