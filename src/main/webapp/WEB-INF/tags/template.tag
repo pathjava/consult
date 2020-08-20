@@ -30,7 +30,7 @@
                        <a class="nav-link active" href="${pageContext.request.contextPath}/settings-view">Настройки</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="#">Link</a>
+                       <a class="nav-link" href="/">Главная</a>
                    </li>
                    <li class="nav-item">
                        <a class="nav-link" href="#">Link</a>

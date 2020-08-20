@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet("/user/user-delete")
+@WebServlet("/user-delete")
 public class UserDelete extends HttpServlet {
 
     private static final String FILE_DIRECTORY = "avatars";
@@ -39,7 +39,7 @@ public class UserDelete extends HttpServlet {
         if (!imageName.isEmpty())
             deleteImage(imageName);
 
-        resp.sendRedirect("/user/users-info");
+        resp.sendRedirect("/users-info");
     }
 
     private void deleteImage(String imageName) {

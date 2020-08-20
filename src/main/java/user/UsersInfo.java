@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-@WebServlet("/user/users-info")
+@WebServlet("/users-info")
 public class UsersInfo extends HttpServlet {
 
     private static final String minPass = DataBase.INSTANCE.settings.findKey("MIN_LENGTH_PASS").value;

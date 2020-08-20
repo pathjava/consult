@@ -41,14 +41,14 @@
                                      alt="${user.name}">
                             </td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/user/user-delete" method="post">
+                                <form action="${pageContext.request.contextPath}/user-delete" method="post">
                                         <span class="trash"><input class='btn-del' type='submit' name='${user.login}'
                                                                    value=""
                                                                    onclick="return confirm('Вы подтверждаете удаление?')"/></span>
                                 </form>
                             </td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/user/users-info?edit=true&el=${user.login}"
+                                <form action="${pageContext.request.contextPath}/users-info?edit=true&el=${user.login}"
                                       method="post">
                                     <label>
                                         <input type="text" name="name" value="${user.name}" hidden/>

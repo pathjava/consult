@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-@WebServlet("/user/user-save")
+@WebServlet("/user-save")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UserSave extends HttpServlet {
@@ -114,7 +114,7 @@ public class UserSave extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        resp.sendRedirect("/user/users-info");
+        resp.sendRedirect("/users-info");
     }
 
     private static boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
