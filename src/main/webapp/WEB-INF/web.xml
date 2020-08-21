@@ -17,9 +17,9 @@
 
     <filter-mapping>
         <filter-name>AuthorizedFilter</filter-name>
-<!--        <url-pattern>/*</url-pattern>-->
-        <url-pattern>/settings-view</url-pattern>
-        <url-pattern>/users-info</url-pattern>
+        <url-pattern>/*</url-pattern>
+<!--        <url-pattern>/settings-view</url-pattern>-->
+<!--        <url-pattern>/users-info</url-pattern>-->
     </filter-mapping>
 
     <filter-mapping>

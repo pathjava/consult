@@ -10,13 +10,32 @@ public class AuthorizedFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest) req).getSession();
 
-        if (session.getAttribute("login") == null) {
-            ((HttpServletResponse) resp).sendRedirect("login");
+        String path = ((HttpServletRequest) req).getRequestURI().toLowerCase();
+        if (path.startsWith("/login") || path.startsWith("/") && path.length() == 1) {
+            chain.doFilter(req, resp);
+        } else if (session.getAttribute("login") == null) {
+            ((HttpServletResponse) resp).sendRedirect("/login");
         } else
             chain.doFilter(req, resp);
+
+//        HttpServletRequest request = (HttpServletRequest) req;
+//        HttpServletResponse response = (HttpServletResponse) resp;
+//        HttpSession session = request.getSession(false);
+//
+//        String loginURI = request.getContextPath() + "/login";
+//
+//        boolean loggedIn = session != null && session.getAttribute("login") != null;
+//        boolean loginRequest = request.getRequestURI().equals(loginURI);
+//
+//        if (loggedIn || loginRequest) {
+//            chain.doFilter(req, resp);
+//        } else {
+//            response.sendRedirect(loginURI);
+//        }
     }
 
     @Override
