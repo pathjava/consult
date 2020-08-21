@@ -8,24 +8,24 @@
   },
   {
     "login": "elena",
-    "password": "1c3f65d8cf123a89fe208807311829d23d65abe05cd7e30eeced012441422017",
+    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
     "name": "Elenaaa",
     "is_mentor": false,
-    "image": "20200818122222_favicon.jpg"
+    "image": "20200821185100_04.gif"
   },
   {
     "login": "tom",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
     "name": "Tom",
     "is_mentor": false,
-    "image": ""
+    "image": "20200821185011_06.jpg"
   },
   {
     "login": "vitaly",
-    "password": "3183ab4de48195ee12b7026bfaa6ebb111ec3b9878c5f07d5e17527860f58533",
+    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
     "name": "Vitaly",
     "is_mentor": true,
-    "image": "20200816205034_favicon.jpg"
+    "image": "20200821185112_05.gif"
   },
   {
     "login": "Petr",
@@ -36,16 +36,16 @@
   },
   {
     "login": "alexxx",
-    "password": "hash2",
+    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
     "name": "Alex1",
     "is_mentor": false,
-    "image": ""
+    "image": "20200821184957_03.jpg"
   },
   {
     "login": "olegOne",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
     "name": "Олег",
     "is_mentor": true,
-    "image": ""
+    "image": "20200821185043_07.jpg"
   }
 ]

@@ -20,7 +20,6 @@
                             <th scope="col">Логин</th>
                             <th scope="col">Статус</th>
                             <th scope="col">Аватарка</th>
-                            <th scope="col">Удалить</th>
                             <th scope="col">Редактировать</th>
                         </tr>
                         </thead>
@@ -33,13 +32,6 @@
                             <td><img class="user-avatar"
                                      src="${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'}"
                                      alt="${user.name}">
-                            </td>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/user-delete" method="post">
-                                        <span class="trash"><input class='btn-del' type='submit' name='${user.login}'
-                                                                   value=""
-                                                                   onclick="return confirm('Вы подтверждаете удаление?')"/></span>
-                                </form>
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/users-info?edit=true&el=${user.login}"

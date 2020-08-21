@@ -22,6 +22,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Имя</th>
                             <th scope="col">Логин</th>
                             <th scope="col">Статус</th>
@@ -32,8 +33,9 @@
                         </thead>
                         <tbody>
                         <jsp:useBean id="users" scope="request" type="java.util.List"/>
-                        <c:forEach var="user" items="${users}">
+                        <c:forEach var="user" items="${users}" varStatus="loop">
                             <tr>
+                                <td>${loop.index+1}</td>
                                 <td>${user.name}</td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/users-info?login=${user.login}">${user.login}</a>

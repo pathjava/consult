@@ -19,6 +19,63 @@ input::placeholder {
     font-size: 0.8em;
 }
 
+.mentorsImage{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+    padding-bottom: 56.25%;
+    height: 0;
+    width: 100%;
+    display: block;
+    background-color: #272729;
+}
+
+.mentorsImage .img{
+    width: 100%;
+    -webkit-transform: rotateZ(0) scale(1);
+    -ms-transform: rotate(0) scale(1);
+    transform: rotateZ(0) scale(1);
+    -webkit-transition: -webkit-transform 0.35s ease, opacity 0.35s ease;
+    -webkit-transition: opacity 0.35s ease, -webkit-transform 0.35s ease;
+    -o-transition: transform 0.35s ease, opacity 0.35s ease;
+    transition: transform 0.35s ease, opacity 0.35s ease, -webkit-transform 0.35s ease;
+    padding-bottom: 56.4%;
+    height: 0;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.mentorsImage:hover .img {
+    opacity: .3;
+    -webkit-transform: rotateZ(-3deg) scale(1.2);
+    -ms-transform: rotate(-3deg) scale(1.2);
+    transform: rotateZ(-3deg) scale(1.2);
+}
+
+.cardForm{
+    padding: 10px;
+}
+
+.privacy{
+    padding: 20px 0 30px;
+    font-size: 12px;
+    color: #c4c4c4;
+    line-height: 1.375em;
+}
+
+.cardForm button.btn{
+    margin: 0 3px 7px 0;
+}
+
+.dayConsult{
+    display: block;
+    vertical-align: middle;
+    font-weight: 500;
+    margin: 7px 0;
+}
+
 .logo-img {
     display: block;
     margin-left: auto;
