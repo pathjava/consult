@@ -37,9 +37,6 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/">Главная<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/consults">Консультации</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/mentors">Наставники</a>
                     </li>
                     <li class="nav-item">
@@ -63,11 +60,11 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/login?logout=true">Выйти</a>
                     </li>
                 </c:if>
-                <%--                   <c:if test="${login == null}">--%>
-                <%--                       <li class="nav-item">--%>
-                <%--                           <a class="nav-link" href="${pageContext.request.contextPath}/login">Войти</a>--%>
-                <%--                       </li>--%>
-                <%--                   </c:if>--%>
+                <c:if test="${login == null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/login">Войти</a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </nav>

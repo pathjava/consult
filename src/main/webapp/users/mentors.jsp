@@ -14,38 +14,29 @@
                 </div>
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">
-                        <div class="col mb-4">
-                            <div class="card">
-                                <div class="mentorsImage">
-                                    <div class="img"
-                                         style="background-image:url(${pageContext.request.contextPath}/avatars/valeriy.jpg);"></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Название карточки</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                    <div class="">
-                                        <input type="submit" class="btn btn-primary btn-block" value="Записаться">
+                        <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
+                        <c:forEach var="mentor" items="${mentors}" varStatus="loop">
+                            <div class="col mb-4">
+                                <div class="card">
+                                    <div class="mentorsImage">
+                                        <div class="img"
+                                             style="background-image:url(${pageContext.request.contextPath}/avatars/${mentor.image});"></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${mentor.name}</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <form action="${pageContext.request.contextPath}/consults">
+                                            <label>
+                                                <input type="text" name="login" value="${mentor.login}" hidden/>
+                                            </label>
+                                            <input type="submit" class="btn btn-primary btn-block" value="Записаться">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col mb-4">
-                            <div class="card">
-                                <div class="mentorsImage">
-                                    <div class="img"
-                                         style="background-image:url(${pageContext.request.contextPath}/avatars/nikita.jpg);"></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Название карточки</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                    <div class="">
-                                        <input type="submit" class="btn btn-primary btn-block" value="Записаться">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="error-actions">
