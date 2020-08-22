@@ -13,8 +13,8 @@
                     <h1>Информация пользователя</h1>
                 </div>
                 <div>
-                    <table class="table table-striped">
-                        <thead>
+                    <table class="table">
+                        <thead class="thead-light">
                         <tr>
                             <th scope="col">Имя</th>
                             <th scope="col">Логин</th>
@@ -58,6 +58,37 @@
                                     <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
                                 </form>
                             </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-header">
+                    <h2>Список консультаций</h2>
+                </div>
+                <div>
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Дата и время</th>
+                            <th scope="col">Отменить</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
                         </tr>
                         </tbody>
                     </table>

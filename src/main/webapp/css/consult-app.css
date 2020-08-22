@@ -11,15 +11,19 @@ h1 {
     font-size: 1.8rem;
 }
 
+h2 {
+    font-size: 1.6rem;
+}
+
 input::placeholder {
     font-size: 0.8em;
 }
 
-.showPassword{
+.showPassword {
     font-size: 0.8em;
 }
 
-.mentorsImage{
+.mentorsImage {
     position: relative;
     overflow: hidden;
     margin-bottom: 0;
@@ -30,7 +34,7 @@ input::placeholder {
     background-color: #272729;
 }
 
-.mentorsImage .img{
+.mentorsImage .img {
     width: 100%;
     -webkit-transform: rotateZ(0) scale(1);
     -ms-transform: rotate(0) scale(1);
@@ -54,26 +58,32 @@ input::placeholder {
     transform: rotateZ(-3deg) scale(1.2);
 }
 
-.cardForm{
+.cardForm {
     padding: 10px;
 }
 
-.privacy{
+.privacy {
     padding: 20px 0 30px;
     font-size: 12px;
     color: #c4c4c4;
     line-height: 1.375em;
 }
 
-.cardForm button.btn{
+.cardForm button.btn {
     margin: 0 3px 7px 0;
 }
 
-.dayConsult{
+.dayConsult {
     display: block;
     vertical-align: middle;
     font-weight: 500;
     margin: 7px 0;
+}
+
+.consultTime{
+    text-align: center;
+    font-weight: 700;
+    background: #f9f9f9;
 }
 
 .logo-img {
@@ -196,7 +206,7 @@ input.btn-del {
     border-radius: 5%;
 }
 
-.user-avatar .img{
+.user-avatar .img {
     width: 100%;
     -webkit-transform: rotateZ(0) scale(1);
     -ms-transform: rotate(0) scale(1);

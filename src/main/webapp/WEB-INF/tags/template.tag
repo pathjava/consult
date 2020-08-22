@@ -54,6 +54,8 @@
                                href="${pageContext.request.contextPath}/settings-view">Настройки</a>
                             <a class="dropdown-item"
                                href="${pageContext.request.contextPath}/users-info">Пользователи</a>
+                            <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/consults">Список консультаций</a>
                         </div>
                     </li>
                     <li class="nav-item">

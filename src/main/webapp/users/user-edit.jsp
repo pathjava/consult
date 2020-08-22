@@ -67,7 +67,7 @@
                             <div class="avatar">
                                 <div class="user-avatar">
                                     <div class="img"
-                                         style="background-image:url(${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'});"></div>
+                                         style="background-image:url(${pageContext.request.contextPath}/avatars/${!param.image.isEmpty() ? param.image : 'no-avatar.png'});"></div>
                                 </div>
                             </div>
                         </div>
