@@ -29,9 +29,13 @@
                             <td>${user.name}</td>
                             <td>${user.login}</td>
                             <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
-                            <td><img class="user-avatar"
-                                     src="${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'}"
-                                     alt="${user.name}">
+                            <td>
+                                <div class="avatar">
+                                    <div class="user-avatar">
+                                        <div class="img"
+                                             style="background-image:url(${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'});"></div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/users-info?edit=true&el=${user.login}"

@@ -64,9 +64,12 @@
                     <div class="form-group row">
                         <div class="col-sm-2">Текущий аватар</div>
                         <div class="col-sm-10">
-                            <img class="user-avatar"
-                                 src="${pageContext.request.contextPath}/avatars/${!param.image.isEmpty() ? param.image : 'no-avatar.png'}"
-                                 alt="${param.name}">
+                            <div class="avatar">
+                                <div class="user-avatar">
+                                    <div class="img"
+                                         style="background-image:url(${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'});"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
