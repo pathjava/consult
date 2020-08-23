@@ -1,3 +1,5 @@
+package user;
+
 import ru.progwards.java2.db.DataBase;
 
 import javax.servlet.ServletException;

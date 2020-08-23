@@ -11,8 +11,13 @@ import java.io.IOException;
 public class Consults extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String name = req.getParameter("name");
+        String login = req.getParameter("mentorLogin");
+
+        req.setAttribute("name", name);
+        req.setAttribute("mentorLogin", login);
         req.getRequestDispatcher("/consults/consults.jsp").forward(req, resp);
 
     }

@@ -10,7 +10,7 @@
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Consults</h1>
+                    <h1>Запись на консультацию к ${requestScope.name}</h1>
                 </div>
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">
@@ -19,7 +19,7 @@
                                 <form method="post">
                                     <div class="form-group">
                                         <label for="inputLogin">Имя</label>
-                                        <input type="text" name="login" class="form-control" id="inputLogin"
+                                        <input type="text" name="studentLogin" class="form-control" id="inputLogin"
                                                value="${login}" readonly>
                                     </div>
                                     <div class="form-row">

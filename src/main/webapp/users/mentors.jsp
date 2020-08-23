@@ -4,13 +4,13 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Mentors</title>
+      <title>user.Mentors</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Mentors</h1>
+                    <h1>user.Mentors</h1>
                 </div>
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">
@@ -27,9 +27,12 @@
                                         <p class="card-text">This is a longer card with supporting text below as a
                                             natural
                                             lead-in to additional content. This content is a little bit longer.</p>
-                                        <form action="${pageContext.request.contextPath}/consults">
+                                        <form action="${pageContext.request.contextPath}/consults" method="post">
                                             <label>
-                                                <input type="text" name="login" value="${mentor.login}" hidden/>
+                                                <input type="text" name="mentorLogin" value="${mentor.login}" hidden/>
+                                            </label>
+                                            <label>
+                                                <input type="text" name="name" value="${mentor.name}" hidden/>
                                             </label>
                                             <input type="submit" class="btn btn-primary btn-block" value="Записаться">
                                         </form>

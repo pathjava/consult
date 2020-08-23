@@ -4,7 +4,7 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Mentors</title>
+      <title>user.Mentors</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
