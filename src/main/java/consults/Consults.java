@@ -16,5 +16,4 @@ public class Consults extends HttpServlet {
         req.getRequestDispatcher("/consults/consults.jsp").forward(req, resp);
 
     }
-
 }

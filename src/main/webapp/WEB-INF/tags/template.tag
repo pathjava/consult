@@ -55,7 +55,7 @@
                             <a class="dropdown-item"
                                href="${pageContext.request.contextPath}/users-info">Пользователи</a>
                             <a class="dropdown-item"
-                               href="${pageContext.request.contextPath}/consults">Список консультаций</a>
+                               href="${pageContext.request.contextPath}/all-consults">Список консультаций</a>
                         </div>
                     </li>
                     <li class="nav-item">

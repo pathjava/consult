@@ -1,3 +1,5 @@
+package filters;
+
 import ru.progwards.java2.db.DataBase;
 
 import javax.servlet.*;
@@ -18,7 +20,7 @@ public class PasswordFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("PasswordFilter.doFilter");
+        System.out.println("filters.PasswordFilter.doFilter");
         String password = req.getParameter("password");
 
         if (password == null || password.length() < minPass || password.length() > maxPass) {

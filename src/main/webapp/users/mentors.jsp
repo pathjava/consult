@@ -27,7 +27,7 @@
                                         <p class="card-text">This is a longer card with supporting text below as a
                                             natural
                                             lead-in to additional content. This content is a little bit longer.</p>
-                                        <form action="${pageContext.request.contextPath}/appointment">
+                                        <form action="${pageContext.request.contextPath}/consults">
                                             <label>
                                                 <input type="text" name="login" value="${mentor.login}" hidden/>
                                             </label>

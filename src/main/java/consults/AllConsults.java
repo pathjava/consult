@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/appointment")
-public class Advice extends HttpServlet {
+@WebServlet("/all-consults")
+public class AllConsults extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("/consults/appointment.jsp").forward(req, resp);
+        req.getRequestDispatcher("/consults/all-consults.jsp").forward(req, resp);
 
     }
+
 }
