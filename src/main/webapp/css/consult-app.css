@@ -233,3 +233,7 @@ input.btn-del {
     padding-top: 0;
     margin: auto;
 }
+
+.hidden {
+    display: none;
+}

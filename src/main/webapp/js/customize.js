@@ -55,3 +55,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     });
 });
+
+$('input[type="checkbox"]').change(function() {
+    $(this).next().next().toggle()
+})
