@@ -15,7 +15,7 @@
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">
                         <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
-                        <c:forEach var="mentor" items="${mentors}" varStatus="loop">
+                        <c:forEach var="mentor" items="${mentors}">
                             <div class="col mb-4">
                                 <div class="card">
                                     <div class="mentorsImage">

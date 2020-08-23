@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/settings-view")
 public class SettingsView extends HttpServlet {
@@ -32,6 +33,11 @@ public class SettingsView extends HttpServlet {
         settings.sort(Comparator.comparing(o -> o.name));
 
         if (add) {
+            List<DataBase.Users.User> mentors =
+                    DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
+
+            req.setAttribute("mentors", mentors);
+
             req.getRequestDispatcher("/settings/settings-add.jsp").forward(req, resp);
         } else {
             req.setAttribute("settings", settings);

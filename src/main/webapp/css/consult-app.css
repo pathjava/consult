@@ -228,3 +228,8 @@ input.btn-del {
     padding: 0 0 10px;
 }
 
+.col-form-label{
+    font-size: 0.9rem;
+    padding-top: 0;
+    margin: auto;
+}
