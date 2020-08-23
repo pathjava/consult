@@ -37,7 +37,7 @@
                 <div class="page-header">
                     <h2>Настройки дней консультаций</h2>
                 </div>
-                <form method="post" action="${pageContext.request.contextPath}/settings-save">
+                <form method="post" action="${pageContext.request.contextPath}/settings-save" name="daysSettings">
                     <div class="form-group row">
                         <label for="controlName" class="col-sm-2 col-form-label">Наставник</label>
                         <div class="col-sm-10">
@@ -54,118 +54,29 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Дни недели,<br/>время начала,<br/>длительность</label>
                         <div class="col-sm-10">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" value="1" id="1">
-                                <label class="custom-control-label" for="1">Понедельник</label>
-                                <div class="hidden">
-                                    <div class="form-group row">
-                                        <label for="1t" class="col-sm-2 col-form-label">Время</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="1t" name="time" required>
-                                        </div>
-                                        <label for="1d" class="col-sm-2 col-form-label">Длительность</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="1d" name="duration" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" value="2" id="2">
-                                <label class="custom-control-label" for="2">Вторник</label>
-                                <div class="hidden">
-                                    <div class="form-group row">
-                                        <label for="2t" class="col-sm-2 col-form-label">Время</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="2t" name="time" required>
-                                        </div>
-                                        <label for="2d" class="col-sm-2 col-form-label">Длительность</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="2d" name="duration" required>
+                            <jsp:useBean id="daysOfWeek" scope="request" type="java.util.List"/>
+                            <c:forEach var="day" items="${daysOfWeek}" varStatus="loop">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="${loop.index+1}"
+                                           name="${loop.index+1}-check">
+                                    <label class="custom-control-label" for="${loop.index+1}">${day}</label>
+                                    <div class="hidden">
+                                        <div class="form-group row">
+                                            <label for="${loop.index+1}t" class="col-sm-2 col-form-label">Время</label>
+                                            <div class="col-sm-10">
+                                                <input type="time" class="form-control" id="${loop.index+1}t"
+                                                       name="${loop.index+1}-time" required>
+                                            </div>
+                                            <label for="${loop.index+1}d"
+                                                   class="col-sm-2 col-form-label">Длительность</label>
+                                            <div class="col-sm-10">
+                                                <input type="time" class="form-control" id="${loop.index+1}d"
+                                                       name="${loop.index+1}-duration" required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" value="3" id="3">
-                                <label class="custom-control-label" for="3">Среда</label>
-                                <div class="hidden">
-                                    <div class="form-group row">
-                                        <label for="3t" class="col-sm-2 col-form-label">Время</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="3t" name="time" required>
-                                        </div>
-                                        <label for="3d" class="col-sm-2 col-form-label">Длительность</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="3d" name="duration" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" value="4" id="4">
-                                <label class="custom-control-label" for="4">Четверг</label>
-                                <div class="hidden">
-                                    <div class="form-group row">
-                                        <label for="4t" class="col-sm-2 col-form-label">Время</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="4t" name="time" required>
-                                        </div>
-                                        <label for="4d" class="col-sm-2 col-form-label">Длительность</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="4d" name="duration" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" value="5" id="5">
-                                <label class="custom-control-label" for="5">Пятница</label>
-                                <div class="hidden">
-                                    <div class="form-group row">
-                                        <label for="5t" class="col-sm-2 col-form-label">Время</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="5t" name="time" required>
-                                        </div>
-                                        <label for="5d" class="col-sm-2 col-form-label">Длительность</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="5d" name="duration" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" value="6" id="6">
-                                <label class="custom-control-label" for="6">Суббота</label>
-                                <div class="hidden">
-                                    <div class="form-group row">
-                                        <label for="6t" class="col-sm-2 col-form-label">Время</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="6t" name="time" required>
-                                        </div>
-                                        <label for="6d" class="col-sm-2 col-form-label">Длительность</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="6d" name="duration" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" value="7" id="7">
-                                <label class="custom-control-label" for="7">Воскресенье</label>
-                                <div class="hidden">
-                                    <div class="form-group row">
-                                        <label for="7t" class="col-sm-2 col-form-label">Время</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="7t" name="time" required>
-                                        </div>
-                                        <label for="7d" class="col-sm-2 col-form-label">Длительность</label>
-                                        <div class="col-sm-10">
-                                            <input type="time" class="form-control" id="7d" name="duration" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="form-group row">

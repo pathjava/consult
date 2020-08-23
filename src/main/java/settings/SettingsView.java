@@ -36,7 +36,11 @@ public class SettingsView extends HttpServlet {
             List<DataBase.Users.User> mentors =
                     DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
 
+            List<String> daysOfWeek =
+                    new ArrayList<>(List.of("Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"));
+
             req.setAttribute("mentors", mentors);
+            req.setAttribute("daysOfWeek", daysOfWeek);
 
             req.getRequestDispatcher("/settings/settings-add.jsp").forward(req, resp);
         } else {
