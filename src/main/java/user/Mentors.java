@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,15 @@ public class Mentors extends HttpServlet {
         List<DataBase.Users.User> mentors =
                 DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
 
+        List<DataBase.Settings.Record> days = new ArrayList<>();
+        for (DataBase.Users.User mentor : mentors) {
+            DataBase.Settings.Record day = DataBase.INSTANCE.settings.findKey(mentor.login);
+            if (day != null)
+                days.add(DataBase.INSTANCE.settings.findKey(mentor.login));
+        }
+
         req.setAttribute("mentors", mentors);
+        req.setAttribute("days", days);
         req.getRequestDispatcher("/users/mentors.jsp").forward(req, resp);
 
     }
