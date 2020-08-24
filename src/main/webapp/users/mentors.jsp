@@ -24,9 +24,12 @@
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">${mentor.name}</h5>
-                                        <p class="card-text">This is a longer card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="card-text">
+                                            <jsp:useBean id="days" scope="request" type="java.util.List"/>
+                                            <c:forEach var="day" items="${days}">
+                                                <c:if test = "${day.name == mentor.login}">${day}</c:if>
+                                            </c:forEach>
+                                        </div>
                                         <form action="${pageContext.request.contextPath}/consults" method="post">
                                             <label>
                                                 <input type="text" name="mentorLogin" value="${mentor.login}" hidden/>
