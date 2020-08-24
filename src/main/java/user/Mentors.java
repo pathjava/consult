@@ -48,12 +48,9 @@ public class Mentors extends HttpServlet {
         List<String> list = new ArrayList<>();
         String[] daysAndTime = value.split("\\|");
         for (String s : daysAndTime) {
-            String day = s.substring(0, 1);
-            String time = s.substring(2, 7);
-            String duration = s.substring(8);
-            list.add(dayOfWeek(day));
-            list.add(time);
-            list.add(duration);
+            list.add(dayOfWeek(s.substring(0, 1)));
+            list.add(s.substring(2, 7));
+            list.add(s.substring(8));
         }
         return list;
     }
