@@ -8,39 +8,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet("/settings-save")
 public class SettingsSave extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String name;
+        String value;
         boolean days = "true".equals(req.getParameter("daysSettings"));
 
         if (days) {
-            String mentor = req.getParameter("selectMentor");
-
-            List<String> checked = Collections
-                    .list(req.getParameterNames())
-                    .stream()
-                    .filter(parameterName -> parameterName.startsWith("checkTrue"))
-                    .map(req::getParameter)
-                    .collect(Collectors.toList());
-
-            for (String s : checked) {
-                if ("on".equals(s)) {
-                    System.out.println("true!!!");
-                }
-            }
-
+            name = req.getParameter("selectMentor");
+            List<String> params = new ArrayList<>(req.getParameterMap().keySet());
+            value = getMentorParam(params, req);
 
         } else {
-            String name = req.getParameter("name");
-            String value = req.getParameter("value");
+            name = req.getParameter("name");
+            value = req.getParameter("value");
 
             if (name == null || value == null) {
                 req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры.");
@@ -52,17 +39,31 @@ public class SettingsSave extends HttpServlet {
                 req.getRequestDispatcher("/error.jsp").forward(req, resp);
                 return;
             }
+        }
+        // при редактировании сперва удаляем и потом добавляем
+        if ("true".equals(req.getParameter("edit")))
+            DataBase.INSTANCE.settings.remove(name);
 
-            // при редактировании сперва удаляем и потом добавляем
-            if ("true".equals(req.getParameter("edit")))
-                DataBase.INSTANCE.settings.remove(name);
-
-            if (!DataBase.INSTANCE.settings.put(new DataBase.Settings.Record(name, value))) {
-                req.setAttribute("error-description", "Не удалось добавить настройку. Вероятно, она уже существует.");
-                req.getRequestDispatcher("/error.jsp").forward(req, resp);
-                return;
-            }
+        if (!DataBase.INSTANCE.settings.put(new DataBase.Settings.Record(name, value))) {
+            req.setAttribute("error-description", "Не удалось добавить настройку. Вероятно, она уже существует.");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
         }
         resp.sendRedirect("/settings-view");
+    }
+
+    private static String getMentorParam(List<String> params, HttpServletRequest req) {
+        StringBuilder allParams = new StringBuilder();
+
+        for (int i = 0; i < params.size(); i++) {
+            if (params.get(i).startsWith("checkTrue")) {
+                String day = req.getParameter(params.get(i));
+                String time = req.getParameter(params.get(i + 1));
+                String duration = req.getParameter(params.get(i + 2));
+                allParams.append(day).append("|").append(time).append("|").append(duration).append(";");
+            }
+        }
+        allParams.setLength(allParams.length() - 1);
+        return allParams.toString();
     }
 }

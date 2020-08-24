@@ -12,6 +12,10 @@
     "value": "20"
   },
   {
+    "name": "nikita",
+    "value": "1|17:20|02:00;3|11:30|01:50"
+  },
+  {
     "name": "MAX_INACTIVE_INTERVAL",
     "value": "3600"
   },
