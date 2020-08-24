@@ -37,11 +37,14 @@
                 <div class="page-header">
                     <h2>Настройки дней консультаций</h2>
                 </div>
-                <form method="post" action="${pageContext.request.contextPath}/settings-save" name="daysSettings">
+                <form method="post" action="${pageContext.request.contextPath}/settings-save">
+                    <label>
+                        <input type="hidden" name="daysSettings" value="true">
+                    </label>
                     <div class="form-group row">
                         <label for="controlName" class="col-sm-2 col-form-label">Наставник</label>
                         <div class="col-sm-10">
-                            <select id="selectMentor" class="custom-select mr-sm-2" required>
+                            <select id="selectMentor" name="selectMentor" class="custom-select mr-sm-2" required>
                                 <option selected>выберите...</option>
                                 <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
                                 <c:forEach var="mentor" items="${mentors}">
@@ -58,20 +61,20 @@
                             <c:forEach var="day" items="${daysOfWeek}" varStatus="loop">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="${loop.index+1}"
-                                           name="${loop.index+1}-check">
+                                           name="checkTrue-${loop.index+1}">
                                     <label class="custom-control-label" for="${loop.index+1}">${day}</label>
                                     <div class="hidden">
                                         <div class="form-group row">
-                                            <label for="${loop.index+1}t" class="col-sm-2 col-form-label">Время</label>
+                                            <label for="${loop.index+1}t" class="col-sm-2 col-form-label">Время начала</label>
                                             <div class="col-sm-10">
                                                 <input type="time" class="form-control" id="${loop.index+1}t"
-                                                       name="${loop.index+1}-time" required>
+                                                       name="time-${loop.index+1}">
                                             </div>
                                             <label for="${loop.index+1}d"
                                                    class="col-sm-2 col-form-label">Длительность</label>
                                             <div class="col-sm-10">
                                                 <input type="time" class="form-control" id="${loop.index+1}d"
-                                                       name="${loop.index+1}-duration" required>
+                                                       name="duration-${loop.index+1}">
                                             </div>
                                         </div>
                                     </div>
