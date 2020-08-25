@@ -12,7 +12,7 @@
                 <div class="page-header">
                     <h1>Настройки дней консультаций</h1>
                 </div>
-                <form method="post" action="${pageContext.request.contextPath}/settings-save">
+                <form method="post" action="${pageContext.request.contextPath}/schedule-save">
                     <label>
                         <input type="hidden" name="daysSettings" value="true">
                     </label>

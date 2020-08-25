@@ -13,22 +13,47 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet("/schedule-view")
 public class ScheduleView extends HttpServlet {
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean edit = "true".equals(req.getParameter("edit"));
+
+        if (edit) {
+            req.getRequestDispatcher("/consults/schedule-edit.jsp").forward(req, resp);
+        }
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean add = "true".equals(req.getParameter("add"));
 
         List<DataBase.Settings.Record> settings = new ArrayList<>(DataBase.INSTANCE.settings.getAll());
         settings.sort(Comparator.comparing(o -> o.name));
-        List<DataBase.Users.User> mentors = Utils.getMentors();
-        Map<String, List<String>> daysAndTime = Utils.getDaysTimeSchedule();
 
-        req.setAttribute("mentors", mentors);
-        req.setAttribute("daysAndTime", daysAndTime);
-        req.setAttribute("settings", settings);
+        if (add) {
+            List<DataBase.Users.User> mentors =
+                    DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
 
-        req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);
+            List<String> daysOfWeek =
+                    new ArrayList<>(List.of("Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"));
+
+            req.setAttribute("mentors", mentors);
+            req.setAttribute("daysOfWeek", daysOfWeek);
+
+            req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
+        } else {
+            List<DataBase.Users.User> mentors = Utils.getMentors();
+            Map<String, List<String>> daysAndTime = Utils.getDaysTimeSchedule();
+
+            req.setAttribute("mentors", mentors);
+            req.setAttribute("daysAndTime", daysAndTime);
+            req.setAttribute("settings", settings);
+
+            req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);
+        }
     }
 }
