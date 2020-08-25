@@ -34,7 +34,7 @@
                                             </span>
                                             </c:forEach>
                                         </div>
-                                        <form action="${pageContext.request.contextPath}/consults" method="post">
+                                        <form action="${pageContext.request.contextPath}/consults-save" method="post">
                                             <label>
                                                 <input type="text" name="mentorLogin" value="${mentor.login}" hidden/>
                                             </label>
