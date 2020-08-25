@@ -10,7 +10,7 @@
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>user.Mentors</h1>
+                    <h1>Mentors</h1>
                 </div>
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">
@@ -27,9 +27,11 @@
                                         <div class="card-text">
                                             <jsp:useBean id="daysAndTime" scope="request" type="java.util.Map"/>
                                             <c:forEach items="${daysAndTime}" var="entry">
+                                            <span class="textSchedule">
                                                 <c:forEach items="${entry.value}" var="item" varStatus="loop">
                                                     <c:if test="${entry.key == mentor.login}"><p>${item}</p></c:if>
                                                 </c:forEach>
+                                            </span>
                                             </c:forEach>
                                         </div>
                                         <form action="${pageContext.request.contextPath}/consults" method="post">

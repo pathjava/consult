@@ -20,8 +20,9 @@
                 </div>
                 <div>
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="thead-dark">
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Название</th>
                             <th scope="col">Значение</th>
                             <th scope="col">Удалить</th>
@@ -32,7 +33,7 @@
                         <jsp:useBean id="settings" scope="request" type="java.util.List"/>
                         <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
                         <c:set var="done" value="true"/>
-                        <c:forEach var="setting" items="${settings}">
+                        <c:forEach var="setting" items="${settings}" varStatus="loop">
                             <c:forEach var="mentor" items="${mentors}">
                                 <c:if test="${setting.name == mentor.login}">
                                     <c:set var="done" value="false"/>
@@ -40,6 +41,7 @@
                             </c:forEach>
                             <c:if test="${done}">
                                 <tr>
+                                    <td>${loop.index+1}</td>
                                     <td>${setting.name}</td>
                                     <td>${setting.value}</td>
                                     <td>
@@ -74,7 +76,7 @@
                 </div>
                 <div>
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="thead-dark">
                         <tr>
                             <th scope="col">Логин</th>
                             <th scope="col">Значение</th>
