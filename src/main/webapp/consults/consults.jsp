@@ -22,15 +22,9 @@
                                         <input type="text" name="studentLogin" class="form-control" id="inputLogin"
                                                value="${login}" readonly>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail">Email</label>
-                                            <input type="email" name="email" class="form-control" id="inputEmail">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputPhone">Телефон</label>
-                                            <input type="tel" name="tel" class="form-control tel" id="inputPhone">
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail">Email</label>
+                                        <input type="email" name="email" class="form-control" id="inputEmail">
                                     </div>
                                     <div class="form-group">
                                         <label for="inputComment">Примечание</label>

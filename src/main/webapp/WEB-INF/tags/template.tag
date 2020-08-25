@@ -53,6 +53,8 @@
                             <a class="dropdown-item"
                                href="${pageContext.request.contextPath}/settings-view">Настройки</a>
                             <a class="dropdown-item"
+                               href="${pageContext.request.contextPath}/schedule">График консультаций</a>
+                            <a class="dropdown-item"
                                href="${pageContext.request.contextPath}/users-info">Пользователи</a>
                             <a class="dropdown-item"
                                href="${pageContext.request.contextPath}/all-consults">Список консультаций</a>
