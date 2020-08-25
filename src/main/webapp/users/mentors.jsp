@@ -28,7 +28,7 @@
                                             <jsp:useBean id="daysAndTime" scope="request" type="java.util.Map"/>
                                             <c:forEach items="${daysAndTime}" var="entry">
                                                 <c:forEach items="${entry.value}" var="item" varStatus="loop">
-                                                    <c:if test="${entry.key == mentor.login}">${item} ${!loop.last ? '<br />' : ''}</c:if>
+                                                    <c:if test="${entry.key == mentor.login}"><p>${item}</p></c:if>
                                                 </c:forEach>
                                             </c:forEach>
                                         </div>
