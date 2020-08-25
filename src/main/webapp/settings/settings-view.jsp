@@ -9,14 +9,14 @@
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
-                <div class="page-header">
-                    <h1>Настройки</h1>
-                </div>
                 <div class="text-center">
                     <div class="add-edit-user">
                         <a href="${pageContext.request.contextPath}/settings-view?add=true"><span
                                 class="add-user"></span></a>
                     </div>
+                </div>
+                <div class="page-header">
+                    <h1>Общие настройки</h1>
                 </div>
                 <div>
                     <table class="table table-striped">
@@ -30,31 +30,102 @@
                         </thead>
                         <tbody>
                         <jsp:useBean id="settings" scope="request" type="java.util.List"/>
+                        <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
+                        <c:set var="done" value="true"/>
                         <c:forEach var="setting" items="${settings}">
-                            <tr>
-                                <td>${setting.name}</td>
-                                <td>${setting.value}</td>
-                                <td>
-                                    <form action="${pageContext.request.contextPath}/settings-delete"
-                                          method="post">
+                            <c:forEach var="mentor" items="${mentors}">
+                                <c:if test="${setting.name == mentor.login}">
+                                    <c:set var="done" value="false"/>
+                                </c:if>
+                            </c:forEach>
+                            <c:if test="${done}">
+                                <tr>
+                                    <td>${setting.name}</td>
+                                    <td>${setting.value}</td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/settings-delete"
+                                              method="post">
                                         <span class="trash"><input class='btn-del' type='submit' name='${setting.name}'
                                                                    value=""
                                                                    onclick="return confirm('Вы подтверждаете удаление?')"/></span>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="${pageContext.request.contextPath}/settings-view?edit=true"
-                                          method="post">
-                                        <label>
-                                            <input type="text" name="name" value="${setting.name}" hidden/>
-                                        </label>
-                                        <label>
-                                            <input type="text" name="value" value="${setting.value}" hidden/>
-                                        </label>
-                                        <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
-                                    </form>
-                                </td>
-                            </tr>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/settings-view?edit=true"
+                                              method="post">
+                                            <label>
+                                                <input type="text" name="name" value="${setting.name}" hidden/>
+                                            </label>
+                                            <label>
+                                                <input type="text" name="value" value="${setting.value}" hidden/>
+                                            </label>
+                                            <span class="edit"><input class="btn-edit" type="submit"
+                                                                      value=""/></span>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-header">
+                    <h2>Настройки наставников</h2>
+                </div>
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Логин</th>
+                            <th scope="col">Значение</th>
+                            <th scope="col">Удалить</th>
+                            <th scope="col">Редактировать</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="setting" items="${settings}">
+                            <c:forEach var="mentor" items="${mentors}">
+                                <c:if test="${setting.name == mentor.login}">
+                                    <tr>
+                                        <td>${setting.name}</td>
+                                        <td>${setting.value}</td>
+                                        <td>
+                                            <form action="${pageContext.request.contextPath}/settings-delete"
+                                                  method="post">
+                                        <span class="trash"><input class='btn-del' type='submit' name='${setting.name}'
+                                                                   value=""
+                                                                   onclick="return confirm('Вы подтверждаете удаление?')"/></span>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="${pageContext.request.contextPath}/settings-view?edit=true"
+                                                  method="post">
+                                                <label>
+                                                    <input type="text" name="name" value="${setting.name}" hidden/>
+                                                </label>
+                                                <label>
+                                                    <input type="text" name="value" value="${setting.value}" hidden/>
+                                                </label>
+                                                <span class="edit"><input class="btn-edit" type="submit"
+                                                                          value=""/></span>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <h6>График ментора ${mentor.name}</h6>
+                                            <jsp:useBean id="daysAndTime" scope="request" type="java.util.Map"/>
+                                            <c:forEach items="${daysAndTime}" var="entry">
+                                                <span class="textSchedule">
+                                                <c:forEach items="${entry.value}" var="item" varStatus="loop">
+                                                    <c:if test="${entry.key == mentor.login}"><p>${item}</p></c:if>
+                                                </c:forEach>
+                                                </span>
+                                            </c:forEach>
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
                         </c:forEach>
                         </tbody>
                     </table>

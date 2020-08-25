@@ -80,7 +80,7 @@ input::placeholder {
     margin: 7px 0;
 }
 
-.consultTime{
+.consultTime {
     text-align: center;
     font-weight: 700;
     background: #f9f9f9;
@@ -178,8 +178,10 @@ input.btn-del {
 }
 
 .add-edit-user {
-    float: right;
+    right: 0;
     padding: 0 35px 0 0;
+    position: absolute;
+    top: 10px;
 }
 
 .table-wrapper {
@@ -188,6 +190,11 @@ input.btn-del {
 
 .table th, .table td {
     vertical-align: middle;
+}
+
+.textSchedule p {
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
 }
 
 .avatar {
@@ -228,7 +235,7 @@ input.btn-del {
     padding: 0 0 10px;
 }
 
-.col-form-label{
+.col-form-label {
     font-size: 0.9rem;
     padding-top: 0;
     margin: auto;
