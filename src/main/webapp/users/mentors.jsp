@@ -25,9 +25,11 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${mentor.name}</h5>
                                         <div class="card-text">
-                                            <jsp:useBean id="days" scope="request" type="java.util.List"/>
-                                            <c:forEach var="day" items="${days}">
-                                                <c:if test = "${day.name == mentor.login}">${day}</c:if>
+                                            <jsp:useBean id="daysAndTime" scope="request" type="java.util.Map"/>
+                                            <c:forEach items="${daysAndTime}" var="entry">
+                                                <c:forEach items="${entry.value}" var="item" varStatus="loop">
+                                                    <c:if test="${entry.key == mentor.login}">${item} ${!loop.last ? '<br />' : ''}</c:if>
+                                                </c:forEach>
                                             </c:forEach>
                                         </div>
                                         <form action="${pageContext.request.contextPath}/consults" method="post">

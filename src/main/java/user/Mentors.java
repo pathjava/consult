@@ -1,6 +1,5 @@
 package user;
 
-import org.apache.taglibs.standard.tag.common.xml.ParseSupport;
 import ru.progwards.java2.db.DataBase;
 
 import javax.servlet.ServletException;
@@ -9,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class Mentors extends HttpServlet {
         Map<String, List<String>> daysAndTime = getDaysAndTime(days);
 
         req.setAttribute("mentors", mentors);
-        req.setAttribute("days", days);
+        req.setAttribute("daysAndTime", daysAndTime);
         req.getRequestDispatcher("/users/mentors.jsp").forward(req, resp);
 
     }
@@ -45,12 +46,16 @@ public class Mentors extends HttpServlet {
     }
 
     private static List<String> parseTime(String value) {
+        StringBuilder sb;
         List<String> list = new ArrayList<>();
         String[] daysAndTime = value.split("\\|");
         for (String s : daysAndTime) {
-            list.add(dayOfWeek(s.substring(0, 1)));
-            list.add(s.substring(2, 7));
-            list.add(s.substring(8));
+            sb = new StringBuilder();
+            String time = s.substring(2, 7);
+            String duration = s.substring(8);
+            sb.append(dayOfWeek(s.substring(0, 1))).append(": с ")
+                    .append(time).append(" до ").append(getEndTime(time, duration));
+            list.add(sb.toString());
         }
         return list;
     }
@@ -59,5 +64,20 @@ public class Mentors extends HttpServlet {
         List<String> daysOfWeek = new ArrayList<>(List.of("Понедельник",
                 "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"));
         return daysOfWeek.get(Integer.parseInt(day) - 1);
+    }
+
+    private static String getEndTime(String time, String duration) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        timeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date startTime = new Date();
+        Date durationTime = new Date();
+        try {
+            startTime = timeFormat.parse(time);
+            durationTime = timeFormat.parse(duration);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long sum = startTime.getTime() + durationTime.getTime();
+        return timeFormat.format(new Date(sum));
     }
 }
