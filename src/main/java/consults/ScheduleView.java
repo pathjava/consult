@@ -28,10 +28,6 @@ public class ScheduleView extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean add = "true".equals(req.getParameter("add"));
 
-        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
-        schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getMentor)
-                .thenComparingInt(DataBase.Schedule.Value::getDay_of_week));
-
         if (add) {
             req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
         } else {
