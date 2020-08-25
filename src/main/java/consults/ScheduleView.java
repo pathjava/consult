@@ -1,7 +1,6 @@
 package consults;
 
 import ru.progwards.java2.db.DataBase;
-import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @WebServlet("/schedule-view")
 public class ScheduleView extends HttpServlet {
@@ -31,27 +28,18 @@ public class ScheduleView extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean add = "true".equals(req.getParameter("add"));
 
-        List<DataBase.Settings.Record> settings = new ArrayList<>(DataBase.INSTANCE.settings.getAll());
-        settings.sort(Comparator.comparing(o -> o.name));
+        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
+        schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getMentor)
+                .thenComparingInt(DataBase.Schedule.Value::getDay_of_week));
 
         if (add) {
-            List<DataBase.Users.User> mentors =
-                    DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
-
-            List<String> daysOfWeek =
-                    new ArrayList<>(List.of("Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"));
-
-            req.setAttribute("mentors", mentors);
-            req.setAttribute("daysOfWeek", daysOfWeek);
-
             req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
         } else {
-            List<DataBase.Users.User> mentors = Utils.getMentors();
-            Map<String, List<String>> daysAndTime = Utils.getDaysTimeSchedule();
+            List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
+            schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getMentor)
+                    .thenComparingInt(DataBase.Schedule.Value::getDay_of_week));
 
-            req.setAttribute("mentors", mentors);
-            req.setAttribute("daysAndTime", daysAndTime);
-            req.setAttribute("settings", settings);
+            req.setAttribute("schedules", schedules);
 
             req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);
         }
