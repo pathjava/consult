@@ -38,7 +38,7 @@
                                 </div>
                             </td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/users-info?edit=true&el=${user.login}"
+                                <form action="${pageContext.request.contextPath}/users-view?edit=true&el=${user.login}"
                                       method="post">
                                     <label>
                                         <input type="text" name="name" value="${user.name}" hidden/>

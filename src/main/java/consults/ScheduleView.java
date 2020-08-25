@@ -14,8 +14,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/schedule")
-public class Schedule extends HttpServlet {
+@WebServlet("/schedule-view")
+public class ScheduleView extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,6 +29,6 @@ public class Schedule extends HttpServlet {
         req.setAttribute("daysAndTime", daysAndTime);
         req.setAttribute("settings", settings);
 
-        req.getRequestDispatcher("/consults/schedule.jsp").forward(req, resp);
+        req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);
     }
 }

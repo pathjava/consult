@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-@WebServlet("/users-info")
-public class UsersInfo extends HttpServlet {
+@WebServlet("/users-view")
+public class UsersView extends HttpServlet {
 
     private static final String minPass = DataBase.INSTANCE.settings.findKey("MIN_LENGTH_PASS").value;
     private static final String maxPass = DataBase.INSTANCE.settings.findKey("MAX_LENGTH_PASS").value;
@@ -46,7 +46,7 @@ public class UsersInfo extends HttpServlet {
         if (login != null) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
             req.setAttribute("user", user);
-            req.getRequestDispatcher("/users/user-info.jsp").forward(req, resp);
+            req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
         } else if (add) {
             req.setAttribute("minPass", minPass);
             req.setAttribute("maxPass", maxPass);
@@ -57,7 +57,7 @@ public class UsersInfo extends HttpServlet {
             List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
             users.sort(Comparator.comparing(o -> o.name));
             req.setAttribute("users", users);
-            req.getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
+            req.getRequestDispatcher("/users/users-view.jsp").forward(req, resp);
         }
     }
 

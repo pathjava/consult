@@ -14,7 +14,7 @@
                 </div>
                 <div class="text-center">
                     <div class="add-edit-user">
-                        <a href="${pageContext.request.contextPath}/users-info?add=true"><span
+                        <a href="${pageContext.request.contextPath}/users-view?add=true"><span
                                 class="add-user"></span></a>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                                 <td>${loop.index+1}</td>
                                 <td>${user.name}</td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/users-info?login=${user.login}">${user.login}</a>
+                                    <a href="${pageContext.request.contextPath}/users-view?login=${user.login}">${user.login}</a>
                                 </td>
                                 <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
                                 <td>
@@ -57,7 +57,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/users-info?edit=true&el=${user.login}"
+                                    <form action="${pageContext.request.contextPath}/users-view?edit=true&el=${user.login}"
                                           method="post">
                                         <label>
                                             <input type="text" name="name" value="${user.name}" hidden/>

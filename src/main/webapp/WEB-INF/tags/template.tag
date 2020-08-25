@@ -40,7 +40,7 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/mentors">Наставники</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/users-info?login=${login}">Личный
+                        <a class="nav-link" href="${pageContext.request.contextPath}/users-view?login=${login}">Личный
                             кабинет</a>
                     </li>
 
@@ -53,11 +53,11 @@
                             <a class="dropdown-item"
                                href="${pageContext.request.contextPath}/settings-view">Настройки</a>
                             <a class="dropdown-item"
-                               href="${pageContext.request.contextPath}/schedule">График консультаций</a>
+                               href="${pageContext.request.contextPath}/schedule-view">График консультаций</a>
                             <a class="dropdown-item"
-                               href="${pageContext.request.contextPath}/users-info">Пользователи</a>
+                               href="${pageContext.request.contextPath}/users-view">Пользователи</a>
                             <a class="dropdown-item"
-                               href="${pageContext.request.contextPath}/all-consults">Список консультаций</a>
+                               href="${pageContext.request.contextPath}/consults-view">Список консультаций</a>
                         </div>
                     </li>
                     <li class="nav-item">

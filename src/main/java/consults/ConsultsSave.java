@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/consults")
-public class Consults extends HttpServlet {
+@WebServlet("/consults-save")
+public class ConsultsSave extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,7 +18,7 @@ public class Consults extends HttpServlet {
 
         req.setAttribute("name", name);
         req.setAttribute("mentorLogin", login);
-        req.getRequestDispatcher("/consults/consults.jsp").forward(req, resp);
+        req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
 
     }
 }

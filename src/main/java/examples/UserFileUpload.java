@@ -52,7 +52,7 @@ public class UserFileUpload extends HttpServlet {
                     item.write(uploadedFile);
                 }
             }
-//            getServletContext().getRequestDispatcher("/users/users-info.jsp").forward(req, resp);
+//            getServletContext().getRequestDispatcher("/users/users-view.jsp").forward(req, resp);
 
         } catch (Exception e) {
             e.printStackTrace();
