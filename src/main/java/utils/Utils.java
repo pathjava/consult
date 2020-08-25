@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 public class Utils {
 
     private static List<DataBase.Users.User> mentors;
-//    private static List<DataBase.Settings.Record> days;
 
     public static List<DataBase.Users.User> getMentors(){
         mentors = DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
@@ -26,12 +25,6 @@ public class Utils {
         }
         return getDaysAndTime(days);
     }
-
-//    List<DataBase.Settings.Record> days = new ArrayList<>();
-//
-//    }
-//
-//    Map<String, List<String>> daysAndTime = Utils.getDaysAndTime(days);
 
     private static Map<String, List<String>> getDaysAndTime(List<DataBase.Settings.Record> days) {
         Map<String, List<String>> map = new LinkedHashMap<>();
