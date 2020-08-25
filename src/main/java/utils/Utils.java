@@ -5,10 +5,35 @@ import ru.progwards.java2.db.DataBase;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Utils {
 
-    public static Map<String, List<String>> getDaysAndTime(List<DataBase.Settings.Record> days) {
+    private static List<DataBase.Users.User> mentors;
+//    private static List<DataBase.Settings.Record> days;
+
+    public static List<DataBase.Users.User> getMentors(){
+        mentors = DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
+        return mentors;
+    }
+
+    public static Map<String, List<String>> getDaysTimeSchedule() {
+        List<DataBase.Settings.Record> days = new ArrayList<>();
+        for (DataBase.Users.User mentor : mentors) {
+            DataBase.Settings.Record day = DataBase.INSTANCE.settings.findKey(mentor.login);
+            if (day != null)
+                days.add(DataBase.INSTANCE.settings.findKey(mentor.login));
+        }
+        return getDaysAndTime(days);
+    }
+
+//    List<DataBase.Settings.Record> days = new ArrayList<>();
+//
+//    }
+//
+//    Map<String, List<String>> daysAndTime = Utils.getDaysAndTime(days);
+
+    private static Map<String, List<String>> getDaysAndTime(List<DataBase.Settings.Record> days) {
         Map<String, List<String>> map = new LinkedHashMap<>();
         for (DataBase.Settings.Record day : days) {
             map.put(day.getName(), parseTime(day.getValue()));
