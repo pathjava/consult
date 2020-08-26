@@ -30,32 +30,28 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Дни недели,<br/>время начала,<br/>длительность</label>
+                        <label for="selectDay" class="col-sm-2 col-form-label">День недели</label>
                         <div class="col-sm-10">
-                            <jsp:useBean id="daysOfWeek" scope="request" type="java.util.List"/>
-                            <c:forEach var="day" items="${daysOfWeek}" varStatus="loop">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="${loop.index+1}"
-                                           value="${loop.index+1}" name="checkTrue-${loop.index+1}">
-                                    <label class="custom-control-label" for="${loop.index+1}">${day}</label>
-                                    <div class="hidden">
-                                        <div class="form-group row">
-                                            <label for="${loop.index+1}t" class="col-sm-2 col-form-label">Время
-                                                начала</label>
-                                            <div class="col-sm-10">
-                                                <input type="time" class="form-control" id="${loop.index+1}t"
-                                                       name="timeStart-${loop.index+1}">
-                                            </div>
-                                            <label for="${loop.index+1}d"
-                                                   class="col-sm-2 col-form-label">Длительность</label>
-                                            <div class="col-sm-10">
-                                                <input type="time" class="form-control" id="${loop.index+1}d"
-                                                       name="duration-${loop.index+1}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
+                            <select id="selectDay" name="selectDay" class="custom-select mr-sm-2" required>
+                                <option selected>выберите...</option>
+                                <jsp:useBean id="daysOfWeek" scope="request" type="java.util.List"/>
+                                <c:forEach var="day" items="${daysOfWeek}" varStatus="loop">
+                                    <option value="${loop.index+1}">${day}</option>
+                                </c:forEach>
+                            </select>
+                            <label for="selectDay" style="display: none"></label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="timeStart" class="col-sm-2 col-form-label">Время начала</label>
+                        <div class="col-sm-10">
+                            <input type="time" class="form-control" id="timeStart" name="timeStart" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="timeDuration" class="col-sm-2 col-form-label">Длительность</label>
+                        <div class="col-sm-10">
+                            <input type="time" class="form-control" id="timeDuration" name="timeDuration" required>
                         </div>
                     </div>
                     <div class="form-group row">

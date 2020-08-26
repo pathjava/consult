@@ -32,7 +32,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <c:if test="${login != null}">
+                <c:if test="${sessionScope.login != null}">
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/">Главная<span class="sr-only">(current)</span></a>
                     </li>
@@ -40,7 +40,7 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/mentors">Наставники</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/users-view?login=${login}">Личный
+                        <a class="nav-link" href="${pageContext.request.contextPath}/users-view?login=${sessionScope.login}">Личный
                             кабинет</a>
                     </li>
 
@@ -64,7 +64,7 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/login?logout=true">Выйти</a>
                     </li>
                 </c:if>
-                <c:if test="${login == null}">
+                <c:if test="${sessionScope.login == null}">
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/login">Войти</a>
                     </li>

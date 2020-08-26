@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/schedule-view")
 public class ScheduleView extends HttpServlet {
@@ -29,6 +30,13 @@ public class ScheduleView extends HttpServlet {
         boolean add = "true".equals(req.getParameter("add"));
 
         if (add) {
+            List<DataBase.Users.User> mentors =
+                    DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
+            List<String> daysOfWeek =
+                    new ArrayList<>(List.of("Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"));
+
+            req.setAttribute("mentors", mentors);
+            req.setAttribute("daysOfWeek", daysOfWeek);
             req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
