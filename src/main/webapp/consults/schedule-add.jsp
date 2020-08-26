@@ -34,10 +34,13 @@
                         <div class="col-sm-10">
                             <select id="selectDay" name="selectDay" class="custom-select mr-sm-2" required>
                                 <option selected>выберите...</option>
-                                <jsp:useBean id="daysOfWeek" scope="request" type="java.util.List"/>
-                                <c:forEach var="day" items="${daysOfWeek}" varStatus="loop">
-                                    <option value="${loop.index+1}">${day}</option>
-                                </c:forEach>
+                                <option value="1">Понедельник</option>
+                                <option value="2">Вторник</option>
+                                <option value="3">Среда</option>
+                                <option value="4">Четверг</option>
+                                <option value="5">Пятница</option>
+                                <option value="6">Суббота</option>
+                                <option value="7">Воскресенье</option>
                             </select>
                             <label for="selectDay" style="display: none"></label>
                         </div>

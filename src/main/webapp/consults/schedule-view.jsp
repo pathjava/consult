@@ -79,13 +79,13 @@
                                             <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
                                         </label>
                                         <label>
-                                            <input type="hidden" name="dayOfWeek" value="${schedule.day_of_week}"/>
+                                            <input type="hidden" name="currentDayOfWeek" value="${schedule.day_of_week}"/>
                                         </label>
                                         <label>
-                                            <input type="hidden" name="timeStart" value="${schedule.start}"/>
+                                            <input type="hidden" name="currentTimeStart" value="${schedule.start}"/>
                                         </label>
                                         <label>
-                                            <input type="hidden" name="timeDuration" value="${schedule.duration}"/>
+                                            <input type="hidden" name="currentTimeDuration" value="${schedule.duration}"/>
                                         </label>
                                         <span class="edit">
                                             <input class="btn-edit" type="submit" value=""/>
