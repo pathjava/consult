@@ -39,7 +39,6 @@ public class ScheduleView extends HttpServlet {
             Map<Integer, List<String>> schedules = Utils.getSchedules();
 
             req.setAttribute("schedules", schedules);
-
             req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);
         }
     }

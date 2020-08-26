@@ -16,5 +16,11 @@
     "day_of_week": 3,
     "start": 39600000,
     "duration": 5400000
+  },
+  {
+    "mentor": "nikita",
+    "day_of_week": 7,
+    "start": 39600000,
+    "duration": 13800000
   }
 ]

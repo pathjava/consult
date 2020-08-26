@@ -28,8 +28,8 @@ public class Utils {
             values = new ArrayList<>();
             values.add(schedule.mentor);
             values.add(getDayOfWeeks(schedule.day_of_week));
-            values.add(getStartTime(schedule.start));
-            values.add(getEndTime(schedule.duration, schedule.start));
+            values.add("с " + getStartTime(schedule.start) + " до "
+                    + getEndTime(schedule.duration, schedule.start));
             map.put(index, values);
             index++;
         }

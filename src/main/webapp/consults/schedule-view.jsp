@@ -25,8 +25,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Логин</th>
                             <th scope="col">День недели</th>
-                            <th scope="col">Начало</th>
-                            <th scope="col">Окончание</th>
+                            <th scope="col">Время</th>
                             <th scope="col">Удалить</th>
                             <th scope="col">Редакт.</th>
                         </tr>

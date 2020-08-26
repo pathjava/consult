@@ -106,54 +106,47 @@ input::placeholder {
     margin: auto;
 }
 
-input.btn-edit {
+input.btn-del, input.btn-edit {
     background: none;
     border: none;
     cursor: pointer;
     outline: none;
     width: 25px;
     height: 25px;
-    position: absolute;
+}
+
+.trash, .edit {
+    position: relative;
+    display: inline-block;
 }
 
 .edit:before {
     font-family: 'Font Awesome 5 Pro';
-    position: relative;
-    left: 20px;
+    position: absolute;
     content: "\f044";
     font-size: 20px;
     transition: color 0.35s ease;
-}
-
-.edit:hover:before {
-    font-weight: 700;
-    color: #FF5823;
-}
-
-span.edit-text {
-    margin-left: 30px;
-}
-
-input.btn-del {
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    width: 25px;
-    height: 25px;
-    position: absolute;
+    left: 5px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    pointer-events: none;
 }
 
 .trash:before {
     font-family: 'Font Awesome 5 Pro';
-    position: relative;
-    left: 20px;
+    position: absolute;
     content: "\f2ed";
     font-size: 20px;
     transition: color 0.35s ease;
+    left: 5px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    pointer-events: none;
 }
 
-.trash:hover:before {
+.trash:hover:before, .edit:hover:before {
     font-weight: 700;
     color: #FF5823;
 }
@@ -173,6 +166,10 @@ input.btn-del {
     color: #FF5823;
 }
 
+span.edit-text {
+    margin-left: 30px;
+}
+
 .text-center a {
     text-decoration: none;
 }
@@ -182,6 +179,10 @@ input.btn-del {
     padding: 0 35px 0 0;
     position: absolute;
     top: 10px;
+}
+
+.table {
+    text-align: center;
 }
 
 .table-wrapper {
