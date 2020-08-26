@@ -43,13 +43,31 @@
                             <tr>
                                 <td>${loop.index+1}</td>
                                 <td>${schedule.mentor}</td>
-                                <td>${schedule.day_of_week}</td>
+                                <td>
+                                    <c:if test="${schedule.day_of_week eq 1}">Понедельник</c:if>
+                                    <c:if test="${schedule.day_of_week eq 2}">Вторник</c:if>
+                                    <c:if test="${schedule.day_of_week eq 3}">Среда</c:if>
+                                    <c:if test="${schedule.day_of_week eq 4}">Четверг</c:if>
+                                    <c:if test="${schedule.day_of_week eq 5}">Пятница</c:if>
+                                    <c:if test="${schedule.day_of_week eq 6}">Суббота</c:if>
+                                    <c:if test="${schedule.day_of_week eq 7}">Воскресенье</c:if>
+                                </td>
                                 <td>с <fmt:formatDate value="${startTime}" pattern="HH:mm"/> до <fmt:formatDate
-                                        value="${endTime}" pattern="HH:mm"/></td>
+                                        value="${endTime}" pattern="HH:mm"/>
+                                </td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
+                                        <label>
+                                            <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
+                                        </label>
+                                        <label>
+                                            <input type="hidden" name="timeStart" value="${schedule.start}"/>
+                                        </label>
+                                        <label>
+                                            <input type="hidden" name="timeDuration" value="${schedule.duration}"/>
+                                        </label>
                                         <span class="trash">
-                                            <input class='btn-del' type='submit' name="" value=""
+                                            <input class="btn-del" type="submit" value=""
                                                    onclick="return confirm('Вы подтверждаете удаление?')"/>
                                         </span>
                                     </form>
@@ -58,10 +76,16 @@
                                     <form action="${pageContext.request.contextPath}/schedule-view?edit=true"
                                           method="post">
                                         <label>
-                                            <input type="text" name="name" value="" hidden/>
+                                            <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
                                         </label>
                                         <label>
-                                            <input type="text" name="value" value="" hidden/>
+                                            <input type="hidden" name="dayOfWeek" value="${schedule.day_of_week}"/>
+                                        </label>
+                                        <label>
+                                            <input type="hidden" name="timeStart" value="${schedule.start}"/>
+                                        </label>
+                                        <label>
+                                            <input type="hidden" name="timeDuration" value="${schedule.duration}"/>
                                         </label>
                                         <span class="edit">
                                             <input class="btn-edit" type="submit" value=""/>

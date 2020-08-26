@@ -37,24 +37,25 @@
                                 <td>${setting.name}</td>
                                 <td>${setting.value}</td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/settings-delete"
-                                          method="post">
-                                        <span class="trash"><input class='btn-del' type='submit' name='${setting.name}'
-                                                                   value=""
-                                                                   onclick="return confirm('Вы подтверждаете удаление?')"/></span>
+                                    <form action="${pageContext.request.contextPath}/settings-delete" method="post">
+                                        <span class="trash">
+                                            <input class="btn-del" type="submit" name="${setting.name}" value=""
+                                                   onclick="return confirm('Вы подтверждаете удаление?')"/>
+                                        </span>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/settings-view?edit=true"
                                           method="post">
                                         <label>
-                                            <input type="text" name="name" value="${setting.name}" hidden/>
+                                            <input type="hidden" name="name" value="${setting.name}"/>
                                         </label>
                                         <label>
-                                            <input type="text" name="value" value="${setting.value}" hidden/>
+                                            <input type="hidden" name="value" value="${setting.value}"/>
                                         </label>
-                                        <span class="edit"><input class="btn-edit" type="submit"
-                                                                  value=""/></span>
+                                        <span class="edit">
+                                            <input class="btn-edit" type="submit" value=""/>
+                                        </span>
                                     </form>
                                 </td>
                             </tr>
