@@ -64,7 +64,7 @@
                                             <input type="hidden" name="timeStart" value="${schedule.start}"/>
                                         </label>
                                         <label>
-                                            <input type="hidden" name="timeDuration" value="${schedule.duration}"/>
+                                            <input type="hidden" name="dayOfWeek" value="${schedule.day_of_week}"/>
                                         </label>
                                         <span class="trash">
                                             <input class="btn-del" type="submit" value=""

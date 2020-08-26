@@ -35,9 +35,11 @@ public class ScheduleSave extends HttpServlet {
             return;
         }
 
+        DataBase.Schedule.Key key = new DataBase.Schedule.Key(loginMentor, dayOfWeek, startTime);
+
         // при редактировании сперва удаляем и потом добавляем
-//        if ("true".equals(req.getParameter("edit")))
-//            DataBase.INSTANCE.schedule.remove(loginMentor);
+        if ("true".equals(req.getParameter("edit")))
+            DataBase.INSTANCE.schedule.remove(key);
 
         if (!DataBase.INSTANCE.schedule.put(new DataBase.Schedule.Value(loginMentor, dayOfWeek, startTime, durationTime))) {
             req.setAttribute("error-description", "Не удалось добавить настройку! Вероятно, она уже существует!");
