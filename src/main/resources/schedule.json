@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "mentor": "nikita",
+    "day_of_week": 5,
+    "start": 64800000,
+    "duration": 3600000
+  },
+  {
+    "mentor": "nikita",
+    "day_of_week": 1,
+    "start": 61200000,
+    "duration": 7200000
+  },
+  {
+    "mentor": "olegOne",
+    "day_of_week": 3,
+    "start": 39600000,
+    "duration": 5400000
+  }
+]

@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 @WebServlet("/schedule-save")
 public class ScheduleSave extends HttpServlet {
@@ -18,24 +20,9 @@ public class ScheduleSave extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String loginMentor = req.getParameter("selectMentor");
-        int dayOfWeek;
-        long startTime;
-        long durationTime;
-
-        List<String> params = new ArrayList<>(req.getParameterMap().keySet());
-
-        for (int i = 0; i < params.size(); i++) {
-            if (params.get(i).startsWith("checkTrue")) {
-                String day = req.getParameter(params.get(i));
-                String time = req.getParameter(params.get(i + 1));
-                String duration = req.getParameter(params.get(i + 2));
-                if (time.isEmpty() || duration.isEmpty()) {
-                    req.setAttribute("error-description", "Время начала или продолжительность консультации не заданы!");
-                    req.getRequestDispatcher("/error.jsp").forward(req, resp);
-                    return;
-                }
-            }
-        }
+        int dayOfWeek = Integer.parseInt(req.getParameter("selectDay"));
+        long startTime = getTime(req.getParameter("timeStart"));
+        long durationTime = getTime(req.getParameter("timeDuration"));
 
         if (loginMentor == null) {
             req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры!");
@@ -51,13 +38,24 @@ public class ScheduleSave extends HttpServlet {
         // при редактировании сперва удаляем и потом добавляем
 //        if ("true".equals(req.getParameter("edit")))
 //            DataBase.INSTANCE.schedule.remove(loginMentor);
-//
-//        if (!DataBase.INSTANCE.schedule.put(new DataBase.Schedule.Value(loginMentor, dayOfWeek, startTime, durationTime))) {
-//            req.setAttribute("error-description", "Не удалось добавить настройку! Вероятно, она уже существует!");
-//            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-//            return;
-//        }
+
+        if (!DataBase.INSTANCE.schedule.put(new DataBase.Schedule.Value(loginMentor, dayOfWeek, startTime, durationTime))) {
+            req.setAttribute("error-description", "Не удалось добавить настройку! Вероятно, она уже существует!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
         resp.sendRedirect("/schedule-view");
     }
 
+    private static Long getTime(String time) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        timeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date parseTime = new Date();
+        try {
+            parseTime = timeFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return parseTime.getTime();
+    }
 }
