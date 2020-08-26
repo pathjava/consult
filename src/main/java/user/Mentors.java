@@ -18,10 +18,10 @@ public class Mentors extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<DataBase.Users.User> mentors = Utils.getMentors();
-        Map<String, List<String>> daysAndTime = Utils.getDaysTimeSchedule();
+//        Map<String, List<String>> daysAndTime = Utils.getDaysTimeSchedule();
 
         req.setAttribute("mentors", mentors);
-        req.setAttribute("daysAndTime", daysAndTime);
+//        req.setAttribute("daysAndTime", daysAndTime);
         req.getRequestDispatcher("/users/mentors.jsp").forward(req, resp);
 
     }

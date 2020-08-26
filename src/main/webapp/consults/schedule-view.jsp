@@ -25,22 +25,22 @@
                             <th scope="col">#</th>
                             <th scope="col">Логин</th>
                             <th scope="col">День недели</th>
-                            <th scope="col">Время консультации</th>
+                            <th scope="col">Начало</th>
+                            <th scope="col">Окончание</th>
                             <th scope="col">Удалить</th>
-                            <th scope="col">Редактировать</th>
+                            <th scope="col">Редакт.</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="schedules" scope="request" type="java.util.List"/>
-                        <c:forEach var="schedule" items="${schedules}" varStatus="loop">
+                        <jsp:useBean id="schedules" scope="request" type="java.util.Map"/>
+                        <c:forEach items="${schedules}" var="entry" varStatus="loop">
                             <tr>
                                 <td>${loop.index+1}</td>
-                                <td>${schedule.mentor}</td>
-                                <td>${schedule.day_of_week}</td>
-                                <td>с ${schedule.start} до ${schedule.duration}</td>
+                                <c:forEach items="${entry.value}" var="item">
+                                    <td>${item}</td>
+                                </c:forEach>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/schedule-delete"
-                                          method="post">
+                                    <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
                                         <span class="trash">
                                             <input class='btn-del' type='submit' name="" value=""
                                                    onclick="return confirm('Вы подтверждаете удаление?')"/>
@@ -56,8 +56,9 @@
                                         <label>
                                             <input type="text" name="value" value="" hidden/>
                                         </label>
-                                        <span class="edit"><input class="btn-edit" type="submit"
-                                                                  value=""/></span>
+                                        <span class="edit">
+                                            <input class="btn-edit" type="submit" value=""/>
+                                        </span>
                                     </form>
                                 </td>
                             </tr>
