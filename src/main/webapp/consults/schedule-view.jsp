@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:template>
    <jsp:attribute name="title">
@@ -31,13 +32,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="schedules" scope="request" type="java.util.Map"/>
-                        <c:forEach items="${schedules}" var="entry" varStatus="loop">
+                        <jsp:useBean id="schedules" scope="request" type="java.util.List"/>
+                        <jsp:useBean id="startTime" class="java.util.Date"/>
+                        <jsp:useBean id="endTime" class="java.util.Date"/>
+                        <c:forEach var="schedule" items="${schedules}" varStatus="loop">
+                            <jsp:setProperty name="startTime" property="time" value="${schedule.start}"/>
+                            <jsp:setProperty name="endTime" property="time"
+                                             value="${schedule.start + schedule.duration}"/>
+                            <fmt:setTimeZone value="UTC"/>
                             <tr>
                                 <td>${loop.index+1}</td>
-                                <c:forEach items="${entry.value}" var="item">
-                                    <td>${item}</td>
-                                </c:forEach>
+                                <td>${schedule.mentor}</td>
+                                <td>${schedule.day_of_week}</td>
+                                <td>с <fmt:formatDate value="${startTime}" pattern="HH:mm"/> до <fmt:formatDate
+                                        value="${endTime}" pattern="HH:mm"/></td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
                                         <span class="trash">

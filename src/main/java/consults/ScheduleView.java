@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +38,10 @@ public class ScheduleView extends HttpServlet {
             req.setAttribute("daysOfWeek", daysOfWeek);
             req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
         } else {
-            Map<Integer, List<String>> schedules = Utils.getSchedules();
+//            Map<Integer, List<String>> schedules = Utils.getSchedules();
+
+            List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
+            schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week));
 
             req.setAttribute("schedules", schedules);
             req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);
