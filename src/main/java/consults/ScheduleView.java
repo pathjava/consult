@@ -38,7 +38,9 @@ public class ScheduleView extends HttpServlet {
             req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
-            schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week));
+            schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
+                    .thenComparingLong(DataBase.Schedule.Value::getStart)
+                    .thenComparing(DataBase.Schedule.Value::getMentor));
 
             req.setAttribute("schedules", schedules);
             req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);

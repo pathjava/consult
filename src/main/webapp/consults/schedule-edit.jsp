@@ -71,6 +71,15 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2"></div>
+                        <label>
+                            <input type="hidden" name="edit" value="true">
+                        </label>
+                        <label>
+                            <input type="hidden" name="currentDayOfWeek" value="${param.currentDayOfWeek}"/>
+                        </label>
+                        <label>
+                            <input type="hidden" name="currentTimeStart" value="${param.currentTimeStart}"/>
+                        </label>
                         <div class="col-sm-10">
                             <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
                         </div>

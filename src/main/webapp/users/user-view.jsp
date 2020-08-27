@@ -13,8 +13,8 @@
                     <h1>Информация пользователя</h1>
                 </div>
                 <div>
-                    <table class="table">
-                        <thead class="thead-light">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
                         <tr>
                             <th scope="col">Имя</th>
                             <th scope="col">Логин</th>
@@ -66,8 +66,8 @@
                     <h2>Список консультаций</h2>
                 </div>
                 <div>
-                    <table class="table">
-                        <thead class="thead-light">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Дата и время</th>

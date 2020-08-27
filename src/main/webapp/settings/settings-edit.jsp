@@ -31,7 +31,7 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <label>
-                                <input type="text" name="edit" value="true" hidden>
+                                <input type="hidden" name="edit" value="true">
                             </label>
                             <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
                         </div>

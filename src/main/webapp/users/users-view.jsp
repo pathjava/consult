@@ -20,7 +20,7 @@
                 </div>
                 <div>
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Имя</th>
@@ -60,19 +60,19 @@
                                     <form action="${pageContext.request.contextPath}/users-view?edit=true&el=${user.login}"
                                           method="post">
                                         <label>
-                                            <input type="text" name="name" value="${user.name}" hidden/>
+                                            <input type="hidden" name="name" value="${user.name}"/>
                                         </label>
                                         <label>
-                                            <input type="text" name="login" value="${user.login}" hidden/>
+                                            <input type="hidden" name="login" value="${user.login}"/>
                                         </label>
                                         <label>
-                                            <input type="password" name="password" value="${user.password}" hidden/>
+                                            <input type="hidden" name="password" value="${user.password}"/>
                                         </label>
                                         <label>
-                                            <input type="text" name="is_mentor" value="${user.is_mentor}" hidden/>
+                                            <input type="hidden" name="is_mentor" value="${user.is_mentor}"/>
                                         </label>
                                         <label>
-                                            <input type="text" name="image" value="${user.image}" hidden/>
+                                            <input type="hidden" name="image" value="${user.image}"/>
                                         </label>
                                         <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
                                     </form>

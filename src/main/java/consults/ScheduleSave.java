@@ -35,11 +35,13 @@ public class ScheduleSave extends HttpServlet {
             return;
         }
 
-        DataBase.Schedule.Key key = new DataBase.Schedule.Key(loginMentor, dayOfWeek, startTime);
-
         // при редактировании сперва удаляем и потом добавляем
-        if ("true".equals(req.getParameter("edit")))
+        if ("true".equals(req.getParameter("edit"))) {
+            int currentDayOfWeek = Integer.parseInt(req.getParameter("currentDayOfWeek"));
+            long currentTimeStart = Long.parseLong(req.getParameter("currentTimeStart"));
+            DataBase.Schedule.Key key = new DataBase.Schedule.Key(loginMentor, currentDayOfWeek, currentTimeStart);
             DataBase.INSTANCE.schedule.remove(key);
+        }
 
         if (!DataBase.INSTANCE.schedule.put(new DataBase.Schedule.Value(loginMentor, dayOfWeek, startTime, durationTime))) {
             req.setAttribute("error-description", "Не удалось добавить настройку! Вероятно, она уже существует!");
