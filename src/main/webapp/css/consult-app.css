@@ -242,6 +242,6 @@ span.edit-text {
     margin: auto;
 }
 
-.hidden {
-    display: none;
+.card-text p {
+    margin-bottom: 0.35rem;
 }

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:template>
    <jsp:attribute name="title">
@@ -15,6 +16,8 @@
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">
                         <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
+                        <jsp:useBean id="schedules" scope="request" type="java.util.List"/>
+                        <c:set var="done" value="false"/>
                         <c:forEach var="mentor" items="${mentors}">
                             <div class="col mb-4">
                                 <div class="card">
@@ -25,21 +28,35 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${mentor.name}</h5>
                                         <div class="card-text">
-                                            <jsp:useBean id="daysAndTime" scope="request" type="java.util.Map"/>
-                                            <c:forEach items="${daysAndTime}" var="entry">
-                                            <span class="textSchedule">
-                                                <c:forEach items="${entry.value}" var="item" varStatus="loop">
-                                                    <c:if test="${entry.key == mentor.login}"><p>${item}</p></c:if>
-                                                </c:forEach>
-                                            </span>
+                                            <jsp:useBean id="startTime" class="java.util.Date"/>
+                                            <jsp:useBean id="endTime" class="java.util.Date"/>
+                                            <c:forEach var="schedule" items="${schedules}">
+                                                <c:if test="${schedule.mentor == mentor.login}">
+                                                    <jsp:setProperty name="startTime" property="time"
+                                                                     value="${schedule.start}"/>
+                                                    <jsp:setProperty name="endTime" property="time"
+                                                                     value="${schedule.start + schedule.duration}"/>
+                                                    <fmt:setTimeZone value="UTC"/>
+                                                    <p>
+                                                        <c:if test="${schedule.day_of_week eq 1}">Понедельник</c:if>
+                                                        <c:if test="${schedule.day_of_week eq 2}">Вторник</c:if>
+                                                        <c:if test="${schedule.day_of_week eq 3}">Среда</c:if>
+                                                        <c:if test="${schedule.day_of_week eq 4}">Четверг</c:if>
+                                                        <c:if test="${schedule.day_of_week eq 5}">Пятница</c:if>
+                                                        <c:if test="${schedule.day_of_week eq 6}">Суббота</c:if>
+                                                        <c:if test="${schedule.day_of_week eq 7}">Воскресенье</c:if>
+                                                        с <fmt:formatDate value="${startTime}" pattern="HH:mm"/> до
+                                                        <fmt:formatDate value="${endTime}" pattern="HH:mm"/>
+                                                    </p>
+                                                </c:if>
                                             </c:forEach>
                                         </div>
                                         <form action="${pageContext.request.contextPath}/consults-save" method="post">
                                             <label>
-                                                <input type="text" name="mentorLogin" value="${mentor.login}" hidden/>
+                                                <input type="hidden" name="mentorLogin" value="${mentor.login}"/>
                                             </label>
                                             <label>
-                                                <input type="text" name="name" value="${mentor.name}" hidden/>
+                                                <input type="hidden" name="mentorName" value="${mentor.name}"/>
                                             </label>
                                             <input type="submit" class="btn btn-primary btn-block" value="Записаться">
                                         </form>

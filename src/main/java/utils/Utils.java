@@ -12,13 +12,13 @@ public class Utils {
         return DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
     }
 
+
+
+    /* пока не используемые */
     public static List<String> dayOfWeek() {
         return new ArrayList<>(List.of("Понедельник",
                 "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"));
     }
-
-
-    /* пока не используемые */
 
     public static Map<Integer, List<String>> getSchedules(){
         Map<Integer, List<String>> map = new LinkedHashMap<>();

@@ -31,10 +31,8 @@ public class ScheduleView extends HttpServlet {
 
         if (add) {
             List<DataBase.Users.User> mentors = Utils.getMentors();
-            List<String> daysOfWeek = Utils.dayOfWeek();
 
             req.setAttribute("mentors", mentors);
-            req.setAttribute("daysOfWeek", daysOfWeek);
             req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());

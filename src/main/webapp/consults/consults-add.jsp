@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label for="inputLogin">Имя</label>
                                         <input type="text" name="studentLogin" class="form-control" id="inputLogin"
-                                               value="${login}" readonly>
+                                               value="${sessionScope.login}" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail">Email</label>
@@ -31,8 +31,7 @@
                                         <input type="text" name="comment" class="form-control" id="inputComment">
                                     </div>
                                     <div class="">
-                                        <input type="submit" class="btn btn-primary btn-block"
-                                               value="Отправить заявку">
+                                        <input type="submit" class="btn btn-primary btn-block" value="Отправить заявку">
                                     </div>
                                 </form>
                                 <div class="privacy">

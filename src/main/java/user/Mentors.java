@@ -18,10 +18,13 @@ public class Mentors extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<DataBase.Users.User> mentors = Utils.getMentors();
-        List<String> daysOfWeek = Utils.dayOfWeek();
+        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
+        schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
+                .thenComparingLong(DataBase.Schedule.Value::getStart)
+                .thenComparing(DataBase.Schedule.Value::getMentor));
 
         req.setAttribute("mentors", mentors);
-        req.setAttribute("daysOfWeek", daysOfWeek);
+        req.setAttribute("schedules", schedules);
         req.getRequestDispatcher("/users/mentors.jsp").forward(req, resp);
 
     }
