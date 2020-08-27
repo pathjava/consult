@@ -30,7 +30,8 @@ public enum DataBase {
             public final String discordName;
             public final String image;
 
-            public User(String login, String password, boolean needChangePassword, String name, boolean is_mentor, String email, String progwardsAccountLink, String discordName, String image) {
+            public User(String login, String password, boolean needChangePassword, String name, boolean is_mentor,
+                        String email, String progwardsAccountLink, String discordName, String image) {
                 this.login = login;
                 this.password = password;
                 this.needChangePassword = needChangePassword;
@@ -43,9 +44,9 @@ public enum DataBase {
             }
 
             // конструктор оставлен для совместимости
-            public User(String login, String password, String name, boolean is_mentor, String image) {
-                this(login, password, true, name, is_mentor, "", "", "", image);
-            }
+//            public User(String login, String password, String name, boolean is_mentor, String image) {
+//                this(login, password, true, name, is_mentor, "", "", "", image);
+//            }
 
             public String getLogin() {
                 return login;
@@ -299,10 +300,13 @@ public enum DataBase {
         INSTANCE.users.readAll();
         System.out.println(INSTANCE.users.getAll());
 
-        if (!DataBase.INSTANCE.users.put(new Users.User("ivannn", "hash", "Ivan", false, "c:/!/!.jpg")))
+        if (!DataBase.INSTANCE.users.put(new Users.User("ivannn", "hash", true,
+                "Ivan", false, "mail@site.ru", "site.ru", "#15973", "ava.jpg")))
             System.out.println("Пользователь уже существует...");
-        DataBase.INSTANCE.users.put(new Users.User("alexxx", "hash2", "Alex", false, "c:/!/2!.jpg"));
-        DataBase.INSTANCE.users.put(new Users.User("mazneff", "hash3", "Мазнев Валерий", true, "c:/!/m!.png"));
+        DataBase.INSTANCE.users.put(new Users.User("alexxx", "hash2", true,
+                "Alex", false, "mail@site.ru", "site.ru", "#15973", "ava.jpg"));
+        DataBase.INSTANCE.users.put(new Users.User("mazneff", "hash3", true,
+                "Мазнев Валерий", true, "mail@site.ru", "site.ru", "#15973", "ava.jpg"));
 
         List<Users.User> list2 = INSTANCE.users.select(e -> e.is_mentor);
         System.out.println(list2);

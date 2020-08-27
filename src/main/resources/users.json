@@ -1,65 +1,112 @@
 [
   {
-    "login": "",
-    "password": "1111111",
-    "name": "Анна",
-    "is_mentor": false,
-    "image": ""
-  },
-  {
     "login": "elena",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
     "name": "Elenaaa",
     "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
     "image": "20200821185100_04.gif"
+  },
+  {
+    "login": "ann",
+    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
+    "name": "Анна",
+    "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
+    "image": ""
   },
   {
     "login": "tom",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
     "name": "Tom",
     "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
     "image": "20200821185011_06.jpg"
   },
   {
     "login": "vitaly",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
     "name": "Vitaly",
     "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
     "image": "20200821185112_05.gif"
   },
   {
     "login": "Petr",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
     "name": "Пётр",
     "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
     "image": ""
-  },
-  {
-    "login": "nikita",
-    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
-    "name": "Никита",
-    "is_mentor": true,
-    "image": "20200822115935_nikita.jpg"
   },
   {
     "login": "valeriy",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
     "name": "Валерий",
     "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
     "image": "20200822120054_valeriy.jpg"
+  },
+  {
+    "login": "nikita",
+    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
+    "name": "Никита",
+    "is_mentor": true,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
+    "image": "20200822115935_nikita.jpg"
   },
   {
     "login": "alexxx",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
     "name": "Alex1",
     "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
     "image": "20200821184957_03.jpg"
   },
   {
     "login": "olegOne",
     "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
     "name": "Олег",
     "is_mentor": true,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
     "image": "20200821185043_07.jpg"
+  },
+  {
+    "login": "anna",
+    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "needChangePassword": true,
+    "name": "Anna",
+    "is_mentor": false,
+    "email": "",
+    "progwardsAccountLink": "",
+    "discordName": "",
+    "image": ""
   }
 ]

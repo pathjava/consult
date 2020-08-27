@@ -36,8 +36,13 @@ public class UserSave extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
         userPassword = req.getParameter("password");
+        boolean needChangePassword = "true".equals(req.getParameter("needChangePassword"));
         String name = req.getParameter("name").trim();
         boolean is_mentor = "on".equals(req.getParameter("is_mentor"));
+        String email = req.getParameter("email").trim(); //TODO min-max length
+        String progwardsAccountLink = req.getParameter("progwardsAccountLink").trim();
+        String discordName = req.getParameter("discordName").trim();
+
         boolean isEdit = "true".equals(req.getParameter("edit"));
 
         if (login.isEmpty()) {
@@ -113,12 +118,13 @@ public class UserSave extends HttpServlet {
             DataBase.INSTANCE.users.remove(login);
         }
 
-        if (!DataBase.INSTANCE.users.put(new DataBase.Users.User(login, userPassword, name, is_mentor, imageName))) {
+        if (!DataBase.INSTANCE.users.put(new DataBase.Users.User(login, userPassword, needChangePassword,
+                name, is_mentor, email, progwardsAccountLink, discordName, imageName))) {
             req.setAttribute("error-description", "Не удалось добавить пользователя. Вероятно, он уже существует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        resp.sendRedirect("/users-info");
+        resp.sendRedirect("/users-view");
     }
 
     private static boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
