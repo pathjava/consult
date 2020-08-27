@@ -29,13 +29,22 @@
                         <div class="col-sm-10">
                             <select id="selectDay" name="selectDay" class="custom-select mr-sm-2" required>
                                 <option selected>выберите...</option>
-                                <option value="1">Понедельник</option>
-                                <option value="2">Вторник</option>
-                                <option value="3">Среда</option>
-                                <option value="4">Четверг</option>
-                                <option value="5">Пятница</option>
-                                <option value="6">Суббота</option>
-                                <option value="7">Воскресенье</option>
+                                <option value="1" <c:if test="${param.currentDayOfWeek eq 1}">selected</c:if>>
+                                    Понедельник
+                                </option>
+                                <option value="2" <c:if test="${param.currentDayOfWeek eq 2}">selected</c:if>>Вторник
+                                </option>
+                                <option value="3" <c:if test="${param.currentDayOfWeek eq 3}">selected</c:if>>Среда
+                                </option>
+                                <option value="4" <c:if test="${param.currentDayOfWeek eq 4}">selected</c:if>>Четверг
+                                </option>
+                                <option value="5" <c:if test="${param.currentDayOfWeek eq 5}">selected</c:if>>Пятница
+                                </option>
+                                <option value="6" <c:if test="${param.currentDayOfWeek eq 6}">selected</c:if>>Суббота
+                                </option>
+                                <option value="7" <c:if test="${param.currentDayOfWeek eq 7}">selected</c:if>>
+                                    Воскресенье
+                                </option>
                             </select>
                             <label for="selectDay" style="display: none"></label>
                         </div>
@@ -46,13 +55,18 @@
                             <jsp:useBean id="currentTime" class="java.util.Date"/>
                             <jsp:setProperty name="currentTime" property="time" value="${param.currentTimeStart}"/>
                             <fmt:setTimeZone value="UTC"/>
-                            <input type="time" class="form-control" id="timeStart" name="timeStart" value="<fmt:formatDate value="${currentTime}" pattern="HH:mm"/>" required>
+                            <input type="time" class="form-control" id="timeStart" name="timeStart"
+                                   value="<fmt:formatDate value="${currentTime}" pattern="HH:mm"/>" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="timeDuration" class="col-sm-2 col-form-label">Длительность</label>
                         <div class="col-sm-10">
-                            <input type="time" class="form-control" id="timeDuration" name="timeDuration" required>
+                            <jsp:useBean id="currentDuration" class="java.util.Date"/>
+                            <jsp:setProperty name="currentDuration" property="time"
+                                             value="${param.currentTimeDuration}"/>
+                            <input type="time" class="form-control" id="timeDuration" name="timeDuration"
+                                   value="<fmt:formatDate value="${currentDuration}" pattern="HH:mm"/>" required>
                         </div>
                     </div>
                     <div class="form-group row">
