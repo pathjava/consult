@@ -1,4 +1,4 @@
-package consults;
+package schedules;
 
 import ru.progwards.java2.db.DataBase;
 

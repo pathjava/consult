@@ -1,4 +1,4 @@
-package consults;
+package schedules;
 
 import ru.progwards.java2.db.DataBase;
 import utils.Utils;
@@ -21,7 +21,7 @@ public class ScheduleView extends HttpServlet {
         boolean edit = "true".equals(req.getParameter("edit"));
 
         if (edit) {
-            req.getRequestDispatcher("/consults/schedule-edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/schedules/schedule-edit.jsp").forward(req, resp);
         }
     }
 
@@ -33,7 +33,7 @@ public class ScheduleView extends HttpServlet {
             List<DataBase.Users.User> mentors = Utils.getMentors();
 
             req.setAttribute("mentors", mentors);
-            req.getRequestDispatcher("/consults/schedule-add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/schedules/schedule-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
             schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
@@ -41,7 +41,7 @@ public class ScheduleView extends HttpServlet {
                     .thenComparing(DataBase.Schedule.Value::getMentor));
 
             req.setAttribute("schedules", schedules);
-            req.getRequestDispatcher("/consults/schedule-view.jsp").forward(req, resp);
+            req.getRequestDispatcher("/schedules/schedule-view.jsp").forward(req, resp);
         }
     }
 }
