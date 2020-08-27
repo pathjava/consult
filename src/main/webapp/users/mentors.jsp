@@ -52,10 +52,10 @@
                                             </c:forEach>
                                         </div>
                                         <form action="${pageContext.request.contextPath}/consults-save" method="post">
-                                            <label>
+                                            <label class="hiddenLabel">
                                                 <input type="hidden" name="mentorLogin" value="${mentor.login}"/>
                                             </label>
-                                            <label>
+                                            <label class="hiddenLabel">
                                                 <input type="hidden" name="mentorName" value="${mentor.name}"/>
                                             </label>
                                             <input type="submit" class="btn btn-primary btn-block" value="Записаться">

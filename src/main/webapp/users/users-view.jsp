@@ -59,19 +59,19 @@
                                 <td>
                                     <form action="${pageContext.request.contextPath}/users-view?edit=true&el=${user.login}"
                                           method="post">
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="name" value="${user.name}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="login" value="${user.login}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="password" value="${user.password}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="is_mentor" value="${user.is_mentor}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="image" value="${user.image}"/>
                                         </label>
                                         <span class="edit"><input class="btn-edit" type="submit" value=""/></span>

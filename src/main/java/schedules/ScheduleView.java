@@ -39,7 +39,9 @@ public class ScheduleView extends HttpServlet {
             schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
                     .thenComparingLong(DataBase.Schedule.Value::getStart)
                     .thenComparing(DataBase.Schedule.Value::getMentor));
+            List<DataBase.Users.User> mentors = Utils.getMentors();
 
+            req.setAttribute("mentors", mentors);
             req.setAttribute("schedules", schedules);
             req.getRequestDispatcher("/schedules/schedule-view.jsp").forward(req, resp);
         }

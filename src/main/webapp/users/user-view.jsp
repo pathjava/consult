@@ -40,20 +40,20 @@
                             <td>
                                 <form action="${pageContext.request.contextPath}/users-view?edit=true&el=${user.login}"
                                       method="post">
-                                    <label>
-                                        <input type="text" name="name" value="${user.name}" hidden/>
+                                    <label class="hiddenLabel">
+                                        <input type="hidden" name="name" value="${user.name}"/>
                                     </label>
-                                    <label>
-                                        <input type="text" name="login" value="${user.login}" hidden/>
+                                    <label class="hiddenLabel">
+                                        <input type="hidden" name="login" value="${user.login}"/>
                                     </label>
-                                    <label>
-                                        <input type="password" name="password" value="${user.password}" hidden/>
+                                    <label class="hiddenLabel">
+                                        <input type="hidden" name="password" value="${user.password}"/>
                                     </label>
-                                    <label>
-                                        <input type="text" name="is_mentor" value="${user.is_mentor}" hidden/>
+                                    <label class="hiddenLabel">
+                                        <input type="hidden" name="is_mentor" value="${user.is_mentor}"/>
                                     </label>
-                                    <label>
-                                        <input type="text" name="image" value="${user.image}" hidden/>
+                                    <label class="hiddenLabel">
+                                        <input type="hidden" name="image" value="${user.image}"/>
                                     </label>
                                     <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
                                 </form>

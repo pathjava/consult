@@ -24,7 +24,7 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Логин</th>
+                            <th scope="col">Наставник</th>
                             <th scope="col">День недели</th>
                             <th scope="col">Время</th>
                             <th scope="col">Удалить</th>
@@ -32,6 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
                         <jsp:useBean id="schedules" scope="request" type="java.util.List"/>
                         <jsp:useBean id="startTime" class="java.util.Date"/>
                         <jsp:useBean id="endTime" class="java.util.Date"/>
@@ -42,7 +43,13 @@
                             <fmt:setTimeZone value="UTC"/>
                             <tr>
                                 <td>${loop.index+1}</td>
-                                <td>${schedule.mentor}</td>
+                                <td>
+                                    <c:forEach var="mentor" items="${mentors}">
+                                        <c:if test="${schedule.mentor == mentor.login}">
+                                            ${mentor.name}
+                                        </c:if>
+                                    </c:forEach>
+                                </td>
                                 <td>
                                     <c:if test="${schedule.day_of_week eq 1}">Понедельник</c:if>
                                     <c:if test="${schedule.day_of_week eq 2}">Вторник</c:if>
@@ -57,13 +64,13 @@
                                 </td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="timeStart" value="${schedule.start}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="dayOfWeek" value="${schedule.day_of_week}"/>
                                         </label>
                                         <span class="trash">
@@ -75,17 +82,19 @@
                                 <td>
                                     <form action="${pageContext.request.contextPath}/schedule-view?edit=true"
                                           method="post">
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
                                         </label>
-                                        <label>
-                                            <input type="hidden" name="currentDayOfWeek" value="${schedule.day_of_week}"/>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="currentDayOfWeek"
+                                                   value="${schedule.day_of_week}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="currentTimeStart" value="${schedule.start}"/>
                                         </label>
-                                        <label>
-                                            <input type="hidden" name="currentTimeDuration" value="${schedule.duration}"/>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="currentTimeDuration"
+                                                   value="${schedule.duration}"/>
                                         </label>
                                         <span class="edit">
                                             <input class="btn-edit" type="submit" value=""/>

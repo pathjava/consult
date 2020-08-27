@@ -47,10 +47,10 @@
                                 <td>
                                     <form action="${pageContext.request.contextPath}/settings-view?edit=true"
                                           method="post">
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="name" value="${setting.name}"/>
                                         </label>
-                                        <label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="value" value="${setting.value}"/>
                                         </label>
                                         <span class="edit">

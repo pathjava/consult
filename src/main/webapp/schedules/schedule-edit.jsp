@@ -71,13 +71,13 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2"></div>
-                        <label>
+                        <label class="hiddenLabel">
                             <input type="hidden" name="edit" value="true">
                         </label>
-                        <label>
+                        <label class="hiddenLabel">
                             <input type="hidden" name="currentDayOfWeek" value="${param.currentDayOfWeek}"/>
                         </label>
-                        <label>
+                        <label class="hiddenLabel">
                             <input type="hidden" name="currentTimeStart" value="${param.currentTimeStart}"/>
                         </label>
                         <div class="col-sm-10">
