@@ -1,6 +1,6 @@
 package examples;
 
-import ru.progwards.java2.db.DataBase;
+import ru.progwards.java2.lib.DataBase;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

@@ -1,29 +1,26 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>Archetype Created Web Application</display-name>
 
     <filter>
         <filter-name>AuthorizedFilter</filter-name>
-        <filter-class>filters.AuthorizedFilter</filter-class>
+        <filter-class>ru.progwards.advanced.business.filters.AuthorizedFilter</filter-class>
     </filter>
 
     <filter>
         <filter-name>MentorFilter</filter-name>
-        <filter-class>filters.MentorFilter</filter-class>
+        <filter-class>ru.progwards.advanced.business.filters.MentorFilter</filter-class>
     </filter>
 
     <filter-mapping>
         <filter-name>AuthorizedFilter</filter-name>
         <url-pattern>/settings-view</url-pattern>
-        <url-pattern>/users-view</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
         <filter-name>MentorFilter</filter-name>
         <url-pattern>/settings-view</url-pattern>
-        <url-pattern>/users-view</url-pattern>
     </filter-mapping>
 </web-app>
