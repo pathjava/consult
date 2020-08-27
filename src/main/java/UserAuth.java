@@ -30,13 +30,19 @@ public class UserAuth extends HttpServlet {
         DataBase.Settings.Record rec = DataBase.INSTANCE.settings.findKey("MAX_INACTIVE_INTERVAL");
         int recInterval = -1;
         if (rec != null) {
-            try {
-                recInterval = Integer.parseInt(rec.value);
-            } catch (NumberFormatException ignored) {
-            }
+            try { recInterval = Integer.parseInt(rec.value); } catch (NumberFormatException ignored) {}
         }
 
         session.setMaxInactiveInterval(recInterval); // секунды
-        resp.sendRedirect("/");
+
+        // после успешной авторизации отправить на целевую страницу
+        String targetUrl = (String)session.getAttribute("targetUrl");
+        if (targetUrl == null)
+            targetUrl = "";
+        else {
+            // чистим атрибут
+            session.removeAttribute("targetUrl");
+        }
+        resp.sendRedirect(targetUrl);
     }
 }
