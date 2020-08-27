@@ -36,12 +36,12 @@ public class UserSave extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
         userPassword = req.getParameter("password");
-        boolean needChangePassword = "true".equals(req.getParameter("needChangePassword"));
+        boolean needChangePassword = "true".equals(req.getParameter("needChangePassword")); //TODO check only first time
         String name = req.getParameter("name").trim();
         boolean is_mentor = "on".equals(req.getParameter("is_mentor"));
-        String email = req.getParameter("email").trim(); //TODO min-max length
-        String progwardsAccountLink = req.getParameter("progwardsAccountLink").trim();
-        String discordName = req.getParameter("discordName").trim();
+        String email = req.getParameter("email").trim(); //TODO min-max length and type
+        String progwardsAccountLink = req.getParameter("progwardsAccountLink").trim(); //TODO min-max length and type
+        String discordName = req.getParameter("discordName").trim(); //TODO min-max length and type
 
         boolean isEdit = "true".equals(req.getParameter("edit"));
 
