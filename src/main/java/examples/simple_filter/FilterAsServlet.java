@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebFilter("/filter-as-servlet")
+//@WebFilter("/filter-as-servlet")
 public class FilterAsServlet implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {

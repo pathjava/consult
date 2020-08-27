@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@WebServlet("/user/upload")
+//@WebServlet("/user/upload")
 public class UserFileUpload extends HttpServlet {
 
     private static final String FILE_DIRECTORY = "avatars";

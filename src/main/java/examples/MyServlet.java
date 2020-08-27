@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/myservlet")
+//@WebServlet("/myservlet")
 public class MyServlet implements Servlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {

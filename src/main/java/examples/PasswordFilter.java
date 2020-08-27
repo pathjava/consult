@@ -1,4 +1,4 @@
-package filters;
+package examples;
 
 import ru.progwards.java2.db.DataBase;
 
@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter("/users/user-auth")
+//@WebFilter("/users/user-auth")
 public class PasswordFilter implements Filter {
 
     private static final int minPass =
@@ -20,7 +20,7 @@ public class PasswordFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("filters.PasswordFilter.doFilter");
+        System.out.println("examples.PasswordFilter.doFilter");
         String password = req.getParameter("password");
 
         if (password == null || password.length() < minPass || password.length() > maxPass) {

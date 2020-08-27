@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet("/user/multipart")
+//@WebServlet("/user/multipart")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 2, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UserMultiPartUpload extends HttpServlet {

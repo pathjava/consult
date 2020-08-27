@@ -22,16 +22,29 @@ public enum DataBase {
         public static class User {
             public final String login;
             public final String password;
+            public final boolean needChangePassword;
             public final String name;
             public final boolean is_mentor;
+            public final String email;
+            public final String progwardsAccountLink;
+            public final String discordName;
             public final String image;
 
-            public User(String login, String password, String name, boolean is_mentor, String image) {
+            public User(String login, String password, boolean needChangePassword, String name, boolean is_mentor, String email, String progwardsAccountLink, String discordName, String image) {
                 this.login = login;
                 this.password = password;
+                this.needChangePassword = needChangePassword;
                 this.name = name;
                 this.is_mentor = is_mentor;
+                this.email = email;
+                this.progwardsAccountLink = progwardsAccountLink;
+                this.discordName = discordName;
                 this.image = image;
+            }
+
+            // конструктор оставлен для совместимости
+            public User(String login, String password, String name, boolean is_mentor, String image) {
+                this(login, password, true, name, is_mentor, "", "", "", image);
             }
 
             public String getLogin() {
@@ -42,6 +55,10 @@ public enum DataBase {
                 return password;
             }
 
+            public boolean isNeedChangePassword() {
+                return needChangePassword;
+            }
+
             public String getName() {
                 return name;
             }
@@ -50,23 +67,42 @@ public enum DataBase {
                 return is_mentor;
             }
 
+            public String getEmail() {
+                return email;
+            }
+
+            public String getProgwardsAccountLink() {
+                return progwardsAccountLink;
+            }
+
+            public String getDiscordName() {
+                return discordName;
+            }
+
             public String getImage() {
                 return image;
             }
 
             @Override
-            public String toString() { return login; }
+            public String toString() {
+                return login;
+            }
         }
 
         private Users() {
-            super(new TypeToken<ArrayList<User>>() {}.getType());
+            super(new TypeToken<ArrayList<User>>() {
+            }.getType());
         }
 
         @Override
-        public String getTableName() { return "users.json"; }
+        public String getTableName() {
+            return "users.json";
+        }
 
         @Override
-        public String getKey(User elem) { return elem.login; }
+        public String getKey(User elem) {
+            return elem.login;
+        }
     }
 
     // таблица консультации
@@ -132,11 +168,14 @@ public enum DataBase {
         }
 
         private Consultations() {
-            super(new TypeToken<ArrayList<Consultation>>() {}.getType());
+            super(new TypeToken<ArrayList<Consultation>>() {
+            }.getType());
         }
 
         @Override
-        public String getTableName() { return "consultations.json"; }
+        public String getTableName() {
+            return "consultations.json";
+        }
 
         @Override
         public Key getKey(Consultation elem) {
@@ -204,11 +243,14 @@ public enum DataBase {
         }
 
         private Schedule() {
-            super(new TypeToken<ArrayList<Value>>() {}.getType());
+            super(new TypeToken<ArrayList<Value>>() {
+            }.getType());
         }
 
         @Override
-        public String getTableName() { return "schedule.json"; }
+        public String getTableName() {
+            return "schedule.json";
+        }
 
         @Override
         public Key getKey(Value elem) {
@@ -237,14 +279,19 @@ public enum DataBase {
         }
 
         private Settings() {
-            super(new TypeToken<ArrayList<Record>>() {}.getType());
+            super(new TypeToken<ArrayList<Record>>() {
+            }.getType());
         }
 
         @Override
-        public String getTableName() { return "settings.json"; }
+        public String getTableName() {
+            return "settings.json";
+        }
 
         @Override
-        public String getKey(Record elem) { return elem.name; }
+        public String getKey(Record elem) {
+            return elem.name;
+        }
     }
 
 
