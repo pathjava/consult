@@ -39,7 +39,7 @@ public class UserDelete extends HttpServlet {
         if (!imageName.isEmpty())
             deleteImage(imageName);
 
-        resp.sendRedirect("/users-info");
+        resp.sendRedirect("/users-view");
     }
 
     private void deleteImage(String imageName) {

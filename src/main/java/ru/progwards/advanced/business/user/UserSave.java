@@ -45,52 +45,20 @@ public class UserSave extends HttpServlet {
 
         boolean isEdit = "true".equals(req.getParameter("edit"));
 
-        if (login.isEmpty()) {
-            req.setAttribute("error-description", "Логин должен быть заполнен!");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+        if (checkLoginEmpty(req, resp, login)) return;
 
-        if (login.length() > maxLoginName || login.length() < minLoginName) {
-            req.setAttribute("error-description", "Логин должен быть больше от "
-                    + minLoginName + " до " + maxLoginName + " символов!");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+        if (checkLoginLength(req, resp, login)) return;
 
-        if (name.isEmpty()) {
-            req.setAttribute("error-description", "Имя должно быть заполнено!");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+        if (checkNameEmpty(req, resp, name)) return;
 
-        if (name.length() > maxLoginName || name.length() < minLoginName) {
-            req.setAttribute("error-description", "Имя должно быть от "
-                    + minLoginName + " до " + maxLoginName + " символов!");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+        if (checkNameLength(req, resp, name)) return;
 
-        if (!isStringContainsLatinCharactersOnly(login)) {
-            req.setAttribute("error-description", "Логин должен состоть только из латинских букв и цифр!");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+        if (!isStringContainsLatinCharactersOnly(req, resp, login)) return;
 
         if (!isEdit) {
-            if (userPassword.length() < minPass || userPassword.length() > maxPass) {
-                req.setAttribute("error-description", "Длина пароля должна быть от "
-                        + minPass + " до " + maxPass + " символов!");
-                req.getRequestDispatcher("/error.jsp").forward(req, resp);
-                return;
-            }
+            if (checkPasswordLength(req, resp)) return;
         } else {
-            if (!userPassword.isEmpty() && userPassword.length() < minPass || userPassword.length() > maxPass) {
-                req.setAttribute("error-description", "Длина пароля должна быть от "
-                        + minPass + " до " + maxPass + " символов!");
-                req.getRequestDispatcher("/error.jsp").forward(req, resp);
-                return;
-            }
+            if (checkPasswordLengthAndEmpty(req, resp)) return;
         }
 
         if (!userPassword.isEmpty())
@@ -98,11 +66,7 @@ public class UserSave extends HttpServlet {
 
         String uploadPath = getServletContext().getRealPath("") + File.separator + FILE_DIRECTORY;
         File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-            req.setAttribute("error-description", "Директория для загрузки аватарки отсутствует!");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-            return;
-        }
+        if (checkUploadDirectoryExists(req, resp, uploadDir)) return;
 
         /* загрузка аватара на сервер */
         if (!uploadImageToServer(req, resp, uploadPath)) {
@@ -125,6 +89,80 @@ public class UserSave extends HttpServlet {
             return;
         }
         resp.sendRedirect("/users-view");
+    }
+
+    private boolean checkUploadDirectoryExists(HttpServletRequest req, HttpServletResponse resp, File uploadDir)
+            throws ServletException, IOException {
+        if (!uploadDir.exists()) {
+            req.setAttribute("error-description", "Директория для загрузки аватарки отсутствует!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkPasswordLengthAndEmpty(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        if (!userPassword.isEmpty() && userPassword.length() < minPass || userPassword.length() > maxPass) {
+            req.setAttribute("error-description", "Длина пароля должна быть от "
+                    + minPass + " до " + maxPass + " символов!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkPasswordLength(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        if (userPassword.length() < minPass || userPassword.length() > maxPass) {
+            req.setAttribute("error-description", "Длина пароля должна быть от "
+                    + minPass + " до " + maxPass + " символов!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkNameLength(HttpServletRequest req, HttpServletResponse resp, String name)
+            throws ServletException, IOException {
+        if (name.length() > maxLoginName || name.length() < minLoginName) {
+            req.setAttribute("error-description", "Имя должно быть от "
+                    + minLoginName + " до " + maxLoginName + " символов!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkNameEmpty(HttpServletRequest req, HttpServletResponse resp, String name)
+            throws ServletException, IOException {
+        if (name.isEmpty()) {
+            req.setAttribute("error-description", "Имя должно быть заполнено!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkLoginLength(HttpServletRequest req, HttpServletResponse resp, String login)
+            throws ServletException, IOException {
+        if (login.length() > maxLoginName || login.length() < minLoginName) {
+            req.setAttribute("error-description", "Логин должен быть от "
+                    + minLoginName + " до " + maxLoginName + " символов!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkLoginEmpty(HttpServletRequest req, HttpServletResponse resp, String login)
+            throws ServletException, IOException {
+        if (login.isEmpty()) {
+            req.setAttribute("error-description", "Логин должен быть заполнен!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
     }
 
     private static boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
@@ -164,8 +202,15 @@ public class UserSave extends HttpServlet {
         return dtf.format(java.time.LocalDateTime.now()) + "_";
     }
 
-    public static boolean isStringContainsLatinCharactersOnly(final String iStringToCheck) {
-        return iStringToCheck.matches("^[a-zA-Z0-9.]+$");
+    public static boolean isStringContainsLatinCharactersOnly(HttpServletRequest req, HttpServletResponse resp,
+                                                              String iStringToCheck) throws ServletException, IOException {
+        if (iStringToCheck.matches("^[a-zA-Z0-9.]+$"))
+            return true;
+        else {
+            req.setAttribute("error-description", "Логин должен состоть только из латинских букв и цифр!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return false;
+        }
     }
 
     private static boolean checkExtensionImage() {
