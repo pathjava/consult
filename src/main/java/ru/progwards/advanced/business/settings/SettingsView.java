@@ -20,7 +20,7 @@ public class SettingsView extends HttpServlet {
         boolean edit = "true".equals(req.getParameter("edit"));
 
         if (edit) {
-            req.getRequestDispatcher("/ru/progwards/advanced/business/settings/settings-edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/settings/settings-edit.jsp").forward(req, resp);
         }
     }
 
@@ -29,13 +29,13 @@ public class SettingsView extends HttpServlet {
         boolean add = "true".equals(req.getParameter("add"));
 
         if (add) {
-            req.getRequestDispatcher("/ru/progwards/advanced/business/settings/settings-add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/settings/settings-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Settings.Record> settings = new ArrayList<>(DataBase.INSTANCE.settings.getAll());
             settings.sort(Comparator.comparing(o -> o.name));
 
             req.setAttribute("settings", settings);
-            req.getRequestDispatcher("/ru/progwards/advanced/business/settings/settings-view.jsp").forward(req, resp);
+            req.getRequestDispatcher("/settings/settings-view.jsp").forward(req, resp);
         }
     }
 

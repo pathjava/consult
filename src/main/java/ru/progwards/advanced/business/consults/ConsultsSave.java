@@ -18,7 +18,7 @@ public class ConsultsSave extends HttpServlet {
 
         req.setAttribute("name", name);
         req.setAttribute("login", login);
-        req.getRequestDispatcher("/consults-add.jsp").forward(req, resp);
+        req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
 
     }
 }

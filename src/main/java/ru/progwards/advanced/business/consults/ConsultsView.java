@@ -13,7 +13,7 @@ public class ConsultsView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("/consults-view.jsp").forward(req, resp);
+        req.getRequestDispatcher("/consults/consults-view.jsp").forward(req, resp);
 
     }
 

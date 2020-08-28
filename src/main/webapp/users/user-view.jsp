@@ -24,36 +24,35 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="user" scope="request" type="ru.progwards.java2.db.DataBase.Users.User"/>
                         <tr>
-                            <td>${user.name}</td>
-                            <td>${user.login}</td>
-                            <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
+                            <td>${requestScope.user.name}</td>
+                            <td>${requestScope.user.login}</td>
+                            <td>${requestScope.user.is_mentor ? "Наставник" : "Студент"}</td>
                             <td>
                                 <div class="avatar">
                                     <div class="user-avatar">
                                         <div class="img"
-                                             style="background-image:url(${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'});"></div>
+                                             style="background-image:url(${pageContext.request.contextPath}/avatars/${!requestScope.user.image.isEmpty() ? requestScope.user.image : 'no-avatar.png'});"></div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/users-view?edit=true&el=${user.login}"
+                                <form action="${pageContext.request.contextPath}/users-view?edit=true&el=${requestScope.user.login}"
                                       method="post">
                                     <label class="hiddenLabel">
-                                        <input type="hidden" name="name" value="${user.name}"/>
+                                        <input type="hidden" name="name" value="${requestScope.user.name}"/>
                                     </label>
                                     <label class="hiddenLabel">
-                                        <input type="hidden" name="login" value="${user.login}"/>
+                                        <input type="hidden" name="login" value="${requestScope.user.login}"/>
                                     </label>
                                     <label class="hiddenLabel">
-                                        <input type="hidden" name="password" value="${user.password}"/>
+                                        <input type="hidden" name="password" value="${requestScope.user.password}"/>
                                     </label>
                                     <label class="hiddenLabel">
-                                        <input type="hidden" name="is_mentor" value="${user.is_mentor}"/>
+                                        <input type="hidden" name="is_mentor" value="${requestScope.user.is_mentor}"/>
                                     </label>
                                     <label class="hiddenLabel">
-                                        <input type="hidden" name="image" value="${user.image}"/>
+                                        <input type="hidden" name="image" value="${requestScope.user.image}"/>
                                     </label>
                                     <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
                                 </form>

@@ -21,7 +21,7 @@ public class ScheduleView extends HttpServlet {
         boolean edit = "true".equals(req.getParameter("edit"));
 
         if (edit) {
-            req.getRequestDispatcher("/ru/progwards/advanced/business/schedules/schedule-edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/schedules/schedule-edit.jsp").forward(req, resp);
         }
     }
 
@@ -33,7 +33,7 @@ public class ScheduleView extends HttpServlet {
             List<DataBase.Users.User> mentors = Utils.getMentors();
 
             req.setAttribute("mentors", mentors);
-            req.getRequestDispatcher("/ru/progwards/advanced/business/schedules/schedule-add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/schedules/schedule-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
             schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
@@ -43,7 +43,7 @@ public class ScheduleView extends HttpServlet {
 
             req.setAttribute("mentors", mentors);
             req.setAttribute("schedules", schedules);
-            req.getRequestDispatcher("/ru/progwards/advanced/business/schedules/schedule-view.jsp").forward(req, resp);
+            req.getRequestDispatcher("/schedules/schedule-view.jsp").forward(req, resp);
         }
     }
 }
