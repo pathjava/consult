@@ -38,15 +38,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="urlProgwards" class="col-sm-2 col-form-label">Аккаунт Progwards</label>
+                        <label for="urlProgwards" class="col-sm-2 col-form-label">Progwards</label>
                         <div class="col-sm-10">
                             <input type="url" class="form-control" id="urlProgwards" name="progwardsAccountLink" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="urlDiscord" class="col-sm-2 col-form-label">Аккаунт Discord</label>
+                        <label for="urlDiscord" class="col-sm-2 col-form-label">Discord</label>
                         <div class="col-sm-10">
-                            <input type="url" class="form-control" id="urlDiscord" name="discordName" required>
+                            <input type="text" class="form-control" id="urlDiscord" name="discordName" required>
                         </div>
                     </div>
                     <div class="form-group row">

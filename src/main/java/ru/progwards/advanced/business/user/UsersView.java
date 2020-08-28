@@ -56,9 +56,15 @@ public class UsersView extends HttpServlet {
         } else {
             List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
             users.sort(Comparator.comparing(o -> o.name));
+//            String moodleUserId = getMoodleUserId(progwardsAccountLink);
+
             req.setAttribute("users", users);
             req.getRequestDispatcher("/users/users-view.jsp").forward(req, resp);
         }
     }
 
+    private static String getMoodleUserId(String link){
+        int lastIndex = link.lastIndexOf("id=");
+        return link.substring(lastIndex);
+    }
 }

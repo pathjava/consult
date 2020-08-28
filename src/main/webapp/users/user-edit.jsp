@@ -29,6 +29,29 @@
                                    value="${param.name}" required>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" name="email" value="${param.email}"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="urlProgwards" class="col-sm-2 col-form-label">Progwards</label>
+                        <div class="col-sm-10">
+                            <input type="url" class="form-control" id="urlProgwards" name="progwardsAccountLink"
+                                   value="${param.progwardsAccountLink}" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="urlDiscord" class="col-sm-2 col-form-label">Discord</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="urlDiscord" name="discordName"
+                                   value="${param.discordName}" required>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="controlPassword" class="col-sm-2 col-form-label">Пароль</label>
                         <div class="col-sm-10">
@@ -85,7 +108,7 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <label class="hiddenLabel">
-                                <input type="hidden" name="edit" value="true" />
+                                <input type="hidden" name="edit" value="true"/>
                             </label>
                             <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
                         </div>
@@ -93,7 +116,7 @@
                 </form>
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span
-                            class="glyphicon glyphicon-home"></span>Вернуться</a>
+                            class="glyphicon glyphicon-home"></span><i class="far fa-reply"></i></a>
                 </div>
             </div>
         </main>

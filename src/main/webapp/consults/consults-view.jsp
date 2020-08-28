@@ -12,7 +12,7 @@
                 <div class="page-header">
                     <h1>All consults</h1>
                 </div>
-                <div>
+                <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span
-                            class="glyphicon glyphicon-home"></span>Вернуться</a>
+                            class="glyphicon glyphicon-home"></span><i class="far fa-reply"></i></a>
                 </div>
             </div>
         </main>

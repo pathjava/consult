@@ -110,6 +110,14 @@ input::placeholder {
     display: none;
 }
 
+.fa-digging:before, .fa-user-headset:before {
+    font-size: 20px;
+}
+
+.fa-user-headset:before {
+    color: #FF5823;
+}
+
 input.btn-del, input.btn-edit {
     background: none;
     border: none;
@@ -189,6 +197,11 @@ span.edit-text {
     text-align: center;
 }
 
+.table-responsive {
+    width: 100%;
+    overflow: auto;
+}
+
 .table-wrapper {
     margin: 0 10px;
 }
@@ -205,6 +218,10 @@ span.edit-text {
 .avatar {
     width: 35px;
     height: 35px;
+}
+
+.avatarView {
+    margin: auto;
 }
 
 .user-avatar {

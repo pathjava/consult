@@ -18,7 +18,7 @@
                 <div class="page-header">
                     <h1>Общие настройки</h1>
                 </div>
-                <div>
+                <div class="table-responsive">
                     <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>

@@ -39,7 +39,7 @@
                 </form>
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span
-                            class="glyphicon glyphicon-home"></span>Вернуться</a>
+                            class="glyphicon glyphicon-home"></span><i class="far fa-reply"></i></a>
                 </div>
             </div>
         </main>

@@ -19,7 +19,7 @@
                 <div class="page-header">
                     <h2>Настройки наставников</h2>
                 </div>
-                <div>
+                <div class="table-responsive">
                     <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>

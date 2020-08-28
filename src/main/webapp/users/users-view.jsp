@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <t:template>
    <jsp:attribute name="title">
@@ -18,17 +19,20 @@
                                 class="add-user"></span></a>
                     </div>
                 </div>
-                <div>
+                <div class="table-responsive">
                     <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col"><i class="far fa-hashtag"></i></th>
                             <th scope="col">Имя</th>
                             <th scope="col">Логин</th>
-                            <th scope="col">Статус</th>
-                            <th scope="col">Аватарка</th>
-                            <th scope="col">Удалить</th>
-                            <th scope="col">Редактировать</th>
+                            <th scope="col"><i class="far fa-at"></i></th>
+                            <th scope="col"><i class="fal fa-university"></i></th>
+                            <th scope="col"><i class="fab fa-discord"></i></th>
+                            <th scope="col"><i class="far fa-user-chart"></i></th>
+                            <th scope="col"><i class="far fa-user-tag"></i></th>
+                            <th scope="col"><i class="far fa-user-slash"></i></th>
+                            <th scope="col"><i class="far fa-user-cog"></i></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,9 +44,15 @@
                                 <td>
                                     <a href="${pageContext.request.contextPath}/users-view?login=${user.login}">${user.login}</a>
                                 </td>
-                                <td>${user.is_mentor ? "Наставник" : "Студент"}</td>
+                                <td>${user.email}</td>
                                 <td>
-                                    <div class="avatar">
+                                    <c:set value="${fn:split(user.progwardsAccountLink,'?')}" var="indexId" />
+                                    <a href="${user.progwardsAccountLink}"><c:out value="${indexId[fn:length(indexId)-1]}"/></a>
+                                </td>
+                                <td>${user.discordName}</td>
+                                <td>${user.is_mentor ? "<i class=\"fas fa-user-headset\"></i>" : "<i class=\"far fa-digging\"></i>"}</td>
+                                <td>
+                                    <div class="avatar avatarView">
                                         <div class="user-avatar">
                                             <div class="img"
                                                  style="background-image:url(${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'});"></div>
@@ -64,6 +74,16 @@
                                         </label>
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="login" value="${user.login}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="email" value="${user.email}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="progwardsAccountLink"
+                                                   value="${user.progwardsAccountLink}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="discordName" value="${user.discordName}"/>
                                         </label>
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="password" value="${user.password}"/>
