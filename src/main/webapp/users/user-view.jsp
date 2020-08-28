@@ -38,12 +38,12 @@
                                         value="${indexId[fn:length(indexId)-1]}"/></a>
                             </td>
                             <td>${requestScope.user.discordName}</td>
-                            <td>${requestScope.user.is_mentor ? "<i class=\"fas fa-user-headset\"></i>" : "<i class=\"far fa-digging\"></i>"}</td>
+                            <td>${requestScope.user.is_mentor ? "<i class=\"fas fa-user-headset isMentor\"></i>" : "<i class=\"far fa-digging\"></i>"}</td>
                             <td>
                                 <div class="avatar avatarView">
                                     <div class="user-avatar">
                                         <div class="img"
-                                             style="background-image:url(${pageContext.request.contextPath}/avatars/${!requestScope.user.image.isEmpty() ? requestScope.user.image : 'no-avatar.png'});"></div>
+                                             style="background-image:url(${pageContext.request.contextPath}/avatars/${!requestScope.user.image.isEmpty() ? requestScope.user.image : "no-avatar.png"});"></div>
                                     </div>
                                 </div>
                             </td>
@@ -64,7 +64,8 @@
                                                value="${requestScope.user.progwardsAccountLink}"/>
                                     </label>
                                     <label class="hiddenLabel">
-                                        <input type="hidden" name="discordName" value="${requestScope.user.discordName}"/>
+                                        <input type="hidden" name="discordName"
+                                               value="${requestScope.user.discordName}"/>
                                     </label>
                                     <label class="hiddenLabel">
                                         <input type="hidden" name="password" value="${requestScope.user.password}"/>

@@ -110,12 +110,16 @@ input::placeholder {
     display: none;
 }
 
-.fa-digging:before, .fa-user-headset:before {
+td > i:before {
     font-size: 20px;
 }
 
-.fa-user-headset:before {
+.isMentor:before {
     color: #FF5823;
+}
+
+th > i:before {
+    font-size: 18px;
 }
 
 input.btn-del, input.btn-edit {
@@ -136,9 +140,9 @@ input.btn-del, input.btn-edit {
     font-family: 'Font Awesome 5 Pro';
     position: absolute;
     content: "\f044";
-    font-size: 20px;
     transition: color 0.35s ease;
     left: 5px;
+    font-size: 20px;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -149,9 +153,9 @@ input.btn-del, input.btn-edit {
     font-family: 'Font Awesome 5 Pro';
     position: absolute;
     content: "\f2ed";
-    font-size: 20px;
     transition: color 0.35s ease;
     left: 5px;
+    font-size: 20px;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

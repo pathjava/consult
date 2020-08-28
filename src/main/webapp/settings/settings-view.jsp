@@ -22,11 +22,11 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col"><i class="far fa-hashtag"></i></th>
                             <th scope="col">Название</th>
                             <th scope="col">Значение</th>
-                            <th scope="col">Удалить</th>
-                            <th scope="col">Редактировать</th>
+                            <th scope="col"><i class="fas fa-trash"></i></th>
+                            <th scope="col"><i class="far fa-cog"></i></th>
                         </tr>
                         </thead>
                         <tbody>

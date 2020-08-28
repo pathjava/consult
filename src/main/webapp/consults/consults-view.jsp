@@ -16,7 +16,7 @@
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col"><i class="far fa-hashtag"></i></th>
                             <th scope="col">Время</th>
                             <th scope="col">Студент</th>
                             <th scope="col">Отменить</th>

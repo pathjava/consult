@@ -23,12 +23,12 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Наставник</th>
-                            <th scope="col">День недели</th>
-                            <th scope="col">Время</th>
-                            <th scope="col">Удалить</th>
-                            <th scope="col">Редакт.</th>
+                            <th scope="col"><i class="far fa-hashtag"></i></th>
+                            <th scope="col"><i class="fas fa-user-headset"></i></th>
+                            <th scope="col"><i class="far fa-calendar-week"></i></th>
+                            <th scope="col"><i class="far fa-clock"></i></th>
+                            <th scope="col"><i class="fas fa-trash"></i></th>
+                            <th scope="col"><i class="far fa-cog"></i></th>
                         </tr>
                         </thead>
                         <tbody>

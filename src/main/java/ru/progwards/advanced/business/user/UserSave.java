@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet("/user-save")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
@@ -55,6 +57,8 @@ public class UserSave extends HttpServlet {
 
         if (!isStringContainsLatinCharactersOnly(req, resp, login)) return;
 
+        if (!validateEmail(req, resp, email)) return;
+
         if (!isEdit) {
             if (checkPasswordLength(req, resp)) return;
         } else {
@@ -75,12 +79,10 @@ public class UserSave extends HttpServlet {
             return;
         }
 
-        String moodleUserId = getMoodleUserId(progwardsAccountLink);
-
         /* при редактировании сперва удаляем и потом добавляем */
         if (isEdit) {
             checkUpdatePassword(login);
-            checkUpdateImage(login);
+            checkUpdateImage(login); //TODO сделать удаление картинки при обновлении ранее существовавшей
             DataBase.INSTANCE.users.remove(login);
         }
 
@@ -167,10 +169,18 @@ public class UserSave extends HttpServlet {
         return false;
     }
 
-    private static String getMoodleUserId(String link){
-        int lastIndex = link.lastIndexOf("id=");
-        String str = link.substring(lastIndex);
-        return str;
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validateEmail(HttpServletRequest req, HttpServletResponse resp, String emailStr)
+            throws ServletException, IOException {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        if (!matcher.find() || emailStr.isEmpty() || emailStr.length() > 320) {
+            req.setAttribute("error-description", "Адрес электронной почты введен неверно!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return false;
+        }
+        return true;
     }
 
     private static boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)

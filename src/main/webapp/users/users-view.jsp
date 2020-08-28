@@ -46,16 +46,17 @@
                                 </td>
                                 <td>${user.email}</td>
                                 <td>
-                                    <c:set value="${fn:split(user.progwardsAccountLink,'?')}" var="indexId" />
-                                    <a href="${user.progwardsAccountLink}"><c:out value="${indexId[fn:length(indexId)-1]}"/></a>
+                                    <c:set value="${fn:split(user.progwardsAccountLink,'?')}" var="indexId"/>
+                                    <a href="${user.progwardsAccountLink}"><c:out
+                                            value="${indexId[fn:length(indexId)-1]}"/></a>
                                 </td>
                                 <td>${user.discordName}</td>
-                                <td>${user.is_mentor ? "<i class=\"fas fa-user-headset\"></i>" : "<i class=\"far fa-digging\"></i>"}</td>
+                                <td>${user.is_mentor ? "<i class=\"fas fa-user-headset isMentor\"></i>" : "<i class=\"far fa-digging\"></i>"}</td>
                                 <td>
                                     <div class="avatar avatarView">
                                         <div class="user-avatar">
                                             <div class="img"
-                                                 style="background-image:url(${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : 'no-avatar.png'});"></div>
+                                                 style="background-image:url(${pageContext.request.contextPath}/avatars/${!user.image.isEmpty() ? user.image : "no-avatar.png"});"></div>
                                         </div>
                                     </div>
                                 </td>
