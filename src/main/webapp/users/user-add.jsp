@@ -34,19 +34,22 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="urlProgwards" class="col-sm-2 col-form-label">Progwards</label>
                         <div class="col-sm-10">
-                            <input type="url" class="form-control" id="urlProgwards" name="progwardsAccountLink" required>
+                            <input type="url" class="form-control" id="urlProgwards" name="progwardsAccountLink"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="urlDiscord" class="col-sm-2 col-form-label">Discord</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="urlDiscord" name="discordName" required>
+                            <input type="text" class="form-control" id="urlDiscord" name="discordName"
+                                   pattern="^((.+?)#\d{4})" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -86,7 +89,7 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <label class="hiddenLabel">
-                                <input type="hidden" name="needChangePassword" value="true" />
+                                <input type="hidden" name="needChangePassword" value="true"/>
                             </label>
                             <input type="submit" class="btn btn-primary btn-block" value="Добавить">
                         </div>
