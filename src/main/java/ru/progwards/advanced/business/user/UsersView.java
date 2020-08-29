@@ -21,6 +21,7 @@ public class UsersView extends HttpServlet {
     private static final String maxPass = DataBase.INSTANCE.settings.findKey("MAX_LENGTH_PASS").value;
     private static final String minLoginName = DataBase.INSTANCE.settings.findKey("MIN_LENGTH_LOGIN_NAME").value;
     private static final String maxLoginName = DataBase.INSTANCE.settings.findKey("MAX_LENGTH_LOGIN_NAME").value;
+    private static final String FILE_DIRECTORY = DataBase.INSTANCE.settings.findKey("AVATARS_DIRECTORY").value;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,6 +35,7 @@ public class UsersView extends HttpServlet {
             req.setAttribute("maxPass", maxPass);
             req.setAttribute("minLoginName", minLoginName);
             req.setAttribute("maxLoginName", maxLoginName);
+            req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/user-edit.jsp").forward(req, resp);
         }
     }
@@ -46,6 +48,7 @@ public class UsersView extends HttpServlet {
         if (login != null) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
             req.setAttribute("user", user);
+            req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
         } else if (add) {
             req.setAttribute("minPass", minPass);
@@ -56,15 +59,9 @@ public class UsersView extends HttpServlet {
         } else {
             List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
             users.sort(Comparator.comparing(o -> o.name));
-//            String moodleUserId = getMoodleUserId(progwardsAccountLink);
-
             req.setAttribute("users", users);
+            req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/users-view.jsp").forward(req, resp);
         }
-    }
-
-    private static String getMoodleUserId(String link){
-        int lastIndex = link.lastIndexOf("id=");
-        return link.substring(lastIndex);
     }
 }

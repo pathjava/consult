@@ -6,10 +6,7 @@ import ru.progwards.java2.lib.IDbTable;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -23,7 +20,7 @@ import java.util.regex.Pattern;
         maxFileSize = 1024 * 1024, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UserSave extends HttpServlet {
 
-    private static final String FILE_DIRECTORY = "avatars";
+    private static final String FILE_DIRECTORY = DataBase.INSTANCE.settings.findKey("AVATARS_DIRECTORY").value;
     private static String imageName;
     private static String userPassword;
     private static final int minPass =
@@ -41,7 +38,7 @@ public class UserSave extends HttpServlet {
         boolean needChangePassword = "true".equals(req.getParameter("needChangePassword"));
         String name = req.getParameter("name").trim();
         boolean is_mentor = "on".equals(req.getParameter("is_mentor"));
-        String email = req.getParameter("email").trim(); //TODO min-max length and type
+        String email = req.getParameter("email").trim();
         String progwardsAccountLink = req.getParameter("progwardsAccountLink").trim(); //TODO min-max length and type
         String discordName = req.getParameter("discordName").trim(); //TODO min-max length and type
 
@@ -58,6 +55,8 @@ public class UserSave extends HttpServlet {
         if (!isStringContainsLatinCharactersOnly(req, resp, login)) return;
 
         if (!validateEmail(req, resp, email)) return;
+
+        if (!validateDiscordName(req, resp, discordName)) return;
 
         if (!isEdit) {
             if (checkPasswordLength(req, resp)) return;
@@ -81,6 +80,7 @@ public class UserSave extends HttpServlet {
 
         /* при редактировании сперва удаляем и потом добавляем */
         if (isEdit) {
+            if (checkingExistenceUpdatedLogin(req, resp, login)) return;
             checkUpdatePassword(login);
             checkUpdateImage(login); //TODO сделать удаление картинки при обновлении ранее существовавшей
             DataBase.INSTANCE.users.remove(login);
@@ -93,6 +93,16 @@ public class UserSave extends HttpServlet {
             return;
         }
         resp.sendRedirect("/users-view");
+    }
+
+    private boolean checkingExistenceUpdatedLogin(HttpServletRequest req, HttpServletResponse resp, String login)
+            throws ServletException, IOException {
+        if (!DataBase.INSTANCE.users.exists(login)) {
+            req.setAttribute("error-description", "Вы пытаетесь изменить несуществующий аккаунт или сменить логин!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return true;
+        }
+        return false;
     }
 
     private boolean checkUploadDirectoryExists(HttpServletRequest req, HttpServletResponse resp, File uploadDir)
@@ -172,11 +182,25 @@ public class UserSave extends HttpServlet {
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validateEmail(HttpServletRequest req, HttpServletResponse resp, String emailStr)
+    public static boolean validateEmail(HttpServletRequest req, HttpServletResponse resp, String email)
             throws ServletException, IOException {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        if (!matcher.find() || emailStr.isEmpty() || emailStr.length() > 320) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        if (!matcher.find() || email.isEmpty() || email.length() > 320) {
             req.setAttribute("error-description", "Адрес электронной почты введен неверно!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return false;
+        }
+        return true;
+    }
+
+    public static final Pattern VALID_DISCORD_NAME_REGEX =
+            Pattern.compile("^((.+?)#\\d{4})", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validateDiscordName(HttpServletRequest req, HttpServletResponse resp, String discordName)
+            throws ServletException, IOException {
+        Matcher matcher = VALID_DISCORD_NAME_REGEX.matcher(discordName);
+        if (!matcher.find() || discordName.isEmpty()) {
+            req.setAttribute("error-description", "Имя пользователя в сети Discord введено неверно!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return false;
         }

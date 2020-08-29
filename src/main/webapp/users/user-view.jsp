@@ -43,7 +43,7 @@
                                 <div class="avatar avatarView">
                                     <div class="user-avatar">
                                         <div class="img"
-                                             style="background-image:url(${pageContext.request.contextPath}/avatars/${!requestScope.user.image.isEmpty() ? requestScope.user.image : "no-avatar.png"});"></div>
+                                             style="background-image:url(${pageContext.request.contextPath}/${requestScope.avatarsDirectory}/${!requestScope.user.image.isEmpty() ? requestScope.user.image : "no-avatar.png"});"></div>
                                     </div>
                                 </div>
                             </td>

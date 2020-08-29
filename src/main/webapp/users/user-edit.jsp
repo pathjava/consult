@@ -34,7 +34,7 @@
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <input type="email" class="form-control" id="email" name="email" value="${param.email}"
-                                   required>
+                                   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -48,7 +48,7 @@
                         <label for="urlDiscord" class="col-sm-2 col-form-label">Discord</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="urlDiscord" name="discordName"
-                                   value="${param.discordName}" required>
+                                   value="${param.discordName}" pattern="^((.+?)#\d{4})" required>
                         </div>
                     </div>
 
@@ -90,7 +90,7 @@
                             <div class="avatar">
                                 <div class="user-avatar">
                                     <div class="img"
-                                         style="background-image:url(${pageContext.request.contextPath}/avatars/${!param.image.isEmpty() ? param.image : 'no-avatar.png'});"></div>
+                                         style="background-image:url(${pageContext.request.contextPath}/${requestScope.avatarsDirectory}/${!param.image.isEmpty() ? param.image : "no-avatar.png"});"></div>
                                 </div>
                             </div>
                         </div>
