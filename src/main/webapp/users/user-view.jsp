@@ -34,7 +34,7 @@
                             <td>${requestScope.user.email}</td>
                             <td>
                                 <c:set value="${fn:split(requestScope.user.progwardsAccountLink,'?')}" var="indexId"/>
-                                <a href="${requestScope.user.progwardsAccountLink}"><c:out
+                                <a href="${requestScope.user.progwardsAccountLink}" target="_blank"><c:out
                                         value="${indexId[fn:length(indexId)-1]}"/></a>
                             </td>
                             <td>${requestScope.user.discordName}</td>

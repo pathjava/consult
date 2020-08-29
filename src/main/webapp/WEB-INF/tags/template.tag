@@ -16,7 +16,7 @@
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="msapplication-config" content="${pageContext.request.contextPath}/images/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/consult-app.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/all.min.css">
 </head>
@@ -79,9 +79,8 @@
 <footer>
     <div></div>
 </footer>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/customize.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 </body>
 </html>
