@@ -16,7 +16,6 @@ public class ConsultsGenerator {
     private static final long durationSlotTime = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
 
     private void slotGenerator() throws IOException {
-
         List<DataBase.Schedule.Value> schedules
                 = DataBase.INSTANCE.schedule.getAll().stream()
                 .filter(schedule -> schedule.day_of_week == getCurrentDayOfWeek())
@@ -47,7 +46,6 @@ public class ConsultsGenerator {
         return midnightSeconds + start;
     }
 
-
     private long getStartSlotTime(long slotTime) {
         return slotTime + durationSlotTime;
     }
@@ -59,14 +57,14 @@ public class ConsultsGenerator {
 
     public static void main(String[] args) {
         ConsultsGenerator generator = new ConsultsGenerator();
-        System.out.println(generator.getCurrentDayOfWeek());
         try {
             generator.slotGenerator();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(durationSlotTime);
 
+        System.out.println(generator.getCurrentDayOfWeek());
+        System.out.println(durationSlotTime);
         System.out.println("-------время начала-------");
         SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm");
         LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT);
