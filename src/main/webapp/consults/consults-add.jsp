@@ -44,31 +44,11 @@
                         <div class="col mb-4">
                             <div class="card cardForm">
                                 <div class="">
-                                    <div class="dayConsult">Пятница, 21.08.2020</div>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                </div>
-                                <div class="">
-                                    <div class="dayConsult">Понедельник, 24.08.2020</div>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                </div>
-                                <div class="">
-                                    <div class="dayConsult">Вторник, 25.08.2020</div>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
-                                    <button type="button" class="btn btn-outline-secondary">20:30</button>
+                                    <jsp:useBean id="consultations" scope="request" type="java.util.List"/>
+                                    <c:forEach var="consultation" items="${consultations}" varStatus="loop">
+                                    <div class="dayConsult">${consultation.start}</div>
+                                    <button type="button" class="btn btn-outline-secondary">${consultation.start}</button>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>

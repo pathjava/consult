@@ -51,12 +51,9 @@
                                                 </c:if>
                                             </c:forEach>
                                         </div>
-                                        <form action="${pageContext.request.contextPath}/consults-add" method="post">
+                                        <form action="${pageContext.request.contextPath}/consults-add">
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="mentorLogin" value="${mentor.login}"/>
-                                            </label>
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="mentorName" value="${mentor.name}"/>
+                                                <input type="hidden" name="login" value="${mentor.login}"/>
                                             </label>
                                             <input type="submit" class="btn btn-primary btn-block" value="Записаться">
                                         </form>
