@@ -78,6 +78,7 @@ input::placeholder {
     vertical-align: middle;
     font-weight: 500;
     margin: 7px 0;
+    text-transform: capitalize;
 }
 
 .consultTime {

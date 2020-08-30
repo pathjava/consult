@@ -17,7 +17,6 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
                         <jsp:useBean id="schedules" scope="request" type="java.util.List"/>
-                        <c:set var="done" value="false"/>
                         <c:forEach var="mentor" items="${mentors}">
                             <div class="col mb-4">
                                 <div class="card">

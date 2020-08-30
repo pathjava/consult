@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:template>
    <jsp:attribute name="title">
@@ -44,10 +45,20 @@
                         <div class="col mb-4">
                             <div class="card cardForm">
                                 <div class="">
+                                    <jsp:useBean id="startTime" class="java.util.Date"/>
+                                    <jsp:useBean id="slotTime" class="java.util.Date"/>
                                     <jsp:useBean id="consultations" scope="request" type="java.util.List"/>
                                     <c:forEach var="consultation" items="${consultations}" varStatus="loop">
-                                    <div class="dayConsult">${consultation.start}</div>
-                                    <button type="button" class="btn btn-outline-secondary">${consultation.start}</button>
+                                        <jsp:setProperty name="startTime" property="time"
+                                                         value="${consultation.start}"/>
+                                        <c:if test="${loop.index eq 0}">
+                                            <div class="dayConsult"><fmt:formatDate value="${startTime}"
+                                                                                    pattern="EEEE - dd.MM.yyyy"/></div>
+                                        </c:if>
+                                        <jsp:setProperty name="slotTime" property="time" value="${consultation.start}"/>
+                                        <button type="button"
+                                                class="btn btn-outline-secondary"><fmt:formatDate value="${slotTime}"
+                                                                                                  pattern="HH:mm"/></button>
                                     </c:forEach>
                                 </div>
                             </div>
