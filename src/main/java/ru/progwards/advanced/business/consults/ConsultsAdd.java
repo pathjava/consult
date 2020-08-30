@@ -22,14 +22,6 @@ public class ConsultsAdd extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession session = req.getSession();
-//
-//        if (session.getAttribute("login") == null) {
-//            session.setAttribute("targetUrl", req.getRequestURI());
-//            req.getRequestDispatcher("/login").forward(req, resp);
-//            return;
-//        }
-
         String loginMentor = req.getParameter("login");
 
         List<DataBase.Consultations.Consultation> consultations = getFutureConsultations(loginMentor);
@@ -42,6 +34,7 @@ public class ConsultsAdd extends HttpServlet {
     }
 
     private static List<DataBase.Consultations.Consultation> getFutureConsultations(String login) {
+        //TODO не отбирать слоты, если на момент выборки они уже просрочены по времени
         long startDayAndTime = getStartConsultationsDayAndTime();
         return DataBase.INSTANCE.consultations.getAll().stream()
                 .filter(consultation -> consultation.mentor.equals(login) &&
