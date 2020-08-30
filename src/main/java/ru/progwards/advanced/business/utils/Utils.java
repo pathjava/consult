@@ -2,6 +2,7 @@ package ru.progwards.advanced.business.utils;
 
 import ru.progwards.java2.lib.DataBase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,6 +11,18 @@ public class Utils {
 
     public static List<DataBase.Users.User> getMentors(){
         return DataBase.INSTANCE.users.getAll().stream().filter(user -> user.is_mentor).collect(Collectors.toList());
+    }
+
+    public static Long getTime(String time) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        timeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date parseTime = new Date();
+        try {
+            parseTime = timeFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return parseTime.getTime();
     }
 
 

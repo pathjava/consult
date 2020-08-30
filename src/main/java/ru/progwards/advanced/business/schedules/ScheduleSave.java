@@ -1,5 +1,6 @@
 package ru.progwards.advanced.business.schedules;
 
+import ru.progwards.advanced.business.utils.Utils;
 import ru.progwards.java2.lib.DataBase;
 
 import javax.servlet.ServletException;
@@ -21,8 +22,8 @@ public class ScheduleSave extends HttpServlet {
 
         String loginMentor = req.getParameter("selectMentor");
         int dayOfWeek = Integer.parseInt(req.getParameter("selectDay"));
-        long startTime = getTime(req.getParameter("timeStart"));
-        long durationTime = getTime(req.getParameter("timeDuration"));
+        long startTime = Utils.getTime(req.getParameter("timeStart"));
+        long durationTime = Utils.getTime(req.getParameter("timeDuration"));
 
         if (loginMentor == null) {
             req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры!");
@@ -49,17 +50,5 @@ public class ScheduleSave extends HttpServlet {
             return;
         }
         resp.sendRedirect("/schedule-view");
-    }
-
-    private static Long getTime(String time) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-        timeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date parseTime = new Date();
-        try {
-            parseTime = timeFormat.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return parseTime.getTime();
     }
 }
