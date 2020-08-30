@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,8 @@ public class ConsultsGenerator {
                 = DataBase.INSTANCE.schedule.getAll().stream()
                 .filter(schedule -> schedule.day_of_week == getCurrentDayOfWeek())
                 .collect(Collectors.toList());
+
+//        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
 
         if (schedules.size() > 0) {
             for (DataBase.Schedule.Value schedule : schedules) {
@@ -37,13 +40,11 @@ public class ConsultsGenerator {
                 }
             }
         }
-
     }
 
     private long getStartConsultationsTime(long start) {
         LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT);
-        long midnightSeconds = Timestamp.valueOf(midnight).getTime();
-        return midnightSeconds + start;
+        return Timestamp.valueOf(midnight).getTime() + start;
     }
 
     private long getStartSlotTime(long slotTime) {

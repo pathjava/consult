@@ -51,7 +51,7 @@
                                                 </c:if>
                                             </c:forEach>
                                         </div>
-                                        <form action="${pageContext.request.contextPath}/consults-save" method="post">
+                                        <form action="${pageContext.request.contextPath}/consults-add" method="post">
                                             <label class="hiddenLabel">
                                                 <input type="hidden" name="mentorLogin" value="${mentor.login}"/>
                                             </label>
