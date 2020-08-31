@@ -53,23 +53,11 @@ public class ConsultsGenerator {
 
 
     public static void main(String[] args) {
-        ConsultsGenerator generator = new ConsultsGenerator();
+        ConsultsGenerator generator = new ConsultsGenerator(); //TODO for testing
         try {
             generator.slotGenerator();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        System.out.println(generator.getCurrentDayOfWeek());
-//        System.out.println(durationSlotTime);
-//        System.out.println("-------время начала-------");
-//        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm");
-//        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT);
-//        long midnightSeconds = Timestamp.valueOf(midnight).getTime();
-//        LocalDateTime triggerTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(midnightSeconds), ZoneId.systemDefault());
-//        System.out.println(midnightSeconds);
-//        System.out.println(triggerTime);
-//        System.out.println(timeFormat.format(new Date(midnightSeconds)));
     }
-
 }

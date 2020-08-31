@@ -38,7 +38,7 @@
                             <jsp:setProperty name="startTime" property="time" value="${schedule.start}"/>
                             <jsp:setProperty name="endTime" property="time"
                                              value="${schedule.start + schedule.duration}"/>
-                            <fmt:setTimeZone value="UTC"/>
+                            <fmt:setTimeZone value="Europe/Moscow"/>
                             <tr>
                                 <td>${loop.index+1}</td>
                                 <td>
