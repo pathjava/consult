@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:template>
    <jsp:attribute name="title">
@@ -32,34 +31,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="startTime" class="java.util.Date"/>
-                        <jsp:useBean id="endTime" class="java.util.Date"/>
-                        <c:forEach var="schedule" items="${requestScope.schedules}" varStatus="loop">
-                            <jsp:setProperty name="startTime" property="time" value="${schedule.start}"/>
-                            <jsp:setProperty name="endTime" property="time"
-                                             value="${schedule.start + schedule.duration}"/>
-                            <fmt:setTimeZone value="Europe/Moscow"/>
+                        <c:forEach var="map" items="${requestScope.schedules}">
                             <tr>
-                                <td>${loop.index+1}</td>
-                                <td>
-                                    <c:forEach var="mentor" items="${requestScope.mentors}">
-                                        <c:if test="${schedule.mentor == mentor.login}">
-                                            ${mentor.name}
-                                        </c:if>
-                                    </c:forEach>
-                                </td>
-                                <td>
-                                    <c:if test="${schedule.day_of_week eq 1}">Понедельник</c:if>
-                                    <c:if test="${schedule.day_of_week eq 2}">Вторник</c:if>
-                                    <c:if test="${schedule.day_of_week eq 3}">Среда</c:if>
-                                    <c:if test="${schedule.day_of_week eq 4}">Четверг</c:if>
-                                    <c:if test="${schedule.day_of_week eq 5}">Пятница</c:if>
-                                    <c:if test="${schedule.day_of_week eq 6}">Суббота</c:if>
-                                    <c:if test="${schedule.day_of_week eq 7}">Воскресенье</c:if>
-                                </td>
-                                <td>с <fmt:formatDate value="${startTime}" pattern="HH:mm"/> до <fmt:formatDate
-                                        value="${endTime}" pattern="HH:mm"/>
-                                </td>
+                                <td>${map.key}</td>
+                                <c:forEach var="schedule" items="${map.value}">
+                                <td>${schedule.mentorName}</td>
+                                <td>${schedule.dayOfWeek}</td>
+                                <td>${schedule.startAndEndTime}</td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
                                         <label class="hiddenLabel">
@@ -99,6 +77,7 @@
                                         </span>
                                     </form>
                                 </td>
+                                </c:forEach>
                             </tr>
                         </c:forEach>
                         </tbody>

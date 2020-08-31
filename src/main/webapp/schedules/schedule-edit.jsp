@@ -54,7 +54,7 @@
                         <div class="col-sm-10">
                             <jsp:useBean id="currentTime" class="java.util.Date"/>
                             <jsp:setProperty name="currentTime" property="time" value="${param.currentTimeStart}"/>
-                            <fmt:setTimeZone value="UTC"/>
+                            <fmt:setTimeZone value="Europe/Moscow"/>
                             <input type="time" class="form-control" id="timeStart" name="timeStart"
                                    value="<fmt:formatDate value="${currentTime}" pattern="HH:mm"/>" required>
                         </div>
