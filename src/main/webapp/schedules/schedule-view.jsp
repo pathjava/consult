@@ -35,48 +35,48 @@
                             <tr>
                                 <td>${map.key}</td>
                                 <c:forEach var="schedule" items="${map.value}">
-                                <td>${schedule.mentorName}</td>
-                                <td>${schedule.dayOfWeek}</td>
-                                <td>${schedule.startAndEndTime}</td>
-                                <td>
-                                    <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
-                                        </label>
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="timeStart" value="${schedule.start}"/>
-                                        </label>
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="dayOfWeek" value="${schedule.day_of_week}"/>
-                                        </label>
-                                        <span class="trash">
+                                    <td>${schedule.mentorName}</td>
+                                    <td>${schedule.dayOfWeek}</td>
+                                    <td>${schedule.startAndEndTime}</td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="timeStart" value="${schedule.start}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="dayOfWeek" value="${schedule.day_of_week}"/>
+                                            </label>
+                                            <span class="trash">
                                             <input class="btn-del" type="submit" value=""
                                                    onclick="return confirm('Вы подтверждаете удаление?')"/>
                                         </span>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="${pageContext.request.contextPath}/schedule-view?edit=true"
-                                          method="post">
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
-                                        </label>
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="currentDayOfWeek"
-                                                   value="${schedule.day_of_week}"/>
-                                        </label>
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="currentTimeStart" value="${schedule.start}"/>
-                                        </label>
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="currentTimeDuration"
-                                                   value="${schedule.duration}"/>
-                                        </label>
-                                        <span class="edit">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/schedule-view?edit=true"
+                                              method="post">
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="currentDayOfWeek"
+                                                       value="${schedule.day_of_week}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="currentTimeStart" value="${schedule.start}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="currentTimeDuration"
+                                                       value="${schedule.duration}"/>
+                                            </label>
+                                            <span class="edit">
                                             <input class="btn-edit" type="submit" value=""/>
                                         </span>
-                                    </form>
-                                </td>
+                                        </form>
+                                    </td>
                                 </c:forEach>
                             </tr>
                         </c:forEach>
