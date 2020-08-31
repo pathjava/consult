@@ -32,11 +32,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
-                        <jsp:useBean id="schedules" scope="request" type="java.util.List"/>
                         <jsp:useBean id="startTime" class="java.util.Date"/>
                         <jsp:useBean id="endTime" class="java.util.Date"/>
-                        <c:forEach var="schedule" items="${schedules}" varStatus="loop">
+                        <c:forEach var="schedule" items="${requestScope.schedules}" varStatus="loop">
                             <jsp:setProperty name="startTime" property="time" value="${schedule.start}"/>
                             <jsp:setProperty name="endTime" property="time"
                                              value="${schedule.start + schedule.duration}"/>
@@ -44,7 +42,7 @@
                             <tr>
                                 <td>${loop.index+1}</td>
                                 <td>
-                                    <c:forEach var="mentor" items="${mentors}">
+                                    <c:forEach var="mentor" items="${requestScope.mentors}">
                                         <c:if test="${schedule.mentor == mentor.login}">
                                             ${mentor.name}
                                         </c:if>

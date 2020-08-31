@@ -30,7 +30,7 @@ public class ConsultsGenerator {
                     String studentLogin = "";
                     String commentText = "";
                     DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(mentorLogin,
-                            slotTime, durationSlotTime, studentLogin, commentText));
+                            slotTime, durationSlotTime, studentLogin, commentText)); //TODO сделать проверку существования такого слота
                     slotTime = getStartSlotTime(slotTime);
                 }
             }

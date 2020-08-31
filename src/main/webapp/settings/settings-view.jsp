@@ -30,8 +30,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="settings" scope="request" type="java.util.List"/>
-                        <c:forEach var="setting" items="${settings}" varStatus="loop">
+                        <c:forEach var="setting" items="${requestScope.settings}" varStatus="loop">
                             <tr>
                                 <td>${loop.index+1}</td>
                                 <td>${setting.name}</td>

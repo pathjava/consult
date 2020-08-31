@@ -15,9 +15,7 @@
                 </div>
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">
-                        <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
-                        <jsp:useBean id="schedules" scope="request" type="java.util.List"/>
-                        <c:forEach var="mentor" items="${mentors}">
+                        <c:forEach var="mentor" items="${requestScope.mentors}">
                             <div class="col mb-4">
                                 <div class="card">
                                     <div class="mentorsImage">
@@ -29,7 +27,7 @@
                                         <div class="card-text">
                                             <jsp:useBean id="startTime" class="java.util.Date"/>
                                             <jsp:useBean id="endTime" class="java.util.Date"/>
-                                            <c:forEach var="schedule" items="${schedules}">
+                                            <c:forEach var="schedule" items="${requestScope.schedules}">
                                                 <c:if test="${schedule.mentor == mentor.login}">
                                                     <jsp:setProperty name="startTime" property="time"
                                                                      value="${schedule.start}"/>

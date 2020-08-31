@@ -36,8 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <jsp:useBean id="users" scope="request" type="java.util.List"/>
-                        <c:forEach var="user" items="${users}" varStatus="loop">
+                        <c:forEach var="user" items="${requestScope.users}" varStatus="loop">
                             <tr>
                                 <td>${loop.index+1}</td>
                                 <td>${user.name}</td>
