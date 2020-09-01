@@ -25,7 +25,7 @@ public class ConsultsGenerator {
                 long endConsultationsTime = startConsultationsTime + schedule.duration;
                 long slotTime = startConsultationsTime;
 
-                while (slotTime < endConsultationsTime) {
+                while ((slotTime + durationSlotTime) <= endConsultationsTime) {
                     String mentorLogin = schedule.mentor;
                     String studentLogin = "";
                     String commentText = "";
@@ -39,7 +39,7 @@ public class ConsultsGenerator {
 
     private long getStartConsultationsTime(long start) {
 //        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT);
-        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(1); //TODO для теста, рабочая на строку выше
+        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(5); //TODO для теста, рабочая на строку выше
         return Timestamp.valueOf(midnight).getTime() + start;
     }
 
@@ -48,7 +48,8 @@ public class ConsultsGenerator {
     }
 
     private int getCurrentDayOfWeek() {
-        return LocalDateTime.now().getDayOfWeek().getValue();
+//        return LocalDateTime.now().getDayOfWeek().getValue();
+        return LocalDateTime.now().getDayOfWeek().getValue() + 5; //TODO для теста, рабочая на строку выше
     }
 
 
