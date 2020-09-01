@@ -53,6 +53,7 @@
                         <label for="timeStart" class="col-sm-2 col-form-label">Время начала</label>
                         <div class="col-sm-10">
                             <jsp:useBean id="currentTime" class="java.util.Date"/>
+                            <fmt:setTimeZone value="UTC"/>
                             <jsp:setProperty name="currentTime" property="time" value="${param.currentTimeStart}"/>
                             <input type="time" class="form-control" id="timeStart" name="timeStart"
                                    value="<fmt:formatDate value="${currentTime}" pattern="HH:mm"/>" required>

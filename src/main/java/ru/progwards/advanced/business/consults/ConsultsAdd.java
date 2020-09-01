@@ -76,13 +76,13 @@ public class ConsultsAdd extends HttpServlet {
 
     private static String getStartDayTime(long start) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE - dd.MM.yyyy");
-        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("UTC"));
         return ldt.format(formatter);
     }
 
     private static String getStartTime(long start) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("UTC"));
         return ldt.format(formatter);
     }
 

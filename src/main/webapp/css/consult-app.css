@@ -73,7 +73,7 @@ input::placeholder {
     margin: 0 3px 7px 0;
 }
 
-.dayConsult, .mentorSchedules {
+.dayConsult {
     display: block;
     vertical-align: middle;
     font-weight: 500;

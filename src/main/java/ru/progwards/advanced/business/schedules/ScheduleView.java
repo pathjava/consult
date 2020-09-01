@@ -77,9 +77,9 @@ public class ScheduleView extends HttpServlet {
     private static String getStartAndEndTime(long start, long duration) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
-                ZoneId.of("Europe/Moscow")).format(formatter);
+                ZoneId.of("UTC")).format(formatter);
         String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
-                ZoneId.of("Europe/Moscow")).format(formatter);
+                ZoneId.of("UTC")).format(formatter);
         return "с " + startTime + " до " + endTime;
     }
 

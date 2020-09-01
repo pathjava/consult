@@ -21,8 +21,7 @@
                         <div class="col-sm-10">
                             <select id="selectMentor" name="selectMentor" class="custom-select mr-sm-2" required>
                                 <option selected>выберите...</option>
-                                <jsp:useBean id="mentors" scope="request" type="java.util.List"/>
-                                <c:forEach var="mentor" items="${mentors}">
+                                <c:forEach var="mentor" items="${requestScope.mentors}">
                                     <option value="${mentor.login}">${mentor.name}</option>
                                 </c:forEach>
                             </select>

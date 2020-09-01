@@ -56,11 +56,12 @@ public class Mentors extends HttpServlet {
     private static String getDayTime(int day_of_week, long start, long duration) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
-                ZoneId.of("Europe/Moscow")).format(formatter);
+                ZoneId.of("UTC")).format(formatter);
         String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
-                ZoneId.of("Europe/Moscow")).format(formatter);
+                ZoneId.of("UTC")).format(formatter);
         String day = DayOfWeek.of(day_of_week)
                 .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
+        day = day.substring(0, 1).toUpperCase() + day.substring(1);
         return day + " с " + startTime + " до " + endTime;
     }
 }
