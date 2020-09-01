@@ -26,20 +26,28 @@ public class ConsultsGenerator {
                 long slotTime = startConsultationsTime;
 
                 while ((slotTime + durationSlotTime) <= endConsultationsTime) {
+                    if (slotTime < getTimeNow()) {
+                        slotTime = getStartSlotTime(slotTime);
+                        continue;
+                    }
                     String mentorLogin = schedule.mentor;
                     String studentLogin = "";
                     String commentText = "";
                     DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(mentorLogin,
-                            slotTime, durationSlotTime, studentLogin, commentText)); //TODO сделать проверку существования такого слота
+                            slotTime, durationSlotTime, studentLogin, commentText));
                     slotTime = getStartSlotTime(slotTime);
                 }
             }
         }
     }
 
+    private long getTimeNow() {
+        return Timestamp.valueOf(LocalDateTime.now()).getTime();
+    }
+
     private long getStartConsultationsTime(long start) {
 //        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT);
-        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(5); //TODO для теста, рабочая на строку выше
+        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(1); //TODO для теста, рабочая на строку выше
         return Timestamp.valueOf(midnight).getTime() + start;
     }
 
@@ -49,7 +57,7 @@ public class ConsultsGenerator {
 
     private int getCurrentDayOfWeek() {
 //        return LocalDateTime.now().getDayOfWeek().getValue();
-        return LocalDateTime.now().getDayOfWeek().getValue() + 5; //TODO для теста, рабочая на строку выше
+        return LocalDateTime.now().getDayOfWeek().getValue()+1; //TODO для теста, рабочая на строку выше
     }
 
 

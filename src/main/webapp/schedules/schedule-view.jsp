@@ -31,7 +31,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="map" items="${requestScope.schedules}">
+                        <c:forEach var="map" items="${requestScope.schedulesMentors}">
                             <tr>
                                 <td>${map.key}</td>
                                 <c:forEach var="schedule" items="${map.value}">
