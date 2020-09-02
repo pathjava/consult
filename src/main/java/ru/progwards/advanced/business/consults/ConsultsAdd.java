@@ -32,14 +32,15 @@ public class ConsultsAdd extends HttpServlet {
         String loginStudent = (String) session.getAttribute("login");
         String comment = req.getParameter("comment");
         //TODO - сделать невозможным выбор уже занятого слота на странице записи
+        //TODO - сделать проверку на максимальную длину комментария, а также добавить ограничение в html
         //TODO - сделать проверку duration по ключу в БД - мало ли кто-то изменил данные на странице записи
 
-        if (loginStudent == null){//TODO - возможно эту проверку можно сделать через фильтры?
+        if (loginStudent == null) {//TODO - возможно эту проверку можно сделать через фильтры?
             req.getRequestDispatcher("/login.jsp").forward(req, resp); //TODO - сделать редирект после авторизации обратно на страницу записи
             return;
         }
 
-        if (!checkExistMentor(loginMentor)){
+        if (!checkExistMentor(loginMentor)) {
             req.setAttribute("error-description", "Наставник с логином" + loginMentor + " не существует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -71,8 +72,11 @@ public class ConsultsAdd extends HttpServlet {
     }
 
     private static boolean checkExistMentor(String loginMentor) {
-        boolean mentor = DataBase.INSTANCE.users.findKey(loginMentor).is_mentor;
-        return DataBase.INSTANCE.users.exists(loginMentor) && mentor;
+        if (!DataBase.INSTANCE.users.exists(loginMentor))
+            return false;
+        if (!DataBase.INSTANCE.users.findKey(loginMentor).is_mentor)
+            return false;
+        return true;
     }
 
     private static long getStartTimeFromRequest(Set<String> keySet, HttpServletRequest req) {
