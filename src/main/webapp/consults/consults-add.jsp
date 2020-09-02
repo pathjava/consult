@@ -34,9 +34,6 @@
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="login" value="${requestScope.login}"/>
                                         </label>
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="student" value="${sessionScope.login}"/>
-                                        </label>
                                         <input type="submit" class="btn btn-primary btn-block" value="Отправить заявку">
                                     </div>
                                     <div class="privacy">
@@ -56,8 +53,6 @@
                                                 <ul class="slotsUlBlock">
                                                     <c:forEach var="consultation" items="${map.value}" varStatus="loop">
                                                         <li>
-                                                            <input type="hidden" name="duration"
-                                                                   value="${consultation.duration}"/>
                                                             <input type="radio" name="time"
                                                                    id="${outerLoop.index+1}${loop.index+1}"
                                                                    value="${consultation.start}"/>

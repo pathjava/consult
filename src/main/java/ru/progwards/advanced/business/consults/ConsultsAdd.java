@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -23,15 +24,26 @@ public class ConsultsAdd extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+
         String loginMentor = req.getParameter("login");
         long startTime = getStartTimeFromRequest(req.getParameterMap().keySet(), req);
-        long duration = Long.parseLong(req.getParameter("duration")); //TODO - может продолжительность брать из настроек?
-        String loginStudent = req.getParameter("student");
+        long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
+        String loginStudent = (String) session.getAttribute("login");
         String comment = req.getParameter("comment");
-        //TODO - сделать проверку, чтобы логин студента и логин ментора не был пустой и существовал в БД?
-        //TODO - сделать проверку, что слот уже не занят
         //TODO - сделать невозможным выбор уже занятого слота на странице записи
         //TODO - сделать проверку duration по ключу в БД - мало ли кто-то изменил данные на странице записи
+
+        if (loginStudent == null){
+            req.getRequestDispatcher("/login.jsp").forward(req, resp); //TODO - сделать редирект после авторизации обратно на страницу записи
+            return;
+        }
+
+        if (!checkExistMentor(loginMentor)){
+            req.setAttribute("error-description", "Наставник с логином" + loginMentor + " не существует!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
 
         // при добавлении записи на консультацию сперва удаляем слот и потом добавляем
         DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
@@ -43,7 +55,6 @@ public class ConsultsAdd extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-//        resp.sendRedirect("/consults-add");
         doGet(req, resp);
     }
 
@@ -59,7 +70,12 @@ public class ConsultsAdd extends HttpServlet {
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
     }
 
-    private long getStartTimeFromRequest(Set<String> keySet, HttpServletRequest req) {
+    private static boolean checkExistMentor(String loginMentor) {
+        boolean mentor = DataBase.INSTANCE.users.findKey(loginMentor).is_mentor;
+        return DataBase.INSTANCE.users.exists(loginMentor) && mentor;
+    }
+
+    private static long getStartTimeFromRequest(Set<String> keySet, HttpServletRequest req) {
         List<String> params = new ArrayList<>(keySet);
         long time = 0;
         for (String param : params) {
