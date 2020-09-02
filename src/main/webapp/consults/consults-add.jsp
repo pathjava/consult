@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="">
                                         <label class="hiddenLabel">
-                                            <input type="hidden" name="mentor" value="${requestScope.login}"/>
+                                            <input type="hidden" name="login" value="${requestScope.login}"/>
                                         </label>
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="student" value="${sessionScope.login}"/>
@@ -56,14 +56,14 @@
                                                 <ul class="slotsUlBlock">
                                                     <c:forEach var="consultation" items="${map.value}" varStatus="loop">
                                                         <li>
-                                                            <label class="hiddenLabel">
-                                                                <input type="hidden" name="duration"
-                                                                       value="${consultation.duration}"/>
-                                                            </label>
+                                                            <input type="hidden" name="duration"
+                                                                   value="${consultation.duration}"/>
                                                             <input type="radio" name="time"
                                                                    id="${outerLoop.index+1}${loop.index+1}"
                                                                    value="${consultation.start}"/>
-                                                            <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
+                                                            <label
+                                                                    <c:if test="${consultation.student ne ''}">class="slotIsBusy"</c:if>
+                                                                    for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
                                                         </li>
                                                     </c:forEach>
                                                 </ul>

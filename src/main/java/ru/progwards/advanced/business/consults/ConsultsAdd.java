@@ -23,13 +23,15 @@ public class ConsultsAdd extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String loginMentor = req.getParameter("mentor");
+        String loginMentor = req.getParameter("login");
         long startTime = getStartTimeFromRequest(req.getParameterMap().keySet(), req);
-        long duration = Long.parseLong(req.getParameter("duration"));
+        long duration = Long.parseLong(req.getParameter("duration")); //TODO - может продолжительность брать из настроек?
         String loginStudent = req.getParameter("student");
         String comment = req.getParameter("comment");
-        //TODO - сделать проверку, чтобы логин студента не был пустой и существовал в БД
+        //TODO - сделать проверку, чтобы логин студента и логин ментора не был пустой и существовал в БД?
         //TODO - сделать проверку, что слот уже не занят
+        //TODO - сделать невозможным выбор уже занятого слота на странице записи
+        //TODO - сделать проверку duration по ключу в БД - мало ли кто-то изменил данные на странице записи
 
         // при добавлении записи на консультацию сперва удаляем слот и потом добавляем
         DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
@@ -41,7 +43,8 @@ public class ConsultsAdd extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        resp.sendRedirect("/consults-add");
+//        resp.sendRedirect("/consults-add");
+        doGet(req, resp);
     }
 
     @Override
