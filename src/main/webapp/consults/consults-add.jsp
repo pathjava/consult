@@ -53,12 +53,23 @@
                                                 <ul class="slotsUlBlock">
                                                     <c:forEach var="consultation" items="${map.value}" varStatus="loop">
                                                         <li>
-                                                            <input type="radio" name="time"
-                                                                   id="${outerLoop.index+1}${loop.index+1}"
-                                                                   value="${consultation.start}"/>
-                                                            <label
-                                                                    <c:if test="${consultation.student ne ''}">class="slotIsBusy"</c:if>
-                                                                    for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
+<%--                                                            <input type="radio" name="time"--%>
+<%--                                                                   id="${outerLoop.index+1}${loop.index+1}"--%>
+<%--                                                                   value="${consultation.start}"/>--%>
+<%--                                                            <label--%>
+<%--                                                                    <c:if test="${consultation.student ne ''}">class="slotIsBusy"</c:if>--%>
+<%--                                                                    for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>--%>
+                                                            <c:choose>
+                                                                <c:when test="${consultation.student eq ''}">
+                                                                    <input type="radio" name="time"
+                                                                           id="${outerLoop.index+1}${loop.index+1}"
+                                                                           value="${consultation.start}"/>
+                                                                    <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <div class="slotIsBusy">${consultation.startTime}</div>
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                         </li>
                                                     </c:forEach>
                                                 </ul>

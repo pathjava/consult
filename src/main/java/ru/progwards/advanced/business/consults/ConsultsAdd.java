@@ -34,7 +34,7 @@ public class ConsultsAdd extends HttpServlet {
         //TODO - сделать невозможным выбор уже занятого слота на странице записи
         //TODO - сделать проверку duration по ключу в БД - мало ли кто-то изменил данные на странице записи
 
-        if (loginStudent == null){
+        if (loginStudent == null){//TODO - возможно эту проверку можно сделать через фильтры?
             req.getRequestDispatcher("/login.jsp").forward(req, resp); //TODO - сделать редирект после авторизации обратно на страницу записи
             return;
         }

@@ -336,9 +336,17 @@ span.edit-text {
     background: #DDD;
 }
 
-label.slotIsBusy {
+div.slotIsBusy {
     color: #fff;
     background-color: #6c757d;
-    border-color: #6c757d;
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, .5);
+    border: 1px solid #6c757d;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: .25rem;
+    z-index: 90;
+    margin-bottom: .25rem;
+    text-align: center;
 }
