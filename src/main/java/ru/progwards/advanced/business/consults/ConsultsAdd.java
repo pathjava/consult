@@ -22,6 +22,11 @@ import java.util.stream.Collectors;
 public class ConsultsAdd extends HttpServlet {
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String loginMentor = req.getParameter("login");
 
