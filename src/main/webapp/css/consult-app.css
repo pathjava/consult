@@ -296,8 +296,7 @@ span.edit-text {
     margin: .25rem;
 }
 
-.slotsUlBlock label,
-.slotsUlBlock input {
+.slotsUlBlock label, .slotsUlBlock input {
     display: block;
     position: absolute;
     top: 0;
@@ -310,8 +309,7 @@ span.edit-text {
     z-index: 100;
 }
 
-.slotsUlBlock input[type="radio"]:checked + label,
-.Checked + label {
+.slotsUlBlock input[type="radio"]:checked + label {
     color: #fff;
     background-color: #6c757d;
     border-color: #6c757d;

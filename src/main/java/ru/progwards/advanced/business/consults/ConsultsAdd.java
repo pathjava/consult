@@ -23,7 +23,25 @@ public class ConsultsAdd extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String loginMentor = req.getParameter("mentor");
+        long startTime = getStartTimeFromRequest(req.getParameterMap().keySet(), req);
+        long duration = Long.parseLong(req.getParameter("duration"));
+        String loginStudent = req.getParameter("student");
+        String comment = req.getParameter("comment");
+        //TODO - сделать проверку, чтобы логин студента не был пустой и существовал в БД
+        //TODO - сделать проверку, что слот уже не занят
+
+        // при добавлении записи на консультацию сперва удаляем слот и потом добавляем
+        DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
+        DataBase.INSTANCE.consultations.remove(key);
+
+        if (!DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(loginMentor,
+                startTime, duration, loginStudent, comment))) {
+            req.setAttribute("error-description", "Не удалось добавить запись на консультацию! Вероятно, она уже существует!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+        resp.sendRedirect("/consults-add");
     }
 
     @Override
@@ -36,6 +54,17 @@ public class ConsultsAdd extends HttpServlet {
         req.setAttribute("name", getMentorName(loginMentor));
         req.setAttribute("consultations", consultations);
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
+    }
+
+    private long getStartTimeFromRequest(Set<String> keySet, HttpServletRequest req) {
+        List<String> params = new ArrayList<>(keySet);
+        long time = 0;
+        for (String param : params) {
+            if (param.startsWith("time")) {
+                time = Long.parseLong(req.getParameter(param));
+            }
+        }
+        return time;
     }
 
     private static List<DataBase.Consultations.Consultation> getFutureConsultations(String login) {

@@ -56,6 +56,10 @@
                                                 <ul class="slotsUlBlock">
                                                     <c:forEach var="consultation" items="${map.value}" varStatus="loop">
                                                         <li>
+                                                            <label class="hiddenLabel">
+                                                                <input type="hidden" name="duration"
+                                                                       value="${consultation.duration}"/>
+                                                            </label>
                                                             <input type="radio" name="time"
                                                                    id="${outerLoop.index+1}${loop.index+1}"
                                                                    value="${consultation.start}"/>
