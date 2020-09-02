@@ -48,13 +48,22 @@
                             </div>
                             <div class="col mb-4">
                                 <div class="card cardForm">
-                                    <div class="">
-                                        <c:forEach var="map" items="${requestScope.consultations}">
-                                            <div class="dayConsult">${map.key}</div>
-                                            <c:forEach var="consultation" items="${map.value}">
-                                                <button type="button"
-                                                        class="btn btn-outline-secondary">${consultation.startTime}</button>
-                                            </c:forEach>
+                                    <div class="consultationsSlots">
+                                        <c:forEach var="map" items="${requestScope.consultations}"
+                                                   varStatus="outerLoop">
+                                            <div class="slotsBlock">
+                                                <div class="dayConsult">${map.key}</div>
+                                                <ul class="slotsUlBlock">
+                                                    <c:forEach var="consultation" items="${map.value}" varStatus="loop">
+                                                        <li>
+                                                            <input type="radio" name="time"
+                                                                   id="${outerLoop.index+1}${loop.index+1}"
+                                                                   value="${consultation.start}"/>
+                                                            <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
                                         </c:forEach>
                                     </div>
                                 </div>
