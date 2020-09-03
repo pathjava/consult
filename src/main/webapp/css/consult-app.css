@@ -353,7 +353,7 @@ span.edit-text {
 }
 
 .slotIsBusyStudent:before {
-    color: #00c12c;
+    color: #adb5bd;
     padding: .65rem;
     position: absolute;
     right: -.4rem;
@@ -361,7 +361,7 @@ span.edit-text {
     font-family: 'Font Awesome 5 Pro';
     content: "\f02e";
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .leftWarning {
