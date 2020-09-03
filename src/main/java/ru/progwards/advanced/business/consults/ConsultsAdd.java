@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @WebServlet("/consults-add")
 public class ConsultsAdd extends HttpServlet {
 
-    private static final int maxLengthComment = Utils.getMaxLengthComment();
+    private static final int MAX_LENGTH_COMMENT = Utils.getMaxLengthComment();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -55,9 +55,9 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
-        if (comment.length() > maxLengthComment) {
+        if (comment.length() > MAX_LENGTH_COMMENT) {
             req.setAttribute("error-description", "Текст сообщения не может быть больше "
-                    + maxLengthComment + " символов!");
+                    + MAX_LENGTH_COMMENT + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
@@ -91,7 +91,7 @@ public class ConsultsAdd extends HttpServlet {
         req.setAttribute("login", loginMentor);
         req.setAttribute("name", getMentorName(loginMentor));
         req.setAttribute("consultations", consultations);
-        req.setAttribute("maxLengthComment", maxLengthComment);
+        req.setAttribute("maxLengthComment", MAX_LENGTH_COMMENT);
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
     }
 

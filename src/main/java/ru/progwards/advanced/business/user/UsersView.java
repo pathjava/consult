@@ -16,10 +16,10 @@ import java.util.List;
 @WebServlet("/users-view")
 public class UsersView extends HttpServlet {
 
-    private static final int minPass = Utils.getMinLengthPass();
-    private static final int maxPass = Utils.getMaxLengthPass();
-    private static final int minLoginName = Utils.getMinLengthLoginName();
-    private static final int maxLoginName = Utils.getMaxLengthLoginName();
+    private static final int MIN_PASS = Utils.getMinLengthPass();
+    private static final int MAX_PASS = Utils.getMaxLengthPass();
+    private static final int MIN_LOGIN_NAME = Utils.getMinLengthLoginName();
+    private static final int MAX_LOGIN_NAME = Utils.getMaxLengthLoginName();
     private static final String FILE_DIRECTORY = Utils.getAvatarsDirectory();
 
     @Override
@@ -30,10 +30,10 @@ public class UsersView extends HttpServlet {
         if (edit) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(editLogin);
             req.setAttribute("user", user);
-            req.setAttribute("minPass", minPass);
-            req.setAttribute("maxPass", maxPass);
-            req.setAttribute("minLoginName", minLoginName);
-            req.setAttribute("maxLoginName", maxLoginName);
+            req.setAttribute("minPass", MIN_PASS);
+            req.setAttribute("maxPass", MAX_PASS);
+            req.setAttribute("minLoginName", MIN_LOGIN_NAME);
+            req.setAttribute("maxLoginName", MAX_LOGIN_NAME);
             req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/user-edit.jsp").forward(req, resp);
         }
@@ -50,10 +50,10 @@ public class UsersView extends HttpServlet {
             req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
         } else if (add) {
-            req.setAttribute("minPass", minPass);
-            req.setAttribute("maxPass", maxPass);
-            req.setAttribute("minLoginName", minLoginName);
-            req.setAttribute("maxLoginName", maxLoginName);
+            req.setAttribute("minPass", MIN_PASS);
+            req.setAttribute("maxPass", MAX_PASS);
+            req.setAttribute("minLoginName", MIN_LOGIN_NAME);
+            req.setAttribute("maxLoginName", MAX_LOGIN_NAME);
             req.getRequestDispatcher("/users/user-add.jsp").forward(req, resp);
         } else {
             List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());

@@ -24,10 +24,10 @@ public class UserSave extends HttpServlet {
     private static String imageName;
     private static String userPassword;
     private static final String FILE_DIRECTORY = Utils.getAvatarsDirectory();
-    private static final int minPass = Utils.getMinLengthPass();
-    private static final int maxPass = Utils.getMaxLengthPass();
-    private static final int minLoginName = Utils.getMinLengthLoginName();
-    private static final int maxLoginName = Utils.getMaxLengthLoginName();
+    private static final int MIN_PASS = Utils.getMinLengthPass();
+    private static final int MAX_PASS = Utils.getMaxLengthPass();
+    private static final int MIN_LOGIN_NAME = Utils.getMinLengthLoginName();
+    private static final int MAX_LOGIN_NAME = Utils.getMaxLengthLoginName();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
@@ -114,9 +114,9 @@ public class UserSave extends HttpServlet {
 
     private boolean checkPasswordLengthAndEmpty(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        if (!userPassword.isEmpty() && userPassword.length() < minPass || userPassword.length() > maxPass) {
+        if (!userPassword.isEmpty() && userPassword.length() < MIN_PASS || userPassword.length() > MAX_PASS) {
             req.setAttribute("error-description", "Длина пароля должна быть от "
-                    + minPass + " до " + maxPass + " символов!");
+                    + MIN_PASS + " до " + MAX_PASS + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return true;
         }
@@ -125,9 +125,9 @@ public class UserSave extends HttpServlet {
 
     private boolean checkPasswordLength(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        if (userPassword.length() < minPass || userPassword.length() > maxPass) {
+        if (userPassword.length() < MIN_PASS || userPassword.length() > MAX_PASS) {
             req.setAttribute("error-description", "Длина пароля должна быть от "
-                    + minPass + " до " + maxPass + " символов!");
+                    + MIN_PASS + " до " + MAX_PASS + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return true;
         }
@@ -136,9 +136,9 @@ public class UserSave extends HttpServlet {
 
     private boolean checkNameLength(HttpServletRequest req, HttpServletResponse resp, String name)
             throws ServletException, IOException {
-        if (name.length() > maxLoginName || name.length() < minLoginName) {
+        if (name.length() > MAX_LOGIN_NAME || name.length() < MIN_LOGIN_NAME) {
             req.setAttribute("error-description", "Имя должно быть от "
-                    + minLoginName + " до " + maxLoginName + " символов!");
+                    + MIN_LOGIN_NAME + " до " + MAX_LOGIN_NAME + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return true;
         }
@@ -157,9 +157,9 @@ public class UserSave extends HttpServlet {
 
     private boolean checkLoginLength(HttpServletRequest req, HttpServletResponse resp, String login)
             throws ServletException, IOException {
-        if (login.length() > maxLoginName || login.length() < minLoginName) {
+        if (login.length() > MAX_LOGIN_NAME || login.length() < MIN_LOGIN_NAME) {
             req.setAttribute("error-description", "Логин должен быть от "
-                    + minLoginName + " до " + maxLoginName + " символов!");
+                    + MIN_LOGIN_NAME + " до " + MAX_LOGIN_NAME + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return true;
         }
