@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -89,7 +85,7 @@ public class ConsultsAdd extends HttpServlet {
         Map<String, List<ConsultationsForAdd>> consultations = getConsultations(loginMentor);
 
         req.setAttribute("login", loginMentor);
-        req.setAttribute("name", getMentorName(loginMentor));
+        req.setAttribute("name", Utils.getMentorName(loginMentor));
         req.setAttribute("consultations", consultations);
         req.setAttribute("maxLengthComment", MAX_LENGTH_COMMENT);
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
@@ -105,14 +101,14 @@ public class ConsultsAdd extends HttpServlet {
                         && consultation.start > Utils.getTimeNow()).collect(Collectors.toList());
     }
 
-    private static String getMentorName(String loginMentor) {
-        List<DataBase.Users.User> mentors = Utils.getMentors();
-        for (DataBase.Users.User mentor : mentors) {
-            if (mentor.login.equals(loginMentor))
-                return mentor.name;
-        }
-        return null;
-    }
+//    private static String getMentorName(String loginMentor) {
+//        List<DataBase.Users.User> mentors = Utils.getMentors();
+//        for (DataBase.Users.User mentor : mentors) {
+//            if (mentor.login.equals(loginMentor))
+//                return mentor.name;
+//        }
+//        return null;
+//    }
 
     private static Map<String, List<ConsultationsForAdd>> getConsultations(String loginMentor) {
         Map<String, List<ConsultationsForAdd>> map = new LinkedHashMap<>();
@@ -122,29 +118,29 @@ public class ConsultsAdd extends HttpServlet {
 
         String temp = "";
         for (DataBase.Consultations.Consultation elem : consultations) {
-            String startDayTime = getStartDayTime(elem.start);
+            String startDayTime = Utils.getStartDayTime(elem.start);
             if (!temp.equals(startDayTime)) {
                 list = new ArrayList<>();
                 temp = startDayTime;
             }
-            String startTime = getStartTime(elem.start);
+            String startTime = Utils.getStartTime(elem.start);
             list.add(new ConsultationsForAdd(elem.mentor, elem.start, startTime, elem.duration, elem.student, elem.comment));
             map.put(startDayTime, list);
         }
         return map;
     }
 
-    private static String getStartDayTime(long start) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE - dd.MM.yyyy");
-        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
-        return ldt.format(formatter);
-    }
-
-    private static String getStartTime(long start) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
-        return ldt.format(formatter);
-    }
+//    private static String getStartDayTime(long start) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE - dd.MM.yyyy");
+//        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+//        return ldt.format(formatter);
+//    }
+//
+//    private static String getStartTime(long start) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+//        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+//        return ldt.format(formatter);
+//    }
 
     public static class ConsultationsForAdd {
         public final String mentor;

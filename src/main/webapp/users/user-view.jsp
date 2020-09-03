@@ -90,27 +90,19 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Дата и время</th>
-                            <th scope="col">Отменить</th>
+                            <th scope="col"><i class="far fa-hashtag"></i></th>
+                            <th scope="col"><i class="fas fa-user-headset"></i></th>
+                            <th scope="col"><i class="far fa-clock"></i></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                        </tr>
+                        <c:forEach var="consultation" items="${requestScope.future}" varStatus="loop">
+                            <tr>
+                                <th scope="row">${loop.index+1}</th>
+                                <td>${consultation.mentor}</td>
+                                <td>${consultation.start}</td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

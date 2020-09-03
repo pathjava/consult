@@ -5,7 +5,12 @@ import ru.progwards.java2.lib.DataBase;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,6 +31,42 @@ public class Utils {
             e.printStackTrace();
         }
         return parseTime.getTime();
+    }
+
+    public static String getStartDayTime(long start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE - dd.MM.yyyy");
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+        return ldt.format(formatter);
+    }
+
+    public static String getStartTime(long start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+        return ldt.format(formatter);
+    }
+
+    public static String getMentorName(String loginMentor) {
+        List<DataBase.Users.User> mentors = Utils.getMentors();
+        for (DataBase.Users.User mentor : mentors) {
+            if (mentor.login.equals(loginMentor))
+                return mentor.name;
+        }
+        return null;
+    }
+
+    public static String getStartAndEndTime(long start, long duration) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
+                ZoneId.of("UTC")).format(formatter);
+        String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
+                ZoneId.of("UTC")).format(formatter);
+        return " с " + startTime + " до " + endTime;
+    }
+
+    public static String getDayOfWeek(int day_of_week) {
+        String day = DayOfWeek.of(day_of_week)
+                .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
+        return day.substring(0, 1).toUpperCase() + day.substring(1);
     }
 
     public static int getMinLengthPass() {

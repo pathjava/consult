@@ -46,7 +46,10 @@ public class UsersView extends HttpServlet {
 
         if (login != null) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
+            List<DataBase.Consultations.Consultation> future = getUserFutureConsultations(login);
+
             req.setAttribute("user", user);
+            req.setAttribute("future", future);
             req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
         } else if (add) {
@@ -58,9 +61,74 @@ public class UsersView extends HttpServlet {
         } else {
             List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
             users.sort(Comparator.comparing(o -> o.name));
+
             req.setAttribute("users", users);
             req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/users-view.jsp").forward(req, resp);
+        }
+    }
+
+    private static List<DataBase.Consultations.Consultation> getUserFutureConsultations(String login) {
+        List<DataBase.Consultations.Consultation> list = new ArrayList<>();
+        for (DataBase.Consultations.Consultation consultation : DataBase.INSTANCE.consultations.getAll()) {
+            if (consultation.student != null && consultation.student.equals(login) && consultation.start > Utils.getTimeNow())
+                list.add(consultation);
+        }
+        return list;
+    }
+
+    public static class UserConsultations {
+        public final String mentor;
+        public final String mentorName;
+        public final long start;
+        public final String startTime;
+        public final String startDate;
+        public final long duration;
+        public final String student;
+        public final String comment;
+
+        public UserConsultations(String mentor, String mentorName, long start, String startTime,
+                                 String startDate, long duration, String student, String comment) {
+            this.mentor = mentor;
+            this.mentorName = mentorName;
+            this.start = start;
+            this.startTime = startTime;
+            this.startDate = startDate;
+            this.duration = duration;
+            this.student = student;
+            this.comment = comment;
+        }
+
+        public String getMentor() {
+            return mentor;
+        }
+
+        public String getMentorName() {
+            return mentorName;
+        }
+
+        public long getStart() {
+            return start;
+        }
+
+        public String getStartTime() {
+            return startTime;
+        }
+
+        public String getStartDate() {
+            return startDate;
+        }
+
+        public long getDuration() {
+            return duration;
+        }
+
+        public String getStudent() {
+            return student;
+        }
+
+        public String getComment() {
+            return comment;
         }
     }
 }

@@ -63,8 +63,8 @@ public class ScheduleView extends HttpServlet {
                 if (mentor.login.equals(schedule.mentor))
                     mentorName = mentor.name;
             }
-            String dayOfWeek = getDayOfWeek(schedule.day_of_week);
-            String startAndEndTime = getStartAndEndTime(schedule.start, schedule.duration);
+            String dayOfWeek = Utils.getDayOfWeek(schedule.day_of_week);
+            String startAndEndTime = Utils.getStartAndEndTime(schedule.start, schedule.duration);
 
             list.add(new SchedulesMentors(schedule.mentor, mentorName, schedule.day_of_week,
                     dayOfWeek, schedule.start, schedule.duration, startAndEndTime));
@@ -74,20 +74,20 @@ public class ScheduleView extends HttpServlet {
         return map;
     }
 
-    private static String getStartAndEndTime(long start, long duration) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
-                ZoneId.of("UTC")).format(formatter);
-        String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
-                ZoneId.of("UTC")).format(formatter);
-        return "с " + startTime + " до " + endTime;
-    }
-
-    private static String getDayOfWeek(int day_of_week) {
-        String day = DayOfWeek.of(day_of_week)
-                .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
-        return day.substring(0, 1).toUpperCase() + day.substring(1);
-    }
+//    private static String getStartAndEndTime(long start, long duration) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+//        String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
+//                ZoneId.of("UTC")).format(formatter);
+//        String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
+//                ZoneId.of("UTC")).format(formatter);
+//        return "с " + startTime + " до " + endTime;
+//    }
+//
+//    private static String getDayOfWeek(int day_of_week) {
+//        String day = DayOfWeek.of(day_of_week)
+//                .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
+//        return day.substring(0, 1).toUpperCase() + day.substring(1);
+//    }
 
     public static class SchedulesMentors {
         public final String mentor;
