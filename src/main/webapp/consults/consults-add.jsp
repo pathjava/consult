@@ -28,7 +28,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputComment">Примечание</label>
-                                        <input type="text" name="comment" class="form-control" id="inputComment">
+                                        <input type="text" name="comment" class="form-control" id="inputComment" maxlength="${requestScope.maxLengthComment}">
                                     </div>
                                     <div class="">
                                         <label class="hiddenLabel">

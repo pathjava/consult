@@ -1,5 +1,6 @@
 package ru.progwards.advanced.business.user;
 
+import ru.progwards.advanced.business.utils.Utils;
 import ru.progwards.java2.lib.DataBase;
 import ru.progwards.java2.lib.IDbTable;
 
@@ -20,17 +21,13 @@ import java.util.regex.Pattern;
         maxFileSize = 1024 * 1024, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UserSave extends HttpServlet {
 
-    private static final String FILE_DIRECTORY = DataBase.INSTANCE.settings.findKey("AVATARS_DIRECTORY").value;
     private static String imageName;
     private static String userPassword;
-    private static final int minPass =
-            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MIN_LENGTH_PASS").value);
-    private static final int maxPass =
-            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_PASS").value);
-    private static final int minLoginName =
-            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MIN_LENGTH_LOGIN_NAME").value);
-    private static final int maxLoginName =
-            Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_LOGIN_NAME").value);
+    private static final String FILE_DIRECTORY = Utils.getAvatarsDirectory();
+    private static final int minPass = Integer.parseInt(Utils.getMinLengthPass());
+    private static final int maxPass = Integer.parseInt(Utils.getMaxLengthPass());
+    private static final int minLoginName = Integer.parseInt(Utils.getMinLengthLoginName());
+    private static final int maxLoginName = Integer.parseInt(Utils.getMaxLengthLoginName());
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();

@@ -22,12 +22,15 @@ import java.util.stream.Collectors;
 @WebServlet("/consults-add")
 public class ConsultsAdd extends HttpServlet {
 
+    private static final int maxLengthComment = Integer.parseInt(Utils.getMaxLengthComment());
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
         String loginMentor = req.getParameter("login");
-        long startTime = getStartTimeFromRequest(req.getParameterMap().keySet(), req);
+//        long startTime = getStartTimeFromRequest(req.getParameterMap().keySet(), req);
+        long startTime = Long.parseLong(req.getParameter("time"));
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String loginStudent = (String) session.getAttribute("login");
         String comment = req.getParameter("comment");
@@ -41,7 +44,14 @@ public class ConsultsAdd extends HttpServlet {
         }
 
         if (!checkExistMentor(loginMentor)) {
-            req.setAttribute("error-description", "Наставник с логином" + loginMentor + " не существует!");
+            req.setAttribute("error-description", "Наставник с логином " + loginMentor + " не существует!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+
+        if (comment.length() > maxLengthComment) {
+            req.setAttribute("error-description", "Текст сообщения не может быть больше "
+                    + maxLengthComment + " символов!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
@@ -68,27 +78,24 @@ public class ConsultsAdd extends HttpServlet {
         req.setAttribute("login", loginMentor);
         req.setAttribute("name", getMentorName(loginMentor));
         req.setAttribute("consultations", consultations);
+        req.setAttribute("maxLengthComment", maxLengthComment);
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
     }
 
     private static boolean checkExistMentor(String loginMentor) {
-        if (!DataBase.INSTANCE.users.exists(loginMentor))
-            return false;
-        if (!DataBase.INSTANCE.users.findKey(loginMentor).is_mentor)
-            return false;
-        return true;
+        return DataBase.INSTANCE.users.exists(loginMentor) || DataBase.INSTANCE.users.findKey(loginMentor).is_mentor;
     }
 
-    private static long getStartTimeFromRequest(Set<String> keySet, HttpServletRequest req) {
-        List<String> params = new ArrayList<>(keySet);
-        long time = 0;
-        for (String param : params) {
-            if (param.startsWith("time")) {
-                time = Long.parseLong(req.getParameter(param));
-            }
-        }
-        return time;
-    }
+//    private static long getStartTimeFromRequest(Set<String> keySet, HttpServletRequest req) {
+//        List<String> params = new ArrayList<>(keySet);
+//        long time = 0;
+//        for (String param : params) {
+//            if (param.startsWith("time")) {
+//                time = Long.parseLong(req.getParameter(param));
+//            }
+//        }
+//        return time;
+//    }
 
     private static List<DataBase.Consultations.Consultation> getFutureConsultations(String login) {
         //TODO не отбирать слоты, если на момент выборки они уже просрочены по времени

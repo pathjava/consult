@@ -1,5 +1,6 @@
 package ru.progwards.advanced.business.user;
 
+import ru.progwards.advanced.business.utils.Utils;
 import ru.progwards.java2.lib.DataBase;
 
 import javax.servlet.ServletException;
@@ -15,11 +16,11 @@ import java.util.List;
 @WebServlet("/users-view")
 public class UsersView extends HttpServlet {
 
-    private static final String minPass = DataBase.INSTANCE.settings.findKey("MIN_LENGTH_PASS").value;
-    private static final String maxPass = DataBase.INSTANCE.settings.findKey("MAX_LENGTH_PASS").value;
-    private static final String minLoginName = DataBase.INSTANCE.settings.findKey("MIN_LENGTH_LOGIN_NAME").value;
-    private static final String maxLoginName = DataBase.INSTANCE.settings.findKey("MAX_LENGTH_LOGIN_NAME").value;
-    private static final String FILE_DIRECTORY = DataBase.INSTANCE.settings.findKey("AVATARS_DIRECTORY").value;
+    private static final String minPass = Utils.getMinLengthPass();
+    private static final String maxPass = Utils.getMaxLengthPass();
+    private static final String minLoginName = Utils.getMinLengthLoginName();
+    private static final String maxLoginName = Utils.getMaxLengthLoginName();
+    private static final String FILE_DIRECTORY = Utils.getAvatarsDirectory();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
