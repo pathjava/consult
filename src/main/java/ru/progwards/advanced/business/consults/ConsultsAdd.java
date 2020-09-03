@@ -31,7 +31,6 @@ public class ConsultsAdd extends HttpServlet {
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String loginStudent = (String) session.getAttribute("login");
         String comment = req.getParameter("comment");
-        //TODO - сделать проверку duration по ключу в БД - мало ли кто-то изменил данные на странице записи
 
         if (loginStudent == null) {//TODO - возможно эту проверку можно сделать через фильтры?
             req.getRequestDispatcher("/login.jsp").forward(req, resp); //TODO - сделать редирект после авторизации обратно на страницу записи
@@ -65,6 +64,12 @@ public class ConsultsAdd extends HttpServlet {
 
         // при добавлении записи на консультацию сперва проверяем и удаляем слот, и потом добавляем
         DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
+        if (!DataBase.INSTANCE.consultations.exists(key)) {
+            req.setAttribute("error-description", "Данный слот записи на консультацию отсутствует!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+
         if (DataBase.INSTANCE.consultations.findKey(key).student.equals("")) {
             DataBase.INSTANCE.consultations.remove(key);
             DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(loginMentor,

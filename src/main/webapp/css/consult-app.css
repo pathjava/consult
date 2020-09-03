@@ -307,6 +307,7 @@ span.edit-text {
 .slotsUlBlock input[type="radio"] {
     opacity: 0.01;
     z-index: 100;
+    display: none;
 }
 
 .slotsUlBlock input[type="radio"]:checked + label {
@@ -350,15 +351,17 @@ span.edit-text {
     margin-bottom: .25rem;
     text-align: center;
 }
+
 .slotIsBusyStudent:before {
-    color: #00c52d;
-    padding: 10px;
+    color: #00c12c;
+    padding: .65rem;
     position: absolute;
-    right: -7px;
-    top: -17px;
+    right: -.4rem;
+    top: -1.15rem;
     font-family: 'Font Awesome 5 Pro';
     content: "\f02e";
-    font-size: 15px;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 .leftWarning {
@@ -366,4 +369,9 @@ span.edit-text {
     width: 10%;
     text-align: center;
     font-size: 3rem;
+}
+
+.rightWarning {
+    display: inline-block;
+    font-weight: 500;
 }
