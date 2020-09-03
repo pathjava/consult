@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -22,7 +20,7 @@ import java.util.stream.Collectors;
 @WebServlet("/consults-add")
 public class ConsultsAdd extends HttpServlet {
 
-    private static final int maxLengthComment = Integer.parseInt(Utils.getMaxLengthComment());
+    private static final int maxLengthComment = Utils.getMaxLengthComment();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,6 +41,18 @@ public class ConsultsAdd extends HttpServlet {
 
         if (!checkExistMentor(loginMentor)) {
             req.setAttribute("error-description", "Наставник с логином " + loginMentor + " не существует!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+
+        if (DataBase.INSTANCE.users.findKey(loginStudent).is_mentor){
+            req.setAttribute("error-description", "Наставник не может записываться на консультацию!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+
+        if (loginMentor.equals(loginStudent)){
+            req.setAttribute("error-description", "Нельзя записываться на консультацию к самому себе!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
@@ -81,7 +91,7 @@ public class ConsultsAdd extends HttpServlet {
     }
 
     private static boolean checkExistMentor(String loginMentor) {
-        return DataBase.INSTANCE.users.exists(loginMentor) || DataBase.INSTANCE.users.findKey(loginMentor).is_mentor;
+        return DataBase.INSTANCE.users.exists(loginMentor) && DataBase.INSTANCE.users.findKey(loginMentor).is_mentor;
     }
 
     private static List<DataBase.Consultations.Consultation> getFutureConsultations(String login) {

@@ -24,10 +24,10 @@ public class UserSave extends HttpServlet {
     private static String imageName;
     private static String userPassword;
     private static final String FILE_DIRECTORY = Utils.getAvatarsDirectory();
-    private static final int minPass = Integer.parseInt(Utils.getMinLengthPass());
-    private static final int maxPass = Integer.parseInt(Utils.getMaxLengthPass());
-    private static final int minLoginName = Integer.parseInt(Utils.getMinLengthLoginName());
-    private static final int maxLoginName = Integer.parseInt(Utils.getMaxLengthLoginName());
+    private static final int minPass = Utils.getMinLengthPass();
+    private static final int maxPass = Utils.getMaxLengthPass();
+    private static final int minLoginName = Utils.getMinLengthLoginName();
+    private static final int maxLoginName = Utils.getMaxLengthLoginName();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();

@@ -12,8 +12,11 @@
                     <h1>Ошибка!</h1>
                 </div>
                 <div class="alert alert-danger" role="alert">
-                    <p>Что-то пошло не так...</p>
-                    <p>${pageContext.request.getAttribute("error-description")}</p>
+                    <div class="leftWarning"><i class="fal fa-exclamation-triangle"></i></div>
+                    <div class="rightWarning">
+                        <p>Что-то пошло не так...</p>
+                        <p>${pageContext.request.getAttribute("error-description")}</p>
+                    </div>
                 </div>
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span

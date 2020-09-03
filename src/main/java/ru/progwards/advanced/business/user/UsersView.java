@@ -16,10 +16,10 @@ import java.util.List;
 @WebServlet("/users-view")
 public class UsersView extends HttpServlet {
 
-    private static final String minPass = Utils.getMinLengthPass();
-    private static final String maxPass = Utils.getMaxLengthPass();
-    private static final String minLoginName = Utils.getMinLengthLoginName();
-    private static final String maxLoginName = Utils.getMaxLengthLoginName();
+    private static final int minPass = Utils.getMinLengthPass();
+    private static final int maxPass = Utils.getMaxLengthPass();
+    private static final int minLoginName = Utils.getMinLengthLoginName();
+    private static final int maxLoginName = Utils.getMaxLengthLoginName();
     private static final String FILE_DIRECTORY = Utils.getAvatarsDirectory();
 
     @Override

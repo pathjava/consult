@@ -28,28 +28,28 @@ public class Utils {
         return parseTime.getTime();
     }
 
-    public static String getMinLengthPass() {
-        return DataBase.INSTANCE.settings.findKey("MIN_LENGTH_PASS").value;
+    public static int getMinLengthPass() {
+        return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MIN_LENGTH_PASS").value);
     }
 
-    public static String getMaxLengthPass() {
-        return DataBase.INSTANCE.settings.findKey("MAX_LENGTH_PASS").value;
+    public static int getMaxLengthPass() {
+        return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_PASS").value);
     }
 
-    public static String getMinLengthLoginName() {
-        return DataBase.INSTANCE.settings.findKey("MIN_LENGTH_LOGIN_NAME").value;
+    public static int getMinLengthLoginName() {
+        return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MIN_LENGTH_LOGIN_NAME").value);
     }
 
-    public static String getMaxLengthLoginName() {
-        return DataBase.INSTANCE.settings.findKey("MAX_LENGTH_LOGIN_NAME").value;
+    public static int getMaxLengthLoginName() {
+        return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_LOGIN_NAME").value);
     }
 
     public static String getAvatarsDirectory() {
         return DataBase.INSTANCE.settings.findKey("AVATARS_DIRECTORY").value;
     }
 
-    public static String getMaxLengthComment() {
-        return DataBase.INSTANCE.settings.findKey("MAX_LENGTH_COMMENT").value;
+    public static int getMaxLengthComment() {
+        return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_COMMENT").value);
     }
 
     public static long getTimeNow() {
