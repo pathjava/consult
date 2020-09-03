@@ -62,7 +62,7 @@
                                                                     <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <div class="slotIsBusy">${consultation.startTime}</div>
+                                                                    <div class="slotIsBusy <c:if test="${consultation.student eq sessionScope.login}">slotIsBusyStudent</c:if>">${consultation.startTime}</div>
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </li>

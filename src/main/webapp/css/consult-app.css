@@ -336,7 +336,7 @@ span.edit-text {
     background: #DDD;
 }
 
-div.slotIsBusy {
+.slotIsBusy {
     color: #fff;
     background-color: #6c757d;
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, .5);
@@ -350,8 +350,18 @@ div.slotIsBusy {
     margin-bottom: .25rem;
     text-align: center;
 }
+.slotIsBusyStudent:before {
+    color: #00c52d;
+    padding: 10px;
+    position: absolute;
+    right: -7px;
+    top: -17px;
+    font-family: 'Font Awesome 5 Pro';
+    content: "\f02e";
+    font-size: 15px;
+}
 
-.leftWarning{
+.leftWarning {
     float: left;
     width: 10%;
     text-align: center;

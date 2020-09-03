@@ -31,7 +31,6 @@ public class ConsultsAdd extends HttpServlet {
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String loginStudent = (String) session.getAttribute("login");
         String comment = req.getParameter("comment");
-        //TODO - сделать невозможным выбор уже занятого слота на странице записи
         //TODO - сделать проверку duration по ключу в БД - мало ли кто-то изменил данные на странице записи
 
         if (loginStudent == null) {//TODO - возможно эту проверку можно сделать через фильтры?
@@ -45,13 +44,13 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
-        if (DataBase.INSTANCE.users.findKey(loginStudent).is_mentor){
+        if (DataBase.INSTANCE.users.findKey(loginStudent).is_mentor) {
             req.setAttribute("error-description", "Наставник не может записываться на консультацию!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
 
-        if (loginMentor.equals(loginStudent)){
+        if (loginMentor.equals(loginStudent)) {
             req.setAttribute("error-description", "Нельзя записываться на консультацию к самому себе!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -64,13 +63,14 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
-        // при добавлении записи на консультацию сперва удаляем слот и потом добавляем
+        // при добавлении записи на консультацию сперва проверяем и удаляем слот, и потом добавляем
         DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
-        DataBase.INSTANCE.consultations.remove(key);
-
-        if (!DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(loginMentor,
-                startTime, duration, loginStudent, comment))) {
-            req.setAttribute("error-description", "Не удалось добавить запись на консультацию! Вероятно, она уже существует!");
+        if (DataBase.INSTANCE.consultations.findKey(key).student.equals("")) {
+            DataBase.INSTANCE.consultations.remove(key);
+            DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(loginMentor,
+                    startTime, duration, loginStudent, comment));
+        } else {
+            req.setAttribute("error-description", "Не удалось добавить запись на консультацию! Вероятно, она уже занята!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
