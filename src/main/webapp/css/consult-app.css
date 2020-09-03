@@ -311,8 +311,8 @@ span.edit-text {
 
 .slotsUlBlock input[type="radio"]:checked + label {
     color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: #121738;
+    border-color: #121738;
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, .5);
 }
 

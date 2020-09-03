@@ -26,7 +26,7 @@ public class ConsultsGenerator {
                 long slotTime = startConsultationsTime;
 
                 while ((slotTime + durationSlotTime) <= endConsultationsTime) {
-                    if (slotTime < getTimeNow()) {
+                    if (slotTime < Utils.getTimeNow()) {
                         slotTime = getStartSlotTime(slotTime);
                         continue;
                     }
@@ -39,10 +39,6 @@ public class ConsultsGenerator {
                 }
             }
         }
-    }
-
-    private long getTimeNow() {
-        return Timestamp.valueOf(LocalDateTime.now()).getTime();
     }
 
     private long getStartConsultationsTime(long start) {

@@ -29,13 +29,11 @@ public class ConsultsAdd extends HttpServlet {
         HttpSession session = req.getSession();
 
         String loginMentor = req.getParameter("login");
-//        long startTime = getStartTimeFromRequest(req.getParameterMap().keySet(), req);
         long startTime = Long.parseLong(req.getParameter("time"));
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String loginStudent = (String) session.getAttribute("login");
         String comment = req.getParameter("comment");
         //TODO - сделать невозможным выбор уже занятого слота на странице записи
-        //TODO - сделать проверку на максимальную длину комментария, а также добавить ограничение в html
         //TODO - сделать проверку duration по ключу в БД - мало ли кто-то изменил данные на странице записи
 
         if (loginStudent == null) {//TODO - возможно эту проверку можно сделать через фильтры?
@@ -86,27 +84,10 @@ public class ConsultsAdd extends HttpServlet {
         return DataBase.INSTANCE.users.exists(loginMentor) || DataBase.INSTANCE.users.findKey(loginMentor).is_mentor;
     }
 
-//    private static long getStartTimeFromRequest(Set<String> keySet, HttpServletRequest req) {
-//        List<String> params = new ArrayList<>(keySet);
-//        long time = 0;
-//        for (String param : params) {
-//            if (param.startsWith("time")) {
-//                time = Long.parseLong(req.getParameter(param));
-//            }
-//        }
-//        return time;
-//    }
-
     private static List<DataBase.Consultations.Consultation> getFutureConsultations(String login) {
-        //TODO не отбирать слоты, если на момент выборки они уже просрочены по времени
-        long startDayAndTime = getStartConsultationsDayAndTime();
         return DataBase.INSTANCE.consultations.getAll().stream()
-                .filter(consultation -> consultation.mentor.equals(login) &&
-                        consultation.start >= startDayAndTime).collect(Collectors.toList());
-    }
-
-    private static long getStartConsultationsDayAndTime() {
-        return Timestamp.valueOf(LocalDateTime.now().with(LocalTime.MIDNIGHT)).getTime();
+                .filter(consultation -> consultation.mentor.equals(login)
+                        && consultation.start > Utils.getTimeNow()).collect(Collectors.toList());
     }
 
     private static String getMentorName(String loginMentor) {

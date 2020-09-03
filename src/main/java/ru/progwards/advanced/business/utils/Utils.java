@@ -2,8 +2,10 @@ package ru.progwards.advanced.business.utils;
 
 import ru.progwards.java2.lib.DataBase;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -50,4 +52,7 @@ public class Utils {
         return DataBase.INSTANCE.settings.findKey("MAX_LENGTH_COMMENT").value;
     }
 
+    public static long getTimeNow() {
+        return Timestamp.valueOf(LocalDateTime.now()).getTime();
+    }
 }
