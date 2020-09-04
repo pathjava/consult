@@ -130,14 +130,15 @@ public class ConsultsAdd extends HttpServlet {
         consultations.sort(Comparator.comparing(DataBase.Consultations.Consultation::getStart));
 
         String temp = "";
-        for (DataBase.Consultations.Consultation elem : consultations) {
-            String startDayWeekAndDate = Utils.getStartDayWeekAndDate(elem.start);
+        for (DataBase.Consultations.Consultation item : consultations) {
+            String startDayWeekAndDate = Utils.getStartDayWeek(item.start)
+                    + " - " + Utils.getStartDate(item.start);
             if (!temp.equals(startDayWeekAndDate)) {
                 list = new ArrayList<>();
                 temp = startDayWeekAndDate;
             }
-            String startTime = Utils.getStartTime(elem.start);
-            list.add(new ConsultationsForAdd(elem.mentor, elem.start, startTime, elem.duration, elem.student, elem.comment));
+            String startTime = Utils.getStartTime(item.start);
+            list.add(new ConsultationsForAdd(item.mentor, item.start, startTime, item.duration, item.student, item.comment));
             map.put(startDayWeekAndDate, list);
         }
         return map;

@@ -76,7 +76,8 @@ public class UsersView extends HttpServlet {
             if (item.student != null && item.student.equals(login) && item.start > Utils.getTimeNow()) {
                 String mentorName = Utils.getMentorName(item.mentor);
                 String startTime = Utils.getStartTime(item.start);
-                String startDate = Utils.getStartDayWeekAndDate(item.start);
+                String startDate = Utils.getStartDayWeek(item.start)
+                        + " - " + Utils.getStartDate(item.start);
                 list.add(new UserFutureConsultations(item.mentor, mentorName, item.start,
                         startTime, startDate));
             }
@@ -94,7 +95,8 @@ public class UsersView extends HttpServlet {
             if (item.student != null && item.student.equals(login) && item.start < Utils.getTimeNow()) {
                 String mentorName = Utils.getMentorName(item.mentor);
                 String startTime = Utils.getStartTime(item.start);
-                String startDate = Utils.getStartDayWeekAndDate(item.start);
+                String startDate = Utils.getStartDayWeek(item.start)
+                        + " - " + Utils.getStartDate(item.start);
                 list.add(new UserPastConsultations(mentorName, startTime, startDate));
             }
         }

@@ -33,8 +33,14 @@ public class Utils {
         return parseTime.getTime();
     }
 
-    public static String getStartDayWeekAndDate(long start) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EE - dd.MM.yyyy");
+    public static String getStartDayWeek(long start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EE");
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+        return ldt.format(formatter);
+    }
+
+    public static String getStartDate(long start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
         return ldt.format(formatter);
     }
