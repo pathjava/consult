@@ -21,6 +21,15 @@ public class Utils {
                 .filter(user -> user.is_mentor).collect(Collectors.toList());
     }
 
+    public static String getMentorName(String loginMentor) {
+        List<DataBase.Users.User> mentors = Utils.getMentors();
+        for (DataBase.Users.User mentor : mentors) {
+            if (mentor.login.equals(loginMentor))
+                return mentor.name;
+        }
+        return null;
+    }
+
     public static Long getTime(String time) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", new Locale("ru"));
         timeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -63,13 +72,8 @@ public class Utils {
         return day.substring(0, 1).toUpperCase() + day.substring(1);
     }
 
-    public static String getMentorName(String loginMentor) {
-        List<DataBase.Users.User> mentors = Utils.getMentors();
-        for (DataBase.Users.User mentor : mentors) {
-            if (mentor.login.equals(loginMentor))
-                return mentor.name;
-        }
-        return null;
+    public static long getTimeNow() {
+        return Timestamp.valueOf(LocalDateTime.now()).getTime();
     }
 
     public static int getMinLengthPass() {
@@ -94,9 +98,5 @@ public class Utils {
 
     public static int getMaxLengthComment() {
         return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_COMMENT").value);
-    }
-
-    public static long getTimeNow() {
-        return Timestamp.valueOf(LocalDateTime.now()).getTime();
     }
 }
