@@ -26,7 +26,7 @@ public class ConsultsAdd extends HttpServlet {
         String loginMentor = req.getParameter("login");
         long startTime = Long.parseLong(req.getParameter("time"));
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
-        String loginStudent = isRemove ? "" : (String) session.getAttribute("login");
+        String loginStudent = (String) session.getAttribute("login");
         String comment = isRemove ? "" : req.getParameter("comment");
 
         if (loginStudent == null) {//TODO - возможно эту проверку можно сделать через фильтры?
@@ -63,11 +63,12 @@ public class ConsultsAdd extends HttpServlet {
         DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
         if (!checkingKeyExistence(req, resp, key)) return;
 
-        if (isRemove){
+        if (isRemove) {
+            String temp = loginStudent;
             loginStudent = "";
             comment = "";
             removeOldAndPutNew(loginMentor, startTime, duration, loginStudent, comment, key);
-            resp.sendRedirect("/users-view?login=" + loginStudent);
+            resp.sendRedirect("/users-view?login=" + temp);
             return;
         }
 
@@ -81,12 +82,6 @@ public class ConsultsAdd extends HttpServlet {
         doGet(req, resp);
     }
 
-    private void removeOldAndPutNew(String loginMentor, long startTime, long duration, String loginStudent, String comment, DataBase.Consultations.Key key) throws IOException {
-        DataBase.INSTANCE.consultations.remove(key);
-        DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(loginMentor,
-                startTime, duration, loginStudent, comment));
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String loginMentor = req.getParameter("login");
@@ -98,6 +93,14 @@ public class ConsultsAdd extends HttpServlet {
         req.setAttribute("consultations", consultations);
         req.setAttribute("maxLengthComment", MAX_LENGTH_COMMENT);
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
+    }
+
+    private void removeOldAndPutNew(String loginMentor, long startTime,
+                                    long duration, String loginStudent, String comment,
+                                    DataBase.Consultations.Key key) throws IOException {
+        DataBase.INSTANCE.consultations.remove(key);
+        DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(loginMentor,
+                startTime, duration, loginStudent, comment));
     }
 
     public boolean checkingKeyExistence(HttpServletRequest req, HttpServletResponse resp,
