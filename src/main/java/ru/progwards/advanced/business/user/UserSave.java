@@ -32,7 +32,7 @@ public class UserSave extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login").trim();
         userPassword = req.getParameter("password");
-        boolean needChangePassword = "true".equals(req.getParameter("needChangePassword"));
+        boolean needChangePassword = "true".equals(req.getParameter("needChangePassword")); //TODO to do
         String name = req.getParameter("name").trim();
         boolean is_mentor = "on".equals(req.getParameter("is_mentor"));
         String email = req.getParameter("email").trim();
