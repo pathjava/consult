@@ -93,7 +93,7 @@
                             <th scope="col"><i class="far fa-hashtag"></i></th>
                             <th scope="col"><i class="fas fa-user-headset"></i></th>
                             <th scope="col"><i class="far fa-clock"></i></th>
-                            <th scope="col"><i class="far fa-money-check-edit"></i></th>
+                            <th scope="col"><i class="fas fa-trash"></i></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -102,9 +102,9 @@
                                 <td>${loop.index+1}</td>
                                 <td>${consultation.mentorName}</td>
                                 <td><span
-                                        class="dayTimeConsult">${consultation.startDate}</span>${consultation.startTime}
+                                        class="dayTimeConsult">${consultation.startDate} - ${consultation.startTime}</span>
                                 </td>
-                                <td><i class="far fa-edit"></i></td>
+                                <td><i class="far fa-trash-alt"></i></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -133,12 +133,12 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="consultation" items="${requestScope.future}" varStatus="loop">
+                                        <c:forEach var="consultation" items="${requestScope.past}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index+1}</td>
                                                 <td>${consultation.mentorName}</td>
                                                 <td><span
-                                                        class="dayTimeConsult">${consultation.startDate}</span>${consultation.startTime}
+                                                        class="dayTimeConsult">${consultation.startDate} - ${consultation.startTime}</span>
                                                 </td>
                                             </tr>
                                         </c:forEach>

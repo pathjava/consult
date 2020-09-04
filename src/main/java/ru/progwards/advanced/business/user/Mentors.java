@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.DayOfWeek;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
 import java.util.*;
 
 @WebServlet("/mentors")
@@ -42,7 +36,6 @@ public class Mentors extends HttpServlet {
         String tempLogin = "";
         for (DataBase.Schedule.Value schedule : schedules) {
             String mentor = schedule.mentor;
-//            String dayTime = getDayTime(schedule.day_of_week, schedule.start, schedule.duration);
             String dayTime = Utils.getDayOfWeek(schedule.day_of_week)
                     + Utils.getStartAndEndTime(schedule.start, schedule.duration);
             if (!tempLogin.equals(mentor)) {
@@ -54,16 +47,4 @@ public class Mentors extends HttpServlet {
         }
         return map;
     }
-
-//    private static String getDayTime(int day_of_week, long start, long duration) {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-//        String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
-//                ZoneId.of("UTC")).format(formatter);
-//        String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
-//                ZoneId.of("UTC")).format(formatter);
-//        String day = DayOfWeek.of(day_of_week)
-//                .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
-//        day = day.substring(0, 1).toUpperCase() + day.substring(1);
-//        return day + " с " + startTime + " до " + endTime;
-//    }
 }

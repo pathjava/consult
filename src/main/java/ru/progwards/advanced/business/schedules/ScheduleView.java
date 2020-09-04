@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.DayOfWeek;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
 import java.util.*;
 
 @WebServlet("/schedule-view")
@@ -74,21 +68,6 @@ public class ScheduleView extends HttpServlet {
         return map;
     }
 
-//    private static String getStartAndEndTime(long start, long duration) {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-//        String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
-//                ZoneId.of("UTC")).format(formatter);
-//        String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
-//                ZoneId.of("UTC")).format(formatter);
-//        return "с " + startTime + " до " + endTime;
-//    }
-//
-//    private static String getDayOfWeek(int day_of_week) {
-//        String day = DayOfWeek.of(day_of_week)
-//                .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
-//        return day.substring(0, 1).toUpperCase() + day.substring(1);
-//    }
-
     public static class SchedulesMentors {
         public final String mentor;
         public final String mentorName;
@@ -98,7 +77,7 @@ public class ScheduleView extends HttpServlet {
         public final long duration;
         public final String startAndEndTime;
 
-        public SchedulesMentors(String mentor, String mentorName, int day_of_week, String dayOfWeek,
+        private SchedulesMentors(String mentor, String mentorName, int day_of_week, String dayOfWeek,
                                 long start, long duration, String startAndEndTime) {
             this.mentor = mentor;
             this.mentorName = mentorName;

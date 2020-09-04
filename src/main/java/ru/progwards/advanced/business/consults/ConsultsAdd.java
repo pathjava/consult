@@ -101,15 +101,6 @@ public class ConsultsAdd extends HttpServlet {
                         && consultation.start > Utils.getTimeNow()).collect(Collectors.toList());
     }
 
-//    private static String getMentorName(String loginMentor) {
-//        List<DataBase.Users.User> mentors = Utils.getMentors();
-//        for (DataBase.Users.User mentor : mentors) {
-//            if (mentor.login.equals(loginMentor))
-//                return mentor.name;
-//        }
-//        return null;
-//    }
-
     private static Map<String, List<ConsultationsForAdd>> getConsultations(String loginMentor) {
         Map<String, List<ConsultationsForAdd>> map = new LinkedHashMap<>();
         List<ConsultationsForAdd> list = new ArrayList<>();
@@ -129,18 +120,6 @@ public class ConsultsAdd extends HttpServlet {
         }
         return map;
     }
-
-//    private static String getStartDayTime(long start) {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE - dd.MM.yyyy");
-//        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
-//        return ldt.format(formatter);
-//    }
-//
-//    private static String getStartTime(long start) {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-//        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
-//        return ldt.format(formatter);
-//    }
 
     public static class ConsultationsForAdd {
         public final String mentor;

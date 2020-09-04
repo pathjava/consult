@@ -78,12 +78,10 @@ input::placeholder {
     vertical-align: middle;
     font-weight: 500;
     margin: 7px 0;
-    text-transform: capitalize;
 }
 
-.dayTimeConsult {
-    display: block;
-    text-transform: capitalize;
+.dayTimeConsult:first-letter, .dayConsult:first-letter {
+    text-transform: uppercase;
 }
 
 .consultTime {
@@ -280,10 +278,6 @@ span.edit-text {
 
 .card-text .mentorSchedules {
     margin-bottom: 0.15rem;
-}
-
-.slotsBlock {
-    display: inline-block;
 }
 
 .slotsUlBlock {

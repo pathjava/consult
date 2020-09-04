@@ -46,10 +46,12 @@ public class UsersView extends HttpServlet {
 
         if (login != null) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
-            List<UserConsultations> future = getUserFutureConsultations(login);
+            List<UserFutureConsultations> future = getUserFutureConsultations(login);
+            List<UserPastConsultations> past = getUserPastConsultations(login);
 
             req.setAttribute("user", user);
             req.setAttribute("future", future);
+            req.setAttribute("past", past);
             req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
         } else if (add) {
@@ -68,21 +70,43 @@ public class UsersView extends HttpServlet {
         }
     }
 
-    private static List<UserConsultations> getUserFutureConsultations(String login) {
-        List<UserConsultations> list = new ArrayList<>();
+    private static List<UserFutureConsultations> getUserFutureConsultations(String login) {
+        List<UserFutureConsultations> list = new ArrayList<>();
         for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
             if (item.student != null && item.student.equals(login) && item.start > Utils.getTimeNow()) {
                 String mentorName = Utils.getMentorName(item.mentor);
                 String startTime = Utils.getStartTime(item.start);
                 String startDate = Utils.getStartDayWeekAndDate(item.start);
-                list.add(new UserConsultations(item.mentor, mentorName, item.start,
-                        startTime, startDate, item.duration, item.student, item.comment));
+                list.add(new UserFutureConsultations(item.mentor, mentorName, item.start,
+                        startTime, startDate, item.duration, item.student));
             }
         }
+        if (list.size() == 0)
+            list.add(new UserFutureConsultations("", "", 0,
+                    "У Вас нет записей на консультации", "", 0, ""));
+        list.sort(Comparator.comparing(UserFutureConsultations::getStart));
         return list;
     }
 
-    public static class UserConsultations {
+    private static List<UserPastConsultations> getUserPastConsultations(String login) {
+        List<UserPastConsultations> list = new ArrayList<>();
+        for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
+            if (item.student != null && item.student.equals(login) && item.start < Utils.getTimeNow()) {
+                String mentorName = Utils.getMentorName(item.mentor);
+                String startTime = Utils.getStartTime(item.start);
+                String startDate = Utils.getStartDayWeekAndDate(item.start);
+                list.add(new UserPastConsultations(mentorName, startTime, startDate));
+            }
+        }
+        if (list.size() == 0)
+            list.add(new UserPastConsultations("", "",
+                    "У Вас не было записей на консультации"));
+        list.sort(Comparator.comparing(UserPastConsultations::getStartDate)
+                .thenComparing(UserPastConsultations::getStartTime));
+        return list;
+    }
+
+    public static class UserFutureConsultations {
         public final String mentor;
         public final String mentorName;
         public final long start;
@@ -90,10 +114,9 @@ public class UsersView extends HttpServlet {
         public final String startDate;
         public final long duration;
         public final String student;
-        public final String comment;
 
-        public UserConsultations(String mentor, String mentorName, long start, String startTime,
-                                 String startDate, long duration, String student, String comment) {
+        private UserFutureConsultations(String mentor, String mentorName, long start, String startTime,
+                                        String startDate, long duration, String student) {
             this.mentor = mentor;
             this.mentorName = mentorName;
             this.start = start;
@@ -101,7 +124,6 @@ public class UsersView extends HttpServlet {
             this.startDate = startDate;
             this.duration = duration;
             this.student = student;
-            this.comment = comment;
         }
 
         public String getMentor() {
@@ -131,9 +153,29 @@ public class UsersView extends HttpServlet {
         public String getStudent() {
             return student;
         }
+    }
 
-        public String getComment() {
-            return comment;
+    public static class UserPastConsultations {
+        public final String mentorName;
+        public final String startTime;
+        public final String startDate;
+
+        private UserPastConsultations(String mentorName, String startTime, String startDate) {
+            this.mentorName = mentorName;
+            this.startTime = startTime;
+            this.startDate = startDate;
+        }
+
+        public String getMentorName() {
+            return mentorName;
+        }
+
+        public String getStartTime() {
+            return startTime;
+        }
+
+        public String getStartDate() {
+            return startDate;
         }
     }
 }
