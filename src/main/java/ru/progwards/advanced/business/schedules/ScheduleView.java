@@ -58,7 +58,8 @@ public class ScheduleView extends HttpServlet {
                     mentorName = mentor.name;
             }
             String dayOfWeek = Utils.getDayOfWeek(schedule.day_of_week);
-            String startAndEndTime = Utils.getStartAndEndTime(schedule.start, schedule.duration);
+            String startAndEndTime = " с " + Utils.getStartTime(schedule.start)
+                    + " до " + Utils.getEndTime(schedule.start, schedule.duration);
 
             list.add(new SchedulesMentors(schedule.mentor, mentorName, schedule.day_of_week,
                     dayOfWeek, schedule.start, schedule.duration, startAndEndTime));

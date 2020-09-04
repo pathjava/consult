@@ -45,6 +45,18 @@ public class Utils {
         return ldt.format(formatter);
     }
 
+    public static String getEndTime(long start, long duration) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
+                ZoneId.of("UTC")).format(formatter);
+    }
+
+    public static String getDayOfWeek(int day_of_week) {
+        String day = DayOfWeek.of(day_of_week)
+                .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
+        return day.substring(0, 1).toUpperCase() + day.substring(1);
+    }
+
     public static String getMentorName(String loginMentor) {
         List<DataBase.Users.User> mentors = Utils.getMentors();
         for (DataBase.Users.User mentor : mentors) {
@@ -52,21 +64,6 @@ public class Utils {
                 return mentor.name;
         }
         return null;
-    }
-
-    public static String getStartAndEndTime(long start, long duration) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        String startTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start),
-                ZoneId.of("UTC")).format(formatter);
-        String endTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
-                ZoneId.of("UTC")).format(formatter);
-        return " с " + startTime + " до " + endTime;
-    }
-
-    public static String getDayOfWeek(int day_of_week) {
-        String day = DayOfWeek.of(day_of_week)
-                .getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
-        return day.substring(0, 1).toUpperCase() + day.substring(1);
     }
 
     public static int getMinLengthPass() {

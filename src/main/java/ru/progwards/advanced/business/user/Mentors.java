@@ -37,7 +37,10 @@ public class Mentors extends HttpServlet {
         for (DataBase.Schedule.Value schedule : schedules) {
             String mentor = schedule.mentor;
             String dayTime = Utils.getDayOfWeek(schedule.day_of_week)
-                    + Utils.getStartAndEndTime(schedule.start, schedule.duration);
+                    + " с "
+                    + Utils.getStartTime(schedule.start)
+                    + " до "
+                    + Utils.getEndTime(schedule.start, schedule.duration);
             if (!tempLogin.equals(mentor)) {
                 list = new ArrayList<>();
                 tempLogin = mentor;
