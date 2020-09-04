@@ -10,6 +10,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,8 +34,8 @@ public class Utils {
         return parseTime.getTime();
     }
 
-    public static String getStartDayTime(long start) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE - dd.MM.yyyy");
+    public static String getStartDayWeekAndDate(long start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EE - dd.MM.yyyy");
         LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
         return ldt.format(formatter);
     }

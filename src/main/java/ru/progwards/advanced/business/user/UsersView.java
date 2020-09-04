@@ -46,7 +46,7 @@ public class UsersView extends HttpServlet {
 
         if (login != null) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
-            List<DataBase.Consultations.Consultation> future = getUserFutureConsultations(login);
+            List<UserConsultations> future = getUserFutureConsultations(login);
 
             req.setAttribute("user", user);
             req.setAttribute("future", future);
@@ -68,11 +68,16 @@ public class UsersView extends HttpServlet {
         }
     }
 
-    private static List<DataBase.Consultations.Consultation> getUserFutureConsultations(String login) {
-        List<DataBase.Consultations.Consultation> list = new ArrayList<>();
-        for (DataBase.Consultations.Consultation consultation : DataBase.INSTANCE.consultations.getAll()) {
-            if (consultation.student != null && consultation.student.equals(login) && consultation.start > Utils.getTimeNow())
-                list.add(consultation);
+    private static List<UserConsultations> getUserFutureConsultations(String login) {
+        List<UserConsultations> list = new ArrayList<>();
+        for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
+            if (item.student != null && item.student.equals(login) && item.start > Utils.getTimeNow()) {
+                String mentorName = Utils.getMentorName(item.mentor);
+                String startTime = Utils.getStartTime(item.start);
+                String startDate = Utils.getStartDayWeekAndDate(item.start);
+                list.add(new UserConsultations(item.mentor, mentorName, item.start,
+                        startTime, startDate, item.duration, item.student, item.comment));
+            }
         }
         return list;
     }

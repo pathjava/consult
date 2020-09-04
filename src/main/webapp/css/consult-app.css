@@ -81,6 +81,11 @@ input::placeholder {
     text-transform: capitalize;
 }
 
+.dayTimeConsult {
+    display: block;
+    text-transform: capitalize;
+}
+
 .consultTime {
     text-align: center;
     font-weight: 700;
@@ -374,4 +379,20 @@ span.edit-text {
 .rightWarning {
     display: inline-block;
     font-weight: 500;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-weight: 700;
+}
+
+.accordion{
+    margin: 1rem 0;
+}
+
+.accordion .btn:focus{
+    box-shadow: none;
+}
+
+.accordion .card-body{
+    padding: 0 0 .5rem;
 }
