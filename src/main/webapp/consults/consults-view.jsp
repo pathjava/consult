@@ -17,10 +17,10 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col"><i class="far fa-hashtag"></i></th>
-                            <th scope="col">Время</th>
-                            <th scope="col">Студент</th>
-                            <th scope="col">Отменить</th>
-                            <th scope="col">Изменить</th>
+                            <th scope="col"><i class="far fa-clock"></i></th>
+                            <th scope="col"><i class="far fa-digging"></i></th>
+                            <th scope="col"><i class="far fa-align-slash"></i></th>
+                            <th scope="col"><i class="far fa-user-edit"></i></th>
                         </tr>
                         </thead>
                         <tbody>

@@ -144,9 +144,9 @@
                                     <table class="table table-striped">
                                         <thead class="thead-light">
                                         <tr>
-                                            <th scope="col"><i class="far fa-hashtag"></i></th>
+                                            <th scope="col"><i class="fas fa-hashtag"></i></th>
                                             <th scope="col"><i class="fas fa-user-headset"></i></th>
-                                            <th scope="col"><i class="far fa-clock"></i></th>
+                                            <th scope="col"><i class="fas fa-history"></i></th>
                                         </tr>
                                         </thead>
                                         <tbody>
