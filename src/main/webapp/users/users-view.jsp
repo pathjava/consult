@@ -61,9 +61,10 @@
                                 </td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/user-delete" method="post">
-                                        <span class="trash"><input class='btn-del' type='submit' name='${user.login}'
-                                                                   value=""
-                                                                   onclick="return confirm('Вы подтверждаете удаление?')"/></span>
+                                        <span class="trash">
+                                            <input class="btn-del" type='submit' name="${user.login}" value=""
+                                                   onclick="return confirm('Вы подтверждаете удаление?')"/>
+                                        </span>
                                     </form>
                                 </td>
                                 <td>

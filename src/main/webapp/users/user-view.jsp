@@ -101,10 +101,27 @@
                             <tr>
                                 <td>${loop.index+1}</td>
                                 <td>${consultation.mentorName}</td>
-                                <td><span
-                                        class="dayTimeConsult">${consultation.startDate} - ${consultation.startTime}</span>
+                                <td>
+                                    <div class="dayTimeConsult">${consultation.startDate}
+                                        - ${consultation.startTime}</div>
                                 </td>
-                                <td><i class="far fa-trash-alt"></i></td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/consults-add" method="post">
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="name" value="${consultation.mentor}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="name" value="${consultation.start}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="edit" value="true"/>
+                                        </label>
+                                        <span class="trash">
+                                            <input class="btn-del" type='submit' value=""
+                                                   onclick="return confirm('Вы подтверждаете удаление?')"/>
+                                        </span>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -137,8 +154,9 @@
                                             <tr>
                                                 <td>${loop.index+1}</td>
                                                 <td>${consultation.mentorName}</td>
-                                                <td><span
-                                                        class="dayTimeConsult">${consultation.startDate} - ${consultation.startTime}</span>
+                                                <td>
+                                                    <div class="dayTimeConsult">${consultation.startDate}
+                                                        - ${consultation.startTime}</div>
                                                 </td>
                                             </tr>
                                         </c:forEach>

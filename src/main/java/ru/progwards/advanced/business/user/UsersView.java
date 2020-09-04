@@ -78,12 +78,12 @@ public class UsersView extends HttpServlet {
                 String startTime = Utils.getStartTime(item.start);
                 String startDate = Utils.getStartDayWeekAndDate(item.start);
                 list.add(new UserFutureConsultations(item.mentor, mentorName, item.start,
-                        startTime, startDate, item.duration, item.student));
+                        startTime, startDate));
             }
         }
         if (list.size() == 0)
             list.add(new UserFutureConsultations("", "", 0,
-                    "У Вас нет записей на консультации", "", 0, ""));
+                    "У Вас нет записей на консультации", ""));
         list.sort(Comparator.comparing(UserFutureConsultations::getStart));
         return list;
     }
@@ -112,18 +112,14 @@ public class UsersView extends HttpServlet {
         public final long start;
         public final String startTime;
         public final String startDate;
-        public final long duration;
-        public final String student;
 
-        private UserFutureConsultations(String mentor, String mentorName, long start, String startTime,
-                                        String startDate, long duration, String student) {
+        private UserFutureConsultations(String mentor, String mentorName, long start,
+                                        String startTime, String startDate) {
             this.mentor = mentor;
             this.mentorName = mentorName;
             this.start = start;
             this.startTime = startTime;
             this.startDate = startDate;
-            this.duration = duration;
-            this.student = student;
         }
 
         public String getMentor() {
@@ -144,14 +140,6 @@ public class UsersView extends HttpServlet {
 
         public String getStartDate() {
             return startDate;
-        }
-
-        public long getDuration() {
-            return duration;
-        }
-
-        public String getStudent() {
-            return student;
         }
     }
 
