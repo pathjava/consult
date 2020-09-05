@@ -44,17 +44,23 @@ public class Utils {
 
     public static String getStartDayWeek(long start) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EE");
-        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("UTC"));
         return ldt.format(formatter);
     }
 
     public static String getStartDate(long start) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("UTC"));
         return ldt.format(formatter);
     }
 
     public static String getStartTime(long start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("UTC"));
+        return ldt.format(formatter);
+    }
+
+    public static String getStartMoscowTime(long start) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start), ZoneId.of("Europe/Moscow"));
         return ldt.format(formatter);
@@ -62,8 +68,14 @@ public class Utils {
 
     public static String getEndTime(long start, long duration) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration),
-                ZoneId.of("UTC")).format(formatter);
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration), ZoneId.of("UTC"));
+        return ldt.format(formatter);
+    }
+
+    public static String getEndMoscowTime(long start, long duration) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(start + duration), ZoneId.of("Europe/Moscow"));
+        return ldt.format(formatter);
     }
 
     public static String getDayOfWeek(int day_of_week) {

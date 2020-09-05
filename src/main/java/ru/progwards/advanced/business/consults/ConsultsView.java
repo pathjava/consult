@@ -35,7 +35,8 @@ public class ConsultsView extends HttpServlet {
         for (DataBase.Consultations.Consultation item : consultations) {
             String mentorName = Utils.getMentorName(item.mentor);
             String nameAndDate = mentorName + " - " + Utils.getStartDate(item.start);
-            String startEndTime = " с " + Utils.getStartTime(item.start) + " до " + Utils.getEndTime(item.start, item.duration);
+            String startEndTime = " с " + Utils.getStartMoscowTime(item.start)
+                    + " до " + Utils.getEndMoscowTime(item.start, item.duration);
             if (!map.containsKey(nameAndDate))
                 list = new ArrayList<>();
             list.add(new AllConsults(item.mentor, mentorName, item.start, startEndTime, item.student));

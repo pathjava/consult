@@ -137,7 +137,7 @@ public class ConsultsAdd extends HttpServlet {
                 list = new ArrayList<>();
                 temp = startDayWeekAndDate;
             }
-            String startTime = Utils.getStartTime(item.start);
+            String startTime = Utils.getStartMoscowTime(item.start);
             list.add(new ConsultationsForAdd(item.mentor, item.start, startTime, item.duration, item.student, item.comment));
             map.put(startDayWeekAndDate, list);
         }
