@@ -46,12 +46,12 @@ public class UsersView extends HttpServlet {
 
         if (login != null) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
-            List<UserFutureConsultations> future = getUserFutureConsultations(login);
-            List<UserPastConsultations> past = getUserPastConsultations(login);
+            List<UserFutureConsultations> userFuture = getUserFutureConsultations(login);
+            List<UserPastConsultations> userPast = getUserPastConsultations(login);
 
             req.setAttribute("user", user);
-            req.setAttribute("future", future);
-            req.setAttribute("past", past);
+            req.setAttribute("userFuture", userFuture);
+            req.setAttribute("userPast", userPast);
             req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
             req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
         } else if (add) {

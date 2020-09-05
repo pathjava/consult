@@ -24,11 +24,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="map" items="${requestScope.future}">
+                        <c:forEach var="mapFuture" items="${requestScope.futureConsultations}">
                             <tr class="consultTime">
-                                <td colspan="5">${map.key}</td>
+                                <td colspan="5">${mapFuture.key}</td>
                             </tr>
-                            <c:forEach var="data" items="${map.value}" varStatus="loop">
+                            <c:forEach var="data" items="${mapFuture.value}" varStatus="loop">
                                 <tr>
                                     <td>${loop.index+1}</td>
                                     <td>${data.startEndTime}</td>
@@ -43,20 +43,20 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Прошлые консультации
                                 </button>
                             </h5>
                         </div>
 
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="table-responsive">
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#accordionExample">
+                            <div class="card-body table-responsive">
                                     <table class="table">
                                         <thead class="thead-light">
                                         <tr>
@@ -66,11 +66,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="map" items="${requestScope.past}">
+                                        <c:forEach var="mapPast" items="${requestScope.pastConsultations}">
                                             <tr class="consultTime">
-                                                <td colspan="5">${map.key}</td>
+                                                <td colspan="5">${mapPast.key}</td>
                                             </tr>
-                                            <c:forEach var="data" items="${map.value}" varStatus="loop">
+                                            <c:forEach var="data" items="${mapPast.value}" varStatus="loop">
                                                 <tr>
                                                     <td>${loop.index+1}</td>
                                                     <td>${data.startEndTime}</td>
@@ -82,12 +82,10 @@
                                         </c:forEach>
                                         </tbody>
                                     </table>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span
                             class="glyphicon glyphicon-home"></span><i class="far fa-reply"></i></a>

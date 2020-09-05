@@ -97,7 +97,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="consultation" items="${requestScope.future}" varStatus="loop">
+                        <c:forEach var="consultation" items="${requestScope.userFuture}" varStatus="loop">
                             <tr>
                                 <td>${loop.index+1}</td>
                                 <td>${consultation.mentorName}</td>
@@ -150,7 +150,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="consultation" items="${requestScope.past}" varStatus="loop">
+                                        <c:forEach var="consultation" items="${requestScope.userPast}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index+1}</td>
                                                 <td>${consultation.mentorName}</td>

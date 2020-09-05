@@ -18,10 +18,10 @@ public class ConsultsView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Map<String, List<AllConsults>> future = getAllConsultations(true);
-        Map<String, List<AllConsults>> past = getAllConsultations(false);
-        req.setAttribute("future", future);
-        req.setAttribute("past", past);
+        Map<String, List<AllConsults>> futureConsultations = getAllConsultations(true);
+        Map<String, List<AllConsults>> pastConsultations = getAllConsultations(false);
+        req.setAttribute("futureConsultations", futureConsultations);
+        req.setAttribute("pastConsultations", pastConsultations);
         req.getRequestDispatcher("/consults/consults-view.jsp").forward(req, resp);
     }
 
