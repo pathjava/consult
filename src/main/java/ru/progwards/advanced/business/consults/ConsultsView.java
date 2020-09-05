@@ -28,7 +28,8 @@ public class ConsultsView extends HttpServlet {
     private Map<String, List<AllConsults>> getAllConsultations(boolean b) {
         Map<String, List<AllConsults>> map = new LinkedHashMap<>();
         List<AllConsults> list = new ArrayList<>();
-        List<DataBase.Consultations.Consultation> consultations = b ? getFutureListConsultations() : getPastListConsultations();
+        List<DataBase.Consultations.Consultation> consultations
+                = b ? getFutureListConsultations() : getPastListConsultations();
 
         for (DataBase.Consultations.Consultation item : consultations) {
             String mentorName = Utils.getMentorName(item.mentor);

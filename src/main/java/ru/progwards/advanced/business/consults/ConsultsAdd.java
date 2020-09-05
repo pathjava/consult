@@ -29,10 +29,7 @@ public class ConsultsAdd extends HttpServlet {
         String loginStudent = (String) session.getAttribute("login");
         String comment = isRemove ? "" : req.getParameter("comment");
 
-        if (loginStudent == null) {//TODO - возможно эту проверку можно сделать через фильтры?
-            req.getRequestDispatcher("/login.jsp").forward(req, resp); //TODO - сделать редирект после авторизации обратно на страницу записи
-            return;
-        }
+        List<String> names = Collections.list(req.getParameterNames());
 
         if (!checkExistMentor(loginMentor)) {
             req.setAttribute("error-description", "Наставник с логином " + loginMentor + " не существует!");

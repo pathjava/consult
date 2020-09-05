@@ -35,7 +35,23 @@
                                     <td>
                                         <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
                                     </td>
-                                    <td><i class="far fa-trash-alt"></i></td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/consults-add" method="post">
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="login" value="${data.mentor}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="time" value="${data.start}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="remove" value="true"/>
+                                            </label>
+                                            <span class="trash">
+                                            <input class="btn-del" type='submit' value=""
+                                                   onclick="return confirm('Вы подтверждаете удаление?')"/>
+                                        </span>
+                                        </form>
+                                    </td>
                                     <td><i class="far fa-edit"></i></td>
                                 </tr>
                             </c:forEach>
