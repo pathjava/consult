@@ -18,19 +18,17 @@ public class ConsultsView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Map<String, List<AllConsults>> consults = getAllConsultations();
-        req.setAttribute("consults", consults);
+        Map<String, List<AllConsults>> future = getAllConsultations(true);
+        Map<String, List<AllConsults>> past = getAllConsultations(false);
+        req.setAttribute("future", future);
+        req.setAttribute("past", past);
         req.getRequestDispatcher("/consults/consults-view.jsp").forward(req, resp);
     }
 
-    private Map<String, List<AllConsults>> getAllConsultations() {
+    private Map<String, List<AllConsults>> getAllConsultations(boolean b) {
         Map<String, List<AllConsults>> map = new LinkedHashMap<>();
         List<AllConsults> list = new ArrayList<>();
-        List<DataBase.Consultations.Consultation> consultations = DataBase.INSTANCE.consultations.getAll()
-                .stream().filter(p -> p.start > Utils.getTimeNow())
-                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart)
-                        .thenComparing(DataBase.Consultations.Consultation::getMentor))
-                .collect(Collectors.toList());
+        List<DataBase.Consultations.Consultation> consultations = b ? getFutureListConsultations() : getPastListConsultations();
 
         for (DataBase.Consultations.Consultation item : consultations) {
             String mentorName = Utils.getMentorName(item.mentor);
@@ -43,6 +41,22 @@ public class ConsultsView extends HttpServlet {
             map.put(nameAndDate, list);
         }
         return map;
+    }
+
+    private List<DataBase.Consultations.Consultation> getFutureListConsultations() {
+        return DataBase.INSTANCE.consultations.getAll()
+                .stream().filter(p -> p.start > Utils.getTimeNow())
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart)
+                        .thenComparing(DataBase.Consultations.Consultation::getMentor))
+                .collect(Collectors.toList());
+    }
+
+    private List<DataBase.Consultations.Consultation> getPastListConsultations() {
+        return DataBase.INSTANCE.consultations.getAll()
+                .stream().filter(p -> p.start < Utils.getTimeNow())
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart)
+                        .thenComparing(DataBase.Consultations.Consultation::getMentor))
+                .collect(Collectors.toList());
     }
 
     public static class AllConsults {

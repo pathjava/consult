@@ -24,7 +24,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="map" items="${requestScope.consults}">
+                        <c:forEach var="map" items="${requestScope.future}">
                             <tr class="consultTime">
                                 <td colspan="5">${map.key}</td>
                             </tr>
@@ -43,6 +43,51 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Прошлые консультации
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col"><i class="far fa-hashtag"></i></th>
+                                            <th scope="col"><i class="far fa-clock"></i></th>
+                                            <th scope="col"><i class="far fa-digging"></i></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach var="map" items="${requestScope.past}">
+                                            <tr class="consultTime">
+                                                <td colspan="5">${map.key}</td>
+                                            </tr>
+                                            <c:forEach var="data" items="${map.value}" varStatus="loop">
+                                                <tr>
+                                                    <td>${loop.index+1}</td>
+                                                    <td>${data.startEndTime}</td>
+                                                    <td>
+                                                        <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span
                             class="glyphicon glyphicon-home"></span><i class="far fa-reply"></i></a>
