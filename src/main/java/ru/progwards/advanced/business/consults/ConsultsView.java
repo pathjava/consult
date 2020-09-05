@@ -1,5 +1,6 @@
 package ru.progwards.advanced.business.consults;
 
+import ru.progwards.advanced.business.utils.Utils;
 import ru.progwards.java2.lib.DataBase;
 
 import javax.servlet.ServletException;
@@ -8,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet("/consults-view")
 public class ConsultsView extends HttpServlet {
@@ -18,18 +18,30 @@ public class ConsultsView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Map<String, List<AllConsults>> consults = getAllConsults();
-
+        Map<String, List<AllConsults>> consults = getAllConsultations();
+        req.setAttribute("consults", consults);
         req.getRequestDispatcher("/consults/consults-view.jsp").forward(req, resp);
     }
 
-    private Map<String, List<AllConsults>> getAllConsults() {
-        List<AllConsults> list;
-        List<DataBase.Consultations.Consultation> consultations = new ArrayList<>();
-        for (DataBase.Consultations.Consultation consultation : DataBase.INSTANCE.consultations.getAll()) {
+    private Map<String, List<AllConsults>> getAllConsultations() {
+        Map<String, List<AllConsults>> map = new LinkedHashMap<>();
+        List<AllConsults> list = new ArrayList<>();
+        List<DataBase.Consultations.Consultation> consultations = DataBase.INSTANCE.consultations.getAll()
+                .stream().filter(p -> p.start > Utils.getTimeNow())
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart)
+                        .thenComparing(DataBase.Consultations.Consultation::getMentor))
+                .collect(Collectors.toList());
 
+        for (DataBase.Consultations.Consultation item : consultations) {
+            String mentorName = Utils.getMentorName(item.mentor);
+            String nameAndDate = mentorName + " - " + Utils.getStartDate(item.start);
+            String startEndTime = " с " + Utils.getStartTime(item.start) + " до " + Utils.getEndTime(item.start, item.duration);
+            if (!map.containsKey(nameAndDate))
+                list = new ArrayList<>();
+            list.add(new AllConsults(item.mentor, mentorName, item.start, startEndTime, item.student));
+            map.put(nameAndDate, list);
         }
-
+        return map;
     }
 
     public static class AllConsults {

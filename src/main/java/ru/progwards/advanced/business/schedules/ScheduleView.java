@@ -47,16 +47,11 @@ public class ScheduleView extends HttpServlet {
         schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
                 .thenComparingLong(DataBase.Schedule.Value::getStart)
                 .thenComparing(DataBase.Schedule.Value::getMentor));
-        List<DataBase.Users.User> mentors = Utils.getMentors();
 
         int key = 1;
         for (DataBase.Schedule.Value schedule : schedules) {
             list = new ArrayList<>();
-            String mentorName = "";
-            for (DataBase.Users.User mentor : mentors) {
-                if (mentor.login.equals(schedule.mentor))
-                    mentorName = mentor.name;
-            }
+            String mentorName = Utils.getMentorName(schedule.mentor);
             String dayOfWeek = Utils.getDayOfWeek(schedule.day_of_week);
             String startAndEndTime = " с " + Utils.getStartTime(schedule.start)
                     + " до " + Utils.getEndTime(schedule.start, schedule.duration);

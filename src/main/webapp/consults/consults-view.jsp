@@ -24,54 +24,22 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="consultTime">
-                            <td colspan="5">Валерий - дата: 22.08.2020</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>the Bird</td>
-                        </tr>
-                        <tr class="consultTime">
-                            <td colspan="5">Никита - дата: 23.08.2020</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>the Bird</td>
-                        </tr>
+                        <c:forEach var="map" items="${requestScope.consults}">
+                            <tr class="consultTime">
+                                <td colspan="5">${map.key}</td>
+                            </tr>
+                            <c:forEach var="data" items="${map.value}" varStatus="loop">
+                                <tr>
+                                    <td>${loop.index+1}</td>
+                                    <td>${data.startEndTime}</td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
+                                    </td>
+                                    <td><i class="far fa-trash-alt"></i></td>
+                                    <td><i class="far fa-edit"></i></td>
+                                </tr>
+                            </c:forEach>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
