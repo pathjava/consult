@@ -18,16 +18,14 @@ public class Utils {
 
     public static List<DataBase.Users.User> getMentors() {
         return DataBase.INSTANCE.users.getAll().stream()
-                .filter(user -> user.is_mentor).collect(Collectors.toList());
+                .filter(user -> user.is_mentor)
+                .collect(Collectors.toList());
     }
 
     public static String getMentorName(String loginMentor) {
-        List<DataBase.Users.User> mentors = Utils.getMentors();
-        for (DataBase.Users.User mentor : mentors) {
-            if (mentor.login.equals(loginMentor))
-                return mentor.name;
-        }
-        return null;
+        return Utils.getMentors().stream()
+                .filter(m -> m.login.equals(loginMentor)).findFirst()
+                .map(m -> m.name).orElse(null);
     }
 
     public static Long getTime(String time) {

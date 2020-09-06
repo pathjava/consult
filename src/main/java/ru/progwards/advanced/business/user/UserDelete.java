@@ -43,7 +43,8 @@ public class UserDelete extends HttpServlet {
     }
 
     private void deleteImage(String imageName) {
-        String imagePath = getServletContext().getRealPath("") + File.separator + FILE_DIRECTORY + File.separator + imageName;
+        String imagePath = getServletContext().getRealPath("")
+                + File.separator + FILE_DIRECTORY + File.separator + imageName;
         File file = new File(imagePath);
         if (file.delete())
             System.out.println("file deleted!!");

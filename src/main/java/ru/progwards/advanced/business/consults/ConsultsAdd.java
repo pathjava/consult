@@ -122,8 +122,9 @@ public class ConsultsAdd extends HttpServlet {
     private static Map<String, List<ConsultationsForAdd>> getConsultations(String loginMentor) {
         Map<String, List<ConsultationsForAdd>> map = new LinkedHashMap<>();
         List<ConsultationsForAdd> list = new ArrayList<>();
-        List<DataBase.Consultations.Consultation> consultations = getFutureConsultations(loginMentor);
-        consultations.sort(Comparator.comparing(DataBase.Consultations.Consultation::getStart));
+        List<DataBase.Consultations.Consultation> consultations = getFutureConsultations(loginMentor).stream()
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart))
+                .collect(Collectors.toList());
 
         String temp = "";
         for (DataBase.Consultations.Consultation item : consultations) {

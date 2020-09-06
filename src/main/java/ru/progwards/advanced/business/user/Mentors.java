@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet("/mentors")
 public class Mentors extends HttpServlet {
@@ -28,10 +29,11 @@ public class Mentors extends HttpServlet {
     public static Map<String, List<String>> getSchedulesMentors() {
         Map<String, List<String>> map = new LinkedHashMap<>();
         List<String> list = new ArrayList<>();
-        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
-        schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getMentor)
+        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll()).stream()
+                .sorted(Comparator.comparing(DataBase.Schedule.Value::getMentor)
                 .thenComparingLong(DataBase.Schedule.Value::getDay_of_week)
-                .thenComparing(DataBase.Schedule.Value::getStart));
+                .thenComparing(DataBase.Schedule.Value::getStart))
+                .collect(Collectors.toList());
 
         String tempLogin = "";
         for (DataBase.Schedule.Value schedule : schedules) {

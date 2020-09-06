@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet("/schedule-view")
 public class ScheduleView extends HttpServlet {
@@ -43,10 +44,11 @@ public class ScheduleView extends HttpServlet {
     public static Map<Integer, List<SchedulesMentors>> getSchedulesMentors() {
         Map<Integer, List<SchedulesMentors>> map = new LinkedHashMap<>();
         List<SchedulesMentors> list;
-        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll());
-        schedules.sort(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
+        List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll()).stream()
+                .sorted(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
                 .thenComparingLong(DataBase.Schedule.Value::getStart)
-                .thenComparing(DataBase.Schedule.Value::getMentor));
+                .thenComparing(DataBase.Schedule.Value::getMentor))
+                .collect(Collectors.toList());
 
         int key = 1;
         for (DataBase.Schedule.Value schedule : schedules) {
