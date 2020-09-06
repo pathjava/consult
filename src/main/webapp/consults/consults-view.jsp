@@ -52,7 +52,22 @@
                                         </span>
                                         </form>
                                     </td>
-                                    <td><i class="far fa-edit"></i></td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/consults-edit" method="post">
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="time" value="${data.start}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="time" value="${data.student}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="time" value="${data.mentor}"/>
+                                            </label>
+                                            <span class="edit">
+                                                <input class="btn-edit" type="submit" value=""/>
+                                            </span>
+                                        </form>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </c:forEach>
@@ -73,31 +88,31 @@
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                              data-parent="#accordionExample">
                             <div class="card-body table-responsive">
-                                    <table class="table">
-                                        <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col"><i class="far fa-hashtag"></i></th>
-                                            <th scope="col"><i class="far fa-clock"></i></th>
-                                            <th scope="col"><i class="far fa-digging"></i></th>
+                                <table class="table">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col"><i class="far fa-hashtag"></i></th>
+                                        <th scope="col"><i class="far fa-clock"></i></th>
+                                        <th scope="col"><i class="far fa-digging"></i></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="mapPast" items="${requestScope.pastConsultations}">
+                                        <tr class="consultTime">
+                                            <td colspan="5">${mapPast.key}</td>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach var="mapPast" items="${requestScope.pastConsultations}">
-                                            <tr class="consultTime">
-                                                <td colspan="5">${mapPast.key}</td>
+                                        <c:forEach var="data" items="${mapPast.value}" varStatus="loop">
+                                            <tr>
+                                                <td>${loop.index+1}</td>
+                                                <td>${data.startEndTime}</td>
+                                                <td>
+                                                    <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
+                                                </td>
                                             </tr>
-                                            <c:forEach var="data" items="${mapPast.value}" varStatus="loop">
-                                                <tr>
-                                                    <td>${loop.index+1}</td>
-                                                    <td>${data.startEndTime}</td>
-                                                    <td>
-                                                        <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
                                         </c:forEach>
-                                        </tbody>
-                                    </table>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
