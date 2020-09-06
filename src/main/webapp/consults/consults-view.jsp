@@ -70,9 +70,9 @@
                                     <td>
                                         <c:choose>
                                             <c:when test="${data.student ne ''}">
-                                                <form action="${pageContext.request.contextPath}/consults-edit">
+                                                <form action="${pageContext.request.contextPath}/consults-edit" method="post">
                                                     <label class="hiddenLabel">
-                                                        <input type="hidden" name="startEndTime" value="${data.startEndTime}"/>
+                                                        <input type="hidden" name="start" value="${data.start}"/>
                                                     </label>
                                                     <label class="hiddenLabel">
                                                         <input type="hidden" name="student" value="${data.student}"/>

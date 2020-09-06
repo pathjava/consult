@@ -14,16 +14,16 @@ import java.util.*;
 public class ConsultsEdit extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String student = req.getParameter("student");
         String mentor = req.getParameter("mentor");
-        String startEndTime = req.getParameter("startEndTime");
+        long start = Long.parseLong(req.getParameter("start"));
 
         Map<String, List<Utils.ConsultationsForAdd>> consultationsEdit = Utils.getConsultations(mentor);
 
         req.setAttribute("student", student);
-        req.setAttribute("startEndTime", startEndTime);
+        req.setAttribute("start", start);
         req.setAttribute("consultationsEdit", consultationsEdit);
         req.getRequestDispatcher("/consults/consults-edit.jsp").forward(req, resp);
     }

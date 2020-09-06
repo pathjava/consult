@@ -27,10 +27,13 @@
                                                         <li>
                                                             <c:choose>
                                                                 <c:when test="${consultation.student eq ''}">
-                                                                    <input type="radio" name="time"
+                                                                    <input type="radio" name="start"
                                                                            id="${outerLoop.index+1}${loop.index+1}"
                                                                            value="${consultation.start}"/>
                                                                     <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
+                                                                </c:when>
+                                                                <c:when test="${consultation.start eq param.start}">
+                                                                    <div class="slotTempBusy">${consultation.startTime}</div>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <div class="slotIsBusy <c:if test="${consultation.student eq sessionScope.login}">slotIsBusyStudent</c:if>">${consultation.startTime}</div>
@@ -44,9 +47,10 @@
                                     </div>
                                     <div class="">
                                         <label class="hiddenLabel">
-                                            <input type="hidden" name="login" value="${requestScope.login}"/>
+                                            <input type="hidden" name="mentor" value="${requestScope.mentor}"/>
                                         </label>
-                                        <input type="submit" class="btn btn-primary btn-block" value="Изменить время консультации">
+                                        <input type="submit" class="btn btn-primary btn-block"
+                                               value="Изменить время консультации">
                                     </div>
                                 </div>
                             </div>

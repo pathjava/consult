@@ -336,7 +336,7 @@ span.edit-text {
     background: #DDD;
 }
 
-.slotIsBusy {
+.slotIsBusy, .slotTempBusy {
     color: #fff;
     background-color: #6c757d;
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, .5);
@@ -349,6 +349,12 @@ span.edit-text {
     z-index: 90;
     margin-bottom: .25rem;
     text-align: center;
+}
+
+.slotTempBusy, .slotTempBusy:hover{
+    color: #721c24;
+    background-color: #f5c6cb;
+    border-color: #f5c6cb;
 }
 
 .slotIsBusyStudent:before {
