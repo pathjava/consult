@@ -44,7 +44,7 @@
                                                 <input type="hidden" name="time" value="${data.start}"/>
                                             </label>
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="remove" value="true"/>
+                                                <input type="hidden" name="deletesMentor" value="true"/>
                                             </label>
                                             <span class="trash">
                                             <input class="btn-del" type='submit' value=""

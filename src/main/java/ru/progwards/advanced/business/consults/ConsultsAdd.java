@@ -22,14 +22,13 @@ public class ConsultsAdd extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
-        boolean isRemove = "true".equals(req.getParameter("remove"));
+        boolean isRemoveUser = "true".equals(req.getParameter("deletesUser"));
+        boolean isRemoveMentor = "true".equals(req.getParameter("deletesMentor"));
         String loginMentor = req.getParameter("login");
         long startTime = Long.parseLong(req.getParameter("time"));
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String loginStudent = (String) session.getAttribute("login");
-        String comment = isRemove ? "" : req.getParameter("comment");
-
-        List<String> names = Collections.list(req.getParameterNames());
+        String comment = isRemoveUser || isRemoveMentor ? "" : req.getParameter("comment");
 
         if (!checkExistMentor(loginMentor)) {
             req.setAttribute("error-description", "Наставник с логином " + loginMentor + " не существует!");
@@ -37,7 +36,7 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
-        if (!isRemove && DataBase.INSTANCE.users.findKey(loginStudent).is_mentor) {
+        if ((!isRemoveUser && !isRemoveMentor) && DataBase.INSTANCE.users.findKey(loginStudent).is_mentor) {
             req.setAttribute("error-description", "Наставник не может записываться на консультацию!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -60,12 +59,12 @@ public class ConsultsAdd extends HttpServlet {
         DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
         if (!checkingKeyExistence(req, resp, key)) return;
 
-        if (isRemove) {
-            String temp = loginStudent;
+        if (isRemoveUser || isRemoveMentor) {
+            String path = isRemoveUser ? "/users-view?login=" + loginStudent : "/consults-view";
             loginStudent = "";
             comment = "";
             removeOldAndPutNew(loginMentor, startTime, duration, loginStudent, comment, key);
-            resp.sendRedirect("/users-view?login=" + temp);
+            resp.sendRedirect(path);
             return;
         }
 
