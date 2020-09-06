@@ -13,7 +13,11 @@ public class ConsultsEdit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String student = req.getParameter("student");
+        String mentor = req.getParameter("mentor");
+        long start = Long.parseLong(req.getParameter("start"));
 
+        req.setAttribute("student", student);
         req.getRequestDispatcher("/consults/consults-edit.jsp").forward(req, resp);
 
     }

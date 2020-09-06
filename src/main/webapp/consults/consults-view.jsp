@@ -61,9 +61,9 @@
                                                         <input type="hidden" name="deletesMentor" value="true"/>
                                                     </label>
                                                     <span class="trash">
-                                                <input class="btn-del" type='submit' value=""
-                                                       onclick="return confirm('Вы подтверждаете удаление?')"/>
-                                            </span>
+                                                        <input class="btn-del" type='submit' value=""
+                                                               onclick="return confirm('Вы подтверждаете удаление?')"/>
+                                                    </span>
                                                 </form>
                                             </c:when>
                                             <c:otherwise>
@@ -77,17 +77,17 @@
                                                 <form action="${pageContext.request.contextPath}/consults-edit"
                                                       method="post">
                                                     <label class="hiddenLabel">
-                                                        <input type="hidden" name="time" value="${data.start}"/>
+                                                        <input type="hidden" name="start" value="${data.start}"/>
                                                     </label>
                                                     <label class="hiddenLabel">
-                                                        <input type="hidden" name="time" value="${data.student}"/>
+                                                        <input type="hidden" name="student" value="${data.student}"/>
                                                     </label>
                                                     <label class="hiddenLabel">
-                                                        <input type="hidden" name="time" value="${data.mentor}"/>
+                                                        <input type="hidden" name="mentor" value="${data.mentor}"/>
                                                     </label>
                                                     <span class="edit">
-                                                <input class="btn-edit" type="submit" value=""/>
-                                            </span>
+                                                        <input class="btn-edit" type="submit" value=""/>
+                                                    </span>
                                                 </form>
                                             </c:when>
                                             <c:otherwise>
@@ -133,7 +133,14 @@
                                                 <td>${loop.index+1}</td>
                                                 <td>${data.startEndTime}</td>
                                                 <td>
-                                                    <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
+                                                    <c:choose>
+                                                        <c:when test="${data.student ne ''}">
+                                                            <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <i class="far fa-user-slash fadedIcon"></i>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                             </tr>
                                         </c:forEach>
