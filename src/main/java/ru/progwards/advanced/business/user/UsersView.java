@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/users-view")
 public class UsersView extends HttpServlet {
@@ -61,8 +62,10 @@ public class UsersView extends HttpServlet {
             req.setAttribute("maxLoginName", MAX_LOGIN_NAME);
             req.getRequestDispatcher("/users/user-add.jsp").forward(req, resp);
         } else {
-            List<DataBase.Users.User> users = new ArrayList<>(DataBase.INSTANCE.users.getAll());
-            users.sort(Comparator.comparing(o -> o.name));
+            List<DataBase.Users.User> users = DataBase.INSTANCE.users.getAll().stream()
+                    .filter(p -> !p.is_mentor)
+                    .sorted(Comparator.comparing(o -> o.name))
+                    .collect(Collectors.toList());
 
             req.setAttribute("users", users);
             req.setAttribute("avatarsDirectory", FILE_DIRECTORY);

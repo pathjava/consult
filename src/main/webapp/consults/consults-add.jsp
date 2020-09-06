@@ -17,35 +17,6 @@
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-4">
                                 <div class="card cardForm">
-                                    <div class="form-group">
-                                        <label for="inputLogin">Имя</label>
-                                        <input type="text" name="studentLogin" class="form-control" id="inputLogin"
-                                               value="${sessionScope.login}" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail">Email</label>
-                                        <input type="email" name="email" class="form-control" id="inputEmail">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputComment">Примечание</label>
-                                        <input type="text" name="comment" class="form-control" id="inputComment"
-                                               maxlength="${requestScope.maxLengthComment}">
-                                    </div>
-                                    <div class="">
-                                        <label class="hiddenLabel">
-                                            <input type="hidden" name="login" value="${requestScope.login}"/>
-                                        </label>
-                                        <input type="submit" class="btn btn-primary btn-block" value="Отправить заявку">
-                                    </div>
-                                    <div class="privacy">
-                                        Записываясь, вы даете согласие на обработку своих персональных данных и
-                                        принимаете условия пользовательского соглашения. Ознакомьтесь с правилами
-                                        оплаты и отмены.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-4">
-                                <div class="card cardForm">
                                     <div class="consultationsSlots">
                                         <c:forEach var="map" items="${requestScope.consultations}"
                                                    varStatus="outerLoop">
@@ -70,6 +41,26 @@
                                                 </ul>
                                             </div>
                                         </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4">
+                                <div class="card cardForm">
+                                    <div class="form-group">
+                                        <label for="inputComment">Примечание</label>
+                                        <textarea class="form-control" name="comment" id="inputComment" rows="5"
+                                                  maxlength="${requestScope.maxLengthComment}"></textarea>
+                                    </div>
+                                    <div class="">
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="login" value="${requestScope.login}"/>
+                                        </label>
+                                        <input type="submit" class="btn btn-primary btn-block" value="Отправить заявку">
+                                    </div>
+                                    <div class="privacy">
+                                        Записываясь, вы даете согласие на обработку своих персональных данных и
+                                        принимаете условия пользовательского соглашения. Ознакомьтесь с правилами
+                                        оплаты и отмены.
                                     </div>
                                 </div>
                             </div>
