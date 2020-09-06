@@ -44,12 +44,16 @@
                                                 <input type="hidden" name="time" value="${data.start}"/>
                                             </label>
                                             <label class="hiddenLabel">
+                                                <input type="hidden" name="loginStudentRemoveSlot"
+                                                       value="${data.student}"/>
+                                            </label>
+                                            <label class="hiddenLabel">
                                                 <input type="hidden" name="deletesMentor" value="true"/>
                                             </label>
                                             <span class="trash">
-                                            <input class="btn-del" type='submit' value=""
-                                                   onclick="return confirm('Вы подтверждаете удаление?')"/>
-                                        </span>
+                                                <input class="btn-del" type='submit' value=""
+                                                       onclick="return confirm('Вы подтверждаете удаление?')"/>
+                                            </span>
                                         </form>
                                     </td>
                                     <td>

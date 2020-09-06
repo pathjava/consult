@@ -36,13 +36,22 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
+        if (isRemoveUser || isRemoveMentor) {
+            String loginStudentRemoveSlot = req.getParameter("loginStudentRemoveSlot");
+            if (loginStudentRemoveSlot.isEmpty()) {
+                req.setAttribute("error-description", "Нет информации для удаления, слот не занят!");
+                req.getRequestDispatcher("/error.jsp").forward(req, resp);
+                return;
+            }
+        }
+
         if ((!isRemoveUser && !isRemoveMentor) && DataBase.INSTANCE.users.findKey(loginStudent).is_mentor) {
             req.setAttribute("error-description", "Наставник не может записываться на консультацию!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
 
-        if (loginMentor.equals(loginStudent)) {
+        if ((!isRemoveUser && !isRemoveMentor) && loginMentor.equals(loginStudent)) {
             req.setAttribute("error-description", "Нельзя записываться на консультацию к самому себе!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
