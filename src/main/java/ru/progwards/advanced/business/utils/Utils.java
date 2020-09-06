@@ -109,4 +109,69 @@ public class Utils {
     public static int getMaxLengthComment() {
         return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_COMMENT").value);
     }
+
+    public static Map<String, List<ConsultationsForAdd>> getConsultations(String loginMentor) {
+        Map<String, List<ConsultationsForAdd>> map = new LinkedHashMap<>();
+        List<ConsultationsForAdd> list = new ArrayList<>();
+        List<DataBase.Consultations.Consultation> consultations = getFutureConsultations(loginMentor).stream()
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart))
+                .collect(Collectors.toList());
+
+        String temp = "";
+        for (DataBase.Consultations.Consultation item : consultations) {
+            String startDayWeekAndDate = Utils.getStartDayWeek(item.start)
+                    + " - " + Utils.getStartDate(item.start);
+            if (!temp.equals(startDayWeekAndDate)) {
+                list = new ArrayList<>();
+                temp = startDayWeekAndDate;
+            }
+            String startTime = Utils.getStartMoscowTime(item.start);
+            list.add(new ConsultationsForAdd(item.mentor, item.start, startTime, item.student, item.comment));
+            map.put(startDayWeekAndDate, list);
+        }
+        return map;
+    }
+
+    private static List<DataBase.Consultations.Consultation> getFutureConsultations(String login) {
+        return DataBase.INSTANCE.consultations.getAll().stream()
+                .filter(consultation -> consultation.mentor.equals(login)
+                        && consultation.start > Utils.getTimeNow()).collect(Collectors.toList());
+    }
+
+    public static class ConsultationsForAdd {
+        public final String mentor;
+        public final long start;
+        public final String startTime;
+        public final String student;
+        public final String comment;
+
+        private ConsultationsForAdd(String mentor, long start, String startTime,
+                                    String student, String comment) {
+            this.mentor = mentor;
+            this.start = start;
+            this.startTime = startTime;
+            this.student = student;
+            this.comment = comment;
+        }
+
+        public String getStartTime() {
+            return startTime;
+        }
+
+        public String getMentor() {
+            return mentor;
+        }
+
+        public long getStart() {
+            return start;
+        }
+
+        public String getStudent() {
+            return student;
+        }
+
+        public String getComment() {
+            return comment;
+        }
+    }
 }
