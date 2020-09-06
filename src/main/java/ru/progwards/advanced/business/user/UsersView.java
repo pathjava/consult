@@ -78,7 +78,7 @@ public class UsersView extends HttpServlet {
         for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
             if (item.student != null && item.student.equals(login) && item.start > Utils.getTimeNow()) {
                 String mentorName = Utils.getMentorName(item.mentor);
-                String startTime = Utils.getStartTime(item.start);
+                String startTime = Utils.getStartMoscowTime(item.start);
                 String startDate = Utils.getStartDayWeek(item.start)
                         + " - " + Utils.getStartDate(item.start);
                 list.add(new UserFutureConsultations(item.mentor, mentorName, item.start,

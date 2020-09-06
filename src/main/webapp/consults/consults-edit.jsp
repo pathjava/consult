@@ -4,39 +4,55 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Consults: редактирование</title>
+      <title>Consults</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Consults: редактирование</h1>
+                    <h1>Изменение консультации ${param.student}</h1>
                 </div>
-                <form method="post" action="${pageContext.request.contextPath}/consults-add"
-                      enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <label for="controlLogin" class="col-sm-2 col-form-label">Логин</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="controlLogin" name="student"
-                                   value="${param.student}" readonly>
+                <div>
+                    <form method="post" action="${pageContext.request.contextPath}/consults-add">
+                        <div class="row row-cols-1">
+                            <div class="col mb-4">
+                                <div class="card cardForm">
+                                    <div class="consultationsSlots">
+                                        <c:forEach var="map" items="${requestScope.consultationsEdit}"
+                                                   varStatus="outerLoop">
+                                            <div class="slotsBlock">
+                                                <div class="dayConsult">${map.key}</div>
+                                                <ul class="slotsUlBlock">
+                                                    <c:forEach var="consultation" items="${map.value}" varStatus="loop">
+                                                        <li>
+                                                            <c:choose>
+                                                                <c:when test="${consultation.student eq ''}">
+                                                                    <input type="radio" name="time"
+                                                                           id="${outerLoop.index+1}${loop.index+1}"
+                                                                           value="${consultation.start}"/>
+                                                                    <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <div class="slotIsBusy <c:if test="${consultation.student eq sessionScope.login}">slotIsBusyStudent</c:if>">${consultation.startTime}</div>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                    <div class="">
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="login" value="${requestScope.login}"/>
+                                        </label>
+                                        <input type="submit" class="btn btn-primary btn-block" value="Изменить время консультации">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="timeStart" class="col-sm-2 col-form-label">Время начала</label>
-                        <div class="col-sm-10">
-                            <input type="time" class="form-control" id="timeStart" name="timeStart" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-10">
-                            <label class="hiddenLabel">
-                                <input type="hidden" name="edit" value="true"/>
-                            </label>
-                            <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
                 <div class="error-actions">
                     <a href="javascript:history.back()" class="btn btn-primary"><span
                             class="glyphicon glyphicon-home"></span><i class="far fa-reply"></i></a>

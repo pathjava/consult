@@ -144,7 +144,7 @@ public class ConsultsAdd extends HttpServlet {
                 temp = startDayWeekAndDate;
             }
             String startTime = Utils.getStartMoscowTime(item.start);
-            list.add(new ConsultationsForAdd(item.mentor, item.start, startTime, item.duration, item.student, item.comment));
+            list.add(new ConsultationsForAdd(item.mentor, item.start, startTime, item.student, item.comment));
             map.put(startDayWeekAndDate, list);
         }
         return map;
@@ -154,16 +154,14 @@ public class ConsultsAdd extends HttpServlet {
         public final String mentor;
         public final long start;
         public final String startTime;
-        public final long duration;
         public final String student;
         public final String comment;
 
         private ConsultationsForAdd(String mentor, long start, String startTime,
-                                    long duration, String student, String comment) {
+                                    String student, String comment) {
             this.mentor = mentor;
             this.start = start;
             this.startTime = startTime;
-            this.duration = duration;
             this.student = student;
             this.comment = comment;
         }
@@ -178,10 +176,6 @@ public class ConsultsAdd extends HttpServlet {
 
         public long getStart() {
             return start;
-        }
-
-        public long getDuration() {
-            return duration;
         }
 
         public String getStudent() {
