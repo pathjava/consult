@@ -34,7 +34,7 @@
                                         </div>
                                         <form action="${pageContext.request.contextPath}/consults-add">
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="login" value="${mentor.login}"/>
+                                                <input type="hidden" name="mentor" value="${mentor.login}"/>
                                             </label>
                                             <input type="submit" class="btn btn-primary btn-block" value="Записаться">
                                         </form>

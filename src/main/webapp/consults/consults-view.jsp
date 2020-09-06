@@ -48,14 +48,10 @@
                                                 <form action="${pageContext.request.contextPath}/consults-add"
                                                       method="post">
                                                     <label class="hiddenLabel">
-                                                        <input type="hidden" name="login" value="${data.mentor}"/>
+                                                        <input type="hidden" name="mentor" value="${data.mentor}"/>
                                                     </label>
                                                     <label class="hiddenLabel">
-                                                        <input type="hidden" name="time" value="${data.start}"/>
-                                                    </label>
-                                                    <label class="hiddenLabel">
-                                                        <input type="hidden" name="loginStudentRemoveSlot"
-                                                               value="${data.student}"/>
+                                                        <input type="hidden" name="start" value="${data.start}"/>
                                                     </label>
                                                     <label class="hiddenLabel">
                                                         <input type="hidden" name="deletesMentor" value="true"/>

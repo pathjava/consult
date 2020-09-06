@@ -110,10 +110,10 @@ public class Utils {
         return Integer.parseInt(DataBase.INSTANCE.settings.findKey("MAX_LENGTH_COMMENT").value);
     }
 
-    public static Map<String, List<ConsultationsForAdd>> getConsultations(String loginMentor) {
+    public static Map<String, List<ConsultationsForAdd>> getConsultations(String mentor) {
         Map<String, List<ConsultationsForAdd>> map = new LinkedHashMap<>();
         List<ConsultationsForAdd> list = new ArrayList<>();
-        List<DataBase.Consultations.Consultation> consultations = getFutureConsultations(loginMentor).stream()
+        List<DataBase.Consultations.Consultation> consultations = getFutureConsultations(mentor).stream()
                 .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart))
                 .collect(Collectors.toList());
 
@@ -132,9 +132,9 @@ public class Utils {
         return map;
     }
 
-    private static List<DataBase.Consultations.Consultation> getFutureConsultations(String login) {
+    private static List<DataBase.Consultations.Consultation> getFutureConsultations(String mentor) {
         return DataBase.INSTANCE.consultations.getAll().stream()
-                .filter(consultation -> consultation.mentor.equals(login)
+                .filter(consultation -> consultation.mentor.equals(mentor)
                         && consultation.start > Utils.getTimeNow()).collect(Collectors.toList());
     }
 

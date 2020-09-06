@@ -23,25 +23,16 @@ public class ConsultsAdd extends HttpServlet {
 
         boolean isRemoveUser = "true".equals(req.getParameter("deletesUser"));
         boolean isRemoveMentor = "true".equals(req.getParameter("deletesMentor"));
-        String loginMentor = req.getParameter("login");
-        long startTime = Long.parseLong(req.getParameter("time"));
+        String mentor = req.getParameter("mentor");
+        long start = Long.parseLong(req.getParameter("start"));
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String loginStudent = (String) session.getAttribute("login");
         String comment = isRemoveUser || isRemoveMentor ? "" : req.getParameter("comment");
 
-        if (!checkExistMentor(loginMentor)) {
-            req.setAttribute("error-description", "Наставник с логином " + loginMentor + " не существует!");
+        if (!checkExistMentor(mentor)) {
+            req.setAttribute("error-description", "Наставник с логином " + mentor + " не существует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
-        }
-
-        if (isRemoveUser || isRemoveMentor) {
-            String loginStudentRemoveSlot = req.getParameter("loginStudentRemoveSlot");
-            if (loginStudentRemoveSlot.isEmpty()) {
-                req.setAttribute("error-description", "Нет информации для удаления, слот не занят!");
-                req.getRequestDispatcher("/error.jsp").forward(req, resp);
-                return;
-            }
         }
 
         if ((!isRemoveUser && !isRemoveMentor) && DataBase.INSTANCE.users.findKey(loginStudent).is_mentor) {
@@ -50,7 +41,7 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
-        if ((!isRemoveUser && !isRemoveMentor) && loginMentor.equals(loginStudent)) {
+        if ((!isRemoveUser && !isRemoveMentor) && mentor.equals(loginStudent)) {
             req.setAttribute("error-description", "Нельзя записываться на консультацию к самому себе!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -64,20 +55,20 @@ public class ConsultsAdd extends HttpServlet {
         }
 
         // при добавлении записи на консультацию сперва проверяем и удаляем слот, и потом добавляем
-        DataBase.Consultations.Key key = new DataBase.Consultations.Key(loginMentor, startTime);
+        DataBase.Consultations.Key key = new DataBase.Consultations.Key(mentor, start);
         if (!checkingKeyExistence(req, resp, key)) return;
 
         if (isRemoveUser || isRemoveMentor) {
             String path = isRemoveUser ? "/users-view?login=" + loginStudent : "/consults-view";
             loginStudent = "";
             comment = "";
-            removeOldAndPutNew(loginMentor, startTime, duration, loginStudent, comment, key);
+            removeOldAndPutNew(mentor, start, duration, loginStudent, comment, key);
             resp.sendRedirect(path);
             return;
         }
 
         if (DataBase.INSTANCE.consultations.findKey(key).student.equals("")) {
-            removeOldAndPutNew(loginMentor, startTime, duration, loginStudent, comment, key);
+            removeOldAndPutNew(mentor, start, duration, loginStudent, comment, key);
         } else {
             req.setAttribute("error-description", "Не удалось добавить запись на консультацию! Вероятно, она уже занята!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
@@ -88,13 +79,13 @@ public class ConsultsAdd extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String loginMentor = req.getParameter("login");
+        String mentor = req.getParameter("mentor");
 
-        Map<String, List<Utils.ConsultationsForAdd>> consultations = Utils.getConsultations(loginMentor);
+        Map<String, List<Utils.ConsultationsForAdd>> consultationsAdd = Utils.getConsultations(mentor);
 
-        req.setAttribute("login", loginMentor);
-        req.setAttribute("name", Utils.getMentorName(loginMentor));
-        req.setAttribute("consultations", consultations);
+        req.setAttribute("mentor", mentor);
+        req.setAttribute("name", Utils.getMentorName(mentor));
+        req.setAttribute("consultationsAdd", consultationsAdd);
         req.setAttribute("maxLengthComment", MAX_LENGTH_COMMENT);
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
     }

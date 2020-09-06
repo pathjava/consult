@@ -18,7 +18,7 @@
                             <div class="col mb-4">
                                 <div class="card cardForm">
                                     <div class="consultationsSlots">
-                                        <c:forEach var="map" items="${requestScope.consultations}"
+                                        <c:forEach var="map" items="${requestScope.consultationsAdd}"
                                                    varStatus="outerLoop">
                                             <div class="slotsBlock">
                                                 <div class="dayConsult">${map.key}</div>
@@ -27,7 +27,7 @@
                                                         <li>
                                                             <c:choose>
                                                                 <c:when test="${consultation.student eq ''}">
-                                                                    <input type="radio" name="time"
+                                                                    <input type="radio" name="start"
                                                                            id="${outerLoop.index+1}${loop.index+1}"
                                                                            value="${consultation.start}"/>
                                                                     <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="">
                                         <label class="hiddenLabel">
-                                            <input type="hidden" name="login" value="${requestScope.login}"/>
+                                            <input type="hidden" name="mentor" value="${requestScope.mentor}"/>
                                         </label>
                                         <input type="submit" class="btn btn-primary btn-block" value="Отправить заявку">
                                     </div>
