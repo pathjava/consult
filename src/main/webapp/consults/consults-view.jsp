@@ -33,44 +33,67 @@
                                     <td>${loop.index+1}</td>
                                     <td>${data.startEndTime}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
+                                        <c:choose>
+                                            <c:when test="${data.student ne ''}">
+                                                <a href="${pageContext.request.contextPath}/users-view?login=${data.student}">${data.student}</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <i class="far fa-user-slash fadedIcon"></i>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                     <td>
-                                        <form action="${pageContext.request.contextPath}/consults-add" method="post">
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="login" value="${data.mentor}"/>
-                                            </label>
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="time" value="${data.start}"/>
-                                            </label>
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="loginStudentRemoveSlot"
-                                                       value="${data.student}"/>
-                                            </label>
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="deletesMentor" value="true"/>
-                                            </label>
-                                            <span class="trash">
+                                        <c:choose>
+                                            <c:when test="${data.student ne ''}">
+                                                <form action="${pageContext.request.contextPath}/consults-add"
+                                                      method="post">
+                                                    <label class="hiddenLabel">
+                                                        <input type="hidden" name="login" value="${data.mentor}"/>
+                                                    </label>
+                                                    <label class="hiddenLabel">
+                                                        <input type="hidden" name="time" value="${data.start}"/>
+                                                    </label>
+                                                    <label class="hiddenLabel">
+                                                        <input type="hidden" name="loginStudentRemoveSlot"
+                                                               value="${data.student}"/>
+                                                    </label>
+                                                    <label class="hiddenLabel">
+                                                        <input type="hidden" name="deletesMentor" value="true"/>
+                                                    </label>
+                                                    <span class="trash">
                                                 <input class="btn-del" type='submit' value=""
                                                        onclick="return confirm('Вы подтверждаете удаление?')"/>
                                             </span>
-                                        </form>
+                                                </form>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <i class="far fa-trash-alt fadedIcon"></i>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                     <td>
-                                        <form action="${pageContext.request.contextPath}/consults-edit" method="post">
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="time" value="${data.start}"/>
-                                            </label>
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="time" value="${data.student}"/>
-                                            </label>
-                                            <label class="hiddenLabel">
-                                                <input type="hidden" name="time" value="${data.mentor}"/>
-                                            </label>
-                                            <span class="edit">
+                                        <c:choose>
+                                            <c:when test="${data.student ne ''}">
+                                                <form action="${pageContext.request.contextPath}/consults-edit"
+                                                      method="post">
+                                                    <label class="hiddenLabel">
+                                                        <input type="hidden" name="time" value="${data.start}"/>
+                                                    </label>
+                                                    <label class="hiddenLabel">
+                                                        <input type="hidden" name="time" value="${data.student}"/>
+                                                    </label>
+                                                    <label class="hiddenLabel">
+                                                        <input type="hidden" name="time" value="${data.mentor}"/>
+                                                    </label>
+                                                    <span class="edit">
                                                 <input class="btn-edit" type="submit" value=""/>
                                             </span>
-                                        </form>
+                                                </form>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <i class="far fa-edit fadedIcon"></i>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                 </tr>
                             </c:forEach>

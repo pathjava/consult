@@ -379,14 +379,18 @@ span.edit-text {
     font-weight: 700;
 }
 
-.accordion{
+.accordion {
     margin: 1rem 0;
 }
 
-.accordion .btn:focus{
+.accordion .btn:focus {
     box-shadow: none;
 }
 
-.accordion .card-body{
+.accordion .card-body {
     padding: 0 0 .5rem;
+}
+
+.fadedIcon {
+    opacity: 35%;
 }
