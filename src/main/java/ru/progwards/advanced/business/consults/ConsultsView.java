@@ -39,7 +39,9 @@ public class ConsultsView extends HttpServlet {
             if (!map.containsKey(nameAndDate))
                 list = new ArrayList<>();
             list.add(new AllConsults(item.mentor, mentorName, item.start, startEndTime, item.student));
-            map.put(nameAndDate, list);
+            map.put(nameAndDate, list.stream()
+                    .sorted(Comparator.comparing(p -> p.start))
+                    .collect(Collectors.toList()));
         }
         return map;
     }
@@ -55,7 +57,7 @@ public class ConsultsView extends HttpServlet {
     private List<DataBase.Consultations.Consultation> getPastListConsultations() {
         return DataBase.INSTANCE.consultations.getAll()
                 .stream().filter(p -> p.start < Utils.getTimeNow())
-                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart)
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart).reversed()
                         .thenComparing(DataBase.Consultations.Consultation::getMentor))
                 .collect(Collectors.toList());
     }
