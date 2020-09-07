@@ -30,7 +30,7 @@ public class ConsultsEdit extends HttpServlet {
             req.setAttribute("mentor", mentor);
             req.setAttribute("consultationsEdit", consultationsEdit);
             req.getRequestDispatcher("/consults/consults-edit.jsp").forward(req, resp);
-        } else {
+        } else { //TODO - подумать о необходимости проверок
             String comment = "";
             long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
             long oldStart = Long.parseLong(req.getParameter("oldStart"));

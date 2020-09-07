@@ -16,17 +16,17 @@ public class ScheduleSave extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String loginMentor = req.getParameter("selectMentor");
-        int dayOfWeek = Integer.parseInt(req.getParameter("selectDay"));
-        long startTime = Utils.getTime(req.getParameter("timeStart"));
-        long durationTime = Utils.getTime(req.getParameter("timeDuration"));
+        String mentor = req.getParameter("mentor");
+        int day_of_week = Integer.parseInt(req.getParameter("day_of_week"));
+        long start = Utils.getTime(req.getParameter("timeStart"));
+        long duration = Utils.getTime(req.getParameter("duration"));
 
-        if (loginMentor == null) {
+        if (mentor == null) {
             req.setAttribute("error-description", "Хакер? Отсутствуют обязательные параметры!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        if (loginMentor.isEmpty()) {
+        if (mentor.isEmpty()) {
             req.setAttribute("error-description", "Название параметра должно быть установлено!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -34,13 +34,13 @@ public class ScheduleSave extends HttpServlet {
 
         // при редактировании сперва удаляем и потом добавляем
         if ("true".equals(req.getParameter("edit"))) {
-            int currentDayOfWeek = Integer.parseInt(req.getParameter("currentDayOfWeek"));
-            long currentTimeStart = Long.parseLong(req.getParameter("currentTimeStart"));
-            DataBase.Schedule.Key key = new DataBase.Schedule.Key(loginMentor, currentDayOfWeek, currentTimeStart);
+            day_of_week = Integer.parseInt(req.getParameter("day_of_week"));
+            start = Long.parseLong(req.getParameter("start"));
+            DataBase.Schedule.Key key = new DataBase.Schedule.Key(mentor, day_of_week, start);
             DataBase.INSTANCE.schedule.remove(key);
         }
 
-        if (!DataBase.INSTANCE.schedule.put(new DataBase.Schedule.Value(loginMentor, dayOfWeek, startTime, durationTime))) {
+        if (!DataBase.INSTANCE.schedule.put(new DataBase.Schedule.Value(mentor, day_of_week, start, duration))) {
             req.setAttribute("error-description", "Не удалось добавить настройку! Вероятно, она уже существует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;

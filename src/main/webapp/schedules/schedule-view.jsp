@@ -41,13 +41,13 @@
                                     <td>
                                         <form action="${pageContext.request.contextPath}/schedule-delete" method="post">
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
+                                                <input type="hidden" name="mentor" value="${schedule.mentor}"/>
                                             </label>
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="timeStart" value="${schedule.start}"/>
+                                                <input type="hidden" name="start" value="${schedule.start}"/>
                                             </label>
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="dayOfWeek" value="${schedule.day_of_week}"/>
+                                                <input type="hidden" name="day_of_week" value="${schedule.day_of_week}"/>
                                             </label>
                                             <span class="trash">
                                             <input class="btn-del" type="submit" value=""
@@ -59,17 +59,17 @@
                                         <form action="${pageContext.request.contextPath}/schedule-view?edit=true"
                                               method="post">
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="mentorLogin" value="${schedule.mentor}"/>
+                                                <input type="hidden" name="mentor" value="${schedule.mentor}"/>
                                             </label>
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="currentDayOfWeek"
+                                                <input type="hidden" name="day_of_week"
                                                        value="${schedule.day_of_week}"/>
                                             </label>
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="currentTimeStart" value="${schedule.start}"/>
+                                                <input type="hidden" name="start" value="${schedule.start}"/>
                                             </label>
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="currentTimeDuration"
+                                                <input type="hidden" name="duration"
                                                        value="${schedule.duration}"/>
                                             </label>
                                             <span class="edit">

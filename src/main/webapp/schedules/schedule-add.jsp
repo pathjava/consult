@@ -17,21 +17,21 @@
                         <input type="hidden" name="daysSettings" value="true">
                     </label>
                     <div class="form-group row">
-                        <label for="selectMentor" class="col-sm-2 col-form-label">Наставник</label>
+                        <label for="mentor" class="col-sm-2 col-form-label">Наставник</label>
                         <div class="col-sm-10">
-                            <select id="selectMentor" name="selectMentor" class="custom-select mr-sm-2" required>
+                            <select id="mentor" name="mentor" class="custom-select mr-sm-2" required>
                                 <option selected>выберите...</option>
                                 <c:forEach var="mentor" items="${requestScope.mentors}">
                                     <option value="${mentor.login}">${mentor.name}</option>
                                 </c:forEach>
                             </select>
-                            <label for="selectMentor" style="display: none"></label>
+<%--                            <label for="mentor" style="display: none"></label>--%>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="selectDay" class="col-sm-2 col-form-label">День недели</label>
                         <div class="col-sm-10">
-                            <select id="selectDay" name="selectDay" class="custom-select mr-sm-2" required>
+                            <select id="selectDay" name="day_of_week" class="custom-select mr-sm-2" required>
                                 <option selected>выберите...</option>
                                 <option value="1">Понедельник</option>
                                 <option value="2">Вторник</option>
@@ -51,9 +51,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="timeDuration" class="col-sm-2 col-form-label">Длительность</label>
+                        <label for="duration" class="col-sm-2 col-form-label">Длительность</label>
                         <div class="col-sm-10">
-                            <input type="time" class="form-control" id="timeDuration" name="timeDuration" required>
+                            <input type="time" class="form-control" id="duration" name="duration" required>
                         </div>
                     </div>
                     <div class="form-group row">

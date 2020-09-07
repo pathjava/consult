@@ -108,10 +108,10 @@
                                 <td>
                                     <form action="${pageContext.request.contextPath}/consults-add" method="post">
                                         <label class="hiddenLabel">
-                                            <input type="hidden" name="login" value="${consultation.mentor}"/>
+                                            <input type="hidden" name="mentor" value="${consultation.mentor}"/>
                                         </label>
                                         <label class="hiddenLabel">
-                                            <input type="hidden" name="time" value="${consultation.start}"/>
+                                            <input type="hidden" name="start" value="${consultation.start}"/>
                                         </label>
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="deletesUser" value="true"/>

@@ -15,18 +15,18 @@ public class ScheduleDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String loginMentor = req.getParameter("mentorLogin");
-        int dayOfWeek = Integer.parseInt(req.getParameter("dayOfWeek"));
-        long startTime = Long.parseLong(req.getParameter("timeStart"));
+        String mentor = req.getParameter("mentor");
+        int day_of_week = Integer.parseInt(req.getParameter("day_of_week"));
+        long start = Long.parseLong(req.getParameter("start"));
 
-        DataBase.Schedule.Key removeKey = new DataBase.Schedule.Key(loginMentor, dayOfWeek, startTime);
+        DataBase.Schedule.Key key = new DataBase.Schedule.Key(mentor, day_of_week, start);
 
-        if (loginMentor == null || dayOfWeek <= 0 || startTime <= 0) {
+        if (mentor == null || day_of_week <= 0 || start <= 0) {
             req.setAttribute("error-description", "Хакер? Неправильные параметры!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        if (DataBase.INSTANCE.schedule.remove(removeKey) == null) {
+        if (DataBase.INSTANCE.schedule.remove(key) == null) {
             req.setAttribute("error-description", "Не удалось удалить элемент! Вероятно, он уже не существует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             DataBase.INSTANCE.settings.readAll();
