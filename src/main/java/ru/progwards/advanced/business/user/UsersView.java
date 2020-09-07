@@ -95,9 +95,7 @@ public class UsersView extends HttpServlet {
             if (!map.containsKey(date))
                 list = new ArrayList<>();
             list.add(new MentorFutureConsultations(login, item.start, startEndTime, item.student));
-            map.put(date, list.stream()
-                    .sorted(Comparator.comparing(p -> p.start))
-                    .collect(Collectors.toList()));
+            map.put(date, list);
         }
         if (map.size() == 0)
             list.add(new MentorFutureConsultations("", 0,
@@ -108,9 +106,9 @@ public class UsersView extends HttpServlet {
     private List<UserFutureConsultations> getUserFutureConsultations(String login) {
         List<UserFutureConsultations> list = new ArrayList<>();
         List<DataBase.Consultations.Consultation> all = DataBase.INSTANCE.consultations.getAll().stream()
-                .filter(p -> p.student != null)
                 .filter(p -> p.student.equals(login))
                 .filter(p -> p.start > Utils.getTimeNow())
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart))
                 .collect(Collectors.toList());
         for (DataBase.Consultations.Consultation item : all) {
             String mentorName = Utils.getMentorName(item.mentor);
@@ -123,16 +121,15 @@ public class UsersView extends HttpServlet {
         if (list.size() == 0)
             list.add(new UserFutureConsultations("", "", 0,
                     "У Вас нет записей на консультации", ""));
-        list.sort(Comparator.comparing(UserFutureConsultations::getStart));
         return list;
     }
 
     private List<UserPastConsultations> getUserPastConsultations(String login) {
         List<UserPastConsultations> list = new ArrayList<>();
         List<DataBase.Consultations.Consultation> all = DataBase.INSTANCE.consultations.getAll().stream()
-                .filter(p -> p.student != null)
                 .filter(p -> p.student.equals(login))
                 .filter(p -> p.start < Utils.getTimeNow())
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart).reversed())
                 .collect(Collectors.toList());
         for (DataBase.Consultations.Consultation item : all) {
             String mentorName = Utils.getMentorName(item.mentor);
@@ -144,8 +141,6 @@ public class UsersView extends HttpServlet {
         if (list.size() == 0)
             list.add(new UserPastConsultations("", "",
                     "У Вас не было записей на консультации"));
-        list.sort(Comparator.comparing(UserPastConsultations::getStartDate)
-                .thenComparing(UserPastConsultations::getStartTime));
         return list;
     }
 
