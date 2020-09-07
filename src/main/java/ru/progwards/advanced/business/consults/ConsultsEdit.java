@@ -19,7 +19,13 @@ public class ConsultsEdit extends HttpServlet {
 
         String student = req.getParameter("student");
         String mentor = req.getParameter("mentor");
-        long start = Long.parseLong(req.getParameter("start"));
+        String tempStart = req.getParameter("start");
+        long start;
+        if (tempStart == null) {
+            warningThatTimeIsNotSelected(req, resp);
+            return;
+        } else
+            start = Long.parseLong(tempStart);
         boolean edit = "true".equals(req.getParameter("edit"));
 
         if (!edit) {
@@ -44,5 +50,10 @@ public class ConsultsEdit extends HttpServlet {
 
             resp.sendRedirect("/consults-view");
         }
+    }
+
+    private void warningThatTimeIsNotSelected(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("error-description", "Время записи на консультацию не выбрано!");
+        req.getRequestDispatcher("/error.jsp").forward(req, resp);
     }
 }
