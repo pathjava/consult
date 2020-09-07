@@ -281,6 +281,7 @@ span.edit-text {
     margin-bottom: 0.15rem;
     float: left;
     width: 50%;
+    border-bottom: 1px dashed rgba(0,0,0,.125);
 }
 
 .slotsUlBlock {

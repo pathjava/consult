@@ -22,7 +22,6 @@
                             <th scope="col"><i class="far fa-at"></i></th>
                             <th scope="col"><i class="fal fa-university"></i></th>
                             <th scope="col"><i class="fab fa-discord"></i></th>
-                            <th scope="col"><i class="far fa-user-chart"></i></th>
                             <th scope="col"><i class="far fa-user-tag"></i></th>
                             <th scope="col"><i class="far fa-user-cog"></i></th>
                         </tr>
@@ -38,7 +37,6 @@
                                         value="${indexId[fn:length(indexId)-1]}"/></a>
                             </td>
                             <td>${requestScope.user.discordName}</td>
-                            <td>${requestScope.user.is_mentor ? "<i class=\"fas fa-user-headset isMentor\"></i>" : "<i class=\"far fa-digging\"></i>"}</td>
                             <td>
                                 <div class="avatar avatarView">
                                     <div class="user-avatar">

@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet("/users-view")
@@ -47,14 +45,23 @@ public class UsersView extends HttpServlet {
 
         if (login != null) {
             DataBase.Users.User user = DataBase.INSTANCE.users.findKey(login);
-            List<UserFutureConsultations> userFuture = getUserFutureConsultations(login);
-            List<UserPastConsultations> userPast = getUserPastConsultations(login);
+            if (!user.is_mentor) {
+                List<UserFutureConsultations> userFuture = getUserFutureConsultations(login);
+                List<UserPastConsultations> userPast = getUserPastConsultations(login);
 
-            req.setAttribute("user", user);
-            req.setAttribute("userFuture", userFuture);
-            req.setAttribute("userPast", userPast);
-            req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
-            req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
+                req.setAttribute("user", user);
+                req.setAttribute("userFuture", userFuture);
+                req.setAttribute("userPast", userPast);
+                req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
+                req.getRequestDispatcher("/users/user-view.jsp").forward(req, resp);
+            } else {
+                Map<String, List<MentorFutureConsultations>> futureMentor = getMentorFutureConsultations(login);
+
+                req.setAttribute("user", user);
+                req.setAttribute("futureMentor", futureMentor);
+                req.setAttribute("avatarsDirectory", FILE_DIRECTORY);
+                req.getRequestDispatcher("/users/mentor-view.jsp").forward(req, resp);
+            }
         } else if (add) {
             req.setAttribute("minPass", MIN_PASS);
             req.setAttribute("maxPass", MAX_PASS);
@@ -73,17 +80,45 @@ public class UsersView extends HttpServlet {
         }
     }
 
+    private Map<String, List<MentorFutureConsultations>> getMentorFutureConsultations(String login) {
+        Map<String, List<MentorFutureConsultations>> map = new LinkedHashMap<>();
+        List<MentorFutureConsultations> list = new ArrayList<>();
+        List<DataBase.Consultations.Consultation> all = DataBase.INSTANCE.consultations.getAll().stream()
+                .filter(p -> p.mentor.equals(login))
+                .filter(p -> p.start > Utils.getTimeNow())
+                .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart))
+                .collect(Collectors.toList());
+        for (DataBase.Consultations.Consultation item : all) {
+            String date = Utils.getStartDate(item.start);
+            String startEndTime = "с " + Utils.getStartMoscowTime(item.start)
+                    + " до " + Utils.getEndMoscowTime(item.start, item.duration);
+            if (!map.containsKey(date))
+                list = new ArrayList<>();
+            list.add(new MentorFutureConsultations(login, item.start, startEndTime, item.student));
+            map.put(date, list.stream()
+                    .sorted(Comparator.comparing(p -> p.start))
+                    .collect(Collectors.toList()));
+        }
+        if (map.size() == 0)
+            list.add(new MentorFutureConsultations("", 0,
+                    "У Вас нет записей на консультации", ""));
+        return map;
+    }
+
     private List<UserFutureConsultations> getUserFutureConsultations(String login) {
         List<UserFutureConsultations> list = new ArrayList<>();
-        for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
-            if (item.student != null && item.student.equals(login) && item.start > Utils.getTimeNow()) {
-                String mentorName = Utils.getMentorName(item.mentor);
-                String startTime = Utils.getStartMoscowTime(item.start);
-                String startDate = Utils.getStartDayWeek(item.start)
-                        + " - " + Utils.getStartDate(item.start);
-                list.add(new UserFutureConsultations(item.mentor, mentorName, item.start,
-                        startTime, startDate));
-            }
+        List<DataBase.Consultations.Consultation> all = DataBase.INSTANCE.consultations.getAll().stream()
+                .filter(p -> p.student != null)
+                .filter(p -> p.student.equals(login))
+                .filter(p -> p.start > Utils.getTimeNow())
+                .collect(Collectors.toList());
+        for (DataBase.Consultations.Consultation item : all) {
+            String mentorName = Utils.getMentorName(item.mentor);
+            String startTime = Utils.getStartMoscowTime(item.start);
+            String startDate = Utils.getStartDayWeek(item.start)
+                    + " - " + Utils.getStartDate(item.start);
+            list.add(new UserFutureConsultations(item.mentor, mentorName, item.start,
+                    startTime, startDate));
         }
         if (list.size() == 0)
             list.add(new UserFutureConsultations("", "", 0,
@@ -94,14 +129,17 @@ public class UsersView extends HttpServlet {
 
     private List<UserPastConsultations> getUserPastConsultations(String login) {
         List<UserPastConsultations> list = new ArrayList<>();
-        for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
-            if (item.student != null && item.student.equals(login) && item.start < Utils.getTimeNow()) {
-                String mentorName = Utils.getMentorName(item.mentor);
-                String startTime = Utils.getStartTime(item.start);
-                String startDate = Utils.getStartDayWeek(item.start)
-                        + " - " + Utils.getStartDate(item.start);
-                list.add(new UserPastConsultations(mentorName, startTime, startDate));
-            }
+        List<DataBase.Consultations.Consultation> all = DataBase.INSTANCE.consultations.getAll().stream()
+                .filter(p -> p.student != null)
+                .filter(p -> p.student.equals(login))
+                .filter(p -> p.start < Utils.getTimeNow())
+                .collect(Collectors.toList());
+        for (DataBase.Consultations.Consultation item : all) {
+            String mentorName = Utils.getMentorName(item.mentor);
+            String startTime = Utils.getStartTime(item.start);
+            String startDate = Utils.getStartDayWeek(item.start)
+                    + " - " + Utils.getStartDate(item.start);
+            list.add(new UserPastConsultations(mentorName, startTime, startDate));
         }
         if (list.size() == 0)
             list.add(new UserPastConsultations("", "",
@@ -169,6 +207,37 @@ public class UsersView extends HttpServlet {
 
         public String getStartDate() {
             return startDate;
+        }
+    }
+
+    public static class MentorFutureConsultations {
+        public final String mentor;
+        public final long start;
+        public final String startEndTime;
+        public final String student;
+
+        private MentorFutureConsultations(String mentor, long start,
+                                          String startEndTime, String student) {
+            this.mentor = mentor;
+            this.start = start;
+            this.startEndTime = startEndTime;
+            this.student = student;
+        }
+
+        public String getMentor() {
+            return mentor;
+        }
+
+        public long getStart() {
+            return start;
+        }
+
+        public String getStartEndTime() {
+            return startEndTime;
+        }
+
+        public String getStudent() {
+            return student;
         }
     }
 }
