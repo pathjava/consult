@@ -62,13 +62,13 @@ public class ConsultsAdd extends HttpServlet {
             String path = isRemoveUser ? "/users-view?login=" + student : "/consults-view";
             student = "";
             comment = "";
-            removeOldAndPutNew(mentor, start, duration, student, comment, key);
+            Utils.removeOldAndPutNew(mentor, start, duration, student, comment, key);
             resp.sendRedirect(path);
             return;
         }
 
         if (DataBase.INSTANCE.consultations.findKey(key).student.equals("")) {
-            removeOldAndPutNew(mentor, start, duration, student, comment, key);
+            Utils.removeOldAndPutNew(mentor, start, duration, student, comment, key);
         } else {
             req.setAttribute("error-description", "Не удалось добавить запись на консультацию! Вероятно, она уже занята!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
@@ -88,14 +88,6 @@ public class ConsultsAdd extends HttpServlet {
         req.setAttribute("consultationsAdd", consultationsAdd);
         req.setAttribute("maxLengthComment", MAX_LENGTH_COMMENT);
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
-    }
-
-    private static void removeOldAndPutNew(String mentor, long start,
-                                    long duration, String student, String comment,
-                                    DataBase.Consultations.Key key) throws IOException {
-        DataBase.INSTANCE.consultations.remove(key);
-        DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(mentor,
-                start, duration, student, comment));
     }
 
     private static boolean checkingKeyExistence(HttpServletRequest req, HttpServletResponse resp,

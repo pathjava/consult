@@ -2,6 +2,7 @@ package ru.progwards.advanced.business.utils;
 
 import ru.progwards.java2.lib.DataBase;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -173,5 +174,13 @@ public class Utils {
         public String getComment() {
             return comment;
         }
+    }
+
+    public static void removeOldAndPutNew(String mentor, long start,
+                                           long duration, String student, String comment,
+                                           DataBase.Consultations.Key key) throws IOException {
+        DataBase.INSTANCE.consultations.remove(key);
+        DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(mentor,
+                start, duration, student, comment));
     }
 }

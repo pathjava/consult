@@ -37,20 +37,12 @@ public class ConsultsEdit extends HttpServlet {
             String oldStudent = "";
 
             DataBase.Consultations.Key oldKey = new DataBase.Consultations.Key(mentor, oldStart);
-            removeOldAndPutNew(mentor, oldStart, duration, oldStudent, comment, oldKey);
+            Utils.removeOldAndPutNew(mentor, oldStart, duration, oldStudent, comment, oldKey);
 
             DataBase.Consultations.Key key = new DataBase.Consultations.Key(mentor, start);
-            removeOldAndPutNew(mentor, start, duration, student, comment, key);
+            Utils.removeOldAndPutNew(mentor, start, duration, student, comment, key);
 
             resp.sendRedirect("/consults-view");
         }
-    }
-
-    private static void removeOldAndPutNew(String mentor, long start,
-                                           long duration, String student, String comment,
-                                           DataBase.Consultations.Key key) throws IOException {
-        DataBase.INSTANCE.consultations.remove(key);
-        DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(mentor,
-                start, duration, student, comment));
     }
 }
