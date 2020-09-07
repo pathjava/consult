@@ -24,10 +24,22 @@ public class ConsultsAdd extends HttpServlet {
         boolean isRemoveUser = "true".equals(req.getParameter("deletesUser"));
         boolean isRemoveMentor = "true".equals(req.getParameter("deletesMentor"));
         String mentor = req.getParameter("mentor");
-        long start = Long.parseLong(req.getParameter("start"));
+        String tempStart = req.getParameter("start");
+        long start;
+        if (tempStart == null) {
+            warningThatTimeIsNotSelected(req, resp);
+            return;
+        } else
+            start = Long.parseLong(tempStart);
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String student = (String) session.getAttribute("login");
         String comment = isRemoveUser || isRemoveMentor ? "" : req.getParameter("comment");
+
+        if (student == null) {
+            req.setAttribute("error-description", "Логин студента не может быть null!");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
 
         if (!checkExistMentor(mentor)) {
             req.setAttribute("error-description", "Наставник с логином " + mentor + " не существует!");
@@ -90,8 +102,13 @@ public class ConsultsAdd extends HttpServlet {
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
     }
 
-    private static boolean checkingKeyExistence(HttpServletRequest req, HttpServletResponse resp,
-                                        DataBase.Consultations.Key key) throws ServletException, IOException {
+    private void warningThatTimeIsNotSelected(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("error-description", "Время записи на консультацию не выбрано!");
+        req.getRequestDispatcher("/error.jsp").forward(req, resp);
+    }
+
+    private boolean checkingKeyExistence(HttpServletRequest req, HttpServletResponse resp,
+                                                DataBase.Consultations.Key key) throws ServletException, IOException {
         if (!DataBase.INSTANCE.consultations.exists(key)) {
             req.setAttribute("error-description", "Данный слот записи на консультацию отсутствует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
@@ -100,7 +117,7 @@ public class ConsultsAdd extends HttpServlet {
         return true;
     }
 
-    private static boolean checkExistMentor(String mentor) {
+    private boolean checkExistMentor(String mentor) {
         return DataBase.INSTANCE.users.exists(mentor) && DataBase.INSTANCE.users.findKey(mentor).is_mentor;
     }
 }

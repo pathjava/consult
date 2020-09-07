@@ -176,10 +176,10 @@ public class UserSave extends HttpServlet {
         return false;
     }
 
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+    private final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validateEmail(HttpServletRequest req, HttpServletResponse resp, String email)
+    private boolean validateEmail(HttpServletRequest req, HttpServletResponse resp, String email)
             throws ServletException, IOException {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
         if (!matcher.find() || email.isEmpty() || email.length() > 320) {
@@ -190,10 +190,10 @@ public class UserSave extends HttpServlet {
         return true;
     }
 
-    public static final Pattern VALID_DISCORD_NAME_REGEX =
+    private final Pattern VALID_DISCORD_NAME_REGEX =
             Pattern.compile("^((.+?)#\\d{4})", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validateDiscordName(HttpServletRequest req, HttpServletResponse resp, String discordName)
+    private boolean validateDiscordName(HttpServletRequest req, HttpServletResponse resp, String discordName)
             throws ServletException, IOException {
         Matcher matcher = VALID_DISCORD_NAME_REGEX.matcher(discordName);
         if (!matcher.find() || discordName.isEmpty()) {
@@ -204,7 +204,7 @@ public class UserSave extends HttpServlet {
         return true;
     }
 
-    private static boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
+    private boolean uploadImageToServer(HttpServletRequest req, HttpServletResponse resp, String uploadPath)
             throws IOException, ServletException {
         for (Part part : req.getParts()) {
             if (part.getName().equals("image"))
@@ -221,7 +221,7 @@ public class UserSave extends HttpServlet {
         return true;
     }
 
-    private static boolean getFileName(Part part) {
+    private boolean getFileName(Part part) {
         for (String content : part.getHeader("content-disposition").split(";")) {
             if (content.trim().startsWith("filename")) {
                 String image = content.substring(content.indexOf("=") + 2, content.length() - 1).toLowerCase();
@@ -236,12 +236,12 @@ public class UserSave extends HttpServlet {
     }
 
     /* текущая дата и время для добавления префиксом к имени аватарки */
-    private static String getDateTime() {
+    private String getDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         return dtf.format(java.time.LocalDateTime.now()) + "_";
     }
 
-    public static boolean isStringContainsLatinCharactersOnly(HttpServletRequest req, HttpServletResponse resp,
+    private boolean isStringContainsLatinCharactersOnly(HttpServletRequest req, HttpServletResponse resp,
                                                               String iStringToCheck) throws ServletException, IOException {
         if (iStringToCheck.matches("^[a-zA-Z0-9.]+$"))
             return true;
@@ -252,13 +252,13 @@ public class UserSave extends HttpServlet {
         }
     }
 
-    private static boolean checkExtensionImage() {
+    private boolean checkExtensionImage() {
         HashSet<String> extensions = new HashSet<>(Set.of("jpeg", "jpg", "png", "gif"));
         return extensions.contains(imageName.substring(imageName.lastIndexOf(".") + 1));
     }
 
     /* проверка существования уже ранее загруженного аватара при редактировании профиля */
-    private static void checkUpdateImage(String login) {
+    private void checkUpdateImage(String login) {
         if (imageName.isEmpty()) {
             String image = DataBase.INSTANCE.users.findKey(login).image;
             if (image != null)
@@ -266,7 +266,7 @@ public class UserSave extends HttpServlet {
         }
     }
 
-    private static void checkUpdatePassword(String login) {
+    private void checkUpdatePassword(String login) {
         if (userPassword.isEmpty()) {
             String pass = DataBase.INSTANCE.users.findKey(login).password;
             if (!pass.isEmpty() || !pass.equals(""))

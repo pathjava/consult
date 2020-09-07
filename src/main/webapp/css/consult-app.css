@@ -274,10 +274,13 @@ span.edit-text {
 .card-text {
     font-size: 0.91rem;
     margin-bottom: 0.9rem;
+    display: inline-block;
 }
 
-.card-text .mentorSchedules {
+.mentorSchedulesDay, .mentorSchedulesTime {
     margin-bottom: 0.15rem;
+    float: left;
+    width: 50%;
 }
 
 .slotsUlBlock {
@@ -351,7 +354,7 @@ span.edit-text {
     text-align: center;
 }
 
-.slotTempBusy, .slotTempBusy:hover{
+.slotTempBusy, .slotTempBusy:hover {
     color: #721c24;
     background-color: #f5c6cb;
     border-color: #f5c6cb;

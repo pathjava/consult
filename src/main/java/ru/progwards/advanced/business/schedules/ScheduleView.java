@@ -41,7 +41,7 @@ public class ScheduleView extends HttpServlet {
         }
     }
 
-    public static Map<Integer, List<SchedulesMentors>> getSchedulesMentors() {
+    private Map<Integer, List<SchedulesMentors>> getSchedulesMentors() {
         Map<Integer, List<SchedulesMentors>> map = new LinkedHashMap<>();
         List<SchedulesMentors> list;
         List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll()).stream()

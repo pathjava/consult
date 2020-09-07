@@ -27,7 +27,7 @@
                                             <c:forEach var="map" items="${requestScope.schedules}">
                                                 <c:if test="${map.key eq mentor.login}">
                                                     <c:forEach var="schedule" items="${map.value}">
-                                                        <div class="mentorSchedules">${schedule}</div>
+                                                        <div class="mentorSchedulesDay">${schedule}</div>
                                                     </c:forEach>
                                                 </c:if>
                                             </c:forEach>

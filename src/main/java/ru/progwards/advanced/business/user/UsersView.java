@@ -73,7 +73,7 @@ public class UsersView extends HttpServlet {
         }
     }
 
-    private static List<UserFutureConsultations> getUserFutureConsultations(String login) {
+    private List<UserFutureConsultations> getUserFutureConsultations(String login) {
         List<UserFutureConsultations> list = new ArrayList<>();
         for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
             if (item.student != null && item.student.equals(login) && item.start > Utils.getTimeNow()) {
@@ -92,7 +92,7 @@ public class UsersView extends HttpServlet {
         return list;
     }
 
-    private static List<UserPastConsultations> getUserPastConsultations(String login) {
+    private List<UserPastConsultations> getUserPastConsultations(String login) {
         List<UserPastConsultations> list = new ArrayList<>();
         for (DataBase.Consultations.Consultation item : DataBase.INSTANCE.consultations.getAll()) {
             if (item.student != null && item.student.equals(login) && item.start < Utils.getTimeNow()) {

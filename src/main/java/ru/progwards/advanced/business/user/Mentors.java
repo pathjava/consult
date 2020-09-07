@@ -26,7 +26,7 @@ public class Mentors extends HttpServlet {
         req.getRequestDispatcher("/users/mentors.jsp").forward(req, resp);
     }
 
-    public static Map<String, List<String>> getSchedulesMentors() {
+    private Map<String, List<String>> getSchedulesMentors() {
         Map<String, List<String>> map = new LinkedHashMap<>();
         List<String> list = new ArrayList<>();
         List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll()).stream()
@@ -39,7 +39,7 @@ public class Mentors extends HttpServlet {
         for (DataBase.Schedule.Value schedule : schedules) {
             String mentor = schedule.mentor;
             String dayTime = Utils.getDayOfWeek(schedule.day_of_week)
-                    + " с "
+                    + "</div><div class='mentorSchedulesTime'>с "
                     + Utils.getStartTime(schedule.start)
                     + " до "
                     + Utils.getEndTime(schedule.start, schedule.duration);
