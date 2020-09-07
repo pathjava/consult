@@ -52,9 +52,7 @@
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="value" value="${setting.value}"/>
                                         </label>
-                                        <span class="edit">
-                                            <input class="btn-edit" type="submit" value=""/>
-                                        </span>
+                                        <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
                                     </form>
                                 </td>
                             </tr>

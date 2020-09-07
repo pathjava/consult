@@ -47,12 +47,11 @@
                                                 <input type="hidden" name="start" value="${schedule.start}"/>
                                             </label>
                                             <label class="hiddenLabel">
-                                                <input type="hidden" name="day_of_week" value="${schedule.day_of_week}"/>
+                                                <input type="hidden" name="day_of_week"
+                                                       value="${schedule.day_of_week}"/>
                                             </label>
-                                            <span class="trash">
-                                            <input class="btn-del" type="submit" value=""
-                                                   onclick="return confirm('Вы подтверждаете удаление?')"/>
-                                        </span>
+                                            <span class="trash"><input class="btn-del" type="submit" value=""
+                                                                       onclick="return confirm('Вы подтверждаете удаление?')"/></span>
                                         </form>
                                     </td>
                                     <td>
@@ -72,9 +71,7 @@
                                                 <input type="hidden" name="duration"
                                                        value="${schedule.duration}"/>
                                             </label>
-                                            <span class="edit">
-                                            <input class="btn-edit" type="submit" value=""/>
-                                        </span>
+                                            <span class="edit"><input class="btn-edit" type="submit" value=""/></span>
                                         </form>
                                     </td>
                                 </c:forEach>

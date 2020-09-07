@@ -40,6 +40,7 @@ public class ConsultsEdit extends HttpServlet {
             String comment = "";
             long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
             long oldStart = Long.parseLong(req.getParameter("oldStart"));
+            boolean mentorEdit = "true".equals(req.getParameter("mentorEdit"));
             String oldStudent = "";
 
             DataBase.Consultations.Key oldKey = new DataBase.Consultations.Key(mentor, oldStart);
@@ -48,7 +49,10 @@ public class ConsultsEdit extends HttpServlet {
             DataBase.Consultations.Key key = new DataBase.Consultations.Key(mentor, start);
             Utils.removeOldAndPutNew(mentor, start, duration, student, comment, key);
 
-            resp.sendRedirect("/consults-view");
+            if (mentorEdit)
+                resp.sendRedirect("/users-view?login=" + mentor);
+            else
+                resp.sendRedirect("/consults-view");
         }
     }
 

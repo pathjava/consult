@@ -71,10 +71,9 @@
                                                                     <input type="hidden" name="deletesMentor"
                                                                            value="true"/>
                                                                 </label>
-                                                                <span class="trash">
-                                                        <input class="btn-del" type='submit' value=""
-                                                               onclick="return confirm('Вы подтверждаете удаление?')"/>
-                                                    </span>
+                                                                <span class="trash"><input class="btn-del" type='submit'
+                                                                                           value=""
+                                                                                           onclick="return confirm('Вы подтверждаете удаление?')"/></span>
                                                             </form>
                                                         </c:when>
                                                         <c:otherwise>
@@ -99,9 +98,8 @@
                                                                     <input type="hidden" name="mentor"
                                                                            value="${data.mentor}"/>
                                                                 </label>
-                                                                <span class="edit">
-                                                        <input class="btn-edit" type="submit" value=""/>
-                                                    </span>
+                                                                <span class="edit"><input class="btn-edit" type="submit"
+                                                                                          value=""/></span>
                                                             </form>
                                                         </c:when>
                                                         <c:otherwise>

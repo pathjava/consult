@@ -33,7 +33,8 @@
                                                                     <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
                                                                 </c:when>
                                                                 <c:when test="${consultation.start eq param.start}">
-                                                                    <input type="hidden" name="oldStart" value="${param.start}"/>
+                                                                    <input type="hidden" name="oldStart"
+                                                                           value="${param.start}"/>
                                                                     <div class="slotTempBusy">${consultation.startTime}</div>
                                                                 </c:when>
                                                                 <c:otherwise>
@@ -56,6 +57,11 @@
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="edit" value="true"/>
                                         </label>
+                                        <c:if test="${param.mentorEdit ne null}">
+                                            <label class="hiddenLabel">
+                                                <input type="hidden" name="mentorEdit" value="true"/>
+                                            </label>
+                                        </c:if>
                                         <input type="submit" class="btn btn-primary btn-block"
                                                value="Изменить время консультации">
                                     </div>
