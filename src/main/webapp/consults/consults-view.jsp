@@ -68,7 +68,7 @@
                                                                            value="${data.start}"/>
                                                                 </label>
                                                                 <label class="hiddenLabel">
-                                                                    <input type="hidden" name="deletesMentor"
+                                                                    <input type="hidden" name="deletes"
                                                                            value="true"/>
                                                                 </label>
                                                                 <span class="trash"><input class="btn-del" type='submit'

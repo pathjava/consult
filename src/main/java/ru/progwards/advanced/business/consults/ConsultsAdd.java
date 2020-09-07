@@ -22,6 +22,7 @@ public class ConsultsAdd extends HttpServlet {
         HttpSession session = req.getSession();
 
         boolean isRemoveUser = "true".equals(req.getParameter("deletesUser"));
+        boolean isRemove = "true".equals(req.getParameter("deletes"));
         boolean isRemoveMentor = "true".equals(req.getParameter("deletesMentor"));
         String mentor = req.getParameter("mentor");
         String tempStart = req.getParameter("start");
@@ -33,7 +34,7 @@ public class ConsultsAdd extends HttpServlet {
             start = Long.parseLong(tempStart);
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
         String student = (String) session.getAttribute("login");
-        String comment = isRemoveUser || isRemoveMentor ? "" : req.getParameter("comment");
+        String comment = isRemoveUser || isRemove || isRemoveMentor ? "" : req.getParameter("comment");
 
         if (student == null) {
             req.setAttribute("error-description", "Логин студента не может быть null!");
@@ -47,13 +48,13 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
-        if ((!isRemoveUser && !isRemoveMentor) && DataBase.INSTANCE.users.findKey(student).is_mentor) {
+        if ((!isRemoveUser && !isRemove && !isRemoveMentor) && DataBase.INSTANCE.users.findKey(student).is_mentor) {
             req.setAttribute("error-description", "Наставник не может записываться на консультацию!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
 
-        if ((!isRemoveUser && !isRemoveMentor) && mentor.equals(student)) {
+        if ((!isRemoveUser && !isRemove && !isRemoveMentor) && mentor.equals(student)) {
             req.setAttribute("error-description", "Нельзя записываться на консультацию к самому себе!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -70,8 +71,14 @@ public class ConsultsAdd extends HttpServlet {
         DataBase.Consultations.Key key = new DataBase.Consultations.Key(mentor, start);
         if (!checkingKeyExistence(req, resp, key)) return;
 
-        if (isRemoveUser || isRemoveMentor) {
-            String path = isRemoveUser ? "/users-view?login=" + student : "/consults-view";
+        if (isRemoveUser || isRemove || isRemoveMentor) {
+            String path;
+            if (isRemoveUser)
+                path = "/users-view?login=" + student;
+            else if (isRemove)
+                path = "/consults-view";
+            else
+                path = "/users-view?login=" + mentor;
             student = "";
             comment = "";
             Utils.removeOldAndPutNew(mentor, start, duration, student, comment, key);
@@ -108,7 +115,7 @@ public class ConsultsAdd extends HttpServlet {
     }
 
     private boolean checkingKeyExistence(HttpServletRequest req, HttpServletResponse resp,
-                                                DataBase.Consultations.Key key) throws ServletException, IOException {
+                                         DataBase.Consultations.Key key) throws ServletException, IOException {
         if (!DataBase.INSTANCE.consultations.exists(key)) {
             req.setAttribute("error-description", "Данный слот записи на консультацию отсутствует!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
