@@ -13,7 +13,7 @@
                     <h1>Изменение консультации ${param.student}</h1>
                 </div>
                 <div>
-                    <form method="post" action="${pageContext.request.contextPath}/consults-add">
+                    <form method="post" action="${pageContext.request.contextPath}/consults-edit">
                         <div class="row row-cols-1">
                             <div class="col mb-4">
                                 <div class="card cardForm">
@@ -33,10 +33,11 @@
                                                                     <label for="${outerLoop.index+1}${loop.index+1}">${consultation.startTime}</label>
                                                                 </c:when>
                                                                 <c:when test="${consultation.start eq param.start}">
+                                                                    <input type="hidden" name="oldStart" value="${param.start}"/>
                                                                     <div class="slotTempBusy">${consultation.startTime}</div>
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <div class="slotIsBusy <c:if test="${consultation.student eq sessionScope.login}">slotIsBusyStudent</c:if>">${consultation.startTime}</div>
+                                                                    <div class="slotIsBusy <c:if test="${consultation.student eq param.student}">slotIsBusyStudent</c:if>">${consultation.startTime}</div>
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </li>
@@ -47,7 +48,13 @@
                                     </div>
                                     <div class="">
                                         <label class="hiddenLabel">
-                                            <input type="hidden" name="mentor" value="${requestScope.mentor}"/>
+                                            <input type="hidden" name="student" value="${param.student}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="mentor" value="${param.mentor}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="edit" value="true"/>
                                         </label>
                                         <input type="submit" class="btn btn-primary btn-block"
                                                value="Изменить время консультации">

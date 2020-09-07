@@ -26,7 +26,7 @@ public class ConsultsAdd extends HttpServlet {
         String mentor = req.getParameter("mentor");
         long start = Long.parseLong(req.getParameter("start"));
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
-        String loginStudent = (String) session.getAttribute("login");
+        String student = (String) session.getAttribute("login");
         String comment = isRemoveUser || isRemoveMentor ? "" : req.getParameter("comment");
 
         if (!checkExistMentor(mentor)) {
@@ -35,13 +35,13 @@ public class ConsultsAdd extends HttpServlet {
             return;
         }
 
-        if ((!isRemoveUser && !isRemoveMentor) && DataBase.INSTANCE.users.findKey(loginStudent).is_mentor) {
+        if ((!isRemoveUser && !isRemoveMentor) && DataBase.INSTANCE.users.findKey(student).is_mentor) {
             req.setAttribute("error-description", "Наставник не может записываться на консультацию!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
 
-        if ((!isRemoveUser && !isRemoveMentor) && mentor.equals(loginStudent)) {
+        if ((!isRemoveUser && !isRemoveMentor) && mentor.equals(student)) {
             req.setAttribute("error-description", "Нельзя записываться на консультацию к самому себе!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
@@ -59,16 +59,16 @@ public class ConsultsAdd extends HttpServlet {
         if (!checkingKeyExistence(req, resp, key)) return;
 
         if (isRemoveUser || isRemoveMentor) {
-            String path = isRemoveUser ? "/users-view?login=" + loginStudent : "/consults-view";
-            loginStudent = "";
+            String path = isRemoveUser ? "/users-view?login=" + student : "/consults-view";
+            student = "";
             comment = "";
-            removeOldAndPutNew(mentor, start, duration, loginStudent, comment, key);
+            removeOldAndPutNew(mentor, start, duration, student, comment, key);
             resp.sendRedirect(path);
             return;
         }
 
         if (DataBase.INSTANCE.consultations.findKey(key).student.equals("")) {
-            removeOldAndPutNew(mentor, start, duration, loginStudent, comment, key);
+            removeOldAndPutNew(mentor, start, duration, student, comment, key);
         } else {
             req.setAttribute("error-description", "Не удалось добавить запись на консультацию! Вероятно, она уже занята!");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
@@ -90,15 +90,15 @@ public class ConsultsAdd extends HttpServlet {
         req.getRequestDispatcher("/consults/consults-add.jsp").forward(req, resp);
     }
 
-    private void removeOldAndPutNew(String loginMentor, long startTime,
-                                    long duration, String loginStudent, String comment,
+    private static void removeOldAndPutNew(String mentor, long start,
+                                    long duration, String student, String comment,
                                     DataBase.Consultations.Key key) throws IOException {
         DataBase.INSTANCE.consultations.remove(key);
-        DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(loginMentor,
-                startTime, duration, loginStudent, comment));
+        DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(mentor,
+                start, duration, student, comment));
     }
 
-    public boolean checkingKeyExistence(HttpServletRequest req, HttpServletResponse resp,
+    private static boolean checkingKeyExistence(HttpServletRequest req, HttpServletResponse resp,
                                         DataBase.Consultations.Key key) throws ServletException, IOException {
         if (!DataBase.INSTANCE.consultations.exists(key)) {
             req.setAttribute("error-description", "Данный слот записи на консультацию отсутствует!");
@@ -108,7 +108,7 @@ public class ConsultsAdd extends HttpServlet {
         return true;
     }
 
-    private static boolean checkExistMentor(String loginMentor) {
-        return DataBase.INSTANCE.users.exists(loginMentor) && DataBase.INSTANCE.users.findKey(loginMentor).is_mentor;
+    private static boolean checkExistMentor(String mentor) {
+        return DataBase.INSTANCE.users.exists(mentor) && DataBase.INSTANCE.users.findKey(mentor).is_mentor;
     }
 }
