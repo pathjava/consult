@@ -68,6 +68,10 @@
                                                                            value="${data.start}"/>
                                                                 </label>
                                                                 <label class="hiddenLabel">
+                                                                    <input type="hidden" name="student"
+                                                                           value="${data.student}"/>
+                                                                </label>
+                                                                <label class="hiddenLabel">
                                                                     <input type="hidden" name="deletes"
                                                                            value="true"/>
                                                                 </label>
@@ -87,16 +91,16 @@
                                                             <form action="${pageContext.request.contextPath}/consults-edit"
                                                                   method="post">
                                                                 <label class="hiddenLabel">
+                                                                    <input type="hidden" name="mentor"
+                                                                           value="${data.mentor}"/>
+                                                                </label>
+                                                                <label class="hiddenLabel">
                                                                     <input type="hidden" name="start"
                                                                            value="${data.start}"/>
                                                                 </label>
                                                                 <label class="hiddenLabel">
                                                                     <input type="hidden" name="student"
                                                                            value="${data.student}"/>
-                                                                </label>
-                                                                <label class="hiddenLabel">
-                                                                    <input type="hidden" name="mentor"
-                                                                           value="${data.mentor}"/>
                                                                 </label>
                                                                 <span class="edit"><input class="btn-edit" type="submit"
                                                                                           value=""/></span>

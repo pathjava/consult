@@ -19,7 +19,6 @@ public class ConsultsAdd extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
 
         boolean isRemoveUser = "true".equals(req.getParameter("deletesUser"));
         boolean isRemove = "true".equals(req.getParameter("deletes"));
@@ -33,7 +32,7 @@ public class ConsultsAdd extends HttpServlet {
         } else
             start = Long.parseLong(tempStart);
         long duration = Utils.getTime(DataBase.INSTANCE.settings.findKey("SLOT_TIME").value);
-        String student = (String) session.getAttribute("login");
+        String student = req.getParameter("student");
         String comment = isRemoveUser || isRemove || isRemoveMentor ? "" : req.getParameter("comment");
 
         if (student == null) {

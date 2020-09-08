@@ -55,6 +55,9 @@
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="mentor" value="${requestScope.mentor}"/>
                                         </label>
+                                        <label class="hiddenLabel">
+                                            <input type="hidden" name="student" value="${sessionScope.login}"/>
+                                        </label>
                                         <input type="submit" class="btn btn-primary btn-block" value="Отправить заявку">
                                     </div>
                                     <div class="privacy">

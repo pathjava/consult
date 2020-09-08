@@ -27,7 +27,7 @@ public class ConsultsView extends HttpServlet {
 
     private Map<String, List<AllConsults>> getAllConsultations(boolean b) {
         Map<String, List<AllConsults>> map = new LinkedHashMap<>();
-        List<AllConsults> list = new ArrayList<>();
+        List<AllConsults> list;
         List<DataBase.Consultations.Consultation> consultations
                 = b ? getFutureListConsultations() : getPastListConsultations();
 
@@ -36,12 +36,9 @@ public class ConsultsView extends HttpServlet {
             String nameAndDate = mentorName + " - " + Utils.getStartDate(item.start);
             String startEndTime = " с " + Utils.getStartMoscowTime(item.start)
                     + " до " + Utils.getEndMoscowTime(item.start, item.duration);
-            if (!map.containsKey(nameAndDate))
-                list = new ArrayList<>();
+            list = !map.containsKey(nameAndDate) ? new ArrayList<>() : map.get(nameAndDate);
             list.add(new AllConsults(item.mentor, mentorName, item.start, startEndTime, item.student));
-            map.put(nameAndDate, list.stream()
-                    .sorted(Comparator.comparing(p -> p.start))
-                    .collect(Collectors.toList()));
+            map.put(nameAndDate, list);
         }
         return map;
     }

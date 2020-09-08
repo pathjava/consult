@@ -112,6 +112,9 @@
                                             <input type="hidden" name="start" value="${consultation.start}"/>
                                         </label>
                                         <label class="hiddenLabel">
+                                            <input type="hidden" name="student" value="${requestScope.user.login}"/>
+                                        </label>
+                                        <label class="hiddenLabel">
                                             <input type="hidden" name="deletesUser" value="true"/>
                                         </label>
                                         <span class="trash">
