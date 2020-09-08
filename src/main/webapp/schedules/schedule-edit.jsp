@@ -75,7 +75,7 @@
                             <input type="hidden" name="edit" value="true">
                         </label>
                         <label class="hiddenLabel">
-                            <input type="hidden" name="day_of_week" value="${param.day_of_week}"/>
+                            <input type="hidden" name="old_day_of_week" value="${param.day_of_week}"/>
                         </label>
                         <label class="hiddenLabel">
                             <input type="hidden" name="start" value="${param.start}"/>

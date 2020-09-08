@@ -47,16 +47,16 @@ public class ConsultsView extends HttpServlet {
     }
 
     private List<DataBase.Consultations.Consultation> getFutureListConsultations() {
-        return DataBase.INSTANCE.consultations.getAll()
-                .stream().filter(p -> p.start > Utils.getTimeNow())
+        return DataBase.INSTANCE.consultations.getAll().stream()
+                .filter(p -> p.start > Utils.getTimeNow())
                 .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart)
                         .thenComparing(DataBase.Consultations.Consultation::getMentor))
                 .collect(Collectors.toList());
     }
 
     private List<DataBase.Consultations.Consultation> getPastListConsultations() {
-        return DataBase.INSTANCE.consultations.getAll()
-                .stream().filter(p -> p.start < Utils.getTimeNow())
+        return DataBase.INSTANCE.consultations.getAll().stream()
+                .filter(p -> p.start < Utils.getTimeNow())
                 .sorted(Comparator.comparing(DataBase.Consultations.Consultation::getStart).reversed()
                         .thenComparing(DataBase.Consultations.Consultation::getMentor))
                 .collect(Collectors.toList());

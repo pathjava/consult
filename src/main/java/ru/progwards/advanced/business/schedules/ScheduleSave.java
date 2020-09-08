@@ -34,9 +34,9 @@ public class ScheduleSave extends HttpServlet {
 
         // при редактировании сперва удаляем и потом добавляем
         if ("true".equals(req.getParameter("edit"))) {
-            day_of_week = Integer.parseInt(req.getParameter("day_of_week"));
-            start = Long.parseLong(req.getParameter("start"));
-            DataBase.Schedule.Key key = new DataBase.Schedule.Key(mentor, day_of_week, start);
+            int old_day_of_week = Integer.parseInt(req.getParameter("old_day_of_week"));
+            long old_start = Long.parseLong(req.getParameter("start"));
+            DataBase.Schedule.Key key = new DataBase.Schedule.Key(mentor, old_day_of_week, old_start);
             DataBase.INSTANCE.schedule.remove(key);
         }
 

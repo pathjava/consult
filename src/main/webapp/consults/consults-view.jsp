@@ -103,6 +103,10 @@
                                                             </form>
                                                         </c:when>
                                                         <c:otherwise>
+                                                            <label class="hiddenLabel">
+                                                                <input type="hidden" name="start"
+                                                                       value="${data.start}"/>
+                                                            </label>
                                                             <i class="far fa-edit fadedIcon"></i>
                                                         </c:otherwise>
                                                     </c:choose>
