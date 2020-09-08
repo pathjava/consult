@@ -46,7 +46,6 @@
                                     Воскресенье
                                 </option>
                             </select>
-<%--                            <label for="day_of_week" style="display: none"></label>--%>
                         </div>
                     </div>
                     <div class="form-group row">

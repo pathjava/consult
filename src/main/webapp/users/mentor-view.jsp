@@ -128,7 +128,7 @@
                                                 <td>
                                                     <c:choose>
                                                         <c:when test="${data.student ne ''}">
-                                                            <form action="${pageContext.request.contextPath}/consults-add"
+                                                            <form action="${pageContext.request.contextPath}/consults-save"
                                                                   method="post">
                                                                 <label class="hiddenLabel">
                                                                     <input type="hidden" name="mentor"

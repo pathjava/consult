@@ -25,7 +25,6 @@
                                     <option value="${mentor.login}">${mentor.name}</option>
                                 </c:forEach>
                             </select>
-<%--                            <label for="mentor" style="display: none"></label>--%>
                         </div>
                     </div>
                     <div class="form-group row">

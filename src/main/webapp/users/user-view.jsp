@@ -104,7 +104,7 @@
                                         - ${consultation.startTime}</div>
                                 </td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/consults-add" method="post">
+                                    <form action="${pageContext.request.contextPath}/consults-save" method="post">
                                         <label class="hiddenLabel">
                                             <input type="hidden" name="mentor" value="${consultation.mentor}"/>
                                         </label>

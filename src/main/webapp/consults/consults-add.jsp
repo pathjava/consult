@@ -13,7 +13,7 @@
                     <h1>Запись на консультацию к ${requestScope.name}</h1>
                 </div>
                 <div>
-                    <form method="post" action="${pageContext.request.contextPath}/consults-add">
+                    <form method="post" action="${pageContext.request.contextPath}/consults-save">
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-4">
                                 <div class="card cardForm">
