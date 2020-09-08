@@ -37,9 +37,6 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/">Главная<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/mentors">Наставники</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/users-view?login=${sessionScope.login}">Личный
                             кабинет</a>
                     </li>
@@ -77,7 +74,9 @@
     <jsp:doBody/>
 </div>
 <footer>
-    <div></div>
+    <div class="mainContent col-md-9 col-xl-8 py-md-3">
+        <p>&copy; 2019-2020</p>
+    </div>
 </footer>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

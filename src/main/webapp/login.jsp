@@ -27,7 +27,6 @@
                     <div class="">
                         <input type="submit" class="btn btn-primary btn-block" value="Войти">
                     </div>
-                    <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
                 </form>
             </div>
         </main>

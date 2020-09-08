@@ -116,11 +116,11 @@ public class UsersView extends HttpServlet {
             String startDate = Utils.getStartDayWeek(item.start)
                     + " - " + Utils.getStartDate(item.start);
             list.add(new UserFutureConsultations(item.mentor, mentorName, item.start,
-                    startTime, startDate));
+                    startTime, startDate, item.student));
         }
         if (list.size() == 0)
             list.add(new UserFutureConsultations("", "", 0,
-                    "У Вас нет записей на консультации", ""));
+                    "У Вас нет записей на консультации", "", ""));
         return list;
     }
 
@@ -150,14 +150,16 @@ public class UsersView extends HttpServlet {
         public final long start;
         public final String startTime;
         public final String startDate;
+        public final String student;
 
         private UserFutureConsultations(String mentor, String mentorName, long start,
-                                        String startTime, String startDate) {
+                                        String startTime, String startDate, String student) {
             this.mentor = mentor;
             this.mentorName = mentorName;
             this.start = start;
             this.startTime = startTime;
             this.startDate = startDate;
+            this.student = student;
         }
 
         public String getMentor() {
@@ -178,6 +180,10 @@ public class UsersView extends HttpServlet {
 
         public String getStartDate() {
             return startDate;
+        }
+
+        public String getStudent() {
+            return student;
         }
     }
 

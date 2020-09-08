@@ -139,6 +139,10 @@
                                                                            value="${data.start}"/>
                                                                 </label>
                                                                 <label class="hiddenLabel">
+                                                                    <input type="hidden" name="student"
+                                                                           value="${data.student}"/>
+                                                                </label>
+                                                                <label class="hiddenLabel">
                                                                     <input type="hidden" name="deletesMentor"
                                                                            value="true"/>
                                                                 </label>

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@WebServlet("/mentors")
+//@WebServlet("/")
 public class Mentors extends HttpServlet {
 
     @Override
@@ -23,7 +23,7 @@ public class Mentors extends HttpServlet {
 
         req.setAttribute("mentors", mentors);
         req.setAttribute("schedules", schedules);
-        req.getRequestDispatcher("/users/mentors.jsp").forward(req, resp);
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
     private Map<String, List<String>> getSchedulesMentors() {

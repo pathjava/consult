@@ -4,6 +4,19 @@
          version="3.1">
     <display-name>Archetype Created Web Application</display-name>
 
+    <welcome-file-list>
+        <welcome-file>Mentors</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>Mentors</servlet-name>
+        <servlet-class>ru.progwards.advanced.business.user.Mentors</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Mentors</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>AuthorizedFilter</filter-name>
         <filter-class>ru.progwards.advanced.business.filters.AuthorizedFilter</filter-class>
