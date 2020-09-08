@@ -27,7 +27,7 @@ public class ConsultsView extends HttpServlet {
 
     private Map<String, List<AllConsults>> getAllConsultations(boolean b) {
         Map<String, List<AllConsults>> map = new LinkedHashMap<>();
-        List<AllConsults> list;
+        List<AllConsults> list = new ArrayList<>();
         List<DataBase.Consultations.Consultation> consultations
                 = b ? getFutureListConsultations() : getPastListConsultations();
 
@@ -40,6 +40,9 @@ public class ConsultsView extends HttpServlet {
             list.add(new AllConsults(item.mentor, mentorName, item.start, startEndTime, item.student));
             map.put(nameAndDate, list);
         }
+        if (map.size() == 0)
+            list.add(new AllConsults("", "", 0,
+                    "Нет записей на консультации!", ""));
         return map;
     }
 
