@@ -177,8 +177,8 @@ public class Utils {
     }
 
     public static void removeOldAndPutNew(String mentor, long start,
-                                           long duration, String student, String comment,
-                                           DataBase.Consultations.Key key) throws IOException {
+                                          long duration, String student, String comment,
+                                          DataBase.Consultations.Key key) throws IOException {
         DataBase.INSTANCE.consultations.remove(key);
         DataBase.INSTANCE.consultations.put(new DataBase.Consultations.Consultation(mentor,
                 start, duration, student, comment));

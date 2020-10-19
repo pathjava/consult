@@ -37,7 +37,8 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/">Главная<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/users-view?login=${sessionScope.login}">Личный
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/users-view?login=${sessionScope.login}">Личный
                             кабинет</a>
                     </li>
 

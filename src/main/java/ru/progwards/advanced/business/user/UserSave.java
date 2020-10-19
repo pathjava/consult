@@ -242,7 +242,7 @@ public class UserSave extends HttpServlet {
     }
 
     private boolean isStringContainsLatinCharactersOnly(HttpServletRequest req, HttpServletResponse resp,
-                                                              String iStringToCheck) throws ServletException, IOException {
+                                                        String iStringToCheck) throws ServletException, IOException {
         if (iStringToCheck.matches("^[a-zA-Z0-9.]+$"))
             return true;
         else {

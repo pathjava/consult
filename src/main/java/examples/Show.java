@@ -16,7 +16,7 @@ public class Show extends HttpServlet {
         String password = req.getParameter("password");
         PrintWriter printWriter = resp.getWriter();
         printWriter.println(
-                        "<html> \n" +
+                "<html> \n" +
                         "   <head> \n" +
                         "       <meta charset=\"utf-8\"> \n" +
                         "       <title>Progwards пример текста</title> \n" +

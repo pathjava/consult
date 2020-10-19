@@ -31,8 +31,8 @@ public class Mentors extends HttpServlet {
         List<String> list = new ArrayList<>();
         List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll()).stream()
                 .sorted(Comparator.comparing(DataBase.Schedule.Value::getMentor)
-                .thenComparingLong(DataBase.Schedule.Value::getDay_of_week)
-                .thenComparing(DataBase.Schedule.Value::getStart))
+                        .thenComparingLong(DataBase.Schedule.Value::getDay_of_week)
+                        .thenComparing(DataBase.Schedule.Value::getStart))
                 .collect(Collectors.toList());
 
         String tempLogin = "";

@@ -19,6 +19,6 @@ function showFunction() {
     }
 }
 
-$('input[type="checkbox"]').change(function() {
+$('input[type="checkbox"]').change(function () {
     $(this).next().next().toggle()
 })

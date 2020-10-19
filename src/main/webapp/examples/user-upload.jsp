@@ -8,14 +8,15 @@
 </jsp:attribute>
     <jsp:body>
         <div>
-            <form action="${pageContext.request.contextPath}/user/multipart" method="post" enctype="multipart/form-data">
+            <form action="${pageContext.request.contextPath}/user/multipart" method="post"
+                  enctype="multipart/form-data">
                 <div>
                     <input type="text" class="form-control" id="controlLogin" name="login" minlength="3"
                            maxlength="20" required>
                 </div>
                 <div>
-                <input type="file" name="imageFile"/>
-                <input type="submit"/>
+                    <input type="file" name="imageFile"/>
+                    <input type="submit"/>
                 </div>
             </form>
         </div>

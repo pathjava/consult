@@ -43,7 +43,8 @@ public class ConsultsGenerator {
 
     private long getStartConsultationsTime(long start) {
 //        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT);
-        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(1); //TODO для теста, рабочая на строку выше
+        LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(0); //TODO для теста, рабочая на строку выше
+        /* plusDays(0) - означает сегодня, plusDays(1) - означает завтра и т.д. */
         return Timestamp.valueOf(midnight).getTime() + start;
     }
 
@@ -54,7 +55,8 @@ public class ConsultsGenerator {
     private int getCurrentDayOfWeek() {
 //        return LocalDateTime.now().getDayOfWeek().getValue();
 //        return LocalDateTime.now().getDayOfWeek().getValue()+3; //TODO для теста, рабочая на строку выше
-        return 6; //TODO для теста, рабочая на строку выше
+        return 1; //TODO для теста, рабочая на строку выше
+        /* 1 означает понедельник, 2 вторник, 3 среда и т.д. */
     }
 
 

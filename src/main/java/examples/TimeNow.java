@@ -15,7 +15,7 @@ public class TimeNow extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         PrintWriter printWriter = resp.getWriter();
         printWriter.println(
-                        "<html> \n" +
+                "<html> \n" +
                         "   <head> \n" +
                         "       <meta charset=\"utf-8\"> \n" +
                         "       <title>Progwards пример текста</title> \n" +

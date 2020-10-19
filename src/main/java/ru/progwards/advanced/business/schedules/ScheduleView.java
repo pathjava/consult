@@ -46,8 +46,8 @@ public class ScheduleView extends HttpServlet {
         List<SchedulesMentors> list;
         List<DataBase.Schedule.Value> schedules = new ArrayList<>(DataBase.INSTANCE.schedule.getAll()).stream()
                 .sorted(Comparator.comparing(DataBase.Schedule.Value::getDay_of_week)
-                .thenComparingLong(DataBase.Schedule.Value::getStart)
-                .thenComparing(DataBase.Schedule.Value::getMentor))
+                        .thenComparingLong(DataBase.Schedule.Value::getStart)
+                        .thenComparing(DataBase.Schedule.Value::getMentor))
                 .collect(Collectors.toList());
 
         int key = 1;
@@ -76,7 +76,7 @@ public class ScheduleView extends HttpServlet {
         public final String startAndEndTime;
 
         private SchedulesMentors(String mentor, String mentorName, int day_of_week, String dayOfWeek,
-                                long start, long duration, String startAndEndTime) {
+                                 long start, long duration, String startAndEndTime) {
             this.mentor = mentor;
             this.mentorName = mentorName;
             this.day_of_week = day_of_week;

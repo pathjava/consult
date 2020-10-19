@@ -10,7 +10,7 @@
             Имя пользователя: ${pageContext.request.getParameter("login")} <br>
         </div>
         <div class="text-center alert alert-info">
-            Пароль:  ${pageContext.request.getParameter("password")} <br>
+            Пароль: ${pageContext.request.getParameter("password")} <br>
         </div>
     </jsp:body>
 </t:template>
