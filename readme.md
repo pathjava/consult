@@ -3,7 +3,9 @@
 
 Страница авторизации http://localhost:8888/login
 
-Выбор слота записи на консультацию http://localhost:8888/consults-save?mentor=nikita
+Выбор слота записи на консультацию:<br />
+http://localhost:8888/consults-save?mentor=nikita <br />
+http://localhost:8888/consults-save?mentor=olegOne
 
 ## Запуск приложения
 Требуется Tomcat версии 7 и выше
