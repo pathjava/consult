@@ -14,11 +14,11 @@ http://localhost:8888/consults-save?mentor=olegOne
 
 Генерация слотов выполняется в файле _ru/progwards/advanced/business/consults/ConsultsGenerator.java_
 
-В строке 46: _LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(0);_
+**В строке 46**: _LocalDateTime midnight = LocalDateTime.now().with(LocalTime.MIDNIGHT).plusDays(0);_
 
 Ноль (0) в конце строки означает текущий день, если (1), то завтра, если (2), послезавтра и т.д.
 
-В строке 58: return 1;
+**В строке 58**: return 1;
 
 Один 1 означает день недели - понедельник, 2 - вторник и т.д.
 
