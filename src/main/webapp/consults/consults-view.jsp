@@ -4,13 +4,13 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>user.Mentors</title>
+      <title>Просмотр всех консультаций</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>All consults</h1>
+                    <h1>Все консультации</h1>
                 </div>
 
                 <c:forEach var="mapFuture" items="${requestScope.futureConsultations}" varStatus="id">

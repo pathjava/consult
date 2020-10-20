@@ -4,13 +4,13 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Настройки</title>
+      <title>Добавление консультаций</title>
       </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Настройки дней консультаций</h1>
+                    <h1>Добавление графика консультаций</h1>
                 </div>
                 <form method="post" action="${pageContext.request.contextPath}/schedule-save">
                     <label>

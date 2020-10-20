@@ -5,13 +5,13 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Настройки</title>
+      <title>Данные наставника</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Информация пользователя</h1>
+                    <h1>Информация ментора</h1>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">

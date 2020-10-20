@@ -1,4 +1,7 @@
 # Запись на консультации
+
+![img](https://i.imgur.com/4UKqX5K.jpg)
+
 Страница входа в приложение: http://localhost:8888/
 
 Страница авторизации http://localhost:8888/login

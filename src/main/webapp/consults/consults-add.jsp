@@ -4,7 +4,7 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Consults</title>
+      <title>Запись на консультацию</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">

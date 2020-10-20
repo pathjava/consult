@@ -4,7 +4,7 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Настройки</title>
+      <title>График консультаций</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="page-header">
-                    <h2>Настройки наставников</h2>
+                    <h2>График консультаций наставников</h2>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">

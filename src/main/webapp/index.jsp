@@ -4,13 +4,13 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>user.Mentors</title>
+      <title>Запись на консультацию</title>
    </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Mentors</h1>
+                    <h1>Менторы</h1>
                 </div>
                 <div>
                     <div class="row row-cols-1 row-cols-md-2">

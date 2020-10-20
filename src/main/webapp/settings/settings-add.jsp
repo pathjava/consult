@@ -4,13 +4,13 @@
 
 <t:template>
    <jsp:attribute name="title">
-      <title>Настройки</title>
+      <title>Настройки - добавление</title>
       </jsp:attribute>
     <jsp:body>
         <main class="mainContent col-md-9 col-xl-8 py-md-3">
             <div class="content-text-center">
                 <div class="page-header">
-                    <h1>Настройки: добавление</h1>
+                    <h1>Добавление настроек</h1>
                 </div>
                 <form method="post" action="${pageContext.request.contextPath}/settings-save">
                     <div class="form-group row">
